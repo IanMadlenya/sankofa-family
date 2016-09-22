@@ -1,0 +1,90 @@
+.hexagon
+{
+    float:left;
+    overflow:hidden;
+    visibility:hidden;
+    width:400px;
+    height:200px;
+    transform:rotate(120deg); 
+	margin:0 -138px -98px -85px; /*background:rgba(255,0,0,0.5)*/}
+				
+.outer
+{
+    overflow:hidden;
+    width:100%;
+    height:100%;
+    transform:rotate(-60deg);
+    /*background:rgba(0,255,0,0.5)*/
+}
+				
+.inner
+{
+    overflow:hidden;
+    position:relative;
+    visibility:visible;
+    width:100%;
+    height:100%;
+    transform:rotate(-60deg); 
+	/*opacity:0.5*/
+}
+				
+.textWrapper
+{
+    position:absolute;
+    top:0;
+    opacity:0;
+    left:80px;
+    width:235px;
+    height:200px;
+    z-index:500; 
+	background:rgba(255,255,255,0.8);
+    /*border:1px solid black;top:0px;*/
+	transition:all 0.2s;
+}
+				
+.text
+{
+    position:absolute;
+    top:30px;
+    left:52px;
+    width:130px;
+    height:135px;
+    z-index:500;
+	/*border:1px solid red;*/}
+
+.inner:hover .textWrapper {
+    opacity:1;
+}
+
+.even {
+    margin-top: 102px;
+}
+
+.fixhexagon {
+    margin-left: 92px;
+}
+
+.row {
+    clear:left
+}
+
+.one{background:/*#0000ff*/ url(../images/icon_heritage.jpg) 50% 50% no-repeat; background-size:contain; }
+
+.two{background:/*#0000ff*/ url(../images/icon_property.jpg) 50% 50% no-repeat; background-size:contain; }
+
+.three{background:/*#0000ff*/ url(../images/icon_family.jpg) 50% 50% no-repeat; background-size:contain; }
+
+.four{background:/*#0000ff*/ url(../images/icon_study.jpg) 50% 50% no-repeat; background-size:contain;}
+
+.five{background:/*#0000ff*/ url(../images/icon_forex.jpg) 50% 50% no-repeat; background-size:contain;}
+
+.six{background:/*#0000ff*/ url(../images/icon_money.jpg) 50% 50% no-repeat; background-size:contain;}
+
+.seven{background:/*#0000ff*/ url(../images/icon_immi.jpg) 50% 50% no-repeat; background-size:contain;}
+
+.sankofa-center {
+    margin-top: 165px;
+    margin-bottom: 440px;
+    margin-left: 150px;
+    opacity: 0.8;
+}
