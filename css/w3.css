@@ -240,8 +240,8 @@ input[type=checkbox].w3-check:disabled+.w3-validate,input[type=radio].w3-radio:d
 @-webkit-keyframes opac{from{opacity:0} to{opacity:1}}
 @keyframes opac{from{opacity:0} to{opacity:1}}
 .w3-animate-opacity-sankofa-products{-webkit-animation:opacs 1.5s;animation:opacs 1.5s}
-@-webkit-keyframes opacs{from{opacity:0} to{opacity:0.8}}
-@keyframes opacs{from{opacity:0} to{opacity:0.8}}
+@-webkit-keyframes opacs{from{opacity:0} to{opacity:0.9}}
+@keyframes opacs{from{opacity:0} to{opacity:0.9}}
 .w3-animate-top{position:relative;-webkit-animation:animatetop 0.4s;animation:animatetop 0.4s}
 @-webkit-keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}
 @keyframes animatetop{from{top:-300px;opacity:0} to{top:0;opacity:1}}

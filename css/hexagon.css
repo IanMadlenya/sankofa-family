@@ -37,7 +37,7 @@
     width:235px;
     height:200px;
     z-index:500; 
-	background:rgba(255,255,255,0.8);
+	background:rgba(255,255,255,1);
     /*border:1px solid black;top:0px;*/
 	transition:all 0.2s;
 }
@@ -45,10 +45,20 @@
 .text
 {
     position:absolute;
-    top:30px;
-    left:52px;
-    width:130px;
-    height:135px;
+    top:60px;
+    left:50px;
+    width:150px;
+    height: auto;
+    z-index:500;
+	/*border:1px solid red;*/}
+
+.text2
+{
+    position:absolute;
+    top:48px;
+    left:50px;
+    width:150px;
+    height: auto;
     z-index:500;
 	/*border:1px solid red;*/}
 
@@ -68,25 +78,30 @@
     clear:left
 }
 
-.one{background:/*#0000ff*/ url(../images/icon_heritage.jpg) 50% 50% no-repeat; background-size:contain; }
+.hexagon-button {
+    margin-left: 70px;
+    margin-top: 140px;
+}
 
-.two{background:/*#0000ff*/ url(../images/icon_property.jpg) 50% 50% no-repeat; background-size:contain; }
+.heritage{background:/*#0000ff*/ url(../images/icon_heritage.jpg) 50% 50% no-repeat; background-size:contain; }
 
-.three{background:/*#0000ff*/ url(../images/icon_family.jpg) 50% 50% no-repeat; background-size:contain; }
+.property{background:/*#0000ff*/ url(../images/icon_property.jpg) 50% 50% no-repeat; background-size:contain; }
 
-.four{background:/*#0000ff*/ url(../images/icon_study.jpg) 50% 50% no-repeat; background-size:contain;}
+.family{background:/*#0000ff*/ url(../images/icon_family.jpg) 50% 50% no-repeat; background-size:contain; }
 
-.five{background:/*#0000ff*/ url(../images/icon_forex.jpg) 50% 50% no-repeat; background-size:contain;}
+.study{background:/*#0000ff*/ url(../images/icon_study.jpg) 50% 50% no-repeat; background-size:contain;}
 
-.six{background:/*#0000ff*/ url(../images/icon_money.jpg) 50% 50% no-repeat; background-size:contain;}
+.forex{background:/*#0000ff*/ url(../images/icon_forex.jpg) 50% 50% no-repeat; background-size:contain;}
 
-.seven{background:/*#0000ff*/ url(../images/icon_immi.jpg) 50% 50% no-repeat; background-size:contain;}
+.money{background:/*#0000ff*/ url(../images/icon_money.jpg) 50% 50% no-repeat; background-size:contain;}
 
-.eight{background:/*#0000ff*/ url(../images/icon_tax.jpg) 50% 50% no-repeat; background-size:contain;}
+.immi{background:/*#0000ff*/ url(../images/icon_immi.jpg) 50% 50% no-repeat; background-size:contain;}
+
+.tax{background:/*#0000ff*/ url(../images/icon_tax.jpg) 50% 50% no-repeat; background-size:contain;}
 
 .sankofa-center {
     margin-top: 165px;
     margin-bottom: 440px;
     margin-left: 150px;
-    opacity: 0.8;
+    opacity: 0.9;
 }
