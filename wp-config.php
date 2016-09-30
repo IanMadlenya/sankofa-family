@@ -26,11 +26,7 @@ define('DB_NAME', 'sankofa-family');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-<<<<<<< HEAD
 define('DB_PASSWORD', 'Sankofa809');
-=======
-define('DB_PASSWORD', 'root');
->>>>>>> 4c38f9048d99305c8d81f6cd27474c2d0df363f8
 
 /** MySQL hostname */
 define('DB_HOST', '127.0.0.1');
