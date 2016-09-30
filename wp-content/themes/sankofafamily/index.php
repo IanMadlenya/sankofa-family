@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="w3-content w3-container w3-text-light-grey">
+<div class="w3-content w3-container w3-text-dark-grey">
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 <h1><?php the_title(); ?></h1>
 <h4>Posted on <?php the_time('F jS, Y') ?></h4>
