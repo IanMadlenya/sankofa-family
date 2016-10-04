@@ -8,7 +8,6 @@
     <p class="w3-left-align">© 2016 <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
 </footer>
 <script src="/js/back.to.top.js"></script>
-<script src="/js/slideshow.js"></script>
 <a href="#0" class="cd-top">Top</a>
 </body>
 </html>
