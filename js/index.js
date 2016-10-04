@@ -1,4 +1,4 @@
-function initialize(){var a={center:myCenter,zoom:16,scrollwheel:!1,mapTypeId:google.maps.MapTypeId.ROADMAP},b=new google.maps.Map(document.getElementById("googleMap"),a),c=new google.maps.Marker({position:myCenter});c.setMap(b)}function myFunction(){var a=document.getElementById("myNavbar");a.className=document.body.scrollTop>100||document.documentElement.scrollTop>100?"w3-navbar w3-card-2 w3-animate-top w3-black":a.className.replace(" w3-card-2 w3-animate-top w3-black","")}var myCenter=new google.maps.LatLng(-33.86859,151.2093);google.maps.event.addDomListener(window,"load",initialize),window.onscroll=function(){myFunction()};
+function initialize(){var a={center:myCenter,zoom:16,scrollwheel:!1,mapTypeId:google.maps.MapTypeId.ROADMAP},b=new google.maps.Map(document.getElementById("googleMap"),a),c=new google.maps.Marker({position:myCenter});c.setMap(b)}var myCenter=new google.maps.LatLng(-33.86859,151.2093);google.maps.event.addDomListener(window,"load",initialize),window.onscroll=function(){myFunction()};
 
  $(document).ready(function()
  {
