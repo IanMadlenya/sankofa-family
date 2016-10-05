@@ -9,16 +9,18 @@
 /*
  * Include to test.
  */
-use PMA\libraries\Theme;
-
-
+require_once 'libraries/Util.class.php';
+require_once 'libraries/vendor_config.php';
+require_once 'libraries/core.lib.php';
 require_once 'libraries/js_escape.lib.php';
+require_once 'libraries/select_lang.lib.php';
 require_once 'libraries/sanitizing.lib.php';
-
+require_once 'libraries/Config.class.php';
 require_once 'libraries/url_generating.lib.php';
-
-
-
+require_once 'libraries/Theme.class.php';
+require_once 'libraries/Table.class.php';
+require_once 'libraries/php-gettext/gettext.inc';
+require_once 'libraries/Response.class.php';
 
 /**
  * Test function sending headers.
@@ -44,6 +46,7 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
 {
 
     protected $oldIISvalue;
+    protected $oldSIDvalue;
     protected $runkitExt;
     protected $apdExt;
 
@@ -69,10 +72,20 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
             } else {
                 runkit_constant_add('PMA_IS_IIS', null);
             }
+
+            $this->oldSIDvalue = 'non-defined';
+
+            if (array_key_exists('SID', $user_defined_constants)) {
+                $this->oldSIDvalue = SID;
+                runkit_constant_redefine('SID', null);
+            } else {
+                runkit_constant_add('SID', null);
+            }
+
         }
-        $_SESSION['PMA_Theme'] = Theme::load('./themes/pmahomme');
+        $_SESSION['PMA_Theme'] = PMA_Theme::load('./themes/pmahomme');
         $GLOBALS['server'] = 0;
-        $GLOBALS['PMA_Config'] = new PMA\libraries\Config();
+        $GLOBALS['PMA_Config'] = new PMA_Config();
         $GLOBALS['PMA_Config']->enableBc();
     }
 
@@ -93,7 +106,68 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
             } elseif (defined('PMA_IS_IIS')) {
                 runkit_constant_remove('PMA_IS_IIS');
             }
+
+            if ($this->oldSIDvalue != 'non-defined') {
+                runkit_constant_redefine('SID', $this->oldSIDvalue);
+            } elseif (defined('SID')) {
+                runkit_constant_remove('SID');
+            }
         }
+    }
+
+    /**
+     * Test for PMA_sendHeaderLocation
+     *
+     * @return void
+     */
+    public function testSendHeaderLocationWithSidUrlWithQuestionMark()
+    {
+        if (defined('PMA_TEST_HEADERS')) {
+
+            runkit_constant_redefine('SID', md5('test_hash'));
+
+            $testUri = 'http://testurl.com/test.php?test=test';
+            $separator = PMA_URL_getArgSeparator();
+
+            $header = array('Location: ' . $testUri . $separator . SID);
+
+            /* sets $GLOBALS['header'] */
+            PMA_sendHeaderLocation($testUri);
+
+            $this->assertEquals($header, $GLOBALS['header']);
+
+        } else {
+            $this->markTestSkipped(
+                'Cannot redefine constant/function - missing runkit extension'
+            );
+        }
+
+    }
+
+    /**
+     * Test for PMA_sendHeaderLocation
+     *
+     * @return void
+     */
+    public function testSendHeaderLocationWithSidUrlWithoutQuestionMark()
+    {
+        if (defined('PMA_TEST_HEADERS')) {
+
+            runkit_constant_redefine('SID', md5('test_hash'));
+
+            $testUri = 'http://testurl.com/test.php';
+
+            $header = array('Location: ' . $testUri . '?' . SID);
+
+            PMA_sendHeaderLocation($testUri);            // sets $GLOBALS['header']
+            $this->assertEquals($header, $GLOBALS['header']);
+
+        } else {
+            $this->markTestSkipped(
+                'Cannot redefine constant/function - missing runkit extension'
+            );
+        }
+
     }
 
     /**
@@ -107,7 +181,7 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
 
             runkit_constant_redefine('PMA_IS_IIS', true);
 
-            $testUri = 'https://example.com/test.php';
+            $testUri = 'http://testurl.com/test.php';
 
             $header = array('Location: ' . $testUri);
             PMA_sendHeaderLocation($testUri); // sets $GLOBALS['header']
@@ -137,7 +211,7 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
     {
         if (defined('PMA_TEST_HEADERS')) {
 
-            $testUri = 'https://example.com/test.php';
+            $testUri = 'http://testurl.com/test.php';
             $header = array('Location: ' . $testUri);
 
             PMA_sendHeaderLocation($testUri);            // sets $GLOBALS['header']
@@ -162,14 +236,14 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
             runkit_constant_redefine('PMA_IS_IIS', true);
         } elseif (!defined('PMA_IS_IIS')) {
             define('PMA_IS_IIS', true);
-        } elseif (! PMA_IS_IIS) {
+        } else {
             $this->markTestSkipped(
                 'Cannot redefine constant/function - missing runkit extension'
             );
         }
 
         // over 600 chars
-        $testUri = 'https://example.com/test.php?testlonguri=over600chars&test=test'
+        $testUri = 'http://testurl.com/test.php?testlonguri=over600chars&test=test'
             . '&test=test&test=test&test=test&test=test&test=test&test=test'
             . '&test=test&test=test&test=test&test=test&test=test&test=test'
             . '&test=test&test=test&test=test&test=test&test=test&test=test'
@@ -183,42 +257,30 @@ class PMA_HeaderLocation_Test extends PHPUnit_Framework_TestCase
         $testUri_html = htmlspecialchars($testUri);
         $testUri_js = PMA_escapeJsString($testUri);
 
-        $header = "<html>\n<head>\n    <title>- - -</title>
-    <meta http-equiv=\"expires\" content=\"0\">"
-            . "\n    <meta http-equiv=\"Pragma\" content=\"no-cache\">"
-            . "\n    <meta http-equiv=\"Cache-Control\" content=\"no-cache\">"
-            . "\n    <meta http-equiv=\"Refresh\" content=\"0;url=" . $testUri_html . "\">"
-            . "\n    <script type=\"text/javascript\">\n        //<![CDATA[
-        setTimeout(\"window.location = decodeURI('" . $testUri_js . "')\", 2000);
-        //]]>\n    </script>\n</head>
-<body>\n<script type=\"text/javascript\">\n    //<![CDATA[
-    document.write('<p><a href=\"" . $testUri_html . "\">" . __('Go') . "</a></p>');
-    //]]>\n</script>\n</body>\n</html>
-";
+        $header =    "<html><head><title>- - -</title>\n" .
+                    "<meta http-equiv=\"expires\" content=\"0\">\n" .
+                    "<meta http-equiv=\"Pragma\" content=\"no-cache\">\n" .
+                    "<meta http-equiv=\"Cache-Control\" content=\"no-cache\">\n" .
+                    "<meta http-equiv=\"Refresh\" content=\"0;url=" . $testUri_html
+                    . "\">\n" .
+                    "<script type=\"text/javascript\">\n" .
+                    "//<![CDATA[\n" .
+                    "setTimeout(\"window.location = unescape('\"" . $testUri_js
+                    . "\"')\", 2000);\n" .
+                    "//]]>\n" .
+                    "</script>\n" .
+                    "</head>\n" .
+                    "<body>\n" .
+                    "<script type=\"text/javascript\">\n" .
+                    "//<![CDATA[\n" .
+                    "document.write('<p><a href=\"" . $testUri_html . "\">"
+                    . __('Go') . "</a></p>');\n" .
+                    "//]]>\n" .
+                    "</script></body></html>\n";
 
         $this->expectOutputString($header);
 
-        $restoreInstance = PMA\libraries\Response::getInstance();
-
-        $mockResponse = $this->getMockBuilder('PMA\libraries\Response')
-            ->disableOriginalConstructor()
-            ->setMethods(array('disable', 'header', 'headersSent'))
-            ->getMock();
-
-        $mockResponse->expects($this->once())
-            ->method('disable');
-
-        $mockResponse->expects($this->any())
-            ->method('headersSent')
-            ->with()
-            ->will($this->returnValue(false));
-
-        $attrInstance = new ReflectionProperty('PMA\libraries\Response', '_instance');
-        $attrInstance->setAccessible(true);
-        $attrInstance->setValue($mockResponse);
-
         PMA_sendHeaderLocation($testUri);
-
-        $attrInstance->setValue($restoreInstance);
     }
 }
+?>

@@ -27,3 +27,4 @@ if (isset($_REQUEST['monitorconfig'])) {
     }
     echo file_get_contents($_FILES['file']['tmp_name']);
 }
+?>

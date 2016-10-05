@@ -8,6 +8,9 @@
  * @package PhpMyAdmin
  */
 
+/**
+ *
+ */
 require_once './libraries/common.inc.php';
 
 /**
@@ -37,20 +40,6 @@ if (empty($sql_query)) {
     $sql_query = '';
 }
 
-// View name is a compulsory field
-if (isset($_REQUEST['view']['name'])
-    && empty($_REQUEST['view']['name'])
-) {
-    $message = PMA\libraries\Message::error(__('View name can not be empty'));
-    $response = PMA\libraries\Response::getInstance();
-    $response->addJSON(
-        'message',
-        $message
-    );
-    $response->setRequestStatus(false);
-    exit;
-}
-
 if (isset($_REQUEST['createview']) || isset($_REQUEST['alterview'])) {
     /**
      * Creates the view
@@ -71,9 +60,7 @@ if (isset($_REQUEST['createview']) || isset($_REQUEST['alterview'])) {
     }
 
     if (! empty($_REQUEST['view']['definer'])) {
-        $arr = explode('@', $_REQUEST['view']['definer']);
-        $sql_query .= $sep . 'DEFINER=' . PMA\libraries\Util::backquote($arr[0]);
-        $sql_query .= '@' . PMA\libraries\Util::backquote($arr[1]) . ' ';
+        $sql_query .= $sep . ' DEFINER = ' . $_REQUEST['view']['definer'];
     }
 
     if (isset($_REQUEST['view']['sql_security'])) {
@@ -83,8 +70,7 @@ if (isset($_REQUEST['createview']) || isset($_REQUEST['alterview'])) {
         }
     }
 
-    $sql_query .= $sep . ' VIEW '
-        . PMA\libraries\Util::backquote($_REQUEST['view']['name']);
+    $sql_query .= $sep . ' VIEW ' . PMA_Util::backquote($_REQUEST['view']['name']);
 
     if (! empty($_REQUEST['view']['column_names'])) {
         $sql_query .= $sep . ' (' . $_REQUEST['view']['column_names'] . ')';
@@ -99,71 +85,67 @@ if (isset($_REQUEST['createview']) || isset($_REQUEST['alterview'])) {
         }
     }
 
-    if (!$GLOBALS['dbi']->tryQuery($sql_query)) {
+    if ($GLOBALS['dbi']->tryQuery($sql_query)) {
+
+        include_once './libraries/tbl_views.lib.php';
+
+        // If different column names defined for VIEW
+        $view_columns = array();
+        if (isset($_REQUEST['view']['column_names'])) {
+            $view_columns = explode(',', $_REQUEST['view']['column_names']);
+        }
+
+        $column_map = PMA_getColumnMap($_REQUEST['view']['as'], $view_columns);
+        $pma_tranformation_data = PMA_getExistingTransformationData($GLOBALS['db']);
+
+        if ($pma_tranformation_data !== false) {
+
+            // SQL for store new transformation details of VIEW
+            $new_transformations_sql = PMA_getNewTransformationDataSql(
+                $pma_tranformation_data, $column_map, $_REQUEST['view']['name'],
+                $GLOBALS['db']
+            );
+
+            // Store new transformations
+            if ($new_transformations_sql != '') {
+                $GLOBALS['dbi']->tryQuery($new_transformations_sql);
+            }
+
+        }
+        unset($pma_tranformation_data);
+
         if (! isset($_REQUEST['ajax_dialog'])) {
-            $message = PMA\libraries\Message::rawError($GLOBALS['dbi']->getError());
-            return;
+            $message = PMA_Message::success();
+            include 'tbl_structure.php';
+        } else {
+            $response = PMA_Response::getInstance();
+            $response->addJSON(
+                'message',
+                PMA_Util::getMessage(
+                    PMA_Message::success(), $sql_query
+                )
+            );
+            $response->isSuccess(true);
         }
 
-        $response = PMA\libraries\Response::getInstance();
-        $response->addJSON(
-            'message',
-            PMA\libraries\Message::error(
-                "<i>" . htmlspecialchars($sql_query) . "</i><br /><br />"
-                . $GLOBALS['dbi']->getError()
-            )
-        );
-        $response->setRequestStatus(false);
         exit;
-    }
 
-    // If different column names defined for VIEW
-    $view_columns = array();
-    if (isset($_REQUEST['view']['column_names'])) {
-        $view_columns = explode(',', $_REQUEST['view']['column_names']);
-    }
-
-    $column_map = $GLOBALS['dbi']->getColumnMapFromSql(
-        $_REQUEST['view']['as'], $view_columns
-    );
-
-    $systemDb = $GLOBALS['dbi']->getSystemDatabase();
-    $pma_transformation_data = $systemDb->getExistingTransformationData(
-        $GLOBALS['db']
-    );
-
-    if ($pma_transformation_data !== false) {
-
-        // SQL for store new transformation details of VIEW
-        $new_transformations_sql = $systemDb->getNewTransformationDataSql(
-            $pma_transformation_data, $column_map,
-            $_REQUEST['view']['name'], $GLOBALS['db']
-        );
-
-        // Store new transformations
-        if ($new_transformations_sql != '') {
-            $GLOBALS['dbi']->tryQuery($new_transformations_sql);
-        }
-
-    }
-    unset($pma_transformation_data);
-
-    if (! isset($_REQUEST['ajax_dialog'])) {
-        $message = PMA\libraries\Message::success();
-        include 'tbl_structure.php';
     } else {
-        $response = PMA\libraries\Response::getInstance();
-        $response->addJSON(
-            'message',
-            PMA\libraries\Util::getMessage(
-                PMA\libraries\Message::success(),
-                $sql_query
-            )
-        );
-        $response->setRequestStatus(true);
+        if (! isset($_REQUEST['ajax_dialog'])) {
+            $message = PMA_Message::rawError($GLOBALS['dbi']->getError());
+        } else {
+            $response = PMA_Response::getInstance();
+            $response->addJSON(
+                'message',
+                PMA_Message::error(
+                    "<i>" . htmlspecialchars($sql_query) . "</i><br /><br />"
+                    . $GLOBALS['dbi']->getError()
+                )
+            );
+            $response->isSuccess(false);
+            exit;
+        }
     }
-
-    exit;
 }
 
 // prefill values if not already filled from former submission
@@ -246,7 +228,7 @@ $htmlString .= '<select>'
 if ($view['operation'] == 'create') {
     $htmlString .= '<tr><td class="nowrap">' . __('VIEW name') . '</td>'
         . '<td><input type="text" size="20" name="view[name]"'
-        . ' onfocus="this.select()" maxlength="64"'
+        . ' onfocus="this.select()"'
         . ' value="' . htmlspecialchars($view['name']) . '" />'
         . '</td></tr>';
 } else {
@@ -263,7 +245,8 @@ $htmlString .= '<tr><td class="nowrap">' . __('Column names') . '</td>'
 
 $htmlString .= '<tr><td class="nowrap">AS</td>'
     . '<td>'
-    . '<textarea name="view[as]" rows="15" cols="40" dir="' . $text_dir . '"';
+    . '<textarea name="view[as]" rows="' . $cfg['TextareaRows'] . '"'
+    . ' cols="' . $cfg['TextareaCols'] . '" dir="' . $text_dir . '"';
 if ($GLOBALS['cfg']['TextareaAutoSelect'] || true) {
     $htmlString .= ' onclick="selectContent(this, sql_box_locked, true)"';
 }
@@ -305,3 +288,4 @@ $htmlString .= '</form>'
     . '</div>';
 
 echo $htmlString;
+?>
