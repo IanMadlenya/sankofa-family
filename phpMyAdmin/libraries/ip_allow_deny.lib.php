@@ -6,9 +6,6 @@
  *
  * @package PhpMyAdmin
  */
-if (! defined('PHPMYADMIN')) {
-    exit;
-}
 
 /**
  * Gets the "true" IP address of the current user
@@ -40,8 +37,7 @@ function PMA_getIp()
     // Get header content
     $value = PMA_getenv($GLOBALS['cfg']['TrustedProxies'][$direct_ip]);
     // Grab first element what is client adddress
-    $values = explode(',', $value);
-    $value = $values[0];
+    $value = explode(',', $value)[0];
     // Extract IP address
     // the $ checks that the header contains only one IP address,
     // ?: makes sure the () don't capture
@@ -73,8 +69,8 @@ function PMA_getIp()
  */
 function PMA_ipMaskTest($testRange, $ipToTest)
 {
-    if (/*overload*/mb_strpos($testRange, ':') > -1
-        || /*overload*/mb_strpos($ipToTest, ':') > -1
+    if (mb_strpos($testRange, ':') > -1
+        || mb_strpos($ipToTest, ':') > -1
     ) {
         // assume IPv6
         $result = PMA_ipv6MaskTest($testRange, $ipToTest);
@@ -89,7 +85,7 @@ function PMA_ipMaskTest($testRange, $ipToTest)
 /**
  * Based on IP Pattern Matcher
  * Originally by J.Adams <jna@retina.net>
- * Found on <http://www.php.net/manual/en/function.ip2long.php>
+ * Found on <https://www.php.net/manual/en/function.ip2long.php>
  * Modified for phpMyAdmin
  *
  * Matches:
@@ -126,7 +122,7 @@ function PMA_ipv4MaskTest($testRange, $ipToTest)
 
         for ($i = 0; $i < 31; $i++) {
             if ($i < $regs[5] - 1) {
-                $maskl = $maskl + PMA_Util::pow(2, (30 - $i));
+                $maskl = $maskl + PMA\libraries\Util::pow(2, (30 - $i));
             } // end if
         } // end for
 
@@ -160,7 +156,7 @@ function PMA_ipv4MaskTest($testRange, $ipToTest)
 
 /**
  * IPv6 matcher
- * CIDR section taken from http://stackoverflow.com/a/10086404
+ * CIDR section taken from https://stackoverflow.com/a/10086404
  * Modified for phpMyAdmin
  *
  * Matches:
@@ -187,11 +183,11 @@ function PMA_ipv6MaskTest($test_range, $ip_to_test)
     $result = true;
 
     // convert to lowercase for easier comparison
-    $test_range = /*overload*/mb_strtolower($test_range);
-    $ip_to_test = /*overload*/mb_strtolower($ip_to_test);
+    $test_range = mb_strtolower($test_range);
+    $ip_to_test = mb_strtolower($ip_to_test);
 
-    $is_cidr = /*overload*/mb_strpos($test_range, '/') > -1;
-    $is_range = /*overload*/mb_strpos($test_range, '[') > -1;
+    $is_cidr = mb_strpos($test_range, '/') > -1;
+    $is_range = mb_strpos($test_range, '[') > -1;
     $is_single = ! $is_cidr && ! $is_range;
 
     $ip_hex = bin2hex(inet_pton($ip_to_test));
@@ -240,7 +236,7 @@ function PMA_ipv6MaskTest($test_range, $ip_to_test)
         $pos = 31;
         while ($flexbits > 0) {
             // Get the character at this position
-            $orig = /*overload*/mb_substr($last_hex, $pos, 1);
+            $orig = mb_substr($last_hex, $pos, 1);
 
             // Convert it to an integer
             $origval = hexdec($orig);
@@ -256,7 +252,7 @@ function PMA_ipv6MaskTest($test_range, $ip_to_test)
 
             // We processed one nibble, move to previous position
             $flexbits -= 4;
-            $pos -= 1;
+            --$pos;
         }
 
         // check if the IP to test is within the range
@@ -292,7 +288,14 @@ function PMA_allowDeny($type)
     $username  = $cfg['Server']['user'];
 
     // copy rule database
-    $rules     = $cfg['Server']['AllowDeny']['rules'];
+    if (isset($cfg['Server']['AllowDeny']['rules'])) {
+        $rules     = $cfg['Server']['AllowDeny']['rules'];
+        if (! is_array($rules)) {
+            $rules = array();
+        }
+    } else {
+        $rules = array();
+    }
 
     // lookup table for some name shortcuts
     $shortcuts = array(
@@ -346,4 +349,3 @@ function PMA_allowDeny($type)
     return false;
 } // end of the "PMA_AllowDeny()" function
 
-?>
