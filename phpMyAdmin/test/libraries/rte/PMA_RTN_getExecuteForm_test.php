@@ -6,14 +6,14 @@
  * @package PhpMyAdmin-test
  */
 
+use PMA\libraries\TypesMySQL;
+
 $GLOBALS['server'] = 0;
-require_once 'libraries/Util.class.php';
-require_once 'libraries/sqlparser.lib.php';
-require_once 'libraries/php-gettext/gettext.inc';
+
 require_once 'libraries/url_generating.lib.php';
-require_once './libraries/Types.class.php';
+
 require_once 'libraries/database_interface.inc.php';
-require_once 'libraries/Tracker.class.php';
+
 /*
  * Include to test.
  */
@@ -34,7 +34,7 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         global $cfg;
-        $GLOBALS['PMA_Types'] = new PMA_Types_MySQL();
+        $GLOBALS['PMA_Types'] = new TypesMySQL();
         $GLOBALS['server'] = 0;
         $cfg['ServerDefault'] = 1;
         $GLOBALS['cfg']['ServerDefault'] = '';
@@ -52,9 +52,9 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
      *
      * @return void
      *
-     * @dataProvider provider_1
+     * @dataProvider provider1
      */
-    public function testgetExecuteForm_1($data, $matcher)
+    public function testgetExecuteForm1($data, $matcher)
     {
         $GLOBALS['is_ajax_request'] = false;
         PMA_RTN_setGlobals();
@@ -65,11 +65,11 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testgetExecuteForm_1
+     * Data provider for testgetExecuteForm1
      *
      * @return array
      */
-    public function provider_1()
+    public function provider1()
     {
         $data = array(
             'item_name'                 => 'foo',
@@ -112,6 +112,14 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
                 3 => '',
                 4 => "'a','b'",
                 5 => "'a','b'"
+            ),
+            'item_param_length_arr'     => array(
+                0 => array(),
+                1 => array('22'),
+                2 => array(),
+                3 => array(),
+                4 => array("'a'", "'b'"),
+                5 => array("'a'", "'b'")
             ),
             'item_param_opts_num'       => array(
                 0 => '',
@@ -180,9 +188,9 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
      *
      * @return void
      *
-     * @dataProvider provider_2
+     * @dataProvider provider2
      */
-    public function testgetExecuteForm_2($data, $matcher)
+    public function testgetExecuteForm2($data, $matcher)
     {
         $GLOBALS['is_ajax_request'] = true;
         PMA_RTN_setGlobals();
@@ -193,11 +201,11 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Data provider for testgetExecuteForm_2
+     * Data provider for testgetExecuteForm2
      *
      * @return array
      */
-    public function provider_2()
+    public function provider2()
     {
         $data = array(
             'item_name'                 => 'foo',
@@ -241,6 +249,14 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
                 4 => "'a','b'",
                 5 => "'a','b'"
             ),
+            'item_param_length_arr'     => array(
+                0 => array(),
+                1 => array('22'),
+                2 => array(),
+                3 => array(),
+                4 => array("'a'", "'b'"),
+                5 => array("'a'", "'b'")
+            ),
             'item_param_opts_num'       => array(
                 0 => '',
                 1 => '',
@@ -276,4 +292,3 @@ class PMA_RTN_GetExecuteForm_Test extends PHPUnit_Framework_TestCase
         );
     }
 }
-?>

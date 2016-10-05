@@ -9,15 +9,15 @@
 /*
  * Include to test.
  */
-require_once 'libraries/Util.class.php';
-require_once 'libraries/php-gettext/gettext.inc';
+use PMA\libraries\Theme;
+
+
 require_once 'libraries/url_generating.lib.php';
 require_once 'libraries/select_server.lib.php';
-require_once 'libraries/Theme.class.php';
+
 require_once 'libraries/database_interface.inc.php';
-require_once 'libraries/Message.class.php';
+
 require_once 'libraries/sanitizing.lib.php';
-require_once 'libraries/sqlparser.lib.php';
 require_once 'libraries/js_escape.lib.php';
 
 /**
@@ -55,8 +55,8 @@ class PMA_SelectServer_Test extends PHPUnit_Framework_TestCase
         $GLOBALS['pmaThemeImage'] = 'image';
 
         //$_SESSION
-        $_SESSION['PMA_Theme'] = PMA_Theme::load('./themes/pmahomme');
-        $_SESSION['PMA_Theme'] = new PMA_Theme();
+        $_SESSION['PMA_Theme'] = Theme::load('./themes/pmahomme');
+        $_SESSION['PMA_Theme'] = new Theme();
     }
 
     /**
@@ -69,7 +69,7 @@ class PMA_SelectServer_Test extends PHPUnit_Framework_TestCase
         $not_only_options = false;
         $omit_fieldset = false;
 
-        $GLOBALS['cfg']['DefaultTabServer'] = "DefaultTabServer";
+        $GLOBALS['cfg']['DefaultTabServer'] = "welcome";
 
         $GLOBALS['cfg']['Servers'] = array(
             '0' => array(
@@ -119,19 +119,15 @@ class PMA_SelectServer_Test extends PHPUnit_Framework_TestCase
 
         //$GLOBALS['cfg']['DefaultTabServer']
         $this->assertContains(
-            $GLOBALS['cfg']['DefaultTabServer'],
-            $html
-        );
-
-        //PMA_URL_getHiddenInputs
-        $this->assertContains(
-            '<input type="hidden" name="token" value="token" />',
+            PMA\libraries\Util::getScriptNameForOption(
+                $GLOBALS['cfg']['DefaultTabServer'], 'server'
+            ),
             $html
         );
 
         //labels
         $this->assertContains(
-            __('Current Server:'),
+            __('Current server:'),
             $html
         );
         $this->assertContains(

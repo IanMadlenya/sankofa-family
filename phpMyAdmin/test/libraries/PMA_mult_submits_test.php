@@ -9,21 +9,21 @@
 /*
  * Include to test.
  */
-require_once 'libraries/Util.class.php';
-require_once 'libraries/php-gettext/gettext.inc';
+use PMA\libraries\Theme;
+
+
 require_once 'libraries/url_generating.lib.php';
-require_once 'libraries/ServerStatusData.class.php';
+
 require_once 'libraries/mult_submits.lib.php';
-require_once 'libraries/Theme.class.php';
+
 require_once 'libraries/database_interface.inc.php';
-require_once 'libraries/Message.class.php';
+
 require_once 'libraries/sanitizing.lib.php';
-require_once 'libraries/sqlparser.lib.php';
 require_once 'libraries/js_escape.lib.php';
 require_once 'libraries/relation_cleanup.lib.php';
 require_once 'libraries/relation.lib.php';
 require_once 'libraries/sql.lib.php';
-require_once 'libraries/Table.class.php';
+
 
 /**
  * class PMA_MultSubmits_Test
@@ -57,25 +57,24 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
 
         //_SESSION
         $_SESSION['relation'][$GLOBALS['server']] = array(
+            'PMA_VERSION' => PMA_VERSION,
             'table_coords' => "table_name",
             'displaywork' => 'displaywork',
             'db' => "information_schema",
             'table_info' => 'table_info',
             'relwork' => 'relwork',
             'commwork' => 'commwork',
-            'displaywork' => 'displaywork',
             'pdfwork' => 'pdfwork',
             'column_info' => 'column_info',
             'relation' => 'relation',
-            'relwork' => 'relwork',
         );
 
         //$_SESSION
-        $_SESSION['PMA_Theme'] = PMA_Theme::load('./themes/pmahomme');
-        $_SESSION['PMA_Theme'] = new PMA_Theme();
+        $_SESSION['PMA_Theme'] = Theme::load('./themes/pmahomme');
+        $_SESSION['PMA_Theme'] = new Theme();
 
         //Mock DBI
-        $dbi = $this->getMockBuilder('PMA_DatabaseInterface')
+        $dbi = $this->getMockBuilder('PMA\libraries\DatabaseInterface')
             ->disableOriginalConstructor()
             ->getMock();
 
@@ -93,36 +92,25 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
      */
     public function testPMAGetHtmlForReplacePrefixTable()
     {
-        $what = 'replace_prefix_tbl';
         $action = 'delete_row';
         $_url_params = array('url_query'=>'PMA_original_url_query');
 
         //Call the test function
-        $html = PMA_getHtmlForReplacePrefixTable($what, $action, $_url_params);
+        $html = PMA_getHtmlForReplacePrefixTable($action, $_url_params);
 
-        //validate 1: form action
+        //form action
         $this->assertContains(
-            '<form action="' . $action . '" method="post">',
+            '<form id="ajax_form" action="delete_row" method="post">',
             $html
         );
-        //validate 2: $PMA_URL_getHiddenInputs
+        //$PMA_URL_getHiddenInputs
         $this->assertContains(
             PMA_URL_getHiddenInputs($_url_params),
             $html
         );
-        //validate 3: title
-        $this->assertContains(
-            __('Replace table prefix:'),
-            $html
-        );
-        //validate 4: from_prefix
+        //from_prefix
         $this->assertContains(
             '<input type="text" name="from_prefix" id="initialPrefix" />',
-            $html
-        );
-        //validate 5: Submit button
-        $this->assertContains(
-            __('Submit'),
             $html
         );
     }
@@ -140,29 +128,19 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
         //Call the test function
         $html = PMA_getHtmlForAddPrefixTable($action, $_url_params);
 
-        //validate 1: form action
+        //form action
         $this->assertContains(
-            '<form action="' . $action . '" method="post">',
+            '<form id="ajax_form" action="' . $action . '" method="post">',
             $html
         );
-        //validate 2: $_url_params
+        //$_url_params
         $this->assertContains(
             PMA_URL_getHiddenInputs($_url_params),
             $html
         );
-        //validate 3: title
-        $this->assertContains(
-            '<legend>' . __('Add table prefix:') . '</legend>',
-            $html
-        );
-        //validate 4: from_prefix
+        //from_prefix
         $this->assertContains(
             __('Add prefix'),
-            $html
-        );
-        //validate 5: Submit
-        $this->assertContains(
-            __('Submit'),
             $html
         );
     }
@@ -247,7 +225,7 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
             $_url_params['db']
         );
         $this->assertEquals(
-            array('DELETE FROM `PMA_db`.`PMA_table` WHERE table1 LIMIT 1;'),
+            array('DELETE FROM `PMA_table` WHERE table1 LIMIT 1;'),
             $_url_params['selected']
         );
         $this->assertEquals(
@@ -261,11 +239,11 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test for PMA_getQueryStrFromSelected
+     * Test for PMA_buildOrExecuteQueryForMulti
      *
      * @return void
      */
-    public function testPMAGetQueryStrFromSelected()
+    public function testPMABuildOrExecuteQueryForMulti()
     {
         $query_type = 'row_delete';
         $db = "PMA_db";
@@ -284,8 +262,8 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
 
         list(
             $result, $rebuild_database_list, $reload_ret,
-            $run_parts, $use_sql, $sql_query, $sql_query_views
-        ) = PMA_getQueryStrFromSelected(
+            $run_parts, $execute_query_later,,
+        ) = PMA_buildOrExecuteQueryForMulti(
             $query_type, $selected, $db, $table, $views,
             $primary, $from_prefix, $to_prefix
         );
@@ -316,115 +294,16 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
 
         $query_type = 'analyze_tbl';
         list(
-            $result, $rebuild_database_list, $reload_ret,
-            $run_parts, $use_sql, $sql_query, $sql_query_views
-        ) = PMA_getQueryStrFromSelected(
+            ,,,, $execute_query_later,,
+        ) = PMA_buildOrExecuteQueryForMulti(
             $query_type, $selected, $db, $table, $views,
             $primary, $from_prefix, $to_prefix
         );
 
-        //validate 5: $use_sql
+        //validate 5: $execute_query_later
         $this->assertEquals(
             true,
-            $use_sql
-        );
-
-        //validate 6: $use_sql
-        $this->assertEquals(
-            true,
-            $use_sql
-        );
-    }
-
-    /**
-     * Test for PMA_getDataForSubmitMult
-     *
-     * @return void
-     */
-    public function testPMAGetDataForSubmitMult()
-    {
-        $submit_mult = "index";
-        $db = "PMA_db";
-        $table = "PMA_table";
-        $selected = array(
-            "table1", "table2"
-        );
-        $action = 'db_delete_row';
-
-        list(
-            $what, $query_type, $is_unset_submit_mult, $mult_btn, $centralColsError
-        )
-            = PMA_getDataForSubmitMult(
-                $submit_mult, $db, $table, $selected, $action
-            );
-
-        //validate 1: $what
-        $this->assertEquals(
-            null,
-            $what
-        );
-
-        //validate 2: $query_type
-        $this->assertEquals(
-            'index_fld',
-            $query_type
-        );
-
-        //validate 3: $is_unset_submit_mult
-        $this->assertEquals(
-            true,
-            $is_unset_submit_mult
-        );
-
-        //validate 4:
-        $this->assertEquals(
-            __('Yes'),
-            $mult_btn
-        );
-
-        //validate 5: $centralColsError
-        $this->assertEquals(
-            null,
-            $centralColsError
-        );
-
-        $submit_mult = "unique";
-
-        list(
-            $what, $query_type, $is_unset_submit_mult, $mult_btn, $centralColsError
-        )
-            = PMA_getDataForSubmitMult(
-                $submit_mult, $db, $table, $selected, $action
-            );
-
-        //validate 1: $what
-        $this->assertEquals(
-            null,
-            $what
-        );
-
-        //validate 2: $query_type
-        $this->assertEquals(
-            'unique_fld',
-            $query_type
-        );
-
-        //validate 3: $is_unset_submit_mult
-        $this->assertEquals(
-            true,
-            $is_unset_submit_mult
-        );
-
-        //validate 4: $mult_btn
-        $this->assertEquals(
-            __('Yes'),
-            $mult_btn
-        );
-
-        //validate 5: $centralColsError
-        $this->assertEquals(
-            null,
-            $centralColsError
+            $execute_query_later
         );
     }
 
@@ -436,7 +315,6 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
     public function testPMAGetQueryFromSelected()
     {
         $what = "drop_tbl";
-        $db = "PMA_db";
         $table = "PMA_table";
         $selected = array(
             "table1", "table2"
@@ -447,7 +325,7 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
 
         list($full_query, $reload, $full_query_views)
             = PMA_getQueryFromSelected(
-                $what, $db, $table, $selected, $views
+                $what, $table, $selected, $views
             );
 
         //validate 1: $full_query
@@ -472,7 +350,7 @@ class PMA_MultSubmits_Test extends PHPUnit_Framework_TestCase
 
         list($full_query, $reload, $full_query_views)
             = PMA_getQueryFromSelected(
-                $what, $db, $table, $selected, $views
+                $what, $table, $selected, $views
             );
 
         //validate 1: $full_query

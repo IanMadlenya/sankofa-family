@@ -6,20 +6,18 @@
  * @package PhpMyAdmin
  */
 
-$_GET['ajax_request'] = 'true';
-
 // Sets up the session
-require_once 'libraries/common.inc.php';
-require_once 'libraries/Util.class.php';
-require_once 'libraries/VersionInformation.php';
+use PMA\libraries\VersionInformation;
+
+$_GET['ajax_request'] = 'true';
 
 require_once 'libraries/common.inc.php';
 
 // Disabling standard response.
-PMA_Response::getInstance()->disable();
+PMA\libraries\Response::getInstance()->disable();
 
 // Always send the correct headers
-header('Content-type: application/json; charset=UTF-8');
+PMA_headerJSON();
 
 $versionInformation = new VersionInformation();
 $versionDetails = $versionInformation->getLatestVersion();
@@ -43,5 +41,3 @@ if (empty($versionDetails)) {
         )
     );
 }
-
-?>
