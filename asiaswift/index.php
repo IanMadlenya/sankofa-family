@@ -137,18 +137,6 @@
 <td><input type="text" name="AdditionalInfo" /></td>
 </tr>
 <tr>
-<td>页面跳转地址:</td>
-<td><input type="text" name="PageUrl" value="http://smfos.com.au/asiaswift/merchant_url.php" />
-<font color="red"><b>此地址注意更换成你们可用的通知地址</b></font>
-</td><!--页面跳转连接的商户页面地址-->
-</tr>
-<tr>
-<td>底层访问地址:</td>
-<td><input type="text" name="ReturnUrl" value="http://smfos.com.au/asiaswift/return_url.php" />
-<font color="red"><b>此地址注意更换成你们可用的通知地址</b></font>
-</td><!--通知服务器底层地址-->
-</tr>
-<tr>
 <td>通知方式:</td>
 <td><input type="text" name="NoticeType" value="1" /></td><!--Notice=1时支付结束会从页面跳转到PageUrl-->
 </tr>
