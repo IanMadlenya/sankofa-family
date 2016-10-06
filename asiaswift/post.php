@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>充值接口-提交信息处理</title>
 <?php
-$MemberID=$_POST['MemberID'];//商户号
+$MemberID="300446";//商户号
 $TransID=$_POST['TransID'];//流水号
 $PayID=$_POST['PayID'];//支付方式
 $TradeDate=$_POST['TradeDate'];//交易时间
@@ -14,15 +14,15 @@ $ProductName=$_POST['ProductName'];//产品名称
 $Amount=$_POST['Amount'];//商品数量
 $Username=$_POST['Username'];//支付用户名
 $AdditionalInfo=$_POST['AdditionalInfo'];//订单附加消息
-$PageUrl=$_POST['PageUrl'];//通知商户页面端地址
-$ReturnUrl=$_POST['ReturnUrl'];//服务器底层通知地址
+$PageUrl="/asiaswift/merchant_url.php";//通知商户页面端地址
+$ReturnUrl="/asiaswift/return_url.php";//服务器底层通知地址
 $NoticeType=$_POST['NoticeType'];//通知类型	
 $Md5key="abcdefg";//md5密钥（KEY）
 $MARK = "|";
 //MD5签名格式
 $Signature=md5($MemberID.$MARK.$PayID.$MARK.$TradeDate.$MARK.$TransID.$MARK.$OrderMoney.$MARK.$PageUrl.$MARK.$ReturnUrl.$MARK.$NoticeType.$MARK.$Md5key);
 $payUrl="http://tgw.bfopay.com/payindex";//借贷混合
-$TerminalID = "10000001"; 
+$TerminalID = "19797"; 
 $InterfaceVersion = "4.0";
 $KeyType = "1";
 
@@ -45,8 +45,8 @@ $_SESSION['OrderMoney']=$OrderMoney; //设置提交金额的Session
         <input type='hidden' name='Amount' value="<?php echo $Amount; ?>" />
         <input type='hidden' name='Username' value="<?php echo $Username; ?>" />
         <input type='hidden' name='AdditionalInfo' value="<?php echo $AdditionalInfo; ?>" />
-        <input type='hidden' name='PageUrl' value="<?php echo "/asiaswift/merchant_url.php"; ?>" />
-        <input type='hidden' name='ReturnUrl' value="<?php echo "/asiaswift/return_url.php"; ?>" />
+        <input type='hidden' name='PageUrl' value="<?php echo "$PageUrl"; ?>" />
+        <input type='hidden' name='ReturnUrl' value="<?php echo $ReturnUrl; ?>" />
         <input type='hidden' name='Signature' value="<?php echo $Signature; ?>" />
 		<input type='hidden' name='NoticeType' value="<?php echo $NoticeType; ?>" />
 </form>
