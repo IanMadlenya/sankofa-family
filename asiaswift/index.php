@@ -137,10 +137,6 @@
 <td><input type="text" name="AdditionalInfo" /></td>
 </tr>
 <tr>
-<td>通知方式:</td>
-<td><input type="text" name="NoticeType" value="1" /></td><!--Notice=1时支付结束会从页面跳转到PageUrl-->
-</tr>
-<tr>
 <td colspan="2" align="center"><input type="submit" id="btnpost" value="提交"  /></td>
 </tr>
 
