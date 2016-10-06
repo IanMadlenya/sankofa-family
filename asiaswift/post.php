@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>充值接口-提交信息处理</title>
 <?php
-$MemberID="$_POST['MemberID']";//商户号
+$MemberID=$_POST['MemberID'];//商户号
 $TransID=$_POST['TransID'];//流水号
 $PayID=$_POST['PayID'];//支付方式
 $TradeDate=$_POST['TradeDate'];//交易时间
@@ -14,8 +14,8 @@ $ProductName=$_POST['ProductName'];//产品名称
 $Amount=$_POST['Amount'];//商品数量
 $Username=$_POST['Username'];//支付用户名
 $AdditionalInfo=$_POST['AdditionalInfo'];//订单附加消息
-$PageUrl="/asiaswift/merchant_url.php";//通知商户页面端地址
-$ReturnUrl="/asiaswift/return_url.php";//服务器底层通知地址
+$PageUrl=$_POST['PageUrl'];//通知商户页面端地址
+$ReturnUrl=$_POST['ReturnUrl'];//服务器底层通知地址
 $NoticeType=$_POST['NoticeType'];//通知类型	
 $Md5key="abcdefg";//md5密钥（KEY）
 $MARK = "|";
