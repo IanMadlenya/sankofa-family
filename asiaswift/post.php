@@ -1,4 +1,4 @@
-﻿<?php session_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -33,7 +33,7 @@ $_SESSION['OrderMoney']=$OrderMoney; //设置提交金额的Session
 
 <body onload="document.form1.submit()">
 <form id="form1" name="form1" method="post" action="<?php echo $payUrl; ?>">
-        <input type='hidden' name='MemberID' value="<?php echo $MemberID; ?>" />
+        <input type='hidden' name='MemberID' value="300446" />
 		<input type='hidden' name='TerminalID' value="<?php echo $TerminalID; ?>"/>
 		<input type='hidden' name='InterfaceVersion' value="<?php echo $InterfaceVersion; ?>"/>
 		<input type='hidden' name='KeyType' value="<?php echo $KeyType; ?>"/>
@@ -45,8 +45,8 @@ $_SESSION['OrderMoney']=$OrderMoney; //设置提交金额的Session
         <input type='hidden' name='Amount' value="<?php echo $Amount; ?>" />
         <input type='hidden' name='Username' value="<?php echo $Username; ?>" />
         <input type='hidden' name='AdditionalInfo' value="<?php echo $AdditionalInfo; ?>" />
-        <input type='hidden' name='PageUrl' value="<?php echo $PageUrl; ?>" />
-        <input type='hidden' name='ReturnUrl' value="<?php echo $ReturnUrl; ?>" />
+        <input type='hidden' name='PageUrl' value="http://www.smfos.com.au/asiaswift/merchant_url.php" />
+        <input type='hidden' name='ReturnUrl' value="http://www.smfos.com.au/asiaswift/return_url.php" />
         <input type='hidden' name='Signature' value="<?php echo $Signature; ?>" />
 		<input type='hidden' name='NoticeType' value="<?php echo $NoticeType; ?>" />
 </form>

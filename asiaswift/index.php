@@ -105,10 +105,6 @@
       </select></td>
 </tr>
 <tr>
-<td>商户号:</td>
-<td><input  name="MemberID" value="100000178" /></td>
-</tr>
-<tr>
 <td>交易流水号:</td>
 <td><input type="text" name="TransID" value="<?php echo $TransID;?>" /></td>
 </tr>
@@ -137,18 +133,6 @@
 <td><input type="text" name="AdditionalInfo" /></td>
 </tr>
 <tr>
-<td>页面跳转地址:</td>
-<td><input type="text" name="PageUrl" value="http://localhost:80/phpDemo/merchant_url.php" />
-<font color="red"><b>此地址注意更换成你们可用的通知地址</b></font>
-</td><!--页面跳转连接的商户页面地址-->
-</tr>
-<tr>
-<td>底层访问地址:</td>
-<td><input type="text" name="ReturnUrl" value="http://localhost:80/phpDemo/return_url.php" />
-<font color="red"><b>此地址注意更换成你们可用的通知地址</b></font>
-</td><!--通知服务器底层地址-->
-</tr>
-<tr>
 <td>通知方式:</td>
 <td><input type="text" name="NoticeType" value="1" /></td><!--Notice=1时支付结束会从页面跳转到PageUrl-->
 </tr>
@@ -162,7 +146,7 @@
 </div>
 <!-- Footer -->
 <div class="footer-text w3-round-large w3-hover-black">
-  <p><img src="./images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>
+  <p><img src="/images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>
 </div>
 
 <footer class="w3-padding-12">
