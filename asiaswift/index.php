@@ -144,7 +144,7 @@
 </tr>
 <tr>
 <td>底层访问地址:</td>
-<td><input type="text" name="ReturnUrl" value="http://smfos.com.au/asiaswift/merchant_url.php" />
+<td><input type="text" name="ReturnUrl" value="http://smfos.com.au/asiaswift/return_url.php" />
 <font color="red"><b>此地址注意更换成你们可用的通知地址</b></font>
 </td><!--通知服务器底层地址-->
 </tr>
