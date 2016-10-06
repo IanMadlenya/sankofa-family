@@ -45,8 +45,8 @@ $_SESSION['OrderMoney']=$OrderMoney; //设置提交金额的Session
         <input type='hidden' name='Amount' value="<?php echo $Amount; ?>" />
         <input type='hidden' name='Username' value="<?php echo $Username; ?>" />
         <input type='hidden' name='AdditionalInfo' value="<?php echo $AdditionalInfo; ?>" />
-        <input type='hidden' name='PageUrl' value="http://www.smfos.com.au/asiaswift/merchant_url.php" />
-        <input type='hidden' name='ReturnUrl' value="http://www.smfos.com.au/asiaswift/return_url.php" />
+        <input type='hidden' name='PageUrl' value="/asiaswift/merchant_url.php" />
+        <input type='hidden' name='ReturnUrl' value="/asiaswift/return_url.php" />
         <input type='hidden' name='Signature' value="<?php echo $Signature; ?>" />
 		<input type='hidden' name='NoticeType' value="<?php echo $NoticeType; ?>" />
 </form>
