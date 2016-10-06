@@ -33,7 +33,7 @@ $_SESSION['OrderMoney']=$OrderMoney; //设置提交金额的Session
 
 <body onload="document.form1.submit()">
 <form id="form1" name="form1" method="post" action="<?php echo $payUrl; ?>">
-        <input type='hidden' name='MemberID' value="300446" />
+        <input type='hidden' name='MemberID' value="19797" />
 		<input type='hidden' name='TerminalID' value="<?php echo $TerminalID; ?>"/>
 		<input type='hidden' name='InterfaceVersion' value="<?php echo $InterfaceVersion; ?>"/>
 		<input type='hidden' name='KeyType' value="<?php echo $KeyType; ?>"/>
