@@ -106,7 +106,7 @@
 </tr>
 <tr>
 <td>商户号:</td>
-<td><input  name="MemberID" value="300446" /></td>
+<td><input  name="MemberID" value="100000178" /></td>
 </tr>
 <tr>
 <td>交易流水号:</td>

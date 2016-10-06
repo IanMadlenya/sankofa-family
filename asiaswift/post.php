@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>充值接口-提交信息处理</title>
 <?php
-$MemberID="300446";//商户号
+$MemberID=$_POST['MemberID'];//商户号
 $TransID=$_POST['TransID'];//流水号
 $PayID=$_POST['PayID'];//支付方式
 $TradeDate=$_POST['TradeDate'];//交易时间
@@ -17,12 +17,12 @@ $AdditionalInfo=$_POST['AdditionalInfo'];//订单附加消息
 $PageUrl="merchant_url.php";//通知商户页面端地址
 $ReturnUrl="return_url.php";//服务器底层通知地址
 $NoticeType="1";//通知类型	
-$Md5key="y5tx9qumg79lzzhz";//md5密钥（KEY）
+$Md5key="abcdefg";//md5密钥（KEY）
 $MARK = "|";
 //MD5签名格式
 $Signature=md5($MemberID.$MARK.$PayID.$MARK.$TradeDate.$MARK.$TransID.$MARK.$OrderMoney.$MARK.$PageUrl.$MARK.$ReturnUrl.$MARK.$NoticeType.$MARK.$Md5key);
 $payUrl="http://tgw.bfopay.com/payindex";//借贷混合
-$TerminalID = "19797"; 
+$TerminalID = "10000001"; 
 $InterfaceVersion = "4.0";
 $KeyType = "1";
 
