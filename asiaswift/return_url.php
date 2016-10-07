@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,7 +13,7 @@ $FactMoney=$_REQUEST['FactMoney'];//实际成功金额
 $AdditionalInfo=$_REQUEST['AdditionalInfo'];//订单附加消息
 $SuccTime=$_REQUEST['SuccTime'];//支付完成时间
 $Md5Sign=$_REQUEST['Md5Sign'];//md5签名
-$Md5key = "abcdefg";
+$Md5key = "y5tx9qumg79lzzhz";
 $MARK = "~|~";
 //MD5签名格式
 $WaitSign=md5('MemberID='.$MemberID.$MARK.'TerminalID='.$TerminalID.$MARK.'TransID='.$TransID.$MARK.'Result='.$Result.$MARK.'ResultDesc='.$ResultDesc.$MARK.'FactMoney='.$FactMoney.$MARK.'AdditionalInfo='.$AdditionalInfo.$MARK.'SuccTime='.$SuccTime.$MARK.'Md5Sign='.$Md5key);
