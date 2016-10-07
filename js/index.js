@@ -50,6 +50,30 @@ function initialize(){var a={center:myCenter,zoom:16,scrollwheel:!1,mapTypeId:go
         }
      });
      
+     $('#wenyong-box').qtip({
+         content: {
+             title: 'SMFOs教育专家 黄文勇',
+             text: '董事经理、资深留学策划师、澳洲注册留学中介代理编号(QEAC)E014; 澳洲注册移民中介执照&电子签证eVisa代理编号：0634980; 澳大利亚移民联盟MA会员、澳大利亚教育顾问协会ECAA创始会员、澳大利亚留学网(教育移民)服务中心，澳学集团旗下网站, 商号: 75 091 884 9663'
+         },
+         style: {
+            classes: 'qtip-tipsy'
+        },
+         position: {
+             target: 'mouse', // Track the mouse as the positioning target
+             adjust: { x: 5, y: 5 } // Offset it slightly from under the mouse
+         },
+        show: {
+            effect: function() {
+                $(this).fadeTo(250, 1);
+            }
+        },
+        hide: {
+            effect: function() {
+                $(this).fadeTo(250, 0);
+            }
+        }
+     });
+     
      $('#gracie-box').qtip({
          content: {
              title: 'SMFOs首席财务官 Gracie',
