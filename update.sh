@@ -5,6 +5,7 @@ cd sankofa-family/
 mv ./* ..
 cd ..
 rm -Rf sankofa-family/
+rm -Rf localhost.sql
 chmod 755 ./update.sh
 chmod 755 ./fix_install.sh
 chmod 717 wp-content/uploads/
