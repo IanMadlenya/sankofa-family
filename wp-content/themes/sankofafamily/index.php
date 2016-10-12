@@ -11,7 +11,9 @@
   </div>
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+<div class="w3-center">
 <p><?php _e('We are sorry but the page you are looking for does not exist.'); ?></p>
+</div>
 </div>
 <?php endif; ?>
 <?php get_footer(); ?>
