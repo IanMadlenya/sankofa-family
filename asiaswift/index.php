@@ -20,11 +20,11 @@
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
-    <li><a href="/index.html" class="w3-padding-large w3-text-dark-grey">首页</a></li>
+    <li><a href="/" class="w3-padding-large w3-text-dark-grey">首页</a></li>
       <li><a href="/services" class="w3-padding-large w3-text-dark-grey">产品信息</a></li>
       <li><a href="#" class="w3-padding-large w3-text-dark-grey">什么是家族办公室</a></li>
-      <li><a href="/index.html#our-team" class="w3-padding-large w3-text-dark-grey">团队介绍</a></li>
-      <li><a href="/index.html#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
+      <li><a href="/#our-team" class="w3-padding-large w3-text-dark-grey">团队介绍</a></li>
+      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
       <?php if ( is_user_logged_in() ): ?>
         <a href="#" class="w3-padding-large w3-hover-green w3-text-dark-grey"><?php echo $current_user->user_login ?></a>
