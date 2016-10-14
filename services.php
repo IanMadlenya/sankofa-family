@@ -12,9 +12,7 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/vegas.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<?php global $current_user;
-    get_currentuserinfo();
-?>
+<?php wp_get_current_user(); ?>
 </head>
 <body>
 
