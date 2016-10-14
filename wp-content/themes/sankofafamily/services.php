@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: sankofafamily
+Template Name: sankofa-services
 */
 $current_user = wp_get_current_user();
 ?>
