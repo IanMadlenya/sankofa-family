@@ -33,7 +33,7 @@ $current_user = wp_get_current_user();
         <?php if ( is_user_logged_in() ): ?>
         <a href="#" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
         <?php else: ?>
-      <a href="#" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
+      <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
         <?php endif; ?>
     </li>
   </ul>
