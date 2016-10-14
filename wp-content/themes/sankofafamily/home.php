@@ -28,8 +28,8 @@ $current_user = wp_get_current_user();
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
       <?php if ( is_user_logged_in() ): ?>
-        <div class="sankofa-dropdown w3-padding-large w3-hover-green w3-text-light-grey">
-  <a href="/wp-admin" class="sankofa-dropbtn"><?php echo $current_user->user_login ?></a>
+        <div class="sankofa-dropdown">
+  <a href="/wp-admin" class="sankofa-dropbtn w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
   <div class="sankofa-dropdown-content">
     <a href="#">Link 1</a>
     <a href="#">Link 2</a>
