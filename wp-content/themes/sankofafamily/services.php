@@ -31,7 +31,12 @@ $current_user = wp_get_current_user();
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
         <?php if ( is_user_logged_in() ): ?>
-        <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
+        <div class="dropdown">
+  <span><a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a></span>
+  <div class="dropdown-content">
+    <a href="#">Hello World!</a>
+  </div>
+</div>
         <?php else: ?>
       <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
         <?php endif; ?>
