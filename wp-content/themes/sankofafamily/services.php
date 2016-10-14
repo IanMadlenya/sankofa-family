@@ -1,3 +1,9 @@
+<?php
+/*
+Template Name: sankofafamily
+*/
+wp_get_current_user();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +18,6 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/vegas.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<?php wp_get_current_user(); ?>
 </head>
 <body>
 
