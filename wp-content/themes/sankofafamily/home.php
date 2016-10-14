@@ -1,7 +1,4 @@
 <?php
-/*
-Template Name: sankofa-index
-*/
 $current_user = wp_get_current_user();
 ?>
 <!DOCTYPE html>
