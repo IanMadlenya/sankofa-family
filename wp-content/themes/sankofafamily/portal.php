@@ -24,12 +24,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <i class="fa fa-remove"></i>
     </a>
     <img src="http://www.w3schools.com/w3images/avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>
-    <h4 class="w3-padding-0"><b>PORTFOLIO</b></h4>
-    <p class="w3-text-grey">Template by W3.CSS</p>
+    <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
+    <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
-  <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-teal">PORTFOLIO</a>
-  <a href="#about" onclick="w3_close()" class="w3-padding">ABOUT</a>
-  <a href="#contact" onclick="w3_close()" class="w3-padding">CONTACT</a>
+  <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-teal">编辑个人资料</a>
+  <a href="#about" onclick="w3_close()" class="w3-padding">上传申请表</a>
+  <a href="#contact" onclick="w3_close()" class="w3-padding">登出</a>
    
   <div class="w3-section w3-padding-top w3-large">
     <a href="#" class="w3-hover-white w3-hover-text-indigo w3-show-inline-block"><i class="fa fa-facebook-official"></i></a>
