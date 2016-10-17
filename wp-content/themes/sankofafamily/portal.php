@@ -25,7 +25,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     </a>
     <img src="<?php echo get_avatar_url ( $current_user->user_email, 300 ); ?>" style="width:45%;" class="w3-round"><br><br>
     <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
-    <p class="w3-text-grey"><?php echo $current_user->user_email ?><?php echo $current_user->user_email ?></p>
+    <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
   <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-teal">编辑个人资料</a>
   <a href="#about" onclick="w3_close()" class="w3-padding">上传申请表</a>
