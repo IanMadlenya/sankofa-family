@@ -300,6 +300,6 @@ function w3_close() {
 </html>
 <?php
 else: 
-header( 'Location: http://www.yoursite.com/new_page.html' ) ;
+header( 'Location: /wp-admin' ) ;
 endif;
 ?>
