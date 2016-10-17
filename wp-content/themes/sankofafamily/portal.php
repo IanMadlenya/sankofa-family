@@ -3,6 +3,8 @@
 Template Name: sankofa-portal
 */
 $current_user = wp_get_current_user();
+
+if ( is_user_logged_in() ):
 ?>
 <!DOCTYPE html>
 <html>
@@ -296,3 +298,8 @@ function w3_close() {
 
 </body>
 </html>
+<?php
+else: 
+header( 'Location: http://www.yoursite.com/new_page.html' ) ;
+endif;
+?>
