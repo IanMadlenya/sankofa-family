@@ -23,7 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding" title="close menu">
       <i class="fa fa-remove"></i>
     </a>
-    <img src="http://www.w3schools.com/w3images/avatar_g2.jpg" style="width:45%;" class="w3-round"><br><br>
+    <img src="<?php echo get_avatar ( $current_user->user_email, 300 ); ?>" style="width:45%;" class="w3-round"><br><br>
     <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
     <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
@@ -31,13 +31,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <a href="#about" onclick="w3_close()" class="w3-padding">上传申请表</a>
   <a href="#contact" onclick="w3_close()" class="w3-padding">登出</a>
    
-  <div class="w3-section w3-padding-top w3-large">
-    <a href="#" class="w3-hover-white w3-hover-text-indigo w3-show-inline-block"><i class="fa fa-facebook-official"></i></a>
-    <a href="#" class="w3-hover-white w3-hover-text-red w3-show-inline-block"><i class="fa fa-pinterest-p"></i></a>
-    <a href="#" class="w3-hover-white w3-hover-text-light-blue w3-show-inline-block"><i class="fa fa-twitter"></i></a>
-    <a href="#" class="w3-hover-white w3-hover-text-grey w3-show-inline-block"><i class="fa fa-flickr"></i></a>
-    <a href="#" class="w3-hover-white w3-hover-text-indigo w3-show-inline-block"><i class="fa fa-linkedin"></i></a>
-  </div>
 </nav>
 
 <!-- Overlay effect when opening sidenav on small screens -->
