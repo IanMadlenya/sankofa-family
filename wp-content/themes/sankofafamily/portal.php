@@ -40,33 +40,15 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
-
-  <!-- Header -->
-  <header class="w3-container" id="portfolio">
-    <a href="#"><img src="http://www.w3schools.com/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
-    <span class="w3-opennav w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <div class="w3-section w3-bottombar w3-padding-16">
-      <button class="w3-btn">返回</button>
-      <button class="w3-btn w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
-      <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
-      <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
-    </div>
-  </header>
     
-    <!-- Navbar (sit on top) -->
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
-    <li class="w3-right">
-        <a href="/" class="w3-padding-large w3-text-dark-grey">首页</a></li>
-      <li class="w3-right">
-        <a href="/services" class="w3-padding-large w3-text-dark-grey">产品信息</a></li>
-      <li class="w3-right">
-        <a href="#" class="w3-padding-large w3-text-dark-grey">什么是家族办公室</a></li>
-      <li class="w3-right">
-        <a href="/#our-team" class="w3-padding-large w3-text-dark-grey">团队介绍</a></li>
-      <li class="w3-right">
-        <a href="/#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
+    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
+      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
+      <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
+      <li><a href="/#our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
+      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
   </ul>
 </div>
   
