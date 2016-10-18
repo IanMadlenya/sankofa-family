@@ -45,15 +45,24 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
   <header class="w3-container" id="portfolio">
     <a href="#"><img src="http://www.w3schools.com/w3images/avatar_g2.jpg" style="width:65px;" class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
     <span class="w3-opennav w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-    <h1><b>My Portfolio</b></h1>
     <div class="w3-section w3-bottombar w3-padding-16">
-      <span class="w3-margin-right">Filter:</span>
-      <button class="w3-btn">ALL</button>
+      <button class="w3-btn">返回</button>
       <button class="w3-btn w3-white"><i class="fa fa-diamond w3-margin-right"></i>Design</button>
       <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-photo w3-margin-right"></i>Photos</button>
       <button class="w3-btn w3-white w3-hide-small"><i class="fa fa-map-pin w3-margin-right"></i>Art</button>
     </div>
   </header>
+    
+    <!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <ul class="w3-navbar" id="myNavbar">
+    <li><a href="/" class="w3-padding-large w3-text-dark-grey">首页</a></li>
+      <li><a href="/services" class="w3-padding-large w3-text-dark-grey">产品信息</a></li>
+      <li><a href="#" class="w3-padding-large w3-text-dark-grey">什么是家族办公室</a></li>
+      <li><a href="/#our-team" class="w3-padding-large w3-text-dark-grey">团队介绍</a></li>
+      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
+  </ul>
+</div>
   
   <!-- First Photo Grid-->
   <div class="w3-row-padding">
