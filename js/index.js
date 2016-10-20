@@ -26,30 +26,6 @@ function initialize(){var a={center:myCenter,zoom:16,scrollwheel:!1,mapTypeId:go
         }
      });
      
-     $('#bridy-box').qtip({
-         content: {
-             title: 'SMFOs金融专家 Bridy Yue',
-             text: '英国谢菲尔德大学研究生毕业，中国社科院金融所在读博士。历任中华全国青联委员，北京湖南商会副会长。在中国有十年信息系统管理，地产开发，及矿业风险投资从业经验。在澳洲有四年地产，金融及信贷经验。'
-         },
-         style: {
-            classes: 'qtip-tipsy'
-        },
-         position: {
-             target: 'mouse', // Track the mouse as the positioning target
-             adjust: { x: 5, y: 5 } // Offset it slightly from under the mouse
-         },
-        show: {
-            effect: function() {
-                $(this).fadeTo(250, 1);
-            }
-        },
-        hide: {
-            effect: function() {
-                $(this).fadeTo(250, 0);
-            }
-        }
-     });
-     
      $('#wenyong-box').qtip({
          content: {
              title: 'SMFOs教育专家 黄文勇',

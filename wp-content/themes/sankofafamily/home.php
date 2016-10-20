@@ -111,19 +111,19 @@ $current_user = wp_get_current_user();
 				</div>
 			</div></a>
     
-    <a href="index.html#our-team" id="bridy-box"><div class="hexagon even">
-				<div class="outer">
-					<div class="inner bridy">
-					</div>
-				</div>
-        </div></a>
-    
-    <a href="index.html#our-team" id="wenyong-box"><div class="hexagon">
+    <a href="index.html#our-team" id="wenyong-box"><div class="hexagon even">
 				<div class="outer">
 					<div class="inner wenyong">
 					</div>
 				</div>
         </div></a>
+    
+    <div class="hexagon">
+				<div class="outer">
+					<div class="inner bridy">
+					</div>
+				</div>
+        </div>
 			
         </div>
 </div>
