@@ -9,8 +9,8 @@ Template Name: sankofa-downloads
 <head>
   <meta charset="UTF-8">
   <title>Directory Contents</title>
-  <link rel="stylesheet" href="./download/style.css">
-  <script src="./js/sorttable.js"></script>
+  <link rel="stylesheet" href="/css/download.css">
+  <script src="/js/sorttable.js"></script>
 </head>
 
 <body>
