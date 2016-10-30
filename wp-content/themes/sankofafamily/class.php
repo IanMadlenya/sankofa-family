@@ -16,8 +16,6 @@ $current_user = wp_get_current_user();
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <style>
-.error {color: #FF0000;}
-tr{margin-bottom: 5px}
 a {text-decoration: none}
 </style>
 </head>
@@ -51,41 +49,28 @@ a {text-decoration: none}
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 <!-- Content -->
-<form method="post" action="/insert.php">
-<table>
-<tr>
-<td>客户姓名:</td>
-<td><input type="text" name="clientname"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>联系电话:</td>
-<td><input type="text" name="mobile"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>E-mail:</td>
-<td><input type="text" name="email"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>职业:</td>
-<td><input type="text" name="job"></td>
-</tr>
-<tr>
-<td>性别:</td>
-<td><input type="radio" name="gender" value="1">男<input type="radio" name="gender" value="0">女
-<span class="error"> *</span>
-</tr>
-<tr>
-<td></td>
-<td><span class="error">* 号为必填项。</span></td>
-</tr>
-<tr>
-<td></td>
-<td><input type="submit" class="w3-btn w3-hover-light-grey w3-medium" value="提交"></td>
-</tr>
-</table>
+<form class="w3-container" method="post" action="/insert.php">
+  <p>
+  <label class="w3-label w3-text-dark-grey">姓名 NAME (必填)</label>
+  <input class="w3-input" type="text" name="clientname"></p>
+  <p>
+  <label class="w3-label w3-text-dark-grey">电话 PHONE (必填)</label>
+  <input class="w3-input" type="text" name="mobile"></p>
+  <p>
+  <label class="w3-label w3-text-dark-grey">电子邮件 EMAIL (必填)</label>
+  <input class="w3-input" type="text" name="email"></p>
+  <p>
+  <label class="w3-label w3-text-dark-grey">职业 OCCUPATION</label>
+  <input class="w3-input" type="text" name="job"></p>
+    <p><input class="w3-radio" type="radio" name="gender" value="1" checked>
+<label class="w3-text-dark-grey">男 MALE</label></p>
+    <p><input class="w3-radio" type="radio" name="gender" value="0">
+<label class="w3-text-dark-grey">女 FEMALE</label></p>
+  <p><input type="submit" class="w3-btn w3-hover-light-grey w3-medium" value="提交"></p>
 </form>
 
 </div>
+
 <!-- Footer -->
 <div class="footer-text w3-round-large w3-hover-black">
   <p><img src="/images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>

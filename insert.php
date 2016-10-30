@@ -9,7 +9,7 @@ if($link === false){
 }
 
 // Required field names
-$required = array('clientname', 'mobile', 'email', 'gender');
+$required = array('clientname', 'mobile', 'email');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
@@ -34,7 +34,7 @@ if ($error) {
     if(mysqli_query($link, $sql)){
         header( 'Location: /class-success' ) ;
     } else{
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        header( 'Location: /class-failed' ) ;
     }
  
     // close connection
