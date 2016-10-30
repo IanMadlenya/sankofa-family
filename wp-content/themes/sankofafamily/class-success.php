@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: sankofa-class
+Template Name: sankofa-class-success
 */
 $current_user = wp_get_current_user();
 ?>
@@ -16,8 +16,6 @@ $current_user = wp_get_current_user();
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <style>
-.error {color: #FF0000;}
-tr{margin-bottom: 5px}
 a {text-decoration: none}
 </style>
 </head>
@@ -45,45 +43,15 @@ a {text-decoration: none}
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity">
     <img src="http://www.smfos.com.au/images/oceanroad.jpg">
     <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
-        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey"><a href="/class">微信课堂登记</a></span>
+      <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey"><a href="/class">微信课堂登记</a></span>
     </div>
   </div>
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 <!-- Content -->
-<form method="post" action="/insert.php">
-<table>
-<tr>
-<td>客户姓名:</td>
-<td><input type="text" name="clientname"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>联系电话:</td>
-<td><input type="text" name="mobile"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>E-mail:</td>
-<td><input type="text" name="email"><span class="error"> *</span></td>
-</tr>
-<tr>
-<td>职业:</td>
-<td><input type="text" name="job"></td>
-</tr>
-<tr>
-<td>性别:</td>
-<td><input type="radio" name="gender" value="1">男<input type="radio" name="gender" value="0">女
-<span class="error"> *</span>
-</tr>
-<tr>
-<td></td>
-<td><span class="error">* 号为必填项。</span></td>
-</tr>
-<tr>
-<td></td>
-<td><input type="submit" class="w3-btn w3-hover-light-grey w3-medium" value="提交"></td>
-</tr>
-</table>
-</form>
+<div class="w3-center">
+<h3>资料录入成功!</h3>
+</div>
 
 </div>
 <!-- Footer -->
