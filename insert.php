@@ -26,8 +26,8 @@ if ($error) {
     $client_name = mysqli_real_escape_string($link, $_POST['clientname']);
     $phone_no = mysqli_real_escape_string($link, $_POST['mobile']);
     $email_address = mysqli_real_escape_string($link, $_POST['email']);
-    $job_title = mysqli_real_escape_string($link, $_POST['job']);
     $gender_type = mysqli_real_escape_string($link, $_POST['gender']);
+    $job_title = mysqli_real_escape_string($link, $_POST['job']);
     
     if (isset($_POST['familytrust']) && ($_POST['familytrust'] == "yes")) {
         $family = 1;
