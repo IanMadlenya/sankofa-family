@@ -29,8 +29,49 @@ if ($error) {
     $job_title = mysqli_real_escape_string($link, $_POST['job']);
     $gender_type = mysqli_real_escape_string($link, $_POST['gender']);
     
+    if (isset($_POST['familytrust']) && ($_POST['familytrust'] == "yes")) {
+        $family = 1;
+    } else {
+        $family = 0;
+    }
+    if (isset($_POST['immi']) && ($_POST['immi'] == "yes")) {
+        $immi = 1;
+    } else {
+        $immi = 0;
+    }
+    if (isset($_POST['study']) && ($_POST['study'] == "yes")) {
+        $study = 1;
+    } else {
+        $study = 0;
+    }
+    if (isset($_POST['property']) && ($_POST['property'] == "yes")) {
+        $property = 1;
+    } else {
+        $property = 0;
+    }
+    if (isset($_POST['forex']) && ($_POST['forex'] == "yes")) {
+        $forex = 1;
+    } else {
+        $forex = 0;
+    }
+    if (isset($_POST['trustfund']) && ($_POST['trustfund'] == "yes")) {
+        $trustfund = 1;
+    } else {
+        $trustfund = 0;
+    }
+    if (isset($_POST['cooperate']) && ($_POST['cooperate'] == "yes")) {
+        $coop = 1;
+    } else {
+        $coop = 0;
+    }
+    if (isset($_POST['others']) && ($_POST['others'] == "yes")) {
+        $others = 1;
+    } else {
+        $others = 0;
+    }
+    
     // attempt insert query execution
-    $sql = "INSERT INTO wechat (clientname, mobile, email, job, gender) VALUES ('$client_name', '$phone_no', '$email_address', '$job_title', '$gender_type')";
+    $sql = "INSERT INTO wechat (clientname, mobile, email, job, gender, family, immi, study, property, forex, trustfund, cooperate, others) VALUES ('$client_name', '$phone_no', '$email_address', '$job_title', '$gender_type', '$family', '$immi', '$study', '$property', '$forex', '$trustfund', '$coop', '$others')";
     if(mysqli_query($link, $sql)){
         header( 'Location: /class-success' ) ;
     } else{

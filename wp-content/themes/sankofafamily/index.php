@@ -4,7 +4,7 @@
 <hr> <?php endwhile; else: ?>
 <!-- Slideshow -->
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
-    <img src="http://www.smfos.com.au/images/oceanroad.jpg">
+    <img src="http://www.smfos.com.au/images/sydney1.jpg">
     <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
       <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">Page not found...</span>
     </div>

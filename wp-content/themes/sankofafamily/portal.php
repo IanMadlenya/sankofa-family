@@ -30,7 +30,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
   <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-green">编辑个人资料</a>
-  <a href="#about" onclick="w3_close()" class="w3-padding">上传申请表</a>
+  <a href="/class" onclick="w3_close()" class="w3-padding">微信课堂登记</a>
   <a href="<?php echo wp_logout_url( home_url() ); ?>" onclick="w3_close()" class="w3-padding">登出</a>
    
 </nav>
