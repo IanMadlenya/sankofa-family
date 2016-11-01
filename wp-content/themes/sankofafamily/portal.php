@@ -13,8 +13,9 @@ if ( is_user_logged_in() ):
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css">
 <style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+.w3-sidenav {font-family: "Raleway", sans-serif}
 .w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
 </style>
 <body class="w3-light-grey w3-content" style="max-width:1600px">
@@ -54,231 +55,16 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
   </ul>
 </div>
-  
-  <!-- First Photo Grid-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="http://www.w3schools.com/w3images/mountains.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="http://www.w3schools.com/w3images/lights.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <img src="http://www.w3schools.com/w3images/nature.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Second Photo Grid-->
-  <div class="w3-row-padding">
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="http://www.w3schools.com/w3images/p1.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container w3-margin-bottom">
-      <img src="http://www.w3schools.com/w3images/p2.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-    <div class="w3-third w3-container">
-      <img src="http://www.w3schools.com/w3images/p3.jpg" alt="Norway" style="width:100%" class="w3-hover-opacity">
-      <div class="w3-container w3-white">
-        <p><b>Lorem Ipsum</b></p>
-        <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      </div>
-    </div>
-  </div>
+<!-- Footer -->
+<div class="footer-text w3-round-large w3-hover-black">
+<p><img src="/images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>
+</div>
 
-  <!-- Pagination -->
-  <div class="w3-center w3-padding-32">
-    <ul class="w3-pagination">
-      <li><a class="w3-black" href="#">1</a></li>
-      <li><a class="w3-hover-black" href="#">2</a></li>
-      <li><a class="w3-hover-black" href="#">3</a></li>
-      <li><a class="w3-hover-black" href="#">4</a></li>
-      <li><a class="w3-hover-black" href="#">»</a></li>
-    </ul>
-  </div>
-
-  <!-- Images of Me -->
-  <div class="w3-row-padding w3-padding-16" id="about">
-    <div class="w3-col m6">
-      <img src="http://www.w3schools.com/w3images/avatar_g.jpg" alt="Me" style="width:100%">
-    </div>
-    <div class="w3-col m6">
-      <img src="http://www.w3schools.com/w3images/me2.jpg" alt="Me" style="width:100%">
-    </div>
-  </div>
-
-  <div class="w3-container w3-padding-large" style="margin-bottom:32px">
-    <h4><b>About Me</b></h4>
-    <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-    <hr>
-    
-    <h4>Technical Skills</h4>
-    <!-- Progress bars / Skills -->
-    <p>Photography</p>
-    <div class="w3-progress-container w3-grey">
-      <div class="w3-progressbar w3-dark-grey" style="width:95%"></div>
-    </div>
-    <p>Web Design</p>
-    <div class="w3-progress-container w3-grey">
-      <div class="w3-progressbar w3-dark-grey" style="width:85%"></div>
-    </div>
-    <p>Photoshop</p>
-    <div class="w3-progress-container w3-grey">
-      <div class="w3-progressbar w3-dark-grey" style="width:80%"></div>
-    </div>
-    <p><button class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">Download Resume</button></p>
-    <hr>
-    
-    <h4>How much I charge</h4>
-    <!-- Pricing Tables -->
-    <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third w3-margin-bottom">
-        <ul class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-black w3-xlarge w3-padding-32">Basic</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">Photography</li>
-          <li class="w3-padding-16">1GB Storage</li>
-          <li class="w3-padding-16">Mail Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 10</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-btn w3-teal w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="w3-third w3-margin-bottom">
-        <ul class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-teal w3-xlarge w3-padding-32">Pro</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">Photography</li>
-          <li class="w3-padding-16">50GB Storage</li>
-          <li class="w3-padding-16">Endless Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 25</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-btn w3-teal w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-      
-      <div class="w3-third">
-        <ul class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off">
-          <li class="w3-black w3-xlarge w3-padding-32">Premium</li>
-          <li class="w3-padding-16">Web Design</li>
-          <li class="w3-padding-16">Photography</li>
-          <li class="w3-padding-16">Unlimited Storage</li>
-          <li class="w3-padding-16">Endless Support</li>
-          <li class="w3-padding-16">
-            <h2>$ 25</h2>
-            <span class="w3-opacity">per month</span>
-          </li>
-          <li class="w3-light-grey w3-padding-24">
-            <button class="w3-btn w3-teal w3-padding-large w3-hover-black">Sign Up</button>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Contact Section -->
-  <div class="w3-container w3-padding-large w3-grey">
-    <h4 id="contact"><b>Contact Me</b></h4>
-    <div class="w3-row-padding w3-center w3-padding-24" style="margin:0 -16px">
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
-        <p>email@email.com</p>
-      </div>
-      <div class="w3-third w3-teal">
-        <p><i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i></p>
-        <p>Chicago, US</p>
-      </div>
-      <div class="w3-third w3-dark-grey">
-        <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
-        <p>512312311</p>
-      </div>
-    </div>
-    <hr class="w3-opacity">
-    <form>
-      <div class="w3-group">
-        <label>Name</label>
-        <input class="w3-input w3-border" type="text">
-      </div>
-      <div class="w3-group">
-        <label>Email</label>
-        <input class="w3-input w3-border" type="text">
-      </div>
-      <div class="w3-group">
-        <label>Subject</label>
-        <input class="w3-input w3-border" type="text">
-      </div>
-      <button type="button" class="w3-btn w3-padding-large w3-margin-bottom">Send Message</button>
-    </form>
-  </div>
-
-  <!-- Footer -->
-  <footer class="w3-container w3-padding-32 w3-dark-grey">
-  <div class="w3-row-padding">
-    <div class="w3-third">
-      <h3>FOOTER</h3>
-      <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-      <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-    </div>
-  
-    <div class="w3-third">
-      <h3>BLOG POSTS</h3>
-      <ul class="w3-ul w3-hoverable">
-        <li class="w3-padding-16">
-          <img src="http://www.w3schools.com/w3images/workshop.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Lorem</span><br>
-          <span>Sed mattis nunc</span>
-        </li>
-        <li class="w3-padding-16">
-          <img src="http://www.w3schools.com/w3images/gondol.jpg" class="w3-left w3-margin-right" style="width:50px">
-          <span class="w3-large">Ipsum</span><br>
-          <span>Praes tinci sed</span>
-        </li>
-      </ul>
-    </div>
-
-    <div class="w3-third">
-      <h3>POPULAR TAGS</h3>
-      <p>
-        <span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">London</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">DIY</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Family</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Shopping</span>
-        <span class="w3-tag w3-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-grey w3-small w3-margin-bottom">Games</span>
-      </p>
-    </div>
-
-  </div>
-  </footer>
-  
-  <div class="w3-black w3-center w3-padding-24">Powered by <a href="http://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">w3.css</a></div>
+<footer class="w3-padding-12 w3-transparent">
+    <a href="http://www.sankofafund.com.au"><img src="/images/logo_black.png"></a>
+    <p class="w3-left-align">© 2016 <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
+</footer>
+<a href="#0" class="cd-top">Top</a>
 
 <!-- End page content -->
 </div>
@@ -294,8 +80,20 @@ function w3_close() {
     document.getElementById("mySidenav").style.display = "none";
     document.getElementById("myOverlay").style.display = "none";
 }
-</script>
 
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-black";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-black", "");
+    }
+}
+</script>
+<script src="/js/index.js"></script>
+<script src="/js/back.to.top.js"></script>
 </body>
 </html>
 <?php

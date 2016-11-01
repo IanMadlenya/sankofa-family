@@ -3,6 +3,7 @@
 Template Name: sankofa-downloads
 */
 $current_user = wp_get_current_user();
+$r = 0;
 ?>
 <!DOCTYPE HTML>  
 <html>
@@ -145,14 +146,26 @@ a {text-decoration: none}
           if($name=="."){$name=". (Current Directory)"; $extn="&lt;System Dir&gt;";}
           if($name==".."){$name=".. (Parent Directory)"; $extn="&lt;System Dir&gt;";}
           
+        $r = $r + 1;      
+        
           // Print 'em
-          print("
+        if($r % 2 == 1) {
+            print("
+          <tr class='$class w3-white w3-hover-dark-grey w3-hover-text-white'>
+            <td><a href='/wp-content/uploads/pdfs/$namehref'>$name</a></td>
+            <td><a href='/wp-content/uploads/pdfs/$namehref'>$extn</a></td>
+            <td><a href='/wp-content/uploads/pdfs/$namehref'>$size</a></td>
+            <td sorttable_customkey='$timekey'><a href='/wp-content/uploads/pdfs/$namehref'>$modtime</a></td>
+          </tr>");
+        } else {
+            print("
           <tr class='$class w3-light-grey w3-hover-dark-grey w3-hover-text-white'>
             <td><a href='/wp-content/uploads/pdfs/$namehref'>$name</a></td>
             <td><a href='/wp-content/uploads/pdfs/$namehref'>$extn</a></td>
             <td><a href='/wp-content/uploads/pdfs/$namehref'>$size</a></td>
             <td sorttable_customkey='$timekey'><a href='/wp-content/uploads/pdfs/$namehref'>$modtime</a></td>
           </tr>");
+        }
           }
         }
       ?>

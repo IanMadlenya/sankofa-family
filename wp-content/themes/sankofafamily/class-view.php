@@ -3,6 +3,7 @@
 Template Name: sankofa-class-view
 */
 $current_user = wp_get_current_user();
+$r = 0;
 
 if ( array_shift( $current_user->roles ) == "administrator" ):
 ?>
@@ -68,6 +69,7 @@ if ($result->num_rows > 0) {
     echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>电话号码</th><th>电子邮件</th><th>职业</th><th>性别</th><th>家族信托</th><th>移民</th><th>留学</th><th>海外置业</th><th>换汇</th><th>基金投资</th><th>合作伙伴</th><th>其他</th></tr></thead><tbody>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
+        $r = $r + 1;
         if( $row["gender"] == "1" ) {
             $gender_type = "男";
         } else {
@@ -113,7 +115,11 @@ if ($result->num_rows > 0) {
         } else {
             $others = "否";
         }
-        echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>". $row["mobile"]. "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td><td>" . $gender_type . "</td><td>" . $family . "</td><td>" . $immi . "</td><td>" . $study . "</td><td>" . $property . "</td><td>" . $forex . "</td><td>" . $trustfund . "</td><td>" . $coop . "</td><td>" . $others . "</td></tr>";
+        if($r % 2 == 1) {
+            echo "<tr class='w3-white w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>". $row["mobile"]. "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td><td>" . $gender_type . "</td><td>" . $family . "</td><td>" . $immi . "</td><td>" . $study . "</td><td>" . $property . "</td><td>" . $forex . "</td><td>" . $trustfund . "</td><td>" . $coop . "</td><td>" . $others . "</td></tr>";
+        } else {
+            echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>". $row["mobile"]. "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td><td>" . $gender_type . "</td><td>" . $family . "</td><td>" . $immi . "</td><td>" . $study . "</td><td>" . $property . "</td><td>" . $forex . "</td><td>" . $trustfund . "</td><td>" . $coop . "</td><td>" . $others . "</td></tr>";
+        }
     }
     echo "</tbody></table>";
 } else { ?>

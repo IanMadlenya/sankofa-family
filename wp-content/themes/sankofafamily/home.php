@@ -61,7 +61,7 @@ $current_user = wp_get_current_user();
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-section">
       <p>家族办公室始于6世纪，当时国王的管家负责管理皇家财富。后来贵族要求参与其中，自此管理的概念应运而生并延续至今。现代意义上的家族办公室在19世纪得到发展。1838 年，作为金融家和艺术收藏家 J.P. 摩根家族创立了摩根财团来管理家族资产。1882年，洛克菲勒家族设立了自己的家族办公室。该家族办公室至 今仍在运营，并为其他家族提供服务。家族办公室涵盖管理私人大宗财富的各种组织与服务形式...</p>
-        <button class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle">了解更多</button>
+        <a class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle" href="/sankofa-family">了解更多</a>
     </div>
   </div>
 </div>
@@ -148,13 +148,17 @@ $current_user = wp_get_current_user();
       <p>Swing by for a cup of coffee, or leave me a note:</p>
       <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
         <div class="w3-half">
-          <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="姓名 NAME">
+          <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="姓名 NAME" name="clientname">
         </div>
         <div class="w3-half">
-          <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="电子邮件 EMAIL">
+        <?php if ( is_user_logged_in() ): ?>
+        <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="电子邮件 EMAIL" name="email" value="<?php echo $current_user->user_email ?>">
+        <?php else: ?>
+        <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="电子邮件 EMAIL" name="email">
+        <?php endif; ?>
         </div>
       </div>
-      <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="留言 MESSAGE">
+      <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="留言 MESSAGE" name="message">
         <button class="w3-btn w3-section w3-right">提交</button>
     </div>
   </div>
