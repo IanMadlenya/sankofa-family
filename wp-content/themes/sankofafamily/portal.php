@@ -29,9 +29,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
     <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
     <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
-  <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-green">编辑个人资料</a>
-  <a href="/class" onclick="w3_close()" class="w3-padding">微信课堂登记</a>
-  <a href="<?php echo wp_logout_url( home_url() ); ?>" onclick="w3_close()" class="w3-padding">登出</a>
+  <a href="#portfolio" onclick="w3_close()" class="w3-padding w3-text-green w3-hover-text-light-grey">编辑个人资料</a>
+  <a href="/class" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">微信课堂登记</a>
+<?php if ( array_shift( $current_user->roles ) == "administrator" ): ?>
+<a href="/class-view" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">微信课堂登记数据</a>
+<?php endif; ?>
+  <a href="<?php echo wp_logout_url( home_url() ); ?>" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">登出</a>
    
 </nav>
 
