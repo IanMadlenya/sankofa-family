@@ -146,6 +146,7 @@ $current_user = wp_get_current_user();
           <i class="fa fa-envelope w3-hover-text-black" style="width:30px"> </i> Email: info@sankofafund.com.au<br>
       </div>
       <p>Swing by for a cup of coffee, or leave me a note:</p>
+        <form class="w3-container" method="post" action="/msg-input.php">
       <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
         <div class="w3-half">
           <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="姓名 NAME" name="clientname">
@@ -159,7 +160,8 @@ $current_user = wp_get_current_user();
         </div>
       </div>
       <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="留言 MESSAGE" name="message">
-        <button class="w3-btn w3-section w3-right">提交</button>
+    <input type="submit" class="w3-btn w3-hover-light-grey w3-section w3-right" value="提交">
+          </form>
     </div>
   </div>
 </div>

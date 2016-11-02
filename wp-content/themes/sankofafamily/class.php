@@ -75,7 +75,6 @@ $current_user = wp_get_current_user();
 <label class="w3-text-dark-grey">留学</label></p>
 <p><input class="w3-check" type="checkbox" name="property" value="yes" checked="checked">
 <label class="w3-text-dark-grey">海外置业</label></p>
-<p><input type="submit" class="w3-btn w3-hover-light-grey w3-medium" value="提交"></p>
 </div>
 <div class="w3-half">
 <p><input class="w3-check" type="checkbox" name="forex" value="yes" checked="checked">
@@ -87,6 +86,7 @@ $current_user = wp_get_current_user();
 <p><input class="w3-check" type="checkbox" name="others" value="yes" checked="checked">
 <label class="w3-text-dark-grey">其他</label></p>
 </div>
+<p><input type="submit" class="w3-btn w3-hover-light-grey w3-section w3-left" value="提交"></p>
 </form>
 
 <!-- Below Box -->
