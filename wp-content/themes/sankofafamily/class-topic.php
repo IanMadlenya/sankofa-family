@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: sankofa-class-view
+Template Name: sankofa-class-topic
 */
 $current_user = wp_get_current_user();
 $r = 0;
@@ -43,7 +43,7 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
     <img src="http://www.smfos.com.au/images/sydney1.jpg">
     <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
-        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">微信课堂登记数据</span>
+        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">微信课堂调查数据</span>
     </div>
   </div>
 
@@ -54,6 +54,8 @@ $servername = "localhost";
 $username = "root";
 $password = "Sankofa809";
 $dbname = "sankofa-family";
+$tick = "✓";
+$cross = "x";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -66,19 +68,54 @@ $sql = "SELECT * FROM wechat";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>性别</th><th>电话号码</th><th>微信</th><th>电子邮件</th><th>职业</th></tr></thead><tbody>";
+    echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>电话号码</th><th>家族信托</th><th>移民</th><th>留学</th><th>海外置业</th><th>换汇</th><th>基金投资</th><th>合作伙伴</th><th>其他</th></tr></thead><tbody>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         $r = $r + 1;
-        if( $row["gender"] == "1" ) {
-            $gender_type = "男";
+        if( $row["family"] == "1" ) {
+            $family = $tick;
         } else {
-            $gender_type = "女";
+            $family = $cross;
+        }
+        if( $row["immi"] == "1" ) {
+            $immi = $tick;
+        } else {
+            $immi = $cross;
+        }
+        if( $row["study"] == "1" ) {
+            $study = $tick;
+        } else {
+            $study = $cross;
+        }
+        if( $row["property"] == "1" ) {
+            $property = $tick;
+        } else {
+            $property = $cross;
+        }
+        if( $row["forex"] == "1" ) {
+            $forex = $tick;
+        } else {
+            $forex = $cross;
+        }
+        if( $row["trustfund"] == "1" ) {
+            $trustfund = $tick;
+        } else {
+            $trustfund = $cross;
+        }
+        if( $row["cooperate"] == "1" ) {
+            $coop = $tick;
+        } else {
+            $coop = $cross;
+        }
+        if( $row["others"] == "1" ) {
+            $others = $tick;
+        } else {
+            $others = $cross;
         }
         if($r % 2 == 1) {
-            echo "<tr class='w3-white w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td></tr>";
+            echo "<tr class='w3-white w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>". $row["mobile"]. "</td><td>" . $family . "</td><td>" . $immi . "</td><td>" . $study . "</td><td>" . $property . "</td><td>" . $forex . "</td><td>" . $trustfund . "</td><td>" . $coop . "</td><td>" . $others . "</td></tr>";
         } else {
-            echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td></tr>";
+            echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>". $row["mobile"]. "</td><td>" . $family . "</td><td>" . $immi . "</td><td>" . $study . "</td><td>" . $property . "</td><td>" . $forex . "</td><td>" . $trustfund . "</td><td>" . $coop . "</td><td>" . $others . "</td></tr>";
         }
     }
     echo "</tbody></table>";

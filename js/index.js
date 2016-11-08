@@ -26,6 +26,30 @@ function initialize(){var a={center:myCenter,zoom:16,scrollwheel:!1,mapTypeId:go
         }
      });
      
+     $('#bill-box').qtip({
+         content: {
+             title: 'SMFOs资深房产&PE投资 Bill Zhang',
+             text: '悉尼新南威尔士大学荣誉双学士、本土私校背景，飞思博客创始人、悉尼E时代联合创始人、持牌房地产代理经纪人、创新社核心成员；擅长投资报告与分析，以多年的经验帮助中产阶级合理运用投资组合实现财富增长与自由'
+         },
+         style: {
+            classes: 'qtip-tipsy'
+        },
+         position: {
+             target: 'mouse', // Track the mouse as the positioning target
+             adjust: { x: 5, y: 5 } // Offset it slightly from under the mouse
+         },
+        show: {
+            effect: function() {
+                $(this).fadeTo(250, 1);
+            }
+        },
+        hide: {
+            effect: function() {
+                $(this).fadeTo(250, 0);
+            }
+        }
+     });
+     
      $('#wenyong-box').qtip({
          content: {
              title: 'SMFOs教育专家 黄文勇',

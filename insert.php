@@ -26,6 +26,7 @@ if ($error) {
     $client_name = mysqli_real_escape_string($link, $_POST['clientname']);
     $phone_no = mysqli_real_escape_string($link, $_POST['mobile']);
     $email_address = mysqli_real_escape_string($link, $_POST['email']);
+    $wechatid = mysqli_real_escape_string($link, $_POST['wechatid']);
     $gender_type = mysqli_real_escape_string($link, $_POST['gender']);
     $job_title = mysqli_real_escape_string($link, $_POST['job']);
     
@@ -71,7 +72,7 @@ if ($error) {
     }
     
     // attempt insert query execution
-    $sql = "INSERT INTO wechat (clientname, mobile, email, job, gender, family, immi, study, property, forex, trustfund, cooperate, others) VALUES ('$client_name', '$phone_no', '$email_address', '$job_title', '$gender_type', '$family', '$immi', '$study', '$property', '$forex', '$trustfund', '$coop', '$others')";
+    $sql = "INSERT INTO wechat (clientname, wechatid, mobile, email, job, gender, family, immi, study, property, forex, trustfund, cooperate, others) VALUES ('$client_name', '$wechatid', '$phone_no', '$email_address', '$job_title', '$gender_type', '$family', '$immi', '$study', '$property', '$forex', '$trustfund', '$coop', '$others')";
     if(mysqli_query($link, $sql)){
         header( 'Location: /class-success' ) ;
     } else{

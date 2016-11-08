@@ -58,6 +58,8 @@ $current_user = wp_get_current_user();
 <input class="w3-input" type="text" name="email">
 <?php endif; ?>
     <label class="w3-label w3-text-dark-grey">电子邮件 EMAIL (必填)</label></p>
+    <p><input class="w3-input" type="text" name="wechatid">
+    <label class="w3-label w3-text-dark-grey">微信号 (或昵称) WECHAT ID</label></p>
   <p><input class="w3-input" type="text" name="job">
     <label class="w3-label w3-text-dark-grey">职业 OCCUPATION</label></p>
 <p><input class="w3-radio" type="radio" name="gender" value="1" checked>

@@ -136,6 +136,19 @@ $current_user = wp_get_current_user();
 			</div>
     
 		</div>
+<div class="row w3-center">
+    <div class="hexagon fixhexagon">
+				<div class="outer">
+					<div class="inner trade">
+						<div class="textWrapper">
+							<div class="text">提供客户合法换汇通道，设计换汇方案</div>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-trade/">详细介绍</a>
+						</div>
+					</div>
+				</div>
+			</div>
+</div>
+    
     </div>
     </div>
     

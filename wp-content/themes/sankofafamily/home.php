@@ -74,14 +74,14 @@ $current_user = wp_get_current_user();
 <!-- Container -->
 <div class="w3-content w3-container w3-padding-180 sankofa-team-icon">
     <div class="row w3-center">
-        <a href="index.html#our-team" id="wei-box"><div class="hexagon fixhexagon">
+        <a href="/#our-team" id="wei-box"><div class="hexagon fixhexagon">
 				<div class="outer">
 					<div class="inner wei">
 					</div>
 				</div>
             </div></a>
         
-        <a href="index.html#our-team" id="gracie-box"><div class="hexagon fixhexagon">
+        <a href="/#our-team" id="gracie-box"><div class="hexagon fixhexagon">
 				<div class="outer">
 					<div class="inner gracie">
 					</div>
@@ -90,40 +90,40 @@ $current_user = wp_get_current_user();
     </div>
   <div class="row w3-center">
 			
-			<a href="index.html#our-team" id="vincent-box"><div class="hexagon">
+			<a href="/#our-team" id="vincent-box"><div class="hexagon">
 				<div class="outer">
 					<div class="inner vincent">
 					</div>
 				</div>
                 </div></a>
 			
-			<a href="index.html#our-team" id="su-box"><div class="hexagon even">
+			<a href="/#our-team" id="su-box"><div class="hexagon even">
 				<div class="outer">
 					<div class="inner su">
 					</div>
 				</div>
                 </div></a>
 			
-			<a href="index.html#our-team" id="george-box"><div class="hexagon">
+			<a href="/#our-team" id="george-box"><div class="hexagon">
 				<div class="outer">
 					<div class="inner george">
 					</div>
 				</div>
 			</div></a>
     
-    <a href="index.html#our-team" id="wenyong-box"><div class="hexagon even">
+    <a href="/#our-team" id="bill-box"><div class="hexagon even">
+				<div class="outer">
+					<div class="inner bill">
+					</div>
+				</div>
+        </div></a>
+    
+    <a href="/#our-team" id="wenyong-box"><div class="hexagon">
 				<div class="outer">
 					<div class="inner wenyong">
 					</div>
 				</div>
         </div></a>
-    
-    <div class="hexagon">
-				<div class="outer">
-					<div class="inner bridy">
-					</div>
-				</div>
-        </div>
 			
         </div>
 </div>
