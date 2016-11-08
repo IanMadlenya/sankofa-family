@@ -141,7 +141,7 @@ $current_user = wp_get_current_user();
 				<div class="outer">
 					<div class="inner trade">
 						<div class="textWrapper">
-							<div class="text">提供客户合法换汇通道，设计换汇方案</div>
+							<div class="text">提供澳大利亚红酒及保健品等商品进出口服务</div>
                             <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-trade/">详细介绍</a>
 						</div>
 					</div>
