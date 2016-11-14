@@ -62,7 +62,7 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM wechat";
+$sql = "SELECT * FROM sf_wechat";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

@@ -9,7 +9,7 @@ if($link === false){
 }
 
 // Required field names
-$required = array('clientname', 'mobile', 'email');
+$required = array('clientname', 'mobile', 'email', 'wechatid');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
@@ -72,7 +72,7 @@ if ($error) {
     }
     
     // attempt insert query execution
-    $sql = "INSERT INTO wechat (clientname, wechatid, mobile, email, job, gender, family, immi, study, property, forex, trustfund, cooperate, others) VALUES ('$client_name', '$wechatid', '$phone_no', '$email_address', '$job_title', '$gender_type', '$family', '$immi', '$study', '$property', '$forex', '$trustfund', '$coop', '$others')";
+    $sql = "INSERT INTO sf_wechat (clientname, wechatid, mobile, email, job, gender, family, immi, study, property, forex, trustfund, cooperate, others) VALUES ('$client_name', '$wechatid', '$phone_no', '$email_address', '$job_title', '$gender_type', '$family', '$immi', '$study', '$property', '$forex', '$trustfund', '$coop', '$others')";
     if(mysqli_query($link, $sql)){
         header( 'Location: /class-success' ) ;
     } else{
