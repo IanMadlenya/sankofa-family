@@ -8,7 +8,7 @@ if ( is_user_logged_in() ):
 ?>
 <!DOCTYPE html>
 <html>
-<title>SankofaCRM</title>
+<title>Sankofa CRM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
