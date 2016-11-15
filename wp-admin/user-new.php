@@ -401,14 +401,6 @@ $new_user_ignore_pass = $creating && isset( $_POST['noconfirmation'] ) ? wp_unsl
 	</tr>
 <?php if ( !is_multisite() ) { ?>
 	<tr class="form-field">
-		<th scope="row"><label for="first_name"><?php _e('First Name') ?> </label></th>
-		<td><input name="first_name" type="text" id="first_name" value="<?php echo esc_attr($new_user_firstname); ?>" /></td>
-	</tr>
-	<tr class="form-field">
-		<th scope="row"><label for="last_name"><?php _e('Last Name') ?> </label></th>
-		<td><input name="last_name" type="text" id="last_name" value="<?php echo esc_attr($new_user_lastname); ?>" /></td>
-	</tr>
-	<tr class="form-field">
 		<th scope="row"><label for="url"><?php _e('Website') ?></label></th>
 		<td><input name="url" type="url" id="url" class="code" value="<?php echo esc_attr( $new_user_uri ); ?>" /></td>
 	</tr>
