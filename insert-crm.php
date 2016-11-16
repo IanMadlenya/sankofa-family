@@ -1,6 +1,11 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
+session_start();
+$crm_status_blank = 3;
+$crm_status_success = 2;
+$crm_status_failed = 1;
+
 $link = mysqli_connect("localhost","root","Sankofa809","sankofa-family");
 $crm_profileuser = $_POST['crm_profileuser'];
 $crm_notblank = $_POST['crm_notblank'];
@@ -22,6 +27,7 @@ foreach($required as $field) {
 }
 
 if ($error) {
+    $_SESSION['crm_insert_status'] = $crm_status_blank;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
     // Escape user inputs for security
@@ -41,9 +47,11 @@ if ($error) {
     }
     
     if(mysqli_query($link, $sql)){
+        $_SESSION['crm_insert_status'] = $crm_status_success;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else{
-        echo "Error updating record: " . mysqli_error($link);
+        $_SESSION['crm_insert_status'] = $crm_status_failed;
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
  
     // close connection

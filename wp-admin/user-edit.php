@@ -33,10 +33,15 @@ $dbname = "sankofa-family";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
+
 // Check connection
 if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 }
+
+/* For Sankofa CRM insert message popup */
+session_start();
+$crm_status = $_SESSION['crm_insert_status'];
 
 /* Original WordPress function */
 $title = IS_PROFILE_PAGE ? __('Profile') : __('Edit User');
@@ -205,8 +210,21 @@ include(ABSPATH . 'wp-admin/admin-header.php');
 	<p><a href="<?php echo esc_url( $wp_http_referer ); ?>"><?php _e('&larr; Back to Users'); ?></a></p>
 	<?php endif; ?>
 </div>
-<?php endif; ?>
-<?php if ( isset( $_GET['error'] ) ) : ?>
+<?php endif;
+if($crm_status > 0) { 
+if($crm_status != 2) { ?>
+<div class="error">
+	<?php if($crm_status == 1) { ?>
+    <p><strong>错误: </strong>CRM资料录入失败, 请联系管理员</p>
+    <?php } elseif($crm_status == 3) { ?>
+    <p><strong>错误: </strong>请检查CRM资料填写是否正确</p>
+    <?php } ?>
+</div>
+<?php } else { ?>
+<div id="message" class="updated notice is-dismissible">
+<p><strong>CRM资料录入成功!</strong></p>
+</div>
+<?php } $_SESSION['crm_insert_status'] = 0; } if ( isset( $_GET['error'] ) ) : ?>
 <div class="notice notice-error">
 	<?php if ( 'new-email' == $_GET['error'] ) : ?>
 	<p><?php _e( 'Error while saving the new email address. Please try again.' ); ?></p>
