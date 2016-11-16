@@ -5,6 +5,21 @@ Template Name: sankofa-portal
 $current_user = wp_get_current_user();
 
 if ( is_user_logged_in() ):
+
+$servername = "localhost";
+$username = "root";
+$password = "Sankofa809";
+$dbname = "sankofa-family";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+     die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,7 +45,7 @@ if ( is_user_logged_in() ):
     <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
     <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
-  <a href="/portal" onclick="w3_close()" class="w3-padding w3-text-green w3-hover-text-light-grey">主页</a>
+  <a href="/portal" onclick="w3_close()" class="w3-padding crm-text-blue w3-hover-text-light-grey">主页</a>
   <a href="/class" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">微信课堂登记</a>
 <?php if ( array_shift( $current_user->roles ) == "administrator" ): ?>
 <a href="/class-view" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">微信课堂登记数据</a>
@@ -49,21 +64,91 @@ if ( is_user_logged_in() ):
 <header class="w3-container w3-right-align crm-title-padding">
     <h3>欢迎您回来, <b><?php echo $current_user->user_login ?></b>!</h3>
 </header>
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- MAIN -->
+<div class="w3-col l8 s12">
     
-<!-- Labels / tags -->
-  <div class="w3-card-4 w3-margin">
-    <div class="w3-container w3-padding">
-      <h5>个人资料</h5>
+    <?php if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) { ?>
+  <div class="w3-margin crm-box">
+    <div class="w3-container">
+      <h4><b>个人资料</b></h4>
     </div>
-    <div class="w3-container w3-white">
-    <p><span class="w3-tag w3-black w3-margin-bottom">Travel</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">New York</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">London</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">IKEA</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">NORWAY</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">DIY</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Ideas</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Baby</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Family</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Clothing</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Shopping</span>
-      <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Sports</span> <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Games</span>
-    </p>
+    <div class="w3-container">
+        <table style="padding:10px;font-size:14px">
+        <tbody>
+        <tr>
+        <td>Ref ID:</td>
+        <td class="w3-opacity"><?php echo $row["ref_id"] ?></td>
+        <td>电子邮件:</td>
+        <td class="w3-opacity"><?php echo $row["user_email"] ?></td>
+        </tr>
+        <tr>
+        <td>用户名:</td>
+        <td class="w3-opacity"><?php echo $row["user_login"] ?></td>
+        <td>联系电话:</td>
+        <td class="w3-opacity"><?php echo $row["mobile_no"] ?></td>
+        </tr>
+        <tr>
+        <td>姓名:</td>
+        <td class="w3-opacity"><?php echo $row["user_name"] ?></td>
+        <td>微信号:</td>
+        <td class="w3-opacity"><?php echo $row["wechat_id"] ?></td>
+        </tr>
+        <tr>
+        <td>职位:</td>
+        <td class="w3-opacity"><?php echo $row["job_desc"] ?></td>
+        <td>上级:</td>
+        <td class="w3-opacity"><?php echo $row["ref_id_upper"] ?></td>
+        </tr>
+        </tbody>
+        </table>
+      <div class="w3-row">
+        <div class="w3-col m8 s12">
+          <p><button class="crm-box-btn w3-padding">更改个人资料</button></p>
+        </div>
+      </div>
     </div>
   </div>
+<?php } } else { ?>
+    <div class="w3-margin crm-box-error">
+    <div class="w3-container">
+      <h4><b>个人资料</b></h4>
+    </div>
+    <div class="w3-container">
+    <div class="w3-center">
+    <p>数据加载失败，请联系管理员!</p>
+    <hr>
+    <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
+    </div>
+    </div>
+  </div>
+<?php } ?>
+    
+<!-- END MAIN -->
+</div>
+
+<!-- Sidebar -->
+<div class="w3-col l4">
+ 
+  <!-- Labels / tags -->
+  <div class="w3-margin crm-box-bonus">
+    <div class="w3-container">
+    <h4><b>奖金</b></h4>
+    </div>
+    <div class="w3-container">
+        <p>Balance: <strong>AU$0.00</strong></p>
+    </div>
+  </div>
+  
+<!-- END Sidebar -->
+</div>
+
+<!-- END GRID -->
+</div>
 
 <a href="#0" class="cd-top">Top</a>
 
