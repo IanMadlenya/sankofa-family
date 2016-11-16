@@ -41,12 +41,13 @@ if ($error) {
     
     // attempt insert or update query execution
     if($crm_notblank == 0) {
-        $sql = "INSERT INTO sf_crm_info SET ref_id = '$crm_refid', user_name = '$crm_username', mobile_no = '$crm_mobileno', wechat_id = '$crm_wechatid', roles = '$crm_roles', job_desc = '$crm_jobdesc', ref_id_upper = '$crm_refid_upper', user_email = ( SELECT user_email FROM sf_users WHERE user_nicename = '$crm_profileuser'), user_login = ( SELECT user_login FROM sf_users WHERE user_nicename = '$crm_profileuser')";
+        $sql = "INSERT INTO sf_crm_info SET ref_id = '$crm_refid', user_name = '$crm_username', mobile_no = '$crm_mobileno', wechat_id = '$crm_wechatid', roles = '$crm_roles', job_desc = '$crm_jobdesc', ref_id_upper = '$crm_refid_upper', user_email = ( SELECT user_email FROM sf_users WHERE user_nicename = '$crm_profileuser'), user_login = ( SELECT user_login FROM sf_users WHERE user_nicename = '$crm_profileuser');";
+        $sql .= "INSERT INTO sf_crm_bonus SET balance = 0.00, user_login = ( SELECT user_login FROM sf_users WHERE user_nicename = '$crm_profileuser')";
     } else {
         $sql = "UPDATE sf_crm_info SET ref_id = '$crm_refid', user_name = '$crm_username', mobile_no = '$crm_mobileno', wechat_id = '$crm_wechatid', roles = '$crm_roles', job_desc = '$crm_jobdesc', ref_id_upper = '$crm_refid_upper' WHERE user_login = '$crm_profileuser'";
     }
     
-    if(mysqli_query($link, $sql)){
+    if(mysqli_multi_query($link, $sql)){
         $_SESSION['crm_insert_status'] = $crm_status_success;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else{
