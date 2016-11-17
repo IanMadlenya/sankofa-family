@@ -20,6 +20,12 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
 $result = $conn->query($sql);
+
+$sql2 = "SELECT * FROM sf_crm_bonus WHERE ref_id = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
+$result2 = $conn->query($sql2);
+
+include 'calendar.php';
+$calendar = new Calendar();
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +35,7 @@ $result = $conn->query($sql);
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/calendar.css">
 <style>
 .w3-sidenav {font-family: "Raleway", sans-serif}
 .w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
@@ -70,12 +77,11 @@ $result = $conn->query($sql);
 
 <!-- MAIN -->
 <div class="w3-col l8 s12">
-    
-    <?php if ($result->num_rows > 0) {
+<?php if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) { ?>
   <div class="w3-margin crm-box">
     <div class="w3-container">
-      <h4><b>个人资料</b></h4>
+      <h4><b>Personal Infomation</b></h4>
     </div>
     <div class="w3-container">
         <table style="padding:10px;font-size:14px">
@@ -116,7 +122,7 @@ $result = $conn->query($sql);
 <?php } } else { ?>
     <div class="w3-margin crm-box-error">
     <div class="w3-container">
-      <h4><b>个人资料</b></h4>
+      <h4><b>Personal Infomation</b></h4>
     </div>
     <div class="w3-container">
     <div class="w3-center">
@@ -133,14 +139,37 @@ $result = $conn->query($sql);
 
 <!-- Sidebar -->
 <div class="w3-col l4">
- 
-  <!-- Labels / tags -->
+ <?php if ($result2->num_rows > 0) {
+    while($row2 = $result2->fetch_assoc()) { ?>
   <div class="w3-margin crm-box-bonus">
     <div class="w3-container">
-    <h4><b>奖金</b></h4>
+    <h4><b>Bonus</b></h4>
     </div>
     <div class="w3-container">
-        <p>Balance: <strong>AU$0.00</strong></p>
+        <p>Balance: <strong>AU$<?php echo $row2["balance"] ?></strong></p>
+    </div>
+  </div>
+<?php } } else { ?>
+<div class="w3-margin crm-box-error">
+    <div class="w3-container">
+    <h4><b>Bonus</b></h4>
+    </div>
+    <div class="w3-container">
+        <div class="w3-center">
+        <p>数据加载失败，请联系管理员!</p>
+        <hr>
+        <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
+        </div>
+    </div>
+  </div>
+<?php } ?>
+<hr>
+  <div class="w3-margin crm-box-calendar">
+    <div class="w3-container">
+    <h4><b>Calendar</b></h4>
+    </div>
+    <div class="w3-container crm-box-white">
+    <?php echo $calendar->show(); ?>
     </div>
   </div>
   
@@ -178,7 +207,6 @@ function myFunction() {
     }
 }
 </script>
-<script src="/js/index.js"></script>
 <script src="/js/back.to.top.js"></script>
 </body>
 </html>
