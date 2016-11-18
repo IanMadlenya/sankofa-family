@@ -114,7 +114,7 @@ $calendar = new Calendar();
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-          <p><button class="crm-box-btn w3-padding">更改个人资料</button></p>
+        <p><button class="crm-box-btn w3-padding">更改个人资料</button></p>
         </div>
       </div>
     </div>
@@ -133,6 +133,15 @@ $calendar = new Calendar();
     </div>
   </div>
 <?php } ?>
+<hr>
+<div class="w3-margin crm-box-bonus">
+    <div class="w3-container">
+      <h4><b>Graph</b></h4>
+    </div>
+    <div class="w3-container">
+    <p>testing</p>
+    </div>
+  </div>
     
 <!-- END MAIN -->
 </div>
@@ -170,6 +179,15 @@ $calendar = new Calendar();
     </div>
     <div class="w3-container crm-box-white">
     <?php echo $calendar->show(); ?>
+    </div>
+  </div>
+<hr>
+<div class="w3-margin crm-box">
+    <div class="w3-container">
+    <h4><b>Search</b></h4>
+    </div>
+    <div class="w3-container">
+        <p>testing</p>
     </div>
   </div>
   
