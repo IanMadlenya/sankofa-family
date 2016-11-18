@@ -66,7 +66,7 @@ $sql = "SELECT * FROM sf_wechat";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>性别</th><th>电话号码</th><th>微信</th><th>电子邮件</th><th>职业</th></tr></thead><tbody>";
+    echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>性别</th><th>电话号码</th><th>微信</th><th>电子邮件</th><th>职业</th><th>添加日期</th></tr></thead><tbody>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         $r = $r + 1;
@@ -76,9 +76,9 @@ if ($result->num_rows > 0) {
             $gender_type = "女";
         }
         if($r % 2 == 1) {
-            echo "<tr class='w3-white w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td></tr>";
+            echo "<tr class='w3-white w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td><td>" . $row["date"] . "</td></tr>";
         } else {
-            echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td></tr>";
+            echo "<tr class='w3-light-grey w3-hover-dark-grey w3-hover-text-white'><td>". $row["clientname"]. "</td><td>" . $gender_type . "</td><td>". $row["mobile"]. "</td><td>" . $row["wechatid"] . "</td><td>" . $row["email"] . "</td><td>" . $row["job"] . "</td><td>" . $row["date"] . "</td></tr>";
         }
     }
     echo "</tbody></table>";
