@@ -10,10 +10,7 @@ $current_user = wp_get_current_user();
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/hexagon.css">
-<link rel="stylesheet" href="/css/jquery.qtip.min.css">
 <script src="/js/jquery.min.js"></script>
-<script src="/js/jquery.qtip.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
@@ -44,7 +41,7 @@ $current_user = wp_get_current_user();
 </div>
 
 <!-- Sign Up -->
-<button class="w3-btn w3-light-grey w3-hover-black w3-medium w3-display-middle sankofa-sign-up">在线咨询</button>
+<a class="w3-btn w3-light-grey w3-hover-black w3-medium w3-display-middle sankofa-sign-up" href="/class">登记微信课堂</a>
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
@@ -75,7 +72,7 @@ $current_user = wp_get_current_user();
       <div class="w3-card-2">
         <img src="/images/george_gao2.png" alt="George" style="width:100%">
         <div class="w3-container w3-white">
-          <h4>George Gao</h4>
+          <h4>高锐 George Gao</h4>
           <p class="w3-opacity w3-small">SMFOs 董事总经理</p>
           <p class="w3-small">高先生有着20年金融证券外汇从业和投资经验，历任中国投资银行，中信证券资产管理部交易员，长盛基金，华夏基金，融通基金，KVB，易汇通金融学院院长。持有注册会计师、注册证券分析师、澳洲RG146金融从业牌照。</p>
         </div>
@@ -85,8 +82,8 @@ $current_user = wp_get_current_user();
       <div class="w3-card-2">
         <img src="/images/gracie2.png" alt="Gracie" style="width:100%">
         <div class="w3-container w3-white">
-          <h4>Gracie He</h4>
-          <p class="w3-opacity w3-small">SMFOs首席财务官</p>
+          <h4>何剑兰 Gracie He</h4>
+          <p class="w3-opacity w3-small">SMFOs 首席财务官</p>
           <p class="w3-small">澳大利亚注册会计师CPA，特许税务师 CTA，注册税务代理 Registered tax agent ，注册会计师导师 ，超过10年的澳大利亚会计和税务从业经验，擅长中小型企业税务规划，企业业务结构重组，企业跨境税务规划，高净值客户的个人税务理财等。</p>
         </div>
       </div>
@@ -95,7 +92,7 @@ $current_user = wp_get_current_user();
       <div class="w3-card-2">
         <img src="/images/george_gao2.jpg" alt="George" style="width:100%">
         <div class="w3-container w3-white">
-          <h4>George Gao</h4>
+          <h4>高锐 George Gao</h4>
           <p class="w3-opacity w3-small">SMFOs 董事总经理</p>
           <p class="w3-small">高先生有着20年金融证券外汇从业和投资经验，历任中国投资银行，中信证券资产管理部交易员，长盛基金，华夏基金，融通基金，KVB，易汇通金融学院院长。持有注册会计师、注册证券分析师、澳洲RG146金融从业牌照。</p>
         </div>

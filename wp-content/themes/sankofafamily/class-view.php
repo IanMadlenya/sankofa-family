@@ -132,7 +132,6 @@ function myFunction() {
     }
 }
 </script>
-<script src="/js/index.js"></script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
 </body>
