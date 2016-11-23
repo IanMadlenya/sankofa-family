@@ -102,7 +102,7 @@ $current_user = wp_get_current_user();
 
 <div class="w3-row" style="padding-bottom:30px">
 <div class="w3-center">
-<p><button class="w3-btn w3-light-grey w3-hover-black w3-medium">查看更多</button></p>
+<p><a class="w3-btn w3-light-grey w3-hover-black w3-medium" href="/our-team">查看更多</a></p>
 </div>
 </div>
 </div>
