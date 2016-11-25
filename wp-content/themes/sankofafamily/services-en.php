@@ -1,12 +1,12 @@
 <?php
 /*
-Template Name: sankofa-services
+Template Name: sankofa-services-en
 */
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sankofa 家族办公室</title>
+<title>Sankofa Multi-Family Offices</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -23,13 +23,13 @@ Template Name: sankofa-services
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
-    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
+    <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
+      <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
+      <li><a href="#" class="w3-padding-large w3-text-light-grey">Definition of MFOs</a></li>
+      <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
+      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
     <li class="w3-hide-small w3-right">
-      <a href="/services-en" class="w3-padding-large w3-hover-green w3-text-light-grey">English</a>
+      <a href="/services" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
     </li>
   </ul>
 </div>
