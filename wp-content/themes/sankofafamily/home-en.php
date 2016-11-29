@@ -91,7 +91,7 @@ Template Name: sankofa-home-en
         <img src="/images/vivienne2.png" style="width:100%;min-width:250px">
         <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
           <h4>Vivienne Goodwin</h4>
-          <p class="w3-opacity w3-small">SMFOs Chief Legal Officer</p>
+          <p class="w3-opacity w3-small">SMFOs Chief Legal Adviser</p>
           <p class="w3-small">德盈律师事务所创始人，新闻硕士、法律博士，新南威尔士州执业律师，澳大利亚最高法院执业律师，澳大利亚国际公证律师。专业领域为经济商业法、公司法、房地产开发、项目融资；有十年以上协助商业投资移民客户经验；擅长协助中国企业客户在澳着陆投资；此外还有丰富的仲裁庭经验。</p>
         </div>
       </div>
