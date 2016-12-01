@@ -1,12 +1,28 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-home-en
 */
-?>
-<!DOCTYPE html>
+$cookie_name = "sk_lan";
+$cookie_value = "";
+
+if(!isset($_COOKIE[$cookie_name])) {
+    $cookie_value = "en";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+} else {
+    $cookie_value = $_COOKIE[$cookie_name];
+    $var = $_GET['set'];
+    if($cookie_value == "zh") {
+        if($var == "en") {
+            $cookie_value = "en";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+        } else {
+            header( 'Location: /' );
+        }
+    } else { ?>
 <html>
 <head>
-<title>Sankofa Multi-Family Offices</title>
+<title>Sankofa Multi-Family Offices <?php echo $cookie_value ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -26,7 +42,7 @@ Template Name: sankofa-home-en
       <li class="w3-hide-small"><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
       <li class="w3-hide-small"><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
     <li class="w3-hide-small w3-right">
-      <a href="/" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
+      <a href="/?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
     </li>
   </ul>
 </div>
@@ -44,7 +60,7 @@ Template Name: sankofa-home-en
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
     <h3 class="w3-center">About Sankofa Multi-Family Offices</h3>
-  <p>Sankofa Multi-Family Offices, or SMFOs, 是隶属于澳大利亚Sankofa基金管理有限公司(ACN: 602 218 495 AFSL: 473 202)专门服务高端客户，海外资产配置、家族信托、移民、留学、安家、置业的专业服务机构。自其成立以来，SMFOs已为数个财富家庭成立了家族信托，并帮助他们完成全家移民，子女留学，海外资产配置等诉求。</p>
+  <p>Sankofa Multi-Family Offices (SMFOs) is subordinate to Sankofa Fund Management Pty Ltd (ACN: 602 218 495 AFSL: 473 202). It is specialized in providing high-end services to our VIP clients, including but not limited to global asset allocation, family trust management, immigration application, foreign study assistance and property purchases. Since inception, SMFOs has successfully helped a lot of families set up their family trust and, in the meantime, accomplished their goals in migration, children's education and foreign asset allocation.</p>
   <div class="w3-row">
     <div class="w3-col m6 w3-center w3-section">
       <img src="/images/george_gao.jpg" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
@@ -165,3 +181,4 @@ function myFunction() {
 <a href="#0" class="cd-top">Top</a>
 </body>
 </html>
+<?php } } ?>
