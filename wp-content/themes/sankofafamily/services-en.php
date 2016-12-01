@@ -2,7 +2,24 @@
 /*
 Template Name: sankofa-services-en
 */
-?>
+$cookie_name = "sk_lan";
+$cookie_value = "";
+
+if(!isset($_COOKIE[$cookie_name])) {
+    $cookie_value = "en";
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+} else {
+    $cookie_value = $_COOKIE[$cookie_name];
+    $var = $_GET['set'];
+    if($cookie_value == "zh") {
+        if($var == "en") {
+            $cookie_value = "en";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: /services-en' );
+        } else {
+            header( 'Location: /services' );
+        }
+    } else { ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +46,7 @@ Template Name: sankofa-services-en
       <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
       <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
     <li class="w3-hide-small w3-right">
-      <a href="/services" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
+      <a href="/services?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
     </li>
   </ul>
 </div>
@@ -161,3 +178,4 @@ Template Name: sankofa-services-en
 <a href="#0" class="cd-top">Top</a>
 </body>
 </html>
+<?php } } ?>

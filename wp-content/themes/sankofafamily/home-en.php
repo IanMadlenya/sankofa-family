@@ -16,6 +16,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         if($var == "en") {
             $cookie_value = "en";
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: /en' );
         } else {
             header( 'Location: /' );
         }
