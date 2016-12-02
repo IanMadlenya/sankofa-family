@@ -23,7 +23,7 @@ if(!isset($_COOKIE[$cookie_name])) {
     } else { ?>
 <html>
 <head>
-<title>Sankofa Multi-Family Offices <?php echo $cookie_value ?></title>
+<title>Sankofa Multi-Family Offices</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -71,8 +71,8 @@ if(!isset($_COOKIE[$cookie_name])) {
 
     <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-section">
-      <p>家族办公室始于6世纪，当时国王的管家负责管理皇家财富。后来贵族要求参与其中，自此管理的概念应运而生并延续至今。现代意义上的家族办公室在19世纪得到发展。1838 年，作为金融家和艺术收藏家 J.P. 摩根家族创立了摩根财团来管理家族资产。1882年，洛克菲勒家族设立了自己的家族办公室。该家族办公室至 今仍在运营，并为其他家族提供服务。家族办公室涵盖管理私人大宗财富的各种组织与服务形式...</p>
-        <a class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle" href="/sankofa-family">Read more</a>
+      <p>The first multi-family office was emerged in the sixth century, whose role was nothing but the treasurer of the crown. When the nobles start to utilize the service, multi-family offices evolved into an industry with the concept of management that has been inherited till now. In the nineteenth century, famous families like the Morgan and the Rockefeller established their own family offices, which endowed this industry with modern sense. Many of these family offices are still operating, providing services in financial management and lots of other forms.</p>
+        <a class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle" href="/sankofa-family-en">Read more</a>
     </div>
   </div>
 </div>

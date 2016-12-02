@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-services-en
@@ -20,7 +21,6 @@ if(!isset($_COOKIE[$cookie_name])) {
             header( 'Location: /services' );
         }
     } else { ?>
-<!DOCTYPE html>
 <html>
 <head>
 <title>Sankofa Multi-Family Offices</title>
