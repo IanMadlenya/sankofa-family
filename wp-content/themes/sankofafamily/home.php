@@ -2,10 +2,17 @@
 <?php
 $cookie_name = "sk_lan";
 $cookie_value = "";
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
 if(!isset($_COOKIE[$cookie_name])) {
-    $cookie_value = "zh";
-    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+    if($lang == "zh") {
+        $cookie_value = "zh";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day   
+        header( 'Location: /' );
+    }
+    else {
+        header( 'Location: /en' );
+    }
 } else {
     $cookie_value = $_COOKIE[$cookie_name];
     $var = $_GET['set'];

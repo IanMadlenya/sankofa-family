@@ -60,7 +60,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner money">
 						<div class="textWrapper">
 							<div class="text2">“跨国投资、海外并购、精选项目、完成投资”</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-invest/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-invest-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -71,7 +71,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner property">
 						<div class="textWrapper">
 							<div class="text2">提供澳洲别墅、公寓、农庄等房源，助您职业成功</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-property/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-property-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner family">
 						<div class="textWrapper">
 							<div class="text">“财富管家，百年传承; 服务超高净值客户”</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-family/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-family-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -93,7 +93,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner study">
 						<div class="textWrapper">
 							<div class="text2">“儿行千里母担忧，从此留学不再愁” - (留学家庭的“头等舱”)</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-study/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-study-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -104,7 +104,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner heritage">
 						<div class="textWrapper">
 							<div class="text">帮助客户设立遗产信托，并负责遗产管理</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-heritage/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-heritage-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -119,7 +119,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner forex">
 						<div class="textWrapper">
 							<div class="text">提供客户合法换汇通道，设计换汇方案</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-exchange/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-exchange-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -130,7 +130,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner immi">
 						<div class="textWrapper">
 							<div class="text2">“移民信托，人才两移” - 私人订制的移民签证与投资方案</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-immi/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-immi-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -141,7 +141,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner tax">
 						<div class="textWrapper">
 							<div class="text">提供客户税务咨询、税务管理方案、合法避税</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-tax/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-tax-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>
@@ -154,7 +154,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 					<div class="inner trade">
 						<div class="textWrapper">
 							<div class="text">提供澳大利亚红酒及保健品等商品进出口服务</div>
-                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-trade/">详细介绍</a>
+                            <a class="w3-btn w3-hover-dark-grey w3-transparent w3-text-dark-grey w3-medium hexagon-button" href="http://www.smfos.com.au/sankofa-trade-en/">详细介绍</a>
 						</div>
 					</div>
 				</div>

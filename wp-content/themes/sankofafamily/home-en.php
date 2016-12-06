@@ -5,10 +5,17 @@ Template Name: sankofa-home-en
 */
 $cookie_name = "sk_lan";
 $cookie_value = "";
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
 if(!isset($_COOKIE[$cookie_name])) {
-    $cookie_value = "en";
-    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+    if($lang == "zh") {
+        header( 'Location: /' );
+    }
+    else {
+        $cookie_value = "en";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+        header( 'Location: /en' );
+    }
 } else {
     $cookie_value = $_COOKIE[$cookie_name];
     $var = $_GET['set'];
@@ -89,7 +96,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
           <h4>George Gao</h4>
           <p class="w3-opacity w3-small">SMFOs Managing Director</p>
-          <p class="w3-small">George has more than 20 years’ experience in the financial industry. He served at China Investment Bank and CITIC Sercurities as a senior trader. His titles include CPA, CRFA and VP of EFX168 Financial College.</p>
+          <p class="w3-small">George has more than 20 years’ experience in the financial industry. He served at China Investment Bank and CITIC Securities as a senior trader. His titles include CPA, CRFA and VP of EFX168 Financial College.</p>
         </div>
       </div>
     </div>
@@ -99,7 +106,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
           <h4>Gracie He</h4>
           <p class="w3-opacity w3-small">SMFOs Chief Financial Officer</p>
-          <p class="w3-small">澳大利亚注册会计师CPA，特许税务师 CTA，注册税务代理 Registered tax agent ，注册会计师导师 ，超过10年的澳大利亚会计和税务从业经验，擅长中小型企业税务规划，企业业务结构重组，企业跨境税务规划，高净值客户的个人税务理财等。</p>
+          <p class="w3-small">Gracie has more than 10 years' experience in professional practice of accounting and taxation in Australia, specializing in small-business tax planning, business restructuring, cross-boarder tax managing and personal tax management. She is a member of CPA of Australia, a CTA and a registered tax agent.</p>
         </div>
       </div>
     </div>
