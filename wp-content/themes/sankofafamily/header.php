@@ -1,6 +1,7 @@
 <?php
-$current_user = wp_get_current_user();
 $page_title = $wp_query->post->post_title;
+$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 ?>
 <html>
 <head>
@@ -24,11 +25,7 @@ $page_title = $wp_query->post->post_title;
       <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
-      <?php if ( is_user_logged_in() ): ?>
-        <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
-        <?php else: ?>
-      <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
-        <?php endif; ?>
+      <a href="<?php echo rtrim($escaped_url, "/") ?>-en?set=en" class="w3-padding-large w3-hover-green w3-text-light-grey">English</a>
     </li>
   </ul>
 </div>
