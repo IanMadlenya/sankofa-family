@@ -2,10 +2,41 @@
 $page_title = $wp_query->post->post_title;
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+$cookie_name = "sk_lan";
+$cookie_value = "";
+
+if(!isset($_COOKIE[$cookie_name])) {
+    if(substr_count($escaped_url , "-en") == 0) {
+        $cookie_value = "zh";
+    } else {
+        $cookie_value = "en";
+    }
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+} else {
+    $cookie_value = $_COOKIE[$cookie_name];
+    $var = $_GET['set'];
+    if($cookie_value == "en") {
+        if($var == "zh") {
+            $cookie_value = "zh";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: ' . rtrim($escaped_url, "?set=zh") );
+        }
+    } else {
+        if($var == "en") {
+            $cookie_value = "en";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: ' . str_replace('/?set=en', '/', $escaped_url) );
+        }
+    }
+}
 ?>
 <html>
 <head>
+<?php if($cookie_value == "zh") { ?>
 <title>Sankofa 家族办公室</title>
+<?php } else { ?>
+<title>Sankofa Multi-Family Offices</title>
+<?php } ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -19,6 +50,7 @@ $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
+<?php if($cookie_value == "zh") { ?>
     <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
       <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
       <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
@@ -26,6 +58,15 @@ $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
       <a href="<?php echo rtrim($escaped_url, "/") ?>-en?set=en" class="w3-padding-large w3-hover-green w3-text-light-grey">English</a>
+<?php } else { ?>
+    <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
+      <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
+      <li><a href="#" class="w3-padding-large w3-text-light-grey">Definition of MFOs</a></li>
+      <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
+      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
+    <li class="w3-hide-small w3-right">
+      <a href="<?php echo rtrim($escaped_url, "-en/") ?>?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
+<?php } ?>
     </li>
   </ul>
 </div>

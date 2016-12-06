@@ -8,6 +8,11 @@
 <td class="w3-border-left w3-border-right"><img src="http://www.smfos.com.au/images/customer-service.png" style="width:90px"></td>
 <td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
 </tr>
+<?php
+$cookie_name = "sk_lan";
+$cookie_value = $_COOKIE[$cookie_name];
+if($cookie_value == "zh") {
+?>
 <tr>
 <td class="table-heading" style="height:90px">在线申请</td>
 <td class="table-heading w3-border-left w3-border-right" style="height:90px">客服热线</td>
@@ -18,6 +23,18 @@
 <td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
 <td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">下载 PDF</a></td>
 </tr>
+<?php } else { ?>
+<tr>
+<td class="table-heading" style="height:90px">Online Application</td>
+<td class="table-heading w3-border-left w3-border-right" style="height:90px">Customer Hotline</td>
+<td class="table-heading" style="height:90px">Download Section</td>
+</tr>
+<tr>
+<td style="height:50px"><button class="w3-btn w3-hover-light-grey w3-medium">Apply online</button></td>
+<td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
+<td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">Download PDFs</a></td>
+</tr>
+<?php } ?>
 </table>
 </div>
 
