@@ -133,7 +133,7 @@ if(!isset($_COOKIE[$cookie_name])) {
     <div class="w3-col m4 w3-container">
         
       <!-- Add Google Maps -->
-      <div id="googleMap" class="w3-round-large"></div>
+    <img src="/images/map.png" style="height:404px">
     </div>
     <div class="w3-col m8 w3-container w3-section">
       <div class="w3-large w3-margin-bottom">
@@ -180,8 +180,6 @@ function myFunction() {
     }
 }
 </script>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="/js/index.js"></script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
 </body>

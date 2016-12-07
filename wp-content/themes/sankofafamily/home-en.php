@@ -106,7 +106,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
           <h4>Gracie He</h4>
           <p class="w3-opacity w3-small">SMFOs Chief Financial Officer</p>
-          <p class="w3-small">Gracie has more than 10 years' experience in professional practice of accounting and taxation in Australia, specializing in small-business tax planning, business restructuring, cross-boarder tax managing and personal tax management. She is a member of CPA of Australia, a CTA and a registered tax agent.</p>
+          <p class="w3-small">Gracie has more than 10 years' experience in professional practice of accounting and taxation in Australia, specializing in small-business tax planning, business restructuring, cross-boarder tax managing and personal tax management.</p>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
           <h4>Vivienne Goodwin</h4>
           <p class="w3-opacity w3-small">SMFOs Chief Legal Adviser</p>
-          <p class="w3-small">德盈律师事务所创始人，新闻硕士、法律博士，新南威尔士州执业律师，澳大利亚最高法院执业律师，澳大利亚国际公证律师。专业领域为经济商业法、公司法、房地产开发、项目融资；有十年以上协助商业投资移民客户经验；擅长协助中国企业客户在澳着陆投资；此外还有丰富的仲裁庭经验。</p>
+          <p class="w3-small">Vivienne is the founder and principal solicitor of Goodwin & Co Lawyers. Vivienne has been practising in Migration Law as a Registered Migration Agent since 2005, and in Business Law, Family Law and related Litigation since being admitted as a solicitor.</p>
         </div>
       </div>
     </div>
@@ -136,7 +136,7 @@ if(!isset($_COOKIE[$cookie_name])) {
     <div class="w3-col m4 w3-container">
         
       <!-- Add Google Maps -->
-      <div id="googleMap" class="w3-round-large"></div>
+    <img src="/images/map.png" style="height:404px">
     </div>
     <div class="w3-col m8 w3-container w3-section">
       <div class="w3-large w3-margin-bottom">
@@ -183,8 +183,6 @@ function myFunction() {
     }
 }
 </script>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="/js/index.js"></script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
 </body>
