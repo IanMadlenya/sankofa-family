@@ -2,12 +2,15 @@
 /*
 Template Name: sankofa-songs
 */
-$current_user = wp_get_current_user();
 $r = 0;
-
+date_default_timezone_set('Australia/Sydney');
 $date = date('Y-m-d');
+$time = date('H:i:s');
+$ourdate = "2016-09-20";
+$days = round((strtotime($date) - strtotime($ourdate)) / (60 * 60 * 24));
 $cookie_name = "sk_date";
 $cookie_value = "";
+$title = "給BB的歌單";
 
 if(!isset($_COOKIE[$cookie_name])) {
     $cookie_value = $date;
@@ -19,7 +22,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 <!DOCTYPE HTML>  
 <html>
 <head>
-<title>Sankofa 家族办公室</title>
+<title><?php echo $title ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -28,35 +31,17 @@ if(!isset($_COOKIE[$cookie_name])) {
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
-<body>  
-
-<!-- Navbar (sit on top) -->
-<div class="w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
-    <li class="w3-hide-small w3-right">
-      <?php if ( is_user_logged_in() ): ?>
-        <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
-        <?php else: ?>
-      <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
-        <?php endif; ?>
-    </li>
-  </ul>
-</div>
+<body>
 
 <!-- Slideshow -->
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
-    <img src="http://www.smfos.com.au/images/sydney1.jpg">
+    <img src="http://www.smfos.com.au/images/love.png">
     <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
-        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">SONGS TO SHENG BB</span>
+        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey"><?php echo $title ?></span>
     </div>
   </div>
 
-<div class="w3-text-dark-grey" style="margin-bottom:80px">
+<div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 <!-- Content -->
 <?php
 $servername = "localhost";
@@ -75,71 +60,42 @@ $sql = "SELECT * FROM sf_sherry_songs";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
+    echo "<h4>親愛的升: </h4><div class='w3-center'><h4>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         if(( $row["tick"] == "0" ) && ($r == 0)) {
             $song = $row["songName"];
-            echo "<div class='w3-center'><h3>親愛的BB， 今天去聽 " . $song . " 吧</h3></div>";
             if(strtotime($date) > strtotime($cookie_value)) {
                 $sql2 = "UPDATE sf_sherry_songs SET tick = 1 WHERE songName = '$song'";
                 $conn->query($sql2);
                 $cookie_value = $date;
                 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
                 header("Refresh:0");
+            } else {
+                if(strtotime($time) < strtotime('12:00:00')) {
+                    echo "早安";
+                } elseif (strtotime($time) > strtotime('18:00:00')) {
+                    echo "晚安";
+                } else {
+                    echo "午安";
+                }
+                echo "，我親愛的升BB， 今天是我們相戀的第 " . $days . " 天。</h4><h4>今天想讓妳聽得歌歌： " . $song . " ，愛妳哦 ❤️~</h4><iframe src='https://embed.spotify.com/?uri=spotify:track:" . $row["spotify"] . "' frameborder='0' allowtransparency='true'></iframe>";
             }
             $r = $r + 1;
         }
     }
+    echo "</div><h4>最愛妳的，</h4><h4>翰寶寶</h4>";
 } else { ?>
 <div class="w3-center"><h3>数据库无记录!</h3></div>
 <?php }
 $conn->close();
 ?>
-
-<!-- Below Box -->
-</div>
-<div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
-
-<table class="w3-center w3-text-dark-grey">
-<tr>
-<td><img src="http://www.smfos.com.au/images/verified-text-paper.png" style="width:90px"></td>
-<td class="w3-border-left w3-border-right"><img src="http://www.smfos.com.au/images/customer-service.png" style="width:90px"></td>
-<td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
-</tr>
-<tr>
-<td class="table-heading" style="height:90px">在线申请</td>
-<td class="table-heading w3-border-left w3-border-right" style="height:90px">客服热线</td>
-<td class="table-heading" style="height:90px">资料下载</td>
-</tr>
-<tr>
-<td style="height:50px"><button class="w3-btn w3-hover-light-grey w3-medium">立即申请</button></td>
-<td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
-<td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">下载 PDF</a></td>
-</tr>
-</table>
-</div>
-
-<!-- Footer -->
-<div class="footer-text w3-round-large w3-hover-black">
-<p><img src="/images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>
 </div>
 
 <footer class="w3-padding-12 w3-transparent">
-    <a href="http://www.sankofafund.com.au"><img src="/images/logo_black.png"></a>
-    <p class="w3-left-align">© 2016 <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
+    <a href="https://github.com/jasonkwh"><img class="w3-round-large" src="/images/jason.jpg" style="height:150px"></a>
+    <p class="w3-left-align">© 2016 <strong>JASON WONG</strong>.</p>
 </footer>
-<script>
-// Change style of navbar on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    var navbar = document.getElementById("myNavbar");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-navbar" + " w3-card-2" + " w3-animate-top" + " w3-black";
-    } else {
-        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-black", "");
-    }
-}
-</script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
 </body>
