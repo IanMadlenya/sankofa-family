@@ -94,7 +94,7 @@ $conn->close();
 
 <footer class="w3-padding-12 w3-transparent">
     <a href="https://github.com/jasonkwh"><img class="w3-round-large" src="/images/jason.jpg" style="height:150px"></a>
-    <p class="w3-left-align">© 2016 <strong>JASON WONG</strong>.</p>
+    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>JASON WONG</strong>.</p>
 </footer>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>

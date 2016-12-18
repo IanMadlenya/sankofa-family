@@ -171,7 +171,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 <footer class="w3-padding-12 w3-transparent">
     <a href="http://www.sankofafund.com.au"><img src="/images/logo.png"></a>
-    <p class="w3-left-align w3-text-white">© 2016 <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
+    <p class="w3-left-align w3-text-white">© <?php echo date("Y"); ?> <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
 </footer>
 <script src="/js/services.js"></script>
 <script src="/js/back.to.top.js"></script>
