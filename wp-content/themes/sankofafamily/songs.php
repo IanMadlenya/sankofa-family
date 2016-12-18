@@ -72,12 +72,17 @@ if ($result->num_rows > 0) {
                 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
                 header("Refresh:0");
             } else {
-                if((strtotime($time) < strtotime('12:00:00')) && (strtotime($time) >= strtotime('06:00:00'))) {
+                if((strtotime($time) > strtotime('06:00:00')) && (strtotime($time) <= strtotime('12:00:00'))) {
                     echo "早安";
-                } elseif ((strtotime($time) > strtotime('18:00:00')) && (strtotime($time) < strtotime('06:00:00'))) {
-                    echo "晚安";
-                } else {
+                }
+                if((strtotime($time) > strtotime('12:00:00')) && (strtotime($time) <= strtotime('17:00:00'))) {
                     echo "午安";
+                }
+                if((strtotime($time) > strtotime('17:00:00')) && (strtotime($time) <= strtotime('22:00:00'))) {
+                    echo "晚上好";
+                }
+                if((strtotime($time) > strtotime('22:00:00')) || (strtotime($time) <= strtotime('06:00:00'))) {
+                    echo "晚安";
                 }
                 echo "，我親愛的升BB， 今天是我們相戀的第 " . $days . " 天。</h4><h4>今天想讓妳聽得歌歌： " . $song . " ，愛妳哦 ❤️~</h4><iframe src='https://embed.spotify.com/?uri=spotify:track:" . $row["spotify"] . "' frameborder='0' allowtransparency='true'></iframe>";
             }
