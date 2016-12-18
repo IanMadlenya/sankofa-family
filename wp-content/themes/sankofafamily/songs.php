@@ -72,9 +72,9 @@ if ($result->num_rows > 0) {
                 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
                 header("Refresh:0");
             } else {
-                if(strtotime($time) < strtotime('12:00:00')) {
+                if((strtotime($time) < strtotime('12:00:00')) && (strtotime($time) >= strtotime('06:00:00'))) {
                     echo "早安";
-                } elseif (strtotime($time) > strtotime('18:00:00')) {
+                } elseif ((strtotime($time) > strtotime('18:00:00')) && (strtotime($time) < strtotime('06:00:00'))) {
                     echo "晚安";
                 } else {
                     echo "午安";
