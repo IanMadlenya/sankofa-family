@@ -8,16 +8,7 @@ $date = date('Y-m-d');
 $time = date('H:i:s');
 $ourdate = "2016-09-20";
 $days = round((strtotime($date) - strtotime($ourdate)) / (60 * 60 * 24));
-$cookie_name = "sk_date";
-$cookie_value = "";
 $title = "給BB的歌單";
-
-if(!isset($_COOKIE[$cookie_name])) {
-    $cookie_value = $date;
-    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
-} else {
-    $cookie_value = $_COOKIE[$cookie_name];
-}
 ?>
 <!DOCTYPE HTML>  
 <html>
@@ -65,11 +56,17 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         if(( $row["tick"] == "0" ) && ($r == 0)) {
             $song = $row["songName"];
-            if(strtotime($date) > strtotime($cookie_value)) {
+            if($row["songDate"] == "") {
+                $sql3 = "UPDATE sf_sherry_songs SET songDate = '$date' WHERE songName = '$song'";
+                $conn->query($sql3);
+                $songDate = $date;
+            } else {
+                $songDate = $row["songDate"];   
+            }
+            
+            if(strtotime($date) > strtotime($songDate)) {
                 $sql2 = "UPDATE sf_sherry_songs SET tick = 1 WHERE songName = '$song'";
                 $conn->query($sql2);
-                $cookie_value = $date;
-                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
                 header("Refresh:0");
             } else {
                 if((strtotime($time) > strtotime('06:00:00')) && (strtotime($time) <= strtotime('12:00:00'))) {
