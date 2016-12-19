@@ -23,7 +23,7 @@ $title = "給BB的歌單";
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
-
+    
 <!-- Slideshow -->
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
     <img src="http://www.smfos.com.au/images/love.png">
@@ -31,8 +31,9 @@ $title = "給BB的歌單";
         <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey"><?php echo $title ?></span>
     </div>
   </div>
-
+    
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+
 <!-- Content -->
 <?php
 $servername = "localhost";
