@@ -80,7 +80,7 @@ $result2 = $conn->query($sql2);
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
     </div>
-    <div class="w3-container">
+    <form class="w3-container" method="post" action="crm_client_input.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
@@ -111,10 +111,10 @@ $result2 = $conn->query($sql2);
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-        <p><button class="crm-box-btn w3-padding">添加进数据库</button></p>
+        <input type="submit" class="crm-box-btn w3-padding" value="添加进数据库">
         </div>
       </div>
-    </div>
+    </form>
   </div>
 <?php } } else { ?>
     <div class="w3-margin crm-box-error">
