@@ -65,24 +65,28 @@ if ($result->num_rows > 0) {
                 $songDate = $row["songDate"];   
             }
             
-            if(strtotime($date) > strtotime($songDate)) {
+            if(strtotime($date) != strtotime($songDate)) {
                 $sql2 = "UPDATE sf_sherry_songs SET tick = 1 WHERE songName = '$song'";
                 $conn->query($sql2);
                 header("Refresh:0");
             } else {
-                if((strtotime($time) > strtotime('06:00:00')) && (strtotime($time) <= strtotime('12:00:00'))) {
-                    echo "早安";
+                if(strtotime($date) != strtotime('2017-01-01')) {
+                    if((strtotime($time) > strtotime('06:00:00')) && (strtotime($time) <= strtotime('12:00:00'))) {
+                        echo "早安";
+                    }
+                    if((strtotime($time) > strtotime('12:00:00')) && (strtotime($time) <= strtotime('17:00:00'))) {
+                        echo "午安";
+                    }
+                    if((strtotime($time) > strtotime('17:00:00')) && (strtotime($time) <= strtotime('22:00:00'))) {
+                        echo "晚上好";
+                    }
+                    if((strtotime($time) > strtotime('22:00:00')) || (strtotime($time) <= strtotime('06:00:00'))) {
+                        echo "晚安";
+                    }
+                } else {
+                    echo "新年快樂";
                 }
-                if((strtotime($time) > strtotime('12:00:00')) && (strtotime($time) <= strtotime('17:00:00'))) {
-                    echo "午安";
-                }
-                if((strtotime($time) > strtotime('17:00:00')) && (strtotime($time) <= strtotime('22:00:00'))) {
-                    echo "晚上好";
-                }
-                if((strtotime($time) > strtotime('22:00:00')) || (strtotime($time) <= strtotime('06:00:00'))) {
-                    echo "晚安";
-                }
-                echo "，我親愛的升BB， 今天是我們相戀的第 " . $days . " 天。</h4><h4>今天想讓妳聽得歌歌： " . $song . " ，愛妳哦 ❤️~</h4><iframe src='https://embed.spotify.com/?uri=spotify:track:" . $row["spotify"] . "' frameborder='0' allowtransparency='true'></iframe>";
+                echo "，我親愛的升BB， 今天是我們相戀的第 " . $days . " 天。</h4><h4>今天想讓妳聽得歌歌： " . $song . " ，愛妳哦 ❤️~</h4><iframe src='https://embed.spotify.com/?uri=spotify:track:" . $row["spotify"] . "' frameborder='0' allowtransparency='true'></iframe><h5><a href='/songs-view'>previous songs...</a></h5>";
             }
             $r = $r + 1;
         }
@@ -97,7 +101,7 @@ $conn->close();
 
 <footer class="w3-padding-12 w3-transparent">
     <a href="https://github.com/jasonkwh"><img class="w3-round-large" src="/images/jason.jpg" style="height:150px"></a>
-    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>JASON WONG</strong>.</p>
+    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>JASON WONG</strong> & <strong>SHENG DONG</strong>.</p>
 </footer>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>

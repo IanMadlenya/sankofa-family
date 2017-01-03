@@ -18,11 +18,8 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
+$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
 $result = $conn->query($sql);
-
-$sql2 = "SELECT * FROM sf_crm_bonus WHERE ref_id = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
-$result2 = $conn->query($sql2);
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,39 +70,29 @@ $result2 = $conn->query($sql2);
 <div class="w3-row">
 
 <!-- MAIN -->
-<div class="w3-col l8 s12">
-<?php if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) { ?>
+<div class="w3-col l12 s12">
   <div class="w3-margin crm-box">
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
     </div>
-    <form class="w3-container" method="post" action="crm_client_input.php">
+    <form class="w3-container" method="post" action="/insert-crm-group.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
-        <td>客户群编号:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
-        <td>责任经理:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="group_no" placeholder="客户群编号"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id" placeholder="责任经理"></td>
         </tr>
         <tr>
-        <td>后台客服:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
-        <td>渠道编号:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_bg" placeholder="后台客服"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_bdm" placeholder="渠道编号"></td>
         </tr>
         <tr>
-        <td>上级:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
-        <td>城市:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_upper" placeholder="上级"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="city" placeholder="所在城市"></td>
         </tr>
         <tr>
-        <td>地址:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
-        <td>邮编:</td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="job"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="address" placeholder="地址"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="postcode" placeholder="邮编"></td>
         </tr>
         </tbody>
         </table>
@@ -116,24 +103,10 @@ $result2 = $conn->query($sql2);
       </div>
     </form>
   </div>
-<?php } } else { ?>
-    <div class="w3-margin crm-box-error">
-    <div class="w3-container">
-      <h4><b>新建客户群</b></h4>
-    </div>
-    <div class="w3-container">
-    <div class="w3-center">
-    <p>您没有足够的权限进行此操作！</p>
-    <hr>
-    <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
-    </div>
-    </div>
-  </div>
-<?php } ?>
 <hr>
 <div class="w3-margin crm-box-bonus">
     <div class="w3-container">
-      <h4><b>Graph</b></h4>
+      <h4><b>客户群列表</b></h4>
     </div>
     <div class="w3-container">
     <p>testing</p>
@@ -141,20 +114,6 @@ $result2 = $conn->query($sql2);
   </div>
     
 <!-- END MAIN -->
-</div>
-
-<!-- Sidebar -->
-<div class="w3-col l4">
-<div class="w3-margin crm-box">
-    <div class="w3-container">
-    <h4><b>Search</b></h4>
-    </div>
-    <div class="w3-container">
-        <p>testing</p>
-    </div>
-  </div>
-  
-<!-- END Sidebar -->
 </div>
 
 <!-- END GRID -->
