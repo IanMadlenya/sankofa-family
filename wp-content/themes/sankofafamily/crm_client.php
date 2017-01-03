@@ -79,35 +79,37 @@ $result = $conn->query($sql);
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
     </div>
-    <form class="w3-container" method="post" action="/insert-crm-group.php">
+      <div class="w3-container">
+    <form method="post" action="/insert-crm-group.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="group_no" placeholder="客户群编号"></td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="client_name" placeholder="客户姓名"></td>
+        <td class="crm-input-validate">群编号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="group_no" placeholder="必填，仅数字"></td>
+        <td class="crm-input-validate">客户姓名:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="client_name" placeholder="必填，中英文皆可"></td>
         </tr>
         <tr>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_bg" placeholder="后台客服"></td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_bdm" placeholder="渠道编号"></td>
+        <td class="crm-input-validate">后台客服:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_bg" placeholder="必填，输入客服ID"></td>
+        <td class="crm-input-validate">渠道编号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_bdm" placeholder="必填，输入BDM ID"></td>
         </tr>
         <tr>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_upper" placeholder="上级"></td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="city" placeholder="所在城市"></td>
+        <td class="crm-input-validate">上级:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_upper" placeholder="必填，输入上级ID"></td>
+        <td class="crm-input-validate">所在城市:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
         </tr>
         <tr>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="address" placeholder="地址"></td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="postcode" placeholder="邮编"></td>
+        <td class="crm-input-validate">地址:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="address" placeholder="非必填"></td>
+        <td class="crm-input-validate">邮编:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="postcode" placeholder="非必填，仅数字"></td>
         </tr>
         </tbody>
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
          <input type="hidden" name="ref_id" value="<?php echo $row2["ref_id"] ?>"> 
-        <input type="submit" class="crm-box-btn w3-padding" value="加入数据库">
+        <input type="submit" class="crm-box-btn-group w3-padding" value="加入数据库">
         </div>
       </div>
     </form>
-  </div>
+</div>
+</div>
 <hr>
 <?php if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) { ?>

@@ -120,3 +120,6 @@ function smfosUploadCSS() { scp -r ~/Desktop/sankofa-family/css/$1 root@47.90.81
 
 # upload smfos js file to aliyun server
 function smfosUploadJS() { scp -r ~/Desktop/sankofa-family/js/$1 root@47.90.81.198:/data/wwwroot/default/js/; }
+
+# update rsa passphase
+function smfosSSH() { ssh-add -K ~/.ssh/id_rsa; }
