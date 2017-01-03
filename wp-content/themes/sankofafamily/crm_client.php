@@ -18,6 +18,10 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 } 
 
+$sql2 = "SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
+$result2 = $conn->query($sql2);
+$row2 = $result2->fetch_assoc();
+
 $sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
 $result = $conn->query($sql);
 ?>
@@ -80,7 +84,7 @@ $result = $conn->query($sql);
         <tbody>
         <tr>
         <td class="w3-opacity"><input class="w3-input" type="text" name="group_no" placeholder="客户群编号"></td>
-        <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id" placeholder="责任经理"></td>
+        <td class="w3-opacity"><input class="w3-input" type="text" name="client_name" placeholder="客户姓名"></td>
         </tr>
         <tr>
         <td class="w3-opacity"><input class="w3-input" type="text" name="ref_id_bg" placeholder="后台客服"></td>
@@ -98,20 +102,46 @@ $result = $conn->query($sql);
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-        <input type="submit" class="crm-box-btn w3-padding" value="添加进数据库">
+         <input type="hidden" name="ref_id" value="<?php echo $row2["ref_id"] ?>"> 
+        <input type="submit" class="crm-box-btn w3-padding" value="加入数据库">
         </div>
       </div>
     </form>
   </div>
 <hr>
+<?php if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) { ?>
 <div class="w3-margin crm-box-bonus">
+<div class="w3-container">
+<h4><b>客户群列表</b></h4>
+</div>
+<div class="w3-container">
+<ul>
+<li>客户群编号: <?php echo $row["group_id"] ?></li>
+<?php 
+$group = $row["group_id"];
+$sql3 = "SELECT client_name FROM sf_crm_client_info WHERE group_id = '$group'";
+$result3 = $conn->query($sql3);
+$row3 = $result3->fetch_assoc(); ?>
+<li>客户姓名: <?php echo $row3["client_name"] ?></li>
+<li>责任经理: <?php echo $row["ref_id_manage"] ?></li>
+</ul> 
+</div>
+</div>
+<?php } } else { ?>
+<div class="w3-margin crm-box-error">
     <div class="w3-container">
       <h4><b>客户群列表</b></h4>
     </div>
     <div class="w3-container">
-    <p>testing</p>
+    <div class="w3-center">
+    <p>数据不存在或数据库载入失败</p>
+    <hr>
+    <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
+    </div>
     </div>
   </div>
+<?php } ?>
     
 <!-- END MAIN -->
 </div>

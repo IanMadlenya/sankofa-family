@@ -9,7 +9,7 @@ if($link === false){
 }
 
 // Required field names
-$required = array('group_no', 'ref_id', 'ref_id_bg', 'ref_id_bdm', 'ref_id_upper', 'city', 'address', 'postcode');
+$required = array('group_no', 'client_name', 'ref_id_bg', 'ref_id_bdm', 'ref_id_upper', 'city', 'address', 'postcode');
 
 // Loop over field names, make sure each one exists and is not empty
 $error = false;
@@ -31,11 +31,13 @@ if ($error) {
     $city = mysqli_real_escape_string($link, $_POST['city']);
     $address = mysqli_real_escape_string($link, $_POST['address']);
     $postcode = mysqli_real_escape_string($link, $_POST['postcode']);
+    $client_name = mysqli_real_escape_string($link, $_POST['client_name']);
     
     // attempt insert query execution
-    $sql = "INSERT INTO sf_crm_client_group (group_id, ref_id_referral, ref_id_manage, ref_id_support, ref_id_upper, city, address, post_code) VALUES ('$group_no', '$ref_id_bdm', '$ref_id', '$ref_id_bg', '$ref_id_upper', '$city', '$address', '$postcode')";
-    if(mysqli_query($link, $sql)){
-        header( 'Location: /' ) ;
+    $sql = "INSERT INTO sf_crm_client_group (group_id, ref_id_referral, ref_id_manage, ref_id_support, ref_id_upper, city, address, post_code) VALUES ('$group_no', '$ref_id_bdm', '$ref_id', '$ref_id_bg', '$ref_id_upper', '$city', '$address', '$postcode');";
+    $sql .= "INSERT INTO sf_crm_client_info (client_name, group_id) VALUES ('$client_name', '$group_no')";
+    if(mysqli_multi_query($link, $sql)){
+        echo "<a href=\"javascript:history.go(-1)\">GO BACK</a>"; //go back
     } else{
         echo "Error: " . $sql . "<br>" . $link->error;
     }
