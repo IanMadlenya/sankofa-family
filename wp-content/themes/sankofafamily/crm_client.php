@@ -119,7 +119,7 @@ $(document).ready(function(){
 <?php } elseif($crm_status == 3) { ?>
 <div class="w3-margin crm-box-error crm-group-msg">
     <div class="w3-container">
-    <p>数据添加失败，请检查数据类型 (如: 编号必须为数字)。</p>
+    <p>数据添加失败，数据类型不符或客户群已存在。</p>
     </div>
   </div>
 <hr class="crm-group-msg">
