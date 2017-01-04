@@ -21,6 +21,11 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') ORDER BY group_id DESC";
 $result = $conn->query($sql);
 
+//add calendar
+include 'calendar.php';
+$calendar = new Calendar();
+
+//display ref_id list
 $sql4 = "SELECT * FROM sf_crm_info";
 $ref_id_bg_select = "<select name='ref_id_bg'>";
 $ref_id_bdm_select = "<select name='ref_id_bdm'>";
@@ -86,7 +91,7 @@ $result2->free();
 <div class="w3-row">
 
 <!-- MAIN -->
-<div class="w3-col l12 s12">
+<div class="w3-col l8 s12">
   <div class="w3-margin crm-box">
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
@@ -107,10 +112,6 @@ $result2->free();
         <td class="crm-input-validate">上级:</td><td><?php echo $ref_id_upper_select = $ref_id_upper_select . $ref_id_select; ?></td>
         <td class="crm-input-validate">所在城市:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
         </tr>
-        <tr>
-        <td class="crm-input-validate">地址:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="address" placeholder="非必填"></td>
-        <td class="crm-input-validate">邮编:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="postcode" placeholder="非必填，仅数字"></td>
-        </tr>
         </tbody>
         </table>
       <div class="w3-row">
@@ -127,11 +128,10 @@ $result2->free();
     while($row = $result->fetch_assoc()) { ?>
 <div class="w3-margin crm-box-bonus">
 <div class="w3-container">
-<h4><b>客户群列表</b></h4>
+<h4><b>客户<?php echo $row["group_id"] ?>群</b></h4>
 </div>
 <div class="w3-container">
 <ul>
-<li>客户群编号: <?php echo $row["group_id"] ?></li>
 <?php 
 $group = $row["group_id"];
 $sql3 = "SELECT client_name FROM sf_crm_client_info WHERE group_id = '$group'";
@@ -145,7 +145,7 @@ $row3 = $result2->fetch_assoc(); ?>
 <?php } } else { ?>
 <div class="w3-margin crm-box-error">
     <div class="w3-container">
-      <h4><b>客户群列表</b></h4>
+      <h4><b>客户群加载失败</b></h4>
     </div>
     <div class="w3-container">
     <div class="w3-center">
@@ -160,6 +160,29 @@ $conn->close();
 ?>
     
 <!-- END MAIN -->
+</div>
+    
+<!-- Sidebar -->
+<div class="w3-col l4">
+  <div class="w3-margin crm-box-calendar">
+    <div class="w3-container">
+    <h4><b>Calendar</b></h4>
+    </div>
+    <div class="w3-container crm-box-white">
+    <?php echo $calendar->show(); ?>
+    </div>
+  </div>
+<hr>
+<div class="w3-margin crm-box">
+    <div class="w3-container">
+    <h4><b>Search</b></h4>
+    </div>
+    <div class="w3-container">
+        <p>testing</p>
+    </div>
+  </div>
+  
+<!-- END Sidebar -->
 </div>
 
 <!-- END GRID -->
