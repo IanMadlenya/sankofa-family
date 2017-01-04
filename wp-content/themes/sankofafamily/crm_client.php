@@ -18,6 +18,10 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 }
 
+//get message status
+session_start();
+$crm_status = $_SESSION['crm_group_status'];
+
 $sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') ORDER BY add_time DESC";
 $result = $conn->query($sql);
 
@@ -54,6 +58,12 @@ $result2->free();
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
+<script src="/js/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".crm-group-msg").fadeOut(2500);
+});
+</script>
 <style>
 .w3-sidenav {font-family: "Raleway", sans-serif}
 .w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
@@ -92,6 +102,28 @@ $result2->free();
 
 <!-- MAIN -->
 <div class="w3-col l8 s12">
+<?php if($crm_status > 0) { if($crm_status == 1) { ?>
+<div class="w3-margin crm-box-bonus crm-group-msg">
+    <div class="w3-container">
+    <p>成功新建客户群，请完善客户群详细资料。</p>
+    </div>
+  </div>
+<hr class="crm-group-msg">
+<?php } elseif($crm_status == 2) { ?>
+<div class="w3-margin crm-box-error crm-group-msg">
+    <div class="w3-container">
+    <p>数据添加失败，必填项不能为空。</p>
+    </div>
+  </div>
+<hr class="crm-group-msg">
+<?php } elseif($crm_status == 3) { ?>
+<div class="w3-margin crm-box-error crm-group-msg">
+    <div class="w3-container">
+    <p>数据添加失败，请检查数据类型 (如: 编号必须为数字)。</p>
+    </div>
+  </div>
+<hr class="crm-group-msg">
+<?php } $_SESSION['crm_group_status'] = 0; } ?>
   <div class="w3-margin crm-box">
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>

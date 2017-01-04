@@ -1,6 +1,11 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
+session_start();
+$crm_group_status_success = 1;
+$crm_group_status_blank = 2;
+$crm_group_status_failed = 3;
+
 $link = mysqli_connect("localhost","root","Sankofa809","sankofa-family");
  
 // Check connection
@@ -20,6 +25,7 @@ foreach($required as $field) {
 }
 
 if ($error) {
+    $_SESSION['crm_group_status'] = $crm_group_status_blank;
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
     // Escape user inputs for security
@@ -35,8 +41,10 @@ if ($error) {
     $sql = "INSERT INTO sf_crm_client_group (group_id, ref_id_referral, ref_id_manage, ref_id_support, ref_id_upper, city) VALUES ('$group_no', '$ref_id_bdm', '$ref_id', '$ref_id_bg', '$ref_id_upper', '$city');";
     $sql .= "INSERT INTO sf_crm_client_info (client_name, group_id) VALUES ('$client_name', '$group_no')";
     if(mysqli_multi_query($link, $sql)){
+        $_SESSION['crm_group_status'] = $crm_group_status_success;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else{
+        $_SESSION['crm_group_status'] = $crm_group_status_failed;
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
  
