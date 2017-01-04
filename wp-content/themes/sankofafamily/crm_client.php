@@ -16,14 +16,29 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
-} 
+}
 
-$sql2 = "SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
-$result2 = $conn->query($sql2);
-$row2 = $result2->fetch_assoc();
-
-$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
+$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') ORDER BY group_id DESC";
 $result = $conn->query($sql);
+
+$sql4 = "SELECT * FROM sf_crm_info";
+$ref_id_bg_select = "<select name='ref_id_bg'>";
+$ref_id_bdm_select = "<select name='ref_id_bdm'>";
+$ref_id_upper_select = "<select name='ref_id_upper'>";
+$ref_id_select = "";
+$result2 = $conn->query($sql4);
+if ($result2->num_rows > 0) {
+    while($row4 = $result2->fetch_assoc()) { 
+        if($row4["user_login"] == $current_user->user_login) {
+            $ref_id_select .= "<option value='" . $row4["ref_id"] . "' selected>" . $row4["ref_id"] . " " . $row4["user_name"] . "</option>";
+            $user_id = $row4["ref_id"];
+        } else {
+            $ref_id_select .= "<option value='" . $row4["ref_id"] . "'>" . $row4["ref_id"] . " " . $row4["user_name"] . "</option>";
+        }
+    }
+    $ref_id_select .= "</select>";
+}
+$result2->free();
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,11 +100,11 @@ $result = $conn->query($sql);
         <td class="crm-input-validate">客户姓名:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="client_name" placeholder="必填，中英文皆可"></td>
         </tr>
         <tr>
-        <td class="crm-input-validate">后台客服:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_bg" placeholder="必填，输入客服ID"></td>
-        <td class="crm-input-validate">渠道编号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_bdm" placeholder="必填，输入BDM ID"></td>
+        <td class="crm-input-validate">后台客服:</td><td><?php echo $ref_id_bg_select = $ref_id_bg_select . $ref_id_select; ?></td>
+        <td class="crm-input-validate">渠道编号:</td><td><?php echo $ref_id_bdm_select = $ref_id_bdm_select . $ref_id_select; ?></td>
         </tr>
         <tr>
-        <td class="crm-input-validate">上级:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="ref_id_upper" placeholder="必填，输入上级ID"></td>
+        <td class="crm-input-validate">上级:</td><td><?php echo $ref_id_upper_select = $ref_id_upper_select . $ref_id_select; ?></td>
         <td class="crm-input-validate">所在城市:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
         </tr>
         <tr>
@@ -100,7 +115,7 @@ $result = $conn->query($sql);
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-         <input type="hidden" name="ref_id" value="<?php echo $row2["ref_id"] ?>"> 
+         <input type="hidden" name="ref_id" value="<?php echo $user_id; ?>"> 
         <input type="submit" class="crm-box-btn-group w3-padding" value="加入数据库">
         </div>
       </div>
@@ -120,8 +135,8 @@ $result = $conn->query($sql);
 <?php 
 $group = $row["group_id"];
 $sql3 = "SELECT client_name FROM sf_crm_client_info WHERE group_id = '$group'";
-$result3 = $conn->query($sql3);
-$row3 = $result3->fetch_assoc(); ?>
+$result2 = $conn->query($sql3);
+$row3 = $result2->fetch_assoc(); ?>
 <li>客户姓名: <?php echo $row3["client_name"] ?></li>
 <li>责任经理: <?php echo $row["ref_id_manage"] ?></li>
 </ul> 
@@ -140,7 +155,9 @@ $row3 = $result3->fetch_assoc(); ?>
     </div>
     </div>
   </div>
-<?php } ?>
+<?php }
+$conn->close();
+?>
     
 <!-- END MAIN -->
 </div>
