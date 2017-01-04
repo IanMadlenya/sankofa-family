@@ -61,7 +61,7 @@ $result2->free();
 <script src="/js/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $(".crm-group-msg").fadeOut(2500);
+    $(".crm-group-msg").fadeOut(2750);
 });
 </script>
 <style>
