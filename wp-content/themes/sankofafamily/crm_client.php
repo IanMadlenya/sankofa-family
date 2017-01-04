@@ -196,21 +196,20 @@ $conn->close();
     
 <!-- Sidebar -->
 <div class="w3-col l4">
+<div class="w3-margin crm-box-bonus">
+    <div class="w3-container">
+    <form method="post" action="/">
+    <input class="w3-input crm-search-input w3-opacity" type="text" name="search_value" placeholder="CRM 数据库搜索">
+    </form>
+    </div>
+  </div>
+<hr>
   <div class="w3-margin crm-box-calendar">
     <div class="w3-container">
     <h4><b>Calendar</b></h4>
     </div>
     <div class="w3-container crm-box-white">
     <?php echo $calendar->show(); ?>
-    </div>
-  </div>
-<hr>
-<div class="w3-margin crm-box">
-    <div class="w3-container">
-    <h4><b>Search</b></h4>
-    </div>
-    <div class="w3-container">
-        <p>testing</p>
     </div>
   </div>
   
