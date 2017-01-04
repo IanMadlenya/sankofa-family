@@ -18,7 +18,7 @@ if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') ORDER BY group_id DESC";
+$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') ORDER BY add_time DESC";
 $result = $conn->query($sql);
 
 //add calendar
