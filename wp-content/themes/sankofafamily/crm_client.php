@@ -61,7 +61,8 @@ $result2->free();
 <script src="/js/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $(".crm-group-msg").fadeOut(2750);
+    $('.hidden').fadeIn(500).removeClass('hidden');
+    $(".crm-group-msg").fadeOut(2750).removeClass('crm-group-msg');
 });
 </script>
 <style>
@@ -102,29 +103,7 @@ $(document).ready(function(){
 
 <!-- MAIN -->
 <div class="w3-col l8 s12">
-<?php if($crm_status > 0) { if($crm_status == 1) { ?>
-<div class="w3-margin crm-box-bonus crm-group-msg">
-    <div class="w3-container">
-    <p>成功新建客户群，请完善客户群详细资料。</p>
-    </div>
-  </div>
-<hr class="crm-group-msg">
-<?php } elseif($crm_status == 2) { ?>
-<div class="w3-margin crm-box-error crm-group-msg">
-    <div class="w3-container">
-    <p>数据添加失败，必填项不能为空。</p>
-    </div>
-  </div>
-<hr class="crm-group-msg">
-<?php } elseif($crm_status == 3) { ?>
-<div class="w3-margin crm-box-error crm-group-msg">
-    <div class="w3-container">
-    <p>数据添加失败，数据类型不符或客户群已存在。</p>
-    </div>
-  </div>
-<hr class="crm-group-msg">
-<?php } $_SESSION['crm_group_status'] = 0; } ?>
-  <div class="w3-margin crm-box">
+  <div class="w3-margin crm-box hidden">
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
     </div>
@@ -155,10 +134,32 @@ $(document).ready(function(){
     </form>
 </div>
 </div>
+<?php if($crm_status > 0) { if($crm_status == 1) { ?>
+<hr class="crm-group-msg">
+<div class="w3-margin crm-box-bonus crm-group-msg hidden">
+    <div class="w3-container">
+    <p>成功新建客户群，请完善客户群详细资料。</p>
+    </div>
+  </div>
+<hr class="crm-group-msg">
+<?php } elseif($crm_status == 2) { ?>
+<div class="w3-margin crm-box-error crm-group-msg hidden">
+    <div class="w3-container">
+    <p>数据添加失败，必填项不能为空。</p>
+    </div>
+  </div>
+<hr class="crm-group-msg">
+<?php } elseif($crm_status == 3) { ?>
+<div class="w3-margin crm-box-error crm-group-msg hidden">
+    <div class="w3-container">
+    <p>数据添加失败，数据类型不符或客户群已存在。</p>
+    </div>
+  </div>
+<?php } $_SESSION['crm_group_status'] = 0; } ?>
 <hr>
 <?php if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) { ?>
-<div class="w3-margin crm-box-bonus">
+<div class="w3-margin crm-box-bonus hidden">
 <div class="w3-container">
 <h4><b>客户<?php echo $row["group_id"] ?>群</b></h4>
 </div>
@@ -170,12 +171,12 @@ $sql3 = "SELECT client_name FROM sf_crm_client_info WHERE group_id = '$group'";
 $result2 = $conn->query($sql3);
 $row3 = $result2->fetch_assoc(); ?>
 <li>客户姓名: <?php echo $row3["client_name"] ?></li>
-<li>责任经理: <?php echo $row["ref_id_manage"] ?></li>
+<li>所在城市: <?php echo $row["city"] ?></li>
 </ul> 
 </div>
 </div>
 <?php } } else { ?>
-<div class="w3-margin crm-box-error">
+<div class="w3-margin crm-box-error hidden">
     <div class="w3-container">
       <h4><b>客户群加载失败</b></h4>
     </div>
@@ -187,16 +188,14 @@ $row3 = $result2->fetch_assoc(); ?>
     </div>
     </div>
   </div>
-<?php }
-$conn->close();
-?>
+<?php } $conn->close(); ?>
     
 <!-- END MAIN -->
 </div>
     
 <!-- Sidebar -->
 <div class="w3-col l4">
-<div class="w3-margin crm-box-search">
+<div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
     <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
@@ -204,7 +203,7 @@ $conn->close();
     </div>
   </div>
 <hr>
-  <div class="w3-margin crm-box-calendar">
+  <div class="w3-margin crm-box-calendar hidden">
     <div class="w3-container">
     <h4><b>Calendar</b></h4>
     </div>

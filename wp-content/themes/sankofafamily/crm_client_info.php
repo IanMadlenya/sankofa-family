@@ -47,7 +47,8 @@ $calendar = new Calendar();
 <script src="/js/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
-    $(".crm-client-info-msg").fadeOut(2750);
+    $('.hidden').fadeIn(500).removeClass('hidden');
+    $(".crm-client-info-msg").fadeOut(2750).removeClass('crm-client-info-msg');
 });
 </script>
 <style>
@@ -89,46 +90,46 @@ $(document).ready(function(){
 <!-- MAIN -->
 <div class="w3-col l8 s12">
 <?php if($crm_status > 0) { if($crm_status == 1) { ?>
-<div class="w3-margin crm-box-bonus crm-client-info-msg">
+<div class="w3-margin crm-box-bonus crm-client-info-msg hidden">
     <div class="w3-container">
     <p>成功新建客户群，请完善客户群详细资料。</p>
     </div>
   </div>
 <hr class="crm-client-info-msg">
 <?php } elseif($crm_status == 2) { ?>
-<div class="w3-margin crm-box-error crm-client-info-msg">
+<div class="w3-margin crm-box-error crm-client-info-msg hidden">
     <div class="w3-container">
     <p>数据添加失败，必填项不能为空。</p>
     </div>
   </div>
 <hr class="crm-client-info-msg">
 <?php } elseif($crm_status == 3) { ?>
-<div class="w3-margin crm-box-error crm-client-info-msg">
+<div class="w3-margin crm-box-error crm-client-info-msg hidden">
     <div class="w3-container">
     <p>数据添加失败，数据类型不符或客户群已存在。</p>
     </div>
   </div>
 <hr class="crm-client-info-msg">
 <?php } $_SESSION['crm_client_info_status'] = 0; } ?>
-  <div class="w3-margin crm-box">
+  <div class="w3-margin crm-box hidden">
     <div class="w3-container">
-      <h4><b>客户<?php echo $group; ?>群</b></h4>
+      <h4><b>客户数据</b></h4>
     </div>
       <div class="w3-container">
     <form method="post" action="/insert-crm-group.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
-        <td class="crm-input-validate">群编号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="group_no" placeholder="必填，仅数字"></td>
-        <td class="crm-input-validate">客户姓名:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="client_name" placeholder="必填，中英文皆可"></td>
+        <td class="crm-input-validate">客户姓名:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="group_no" placeholder="必填，仅数字"></td>
+        <td class="crm-input-validate">微信号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="client_name" placeholder="必填，中英文皆可"></td>
         </tr>
         <tr>
-        <td class="crm-input-validate">后台客服:</td><td></td>
-        <td class="crm-input-validate">渠道编号:</td><td></td>
+        <td class="crm-input-validate">手机号:</td><td></td>
+        <td class="crm-input-validate">电子邮件:</td><td></td>
         </tr>
         <tr>
-        <td class="crm-input-validate">上级:</td><td></td>
-        <td class="crm-input-validate">所在城市:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
+        <td class="crm-input-validate">客户职业:</td><td></td>
+        <td class="crm-input-validate">ID:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
         </tr>
         </tbody>
         </table>
@@ -141,7 +142,7 @@ $(document).ready(function(){
 </div>
 </div>
 <hr>
-<div class="w3-margin crm-box-bonus">
+<div class="w3-margin crm-box-bonus hidden">
     <div class="w3-container">
       <h4><b>Graph</b></h4>
     </div>
@@ -149,23 +150,13 @@ $(document).ready(function(){
     <p>testing</p>
     </div>
   </div>
-<?php $conn->close(); ?>
     
 <!-- END MAIN -->
 </div>
     
 <!-- Sidebar -->
 <div class="w3-col l4">
-<div class="w3-margin crm-box-bonus">
-    <div class="w3-container">
-    <h4><b>客户<?php echo $group; ?>群</b></h4>
-    </div>
-    <div class="w3-container">
-        <p>testing</p>
-    </div>
-  </div>
-<hr>
-<div class="w3-margin crm-box-search">
+<div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
     <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
@@ -173,14 +164,59 @@ $(document).ready(function(){
     </div>
   </div>
 <hr>
-  <div class="w3-margin crm-box-calendar">
+ <?php if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) { ?>
+<div class="w3-margin crm-box-bonus hidden">
     <div class="w3-container">
-    <h4><b>Calendar</b></h4>
+    <h4><b>客户<?php echo $group; ?>群</b></h4>
     </div>
-    <div class="w3-container crm-box-white">
-    <?php echo $calendar->show(); ?>
+    <div class="w3-container">
+    <form method="post" action="/insert-crm-group.php">
+        <table style="padding:10px;font-size:14px">
+        <tbody>
+        <tr>
+        <td class="crm-input-validate">后台客服:</td><td></td>
+        </tr>
+        <tr>
+        <td class="crm-input-validate">渠道编号:</td><td></td>
+        </tr>
+        <tr>
+        <td class="crm-input-validate">上级:</td><td></td>
+        </tr>
+        <tr>
+        <td class="crm-input-validate">所在城市:</td><td></td>
+        </tr>
+        <tr>
+        <td class="crm-input-validate">地址:</td><td></td>
+        </tr>
+        <tr>
+        <td class="crm-input-validate">邮编:</td><td></td>
+        </tr>
+        </tbody>
+        </table>
+      <div class="w3-row">
+        <div class="w3-center">
+        <input type="submit" class="crm-box-btn-group w3-padding" value="更新群资料">
+        </div>
+      </div>
+    </form>
     </div>
   </div>
+<?php } } else { ?>
+<div class="w3-margin crm-box-error hidden">
+    <div class="w3-container">
+    <h4><b>客户群加载失败</b></h4>
+    </div>
+    <div class="w3-container">
+        <div class="w3-center">
+        <p>数据加载失败，请联系管理员!</p>
+        <hr>
+        <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
+        </div>
+    </div>
+  </div>
+<?php } $conn->close(); ?>
+
   
 <!-- END Sidebar -->
 </div>

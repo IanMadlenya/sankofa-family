@@ -36,6 +36,12 @@ $calendar = new Calendar();
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
+<script src="/js/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.hidden').fadeIn(500).removeClass('hidden');
+});
+</script>
 <style>
 .w3-sidenav {font-family: "Raleway", sans-serif}
 .w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
@@ -76,7 +82,7 @@ $calendar = new Calendar();
 <div class="w3-col l8 s12">
 <?php if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) { ?>
-  <div class="w3-margin crm-box">
+  <div class="w3-margin crm-box hidden">
     <div class="w3-container">
       <h4><b>Personal Infomation</b></h4>
     </div>
@@ -117,7 +123,7 @@ $calendar = new Calendar();
     </div>
   </div>
 <?php } } else { ?>
-    <div class="w3-margin crm-box-error">
+    <div class="w3-margin crm-box-error hidden">
     <div class="w3-container">
       <h4><b>Personal Infomation</b></h4>
     </div>
@@ -131,7 +137,7 @@ $calendar = new Calendar();
   </div>
 <?php } ?>
 <hr>
-<div class="w3-margin crm-box-bonus">
+<div class="w3-margin crm-box-bonus hidden">
     <div class="w3-container">
       <h4><b>Graph</b></h4>
     </div>
@@ -147,7 +153,7 @@ $calendar = new Calendar();
 <div class="w3-col l4">
  <?php if ($result2->num_rows > 0) {
     while($row2 = $result2->fetch_assoc()) { ?>
-  <div class="w3-margin crm-box-bonus">
+  <div class="w3-margin crm-box-bonus hidden">
     <div class="w3-container">
     <h4><b>Bonus</b></h4>
     </div>
@@ -156,7 +162,7 @@ $calendar = new Calendar();
     </div>
   </div>
 <?php } } else { ?>
-<div class="w3-margin crm-box-error">
+<div class="w3-margin crm-box-error hidden">
     <div class="w3-container">
     <h4><b>Bonus</b></h4>
     </div>
@@ -170,7 +176,7 @@ $calendar = new Calendar();
   </div>
 <?php } ?>
 <hr>
-<div class="w3-margin crm-box-search">
+<div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
     <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
@@ -178,7 +184,7 @@ $calendar = new Calendar();
     </div>
   </div>
 <hr>
-  <div class="w3-margin crm-box-calendar">
+  <div class="w3-margin crm-box-calendar hidden">
     <div class="w3-container">
     <h4><b>Calendar</b></h4>
     </div>
