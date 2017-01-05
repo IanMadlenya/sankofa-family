@@ -196,10 +196,10 @@ $conn->close();
     
 <!-- Sidebar -->
 <div class="w3-col l4">
-<div class="w3-margin crm-box-bonus">
+<div class="w3-margin crm-box-search">
     <div class="w3-container">
     <form method="post" action="/">
-    <input class="w3-input crm-search-input w3-opacity" type="text" name="search_value" placeholder="CRM 数据库搜索">
+    <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
     </form>
     </div>
   </div>

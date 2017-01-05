@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: sankofa-portal
+Template Name: sankofa-crm-client-info
 */
 $current_user = wp_get_current_user();
 
@@ -16,14 +16,22 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
      die("Connection failed: " . $conn->connect_error);
-} 
+}
 
-$sql = "SELECT * FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
+//get message status
+session_start();
+$crm_status = $_SESSION['crm_client_info_status'];
+
+//get query string
+$group = $_GET['group'];
+
+//sql query
+$sql = "SELECT * FROM sf_crm_client_group WHERE ref_id_manage = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login') AND group_id = '$group'";
 $result = $conn->query($sql);
-
-$sql2 = "SELECT * FROM sf_crm_bonus WHERE ref_id = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
+$sql2 = "SELECT * FROM sf_crm_client_info WHERE group_id = '$group'";
 $result2 = $conn->query($sql2);
 
+//add calendar
 include 'calendar.php';
 $calendar = new Calendar();
 ?>
@@ -36,6 +44,12 @@ $calendar = new Calendar();
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
+<script src="/js/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".crm-client-info-msg").fadeOut(2750);
+});
+</script>
 <style>
 .w3-sidenav {font-family: "Raleway", sans-serif}
 .w3-sidenav a,.w3-sidenav h4 {font-weight:bold}
@@ -52,8 +66,8 @@ $calendar = new Calendar();
     <h4 class="w3-padding-0"><b><?php echo $current_user->user_login ?></b></h4>
     <p class="w3-text-grey"><?php echo $current_user->user_email ?></p>
   </div>
-  <a href="/portal" onclick="w3_close()" class="w3-padding crm-text-blue w3-hover-text-light-grey">主页</a>
-  <a href="/client_group" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">客户群管理</a>
+  <a href="/portal" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">主页</a>
+  <a href="/client_group" onclick="w3_close()" class="w3-padding crm-text-blue w3-hover-text-light-grey">客户群管理</a>
   <a href="<?php echo wp_logout_url( home_url() ); ?>" onclick="w3_close()" class="w3-padding w3-hover-text-light-grey">登出</a>
    
 </nav>
@@ -66,7 +80,7 @@ $calendar = new Calendar();
 
 <!-- Header -->
 <header class="w3-container w3-right-align crm-title-padding">
-    <h3>欢迎您回来, <b><?php echo $current_user->user_login ?></b>!</h3>
+    <h3>客户群管理</h3>
 </header>
 
 <!-- Grid -->
@@ -74,62 +88,58 @@ $calendar = new Calendar();
 
 <!-- MAIN -->
 <div class="w3-col l8 s12">
-<?php if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) { ?>
+<?php if($crm_status > 0) { if($crm_status == 1) { ?>
+<div class="w3-margin crm-box-bonus crm-client-info-msg">
+    <div class="w3-container">
+    <p>成功新建客户群，请完善客户群详细资料。</p>
+    </div>
+  </div>
+<hr class="crm-client-info-msg">
+<?php } elseif($crm_status == 2) { ?>
+<div class="w3-margin crm-box-error crm-client-info-msg">
+    <div class="w3-container">
+    <p>数据添加失败，必填项不能为空。</p>
+    </div>
+  </div>
+<hr class="crm-client-info-msg">
+<?php } elseif($crm_status == 3) { ?>
+<div class="w3-margin crm-box-error crm-client-info-msg">
+    <div class="w3-container">
+    <p>数据添加失败，数据类型不符或客户群已存在。</p>
+    </div>
+  </div>
+<hr class="crm-client-info-msg">
+<?php } $_SESSION['crm_client_info_status'] = 0; } ?>
   <div class="w3-margin crm-box">
     <div class="w3-container">
-      <h4><b>Personal Infomation</b></h4>
+      <h4><b>客户<?php echo $group; ?>群</b></h4>
     </div>
-    <div class="w3-container">
+      <div class="w3-container">
+    <form method="post" action="/insert-crm-group.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
-        <td>Ref ID:</td>
-        <td class="w3-opacity"><?php echo $row["ref_id"] ?></td>
-        <td>电子邮件:</td>
-        <td class="w3-opacity"><?php echo $row["user_email"] ?></td>
+        <td class="crm-input-validate">群编号:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="group_no" placeholder="必填，仅数字"></td>
+        <td class="crm-input-validate">客户姓名:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="client_name" placeholder="必填，中英文皆可"></td>
         </tr>
         <tr>
-        <td>用户名:</td>
-        <td class="w3-opacity"><?php echo $row["user_login"] ?></td>
-        <td>联系电话:</td>
-        <td class="w3-opacity"><?php echo $row["mobile_no"] ?></td>
+        <td class="crm-input-validate">后台客服:</td><td></td>
+        <td class="crm-input-validate">渠道编号:</td><td></td>
         </tr>
         <tr>
-        <td>姓名:</td>
-        <td class="w3-opacity"><?php echo $row["user_name"] ?></td>
-        <td>微信号:</td>
-        <td class="w3-opacity"><?php echo $row["wechat_id"] ?></td>
-        </tr>
-        <tr>
-        <td>职位:</td>
-        <td class="w3-opacity"><?php echo $row["job_desc"] ?></td>
-        <td>上级:</td>
-        <td class="w3-opacity"><?php echo $row["ref_id_upper"] ?></td>
+        <td class="crm-input-validate">上级:</td><td></td>
+        <td class="crm-input-validate">所在城市:</td><td><input class="w3-input crm-box-input w3-opacity" type="text" name="city" placeholder="必填"></td>
         </tr>
         </tbody>
         </table>
       <div class="w3-row">
         <div class="w3-col m8 s12">
-        <p><button class="crm-box-btn w3-padding">更改个人资料</button></p>
+        <input type="submit" class="crm-box-btn-group w3-padding" value="更新客户资料">
         </div>
       </div>
-    </div>
-  </div>
-<?php } } else { ?>
-    <div class="w3-margin crm-box-error">
-    <div class="w3-container">
-      <h4><b>Personal Infomation</b></h4>
-    </div>
-    <div class="w3-container">
-    <div class="w3-center">
-    <p>数据加载失败，请联系管理员!</p>
-    <hr>
-    <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
-    </div>
-    </div>
-  </div>
-<?php } ?>
+    </form>
+</div>
+</div>
 <hr>
 <div class="w3-margin crm-box-bonus">
     <div class="w3-container">
@@ -139,36 +149,21 @@ $calendar = new Calendar();
     <p>testing</p>
     </div>
   </div>
+<?php $conn->close(); ?>
     
 <!-- END MAIN -->
 </div>
-
+    
 <!-- Sidebar -->
 <div class="w3-col l4">
- <?php if ($result2->num_rows > 0) {
-    while($row2 = $result2->fetch_assoc()) { ?>
-  <div class="w3-margin crm-box-bonus">
+<div class="w3-margin crm-box-bonus">
     <div class="w3-container">
-    <h4><b>Bonus</b></h4>
+    <h4><b>客户<?php echo $group; ?>群</b></h4>
     </div>
     <div class="w3-container">
-        <p>Balance: <strong>AU$<?php echo $row2["balance"] ?></strong></p>
+        <p>testing</p>
     </div>
   </div>
-<?php } } else { ?>
-<div class="w3-margin crm-box-error">
-    <div class="w3-container">
-    <h4><b>Bonus</b></h4>
-    </div>
-    <div class="w3-container">
-        <div class="w3-center">
-        <p>数据加载失败，请联系管理员!</p>
-        <hr>
-        <p><button class="crm-box-error-btn w3-padding">联系系统管理员</button></p>
-        </div>
-    </div>
-  </div>
-<?php } ?>
 <hr>
 <div class="w3-margin crm-box-search">
     <div class="w3-container">
