@@ -196,7 +196,7 @@ $(document).ready(function(){
         </table>
       <div class="w3-row">
         <div class="w3-center">
-        <input type="submit" class="crm-box-btn-group w3-padding" value="更新群资料">
+        <input type="submit" class="crm-box-bonus-btn w3-padding" value="更新群资料">
         </div>
       </div>
     </form>
