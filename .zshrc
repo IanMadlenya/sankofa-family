@@ -107,19 +107,19 @@ function umountAndroid() { hdiutil detach /Volumes/android; }
 function smfosConnect() { ssh root@47.90.81.198; }
 
 # upload smfos themes file to aliyun server
-function smfosUpload() { scp -r ~/Desktop/sankofa-family/wp-content/themes/sankofafamily/$1 root@47.90.81.198:/data/wwwroot/default/wp-content/themes/sankofafamily/; }
+function smfosUpload() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/wp-content/themes/sankofafamily/; }
 
 # upload smfos root file to aliyun server
-function smfosUploadRoot() { scp -r ~/Desktop/sankofa-family/$1 root@47.90.81.198:/data/wwwroot/default/; }
+function smfosUploadRoot() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/; }
 
 # upload smfos image file to aliyun server
-function smfosUploadImage() { scp -r ~/Desktop/sankofa-family/images/$1 root@47.90.81.198:/data/wwwroot/default/images/; }
+function smfosUploadImage() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/images/; }
 
 # upload smfos css file to aliyun server
-function smfosUploadCSS() { scp -r ~/Desktop/sankofa-family/css/$1 root@47.90.81.198:/data/wwwroot/default/css/; }
+function smfosUploadCSS() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/css/; }
 
 # upload smfos js file to aliyun server
-function smfosUploadJS() { scp -r ~/Desktop/sankofa-family/js/$1 root@47.90.81.198:/data/wwwroot/default/js/; }
+function smfosUploadJS() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/js/; }
 
 # update rsa passphase
 function smfosSSH() { ssh-add -K ~/.ssh/id_rsa; }
