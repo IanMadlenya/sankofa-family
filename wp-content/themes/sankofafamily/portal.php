@@ -6,10 +6,7 @@ $current_user = wp_get_current_user();
 
 if ( is_user_logged_in() ):
 
-$servername = "localhost";
-$username = "root";
-$password = "Sankofa809";
-$dbname = "sankofa-family";
+include 'sf-passwd.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

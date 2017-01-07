@@ -50,10 +50,7 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 <div class="w3-text-dark-grey" style="margin-bottom:80px">
 <!-- Content -->
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "Sankofa809";
-$dbname = "sankofa-family";
+include 'sf-passwd.php';
 $tick = "✓";
 $cross = "x";
 
