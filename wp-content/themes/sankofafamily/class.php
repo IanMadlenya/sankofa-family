@@ -46,7 +46,7 @@ $current_user = wp_get_current_user();
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 <!-- Content -->
-<form class="w3-container" method="post" action="/insert.php">
+<form class="w3-container" method="post" action="/wp-content/themes/sankofafamily/insert.php">
 <h3>基本信息</h3>
   <p><input class="w3-input" type="text" name="clientname">
       <label class="w3-label w3-text-dark-grey">姓名 NAME (必填)</label></p>

@@ -143,7 +143,7 @@ if(!isset($_COOKIE[$cookie_name])) {
           <i class="fa fa-envelope w3-hover-text-black" style="width:30px"> </i> Email: info@sankofafund.com.au<br>
       </div>
       <p>Swing by for a cup of coffee, or leave me a note:</p>
-        <form class="w3-container" method="post" action="/msg-input.php">
+        <form class="w3-container" method="post" action="/wp-content/themes/sankofafamily/msg-input.php">
       <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
         <div class="w3-half">
           <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="姓名 NAME" name="clientname">

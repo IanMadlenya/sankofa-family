@@ -105,7 +105,7 @@ $(document).ready(function(){
       <h4><b>新建客户群</b></h4>
     </div>
       <div class="w3-container">
-    <form method="post" action="/insert-crm-group.php">
+    <form method="post" action="/wp-content/themes/sankofafamily/insert-crm-group.php">
         <table style="padding:10px;font-size:14px">
         <tbody>
         <tr>
