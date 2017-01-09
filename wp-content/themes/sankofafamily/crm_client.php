@@ -62,6 +62,10 @@ var create_obj = false;
 $(document).ready(function(){
     $('.hidden').fadeIn(500).removeClass('hidden');
     $(".crm-group-msg").fadeOut(2750).removeClass('crm-group-msg');
+    <?php if(($crm_status == 2) || ($crm_status == 3)): ?>
+    $('.crm-new-object').fadeIn(500);
+    create_obj = true;
+    <?php endif; ?>
     $("#add-object").click(function(){
         if (create_obj == false) {
             $('.crm-new-object').fadeIn(500);
@@ -165,7 +169,7 @@ $(document).ready(function(){
     </div>
   </div>
 <?php } $_SESSION['crm_group_status'] = 0; } ?>
-<hr>
+<hr class="crm-new-object">
 <?php if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) { ?>
 <div class="w3-margin crm-box-bonus hidden">

@@ -48,6 +48,10 @@ var create_obj = false;
 $(document).ready(function(){
     $('.hidden').fadeIn(500).removeClass('hidden');
     $(".crm-client-info-msg").fadeOut(2750).removeClass('crm-client-info-msg');
+    <?php if(($crm_status == 2) || ($crm_status == 3)): ?>
+    $('.crm-new-object').fadeIn(500);
+    create_obj = true;
+    <?php endif; ?>
     $("#add-object").click(function(){
         if (create_obj == false) {
             $('.crm-new-object').fadeIn(500);
@@ -150,7 +154,7 @@ $(document).ready(function(){
     </form>
 </div>
 </div>
-<hr>
+<hr class="crm-new-object">
 <div class="w3-margin crm-box-bonus hidden">
     <div class="w3-container">
       <h4><b>Graph</b></h4>
