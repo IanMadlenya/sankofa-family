@@ -53,13 +53,25 @@ $result2->free();
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
 <script src="/js/jquery.min.js"></script>
 <script>
+var create_obj = false;
 $(document).ready(function(){
     $('.hidden').fadeIn(500).removeClass('hidden');
     $(".crm-group-msg").fadeOut(2750).removeClass('crm-group-msg');
+    $("#add-object").click(function(){
+        if (create_obj == false) {
+            $('.crm-new-object').fadeIn(500);
+            create_obj = true;
+        }
+        else {
+            $('.crm-new-object').fadeOut(500);
+            create_obj = false;
+        }
+    });
 });
 </script>
 <style>
@@ -100,7 +112,7 @@ $(document).ready(function(){
 
 <!-- MAIN -->
 <div class="w3-col l8 s12">
-  <div class="w3-margin crm-box hidden">
+  <div class="w3-margin crm-box crm-new-object">
     <div class="w3-container">
       <h4><b>新建客户群</b></h4>
     </div>
@@ -158,18 +170,12 @@ $(document).ready(function(){
     while($row = $result->fetch_assoc()) { ?>
 <div class="w3-margin crm-box-bonus hidden">
 <div class="w3-container">
-<h4><b>客户<?php echo $row["group_id"] ?>群</b></h4>
-</div>
-<div class="w3-container">
-<ul>
 <?php 
 $group = $row["group_id"];
 $sql3 = "SELECT client_name FROM sf_crm_client_info WHERE group_id = '$group'";
 $result2 = $conn->query($sql3);
 $row3 = $result2->fetch_assoc(); ?>
-<li>客户姓名: <?php echo $row3["client_name"] ?></li>
-<li>所在城市: <?php echo $row["city"] ?></li>
-</ul> 
+<div class="crm-table-td-1"><h4><b>客户<?php echo $row["group_id"] ?>群</b></h4></div><div class="crm-table-td-2"><h4><small>客户姓名: <?php echo $row3["client_name"] ?>, 所在城市: <?php echo $row["city"] ?></small></h4></div><div class="crm-table-td-btn crm-box-bonus-btn"><i class="glyphicon glyphicon-star-empty"></i></div><div class="crm-table-td-btn crm-box-bonus-btn"><i class="glyphicon glyphicon-pencil"></i></div><div class="crm-table-td-btn crm-box-bonus-btn"><i class="glyphicon glyphicon-remove"></i></div>
 </div>
 </div>
 <?php } } else { ?>
@@ -195,7 +201,9 @@ $row3 = $result2->fetch_assoc(); ?>
 <div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
-    <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
+    <div class="w3-text-white w3-opacity">
+        <div style="float:left;padding-top:7px"><i class="glyphicon glyphicon-search"></i></div><div style="float:left"><input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索"></div>
+    </div>
     </form>
     </div>
   </div>
@@ -212,10 +220,9 @@ $row3 = $result2->fetch_assoc(); ?>
 <!-- END Sidebar -->
 </div>
 
+<button id="add-object" class="w3-btn-floating-large crm-right-bottom">+</button>
 <!-- END GRID -->
 </div>
-
-<a href="#0" class="cd-top">Top</a>
 
 <!-- End page content -->
 </div>

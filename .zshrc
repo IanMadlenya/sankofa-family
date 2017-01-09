@@ -123,3 +123,6 @@ function smfosUploadJS() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/js/
 
 # update rsa passphase
 function smfosSSH() { ssh-add -K ~/.ssh/id_rsa; }
+
+# update smfos fonts to aliyun server
+function smfosUploadFonts() { scp -r $1 root@47.90.81.198:/data/wwwroot/default/fonts; }

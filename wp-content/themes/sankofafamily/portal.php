@@ -31,6 +31,7 @@ $calendar = new Calendar();
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
 <script src="/js/jquery.min.js"></script>
@@ -176,7 +177,9 @@ $(document).ready(function(){
 <div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
-    <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
+    <div class="w3-text-white w3-opacity">
+        <div style="float:left;padding-top:7px"><i class="glyphicon glyphicon-search"></i></div><div style="float:left"><input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索"></div>
+    </div>
     </form>
     </div>
   </div>
@@ -192,11 +195,9 @@ $(document).ready(function(){
   
 <!-- END Sidebar -->
 </div>
-
+    
 <!-- END GRID -->
 </div>
-
-<a href="#0" class="cd-top">Top</a>
 
 <!-- End page content -->
 </div>

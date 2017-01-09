@@ -39,13 +39,25 @@ $calendar = new Calendar();
 <link rel="stylesheet" href="/css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/calendar.css">
 <script src="/js/jquery.min.js"></script>
 <script>
+var create_obj = false;
 $(document).ready(function(){
     $('.hidden').fadeIn(500).removeClass('hidden');
     $(".crm-client-info-msg").fadeOut(2750).removeClass('crm-client-info-msg');
+    $("#add-object").click(function(){
+        if (create_obj == false) {
+            $('.crm-new-object').fadeIn(500);
+            create_obj = true;
+        }
+        else {
+            $('.crm-new-object').fadeOut(500);
+            create_obj = false;
+        }
+    });
 });
 </script>
 <style>
@@ -108,7 +120,7 @@ $(document).ready(function(){
   </div>
 <hr class="crm-client-info-msg">
 <?php } $_SESSION['crm_client_info_status'] = 0; } ?>
-  <div class="w3-margin crm-box hidden">
+  <div class="w3-margin crm-box crm-new-object">
     <div class="w3-container">
       <h4><b>客户数据</b></h4>
     </div>
@@ -156,7 +168,9 @@ $(document).ready(function(){
 <div class="w3-margin crm-box-search hidden">
     <div class="w3-container">
     <form method="post" action="/">
-    <input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索">
+    <div class="w3-text-white w3-opacity">
+        <div style="float:left;padding-top:7px"><i class="glyphicon glyphicon-search"></i></div><div style="float:left"><input class="w3-input crm-search-input" type="text" name="search_value" placeholder="CRM 数据库搜索"></div>
+    </div>
     </form>
     </div>
   </div>
@@ -218,10 +232,9 @@ $(document).ready(function(){
 <!-- END Sidebar -->
 </div>
 
+<button id="add-object" class="w3-btn-floating-large crm-right-bottom">+</button>
 <!-- END GRID -->
 </div>
-
-<a href="#0" class="cd-top">Top</a>
 
 <!-- End page content -->
 </div>

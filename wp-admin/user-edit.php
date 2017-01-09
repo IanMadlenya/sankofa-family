@@ -25,13 +25,8 @@ elseif ( ! get_userdata( $user_id ) )
 
 wp_enqueue_script('user-profile');
 
-/* Attempt MySQL server connection */
-$servername = "localhost";
-$username = "root";
-$password = "Sankofa809";
-$dbname = "sankofa-family";
-
 // Create connection
+include '../wp-content/themes/sankofafamily/sf-passwd.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
@@ -632,7 +627,7 @@ if ( count( $profileuser->caps ) > count( $profileuser->roles )
 <?php submit_button( IS_PROFILE_PAGE ? __('Update Profile') : __('Update User') ); ?>
 
 </form>
-<form method="post" action="/insert-crm.php">
+<form method="post" action="/wp-content/themes/sankofafamily/insert-crm.php">
 <h2>Sankofa CRM</h2>
 <table class="form-table">
 <?php

@@ -6,7 +6,8 @@ $crm_status_blank = 3;
 $crm_status_success = 2;
 $crm_status_failed = 1;
 
-$link = mysqli_connect("localhost","root","Sankofa809","sankofa-family");
+include 'sf-passwd.php';
+$link = mysqli_connect($servername, $username, $password, $dbname);
 $crm_profileuser = $_POST['crm_profileuser'];
 $crm_notblank = $_POST['crm_notblank'];
  
