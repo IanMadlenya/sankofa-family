@@ -21,7 +21,7 @@ rm -Rf sankofa-family
 
 I would like to thank below projects and teams for providing their powerful technical assist to our project:
 
-GitHub
+[GitHub](https://github.com/)
 [WordPress](https://wordpress.org/)
 [Percona](https://www.percona.com/)
 [PHP](https://secure.php.net/)
