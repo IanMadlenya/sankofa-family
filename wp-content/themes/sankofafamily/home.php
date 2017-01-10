@@ -68,7 +68,7 @@ if(!isset($_COOKIE[$cookie_name])) {
   <p>Sankofa 家族办公室（Sankofa Multi-Family Offices 简称：SMFOs）是隶属于澳大利亚Sankofa基金管理有限公司(ACN: 602 218 495 AFSL: 473 202)专门服务高端客户，海外资产配置、家族信托、移民、留学、安家、置业的专业服务机构。自其成立以来，SMFOs已为数个财富家庭成立了家族信托，并帮助他们完成全家移民，子女留学，海外资产配置等诉求。</p>
   <div class="w3-row">
     <div class="w3-col m6 w3-center w3-section">
-      <img src="/images/george_gao.jpg" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
+      <img src="/images/george_gao2.png" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
         <p class="sankofa-title">George Gao, Sankofa 家族信托办公室</p>
         <p class="sankofa-title-below">董事总经理</p>
     </div>

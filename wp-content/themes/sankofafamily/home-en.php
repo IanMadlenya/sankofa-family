@@ -68,10 +68,10 @@ if(!isset($_COOKIE[$cookie_name])) {
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
     <h3 class="w3-center">About Sankofa Multi-Family Offices</h3>
-  <p>Sankofa Multi-Family Offices (SMFOs) is subordinate to Sankofa Fund Management Pty Ltd (ACN: 602 218 495 AFSL: 473 202). It is specialized in providing high-end services to our VIP clients, including but not limited to global asset allocation, family trust management, immigration application, foreign study assistance and property purchases. Since inception, SMFOs has successfully helped a lot of families set up their family trust and, in the meantime, accomplished their goals in migration, children's education and foreign asset allocation.</p>
+  <p>Sankofa Multi-Family Offices (SMFOs) is subordinate to Sankofa Fund Management Pty Ltd (ACN: 602 218 495 AFSL: 473 202). It is specialized in providing consultant services to our VIP clients, including but not limited to global asset allocation, family trust management, immigration application, foreign study assistance and property purchases. Since inception, SMFOs has successfully helped a lot of families set up their family trust and, in the meantime, accomplished their goals in migration, children's education and foreign asset allocation.</p>
   <div class="w3-row">
     <div class="w3-col m6 w3-center w3-section">
-      <img src="/images/george_gao.jpg" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
+      <img src="/images/george_gao2.png" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
         <p class="sankofa-title">George Gao, Sankofa Multi-Family Offices</p>
         <p class="sankofa-title-below">Managing Director</p>
     </div>

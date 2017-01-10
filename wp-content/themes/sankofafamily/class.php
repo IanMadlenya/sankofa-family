@@ -1,19 +1,13 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-class
 */
-$page_title = $wp_query->post->post_title;
-$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
 $cookie_name = "sk_lan";
 $cookie_value = "";
 
 if(!isset($_COOKIE[$cookie_name])) {
-    if(substr_count($escaped_url , "-en") == 0) {
-        $cookie_value = "zh";
-    } else {
-        $cookie_value = "en";
-    }
+    $cookie_value = "zh";
     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
 } else {
     $cookie_value = $_COOKIE[$cookie_name];
@@ -22,17 +16,11 @@ if(!isset($_COOKIE[$cookie_name])) {
         if($var == "zh") {
             $cookie_value = "zh";
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
-            header( 'Location: ' . rtrim($escaped_url, "?set=zh") );
+            header( 'Location: /class' );
+        } else {
+            header( 'Location: /class-en' );
         }
-    } else {
-        if($var == "en") {
-            $cookie_value = "en";
-            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
-            header( 'Location: ' . str_replace('/?set=en', '/', $escaped_url) );
-        }
-    }
-}
-?>
+    } else { ?>
 <html>
 <head>
 <title>Sankofa 家族办公室</title>
@@ -76,11 +64,7 @@ if(!isset($_COOKIE[$cookie_name])) {
       <label class="w3-label w3-text-dark-grey">姓名 NAME (必填)</label></p>
   <p><input class="w3-input" type="text" name="mobile">
     <label class="w3-label w3-text-dark-grey">电话 PHONE (必填)</label></p>
-  <p><?php if ( is_user_logged_in() ): ?>
-<input class="w3-input" type="text" name="email" value="<?php echo $current_user->user_email ?>"></p>
-<?php else: ?>
-<input class="w3-input" type="text" name="email">
-<?php endif; ?>
+  <p><input class="w3-input" type="text" name="email">
     <label class="w3-label w3-text-dark-grey">电子邮件 E-MAIL (必填)</label></p>
     <p><input class="w3-input" type="text" name="wechatid">
     <label class="w3-label w3-text-dark-grey">微信号 WECHAT ID (必填)</label></p>
@@ -163,3 +147,4 @@ function myFunction() {
 <a href="#0" class="cd-top">Top</a>
 </body>
 </html>
+<?php } } ?>
