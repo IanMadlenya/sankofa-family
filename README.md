@@ -31,3 +31,4 @@ I would like to thank below projects and teams for providing their powerful tech
 [jQuery](https://jquery.com/)
 [Bootstrap](https://getbootstrap.com/)
 [W3Schools](http://www.w3schools.com/)
+[Vegas](https://vegas.jaysalvat.com/)
