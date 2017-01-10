@@ -29,13 +29,6 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
       <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
       <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
-    <li class="w3-hide-small w3-right">
-      <?php if ( is_user_logged_in() ): ?>
-        <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
-        <?php else: ?>
-      <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
-        <?php endif; ?>
-    </li>
   </ul>
 </div>
 

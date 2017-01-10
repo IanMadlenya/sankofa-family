@@ -63,7 +63,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 </div>
 
 <!-- Sign Up -->
-<a class="w3-btn w3-light-grey w3-hover-black w3-medium w3-display-middle sankofa-sign-up" href="/class">Sign up WeChat class</a>
+<a class="w3-btn w3-light-grey w3-hover-black w3-medium w3-display-middle sankofa-sign-up" href="/class-en">Sign up WeChat class</a>
 
 <!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">

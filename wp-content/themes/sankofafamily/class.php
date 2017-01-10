@@ -2,9 +2,37 @@
 /*
 Template Name: sankofa-class
 */
-$current_user = wp_get_current_user();
+$page_title = $wp_query->post->post_title;
+$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
+$cookie_name = "sk_lan";
+$cookie_value = "";
+
+if(!isset($_COOKIE[$cookie_name])) {
+    if(substr_count($escaped_url , "-en") == 0) {
+        $cookie_value = "zh";
+    } else {
+        $cookie_value = "en";
+    }
+    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+} else {
+    $cookie_value = $_COOKIE[$cookie_name];
+    $var = $_GET['set'];
+    if($cookie_value == "en") {
+        if($var == "zh") {
+            $cookie_value = "zh";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: ' . rtrim($escaped_url, "?set=zh") );
+        }
+    } else {
+        if($var == "en") {
+            $cookie_value = "en";
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+            header( 'Location: ' . str_replace('/?set=en', '/', $escaped_url) );
+        }
+    }
+}
 ?>
-<!DOCTYPE HTML>  
 <html>
 <head>
 <title>Sankofa 家族办公室</title>
@@ -16,8 +44,8 @@ $current_user = wp_get_current_user();
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
-<body>  
-
+<body>
+    
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
@@ -27,22 +55,18 @@ $current_user = wp_get_current_user();
       <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
     <li class="w3-hide-small w3-right">
-      <?php if ( is_user_logged_in() ): ?>
-        <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey"><?php echo $current_user->user_login ?></a>
-        <?php else: ?>
-      <a href="/portal" class="w3-padding-large w3-hover-green w3-text-light-grey">登录</a>
-        <?php endif; ?>
+      <a href="/class-en?set=en" class="w3-padding-large w3-hover-green w3-text-light-grey">English</a>
     </li>
   </ul>
 </div>
-
+    
 <!-- Slideshow -->
-  <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
-    <img src="http://www.smfos.com.au/images/sydney1.jpg">
-    <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
-        <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">微信课堂登记</span>
-    </div>
-  </div>
+<div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
+<img src="http://www.smfos.com.au/images/sydney1.jpg">
+<div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
+<span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">微信课堂登记</span>
+</div>
+</div>
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
 <!-- Content -->
@@ -57,7 +81,7 @@ $current_user = wp_get_current_user();
 <?php else: ?>
 <input class="w3-input" type="text" name="email">
 <?php endif; ?>
-    <label class="w3-label w3-text-dark-grey">电子邮件 EMAIL (必填)</label></p>
+    <label class="w3-label w3-text-dark-grey">电子邮件 E-MAIL (必填)</label></p>
     <p><input class="w3-input" type="text" name="wechatid">
     <label class="w3-label w3-text-dark-grey">微信号 WECHAT ID (必填)</label></p>
   <p><input class="w3-input" type="text" name="job">
