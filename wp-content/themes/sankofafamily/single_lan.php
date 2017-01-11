@@ -1,30 +1,32 @@
-<!DOCTYPE html>
 <?php
 /*
-Template Name: sankofa-class-en
+Template Name: sankofa-single-language
 */
 include 'disclaimer.php';
+$page_title = $wp_query->post->post_title;
 $cookie_name = "sk_lan";
 $cookie_value = "";
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 
 if(!isset($_COOKIE[$cookie_name])) {
-    $cookie_value = "en";
-    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+    if($lang == "zh") {
+        $cookie_value = "zh";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+    }
+    else {
+        $cookie_value = "en";
+        setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
+    }
 } else {
     $cookie_value = $_COOKIE[$cookie_name];
-    $var = $_GET['set'];
-    if($cookie_value == "zh") {
-        if($var == "en") {
-            $cookie_value = "en";
-            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/', 'www.smfos.com.au'); // 86400 = 1 day
-            header( 'Location: /class-en' );
-        } else {
-            header( 'Location: /class' );
-        }
-    } else { ?>
+} ?>
 <html>
 <head>
+<?php if($cookie_value == "zh") { ?>
+<title>Sankofa 家族办公室</title>
+<?php } else { ?>
 <title>Sankofa Multi-Family Offices</title>
+<?php } ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/css/w3.css">
@@ -38,14 +40,19 @@ if(!isset($_COOKIE[$cookie_name])) {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <ul class="w3-navbar" id="myNavbar">
+<?php if($cookie_value == "zh") { ?>
+    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
+      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
+      <li><a href="#" class="w3-padding-large w3-text-light-grey">什么是家族办公室</a></li>
+      <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
+      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
+<?php } else { ?>
     <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
       <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
       <li><a href="#" class="w3-padding-large w3-text-light-grey">Definition of MFOs</a></li>
       <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
       <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="/class?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
-    </li>
+<?php } ?>
   </ul>
 </div>
     
@@ -53,53 +60,17 @@ if(!isset($_COOKIE[$cookie_name])) {
 <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
 <img src="http://www.smfos.com.au/images/sydney1.jpg">
 <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
-<span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">Sign Up WeChat Class</span>
+<span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey"><?php echo $page_title ?></span>
 </div>
 </div>
 
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
-<!-- Content -->
-<form class="w3-container" method="post" action="/wp-content/themes/sankofafamily/insert.php">
-<h3>Personal Information</h3>
-  <p><input class="w3-input" type="text" name="clientname">
-      <label class="w3-label w3-text-dark-grey">NAME (*required)</label></p>
-  <p><input class="w3-input" type="text" name="mobile">
-    <label class="w3-label w3-text-dark-grey">PHONE (*required)</label></p>
-  <p><input class="w3-input" type="text" name="email">
-    <label class="w3-label w3-text-dark-grey">E-MAIL (*required)</label></p>
-    <p><input class="w3-input" type="text" name="wechatid">
-    <label class="w3-label w3-text-dark-grey">WECHAT ID (*required)</label></p>
-  <p><input class="w3-input" type="text" name="job">
-    <label class="w3-label w3-text-dark-grey">OCCUPATION</label></p>
-<p><input class="w3-radio" type="radio" name="gender" value="1" checked>
-<label class="w3-text-dark-grey">MALE</label></p>
-    <p><input class="w3-radio" type="radio" name="gender" value="0">
-<label class="w3-text-dark-grey">FEMALE</label></p>
-<br>
-<h3>Topics of Interest</h3>
-<div class="w3-half">
-<p><input class="w3-check" type="checkbox" name="familytrust" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Family Trust</label></p>
-<p><input class="w3-check" type="checkbox" name="immi" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Immigration</label></p>
-<p><input class="w3-check" type="checkbox" name="study" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Overseas Studies</label></p>
-<p><input class="w3-check" type="checkbox" name="property" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Overseas Properties</label></p>
-</div>
-<div class="w3-half">
-<p><input class="w3-check" type="checkbox" name="forex" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Foreign Exchange</label></p>
-<p><input class="w3-check" type="checkbox" name="trustfund" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Fund Investment</label></p>
-<p><input class="w3-check" type="checkbox" name="cooperate" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Our Business Partners</label></p>
-<p><input class="w3-check" type="checkbox" name="others" value="yes" checked="checked">
-<label class="w3-text-dark-grey">Others</label></p>
-</div>
-<p><input type="submit" class="w3-btn w3-hover-light-grey w3-section w3-left" value="Submit"></p>
-</form>
-
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<p><?php the_content(__('(more...)')); ?></p>
+<hr> <?php endwhile; else:
+header( 'Location: /notfound' ) ;
+endif; ?>
+<hr>
 <!-- Below Box -->
 </div>
 <div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
@@ -110,6 +81,9 @@ if(!isset($_COOKIE[$cookie_name])) {
 <td class="w3-border-left w3-border-right"><img src="http://www.smfos.com.au/images/customer-service.png" style="width:90px"></td>
 <td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
 </tr>
+<?php
+if($cookie_value == "zh") {
+?>
 <tr>
 <td class="table-heading" style="height:90px">在线申请</td>
 <td class="table-heading w3-border-left w3-border-right" style="height:90px">客服热线</td>
@@ -120,6 +94,18 @@ if(!isset($_COOKIE[$cookie_name])) {
 <td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
 <td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">下载 PDF</a></td>
 </tr>
+<?php } else { ?>
+<tr>
+<td class="table-heading" style="height:90px">Online Application</td>
+<td class="table-heading w3-border-left w3-border-right" style="height:90px">Customer Hotline</td>
+<td class="table-heading" style="height:90px">Download Section</td>
+</tr>
+<tr>
+<td style="height:50px"><button class="w3-btn w3-hover-light-grey w3-medium">Apply online</button></td>
+<td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
+<td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">Download PDFs</a></td>
+</tr>
+<?php } ?>
 </table>
 </div>
 
@@ -148,4 +134,3 @@ function myFunction() {
 <a href="#0" class="cd-top">Top</a>
 </body>
 </html>
-<?php } } ?>

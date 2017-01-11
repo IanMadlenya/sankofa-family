@@ -9,6 +9,7 @@
 <td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
 </tr>
 <?php
+include 'disclaimer.php';
 $cookie_name = "sk_lan";
 $cookie_value = $_COOKIE[$cookie_name];
 if($cookie_value == "zh") {
@@ -40,7 +41,7 @@ if($cookie_value == "zh") {
 
 <!-- Footer -->
 <div class="footer-text w3-round-large w3-hover-black">
-<p><img src="/images/warning.png"> Disclaimer: Any general advice in this material does not take into account you or your client‘s personal objectives, financial situation and needs. Please seek advice from a financial adviser or broker and read the relevant IM before making a decision in relation to any investment. In the event of any inconsistency or misinterpretation between the marketing material and SMFOs Pty Ltd.</p>
+<p><img src="/images/warning.png"> <?php echo $disclaimer; ?></p>
 </div>
 
 <footer class="w3-padding-12 w3-transparent">
