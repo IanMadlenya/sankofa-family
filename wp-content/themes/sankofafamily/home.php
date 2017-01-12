@@ -167,7 +167,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 <footer class="w3-padding-12">
     <a href="http://www.sankofafund.com.au"><img src="/images/logo_black.png"></a>
-    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>SMFOs Pty Ltd</strong> (ACN 613532835), All rights reserved.</p>
+    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>SMFOs Pty Ltd</strong> (ABN 41 613 532 835), All rights reserved.</p>
 </footer>
 <script>
 // Change style of navbar on scroll
