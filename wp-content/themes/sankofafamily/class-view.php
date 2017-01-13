@@ -35,7 +35,7 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 
 <!-- Slideshow -->
   <div class="w3-display-container w3-wide sankofa-product-preview w3-opacity2">
-    <img src="http://www.smfos.com.au/images/sydney1.jpg">
+    <img src="/images/sydney1.jpg">
     <div class="w3-display-bottomleft w3-text-white w3-container w3-padding-32 w3-hide-small">
         <span class="w3-black w3-padding-large w3-animate-bottom w3-xlarge w3-text-light-grey">微信课堂登记数据</span>
     </div>
@@ -85,9 +85,9 @@ $conn->close();
 
 <table class="w3-center w3-text-dark-grey">
 <tr>
-<td><img src="http://www.smfos.com.au/images/verified-text-paper.png" style="width:90px"></td>
-<td class="w3-border-left w3-border-right"><img src="http://www.smfos.com.au/images/customer-service.png" style="width:90px"></td>
-<td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
+<td><img src="/images/verified-text-paper.png" style="width:90px"></td>
+<td class="w3-border-left w3-border-right"><img src="/images/customer-service.png" style="width:90px"></td>
+<td><img src="/images/cloud-computing.png" style="width:90px"></td>
 </tr>
 <tr>
 <td class="table-heading" style="height:90px">在线申请</td>

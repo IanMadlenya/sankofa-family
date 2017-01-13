@@ -56,35 +56,35 @@ if(!isset($_COOKIE[$cookie_name])) {
 <div class="sankofa-center w3-animate-opacity-sankofa-products">
 <div class="row w3-center">
 			
-			<a href="http://www.smfos.com.au/sankofa-invest-en/"><div class="hexagon">
+			<a href="/sankofa-invest-en/"><div class="hexagon">
 				<div class="outer">
 					<div class="inner money-en">
 					</div>
 				</div>
                 </div></a>
 			
-			<a href="http://www.smfos.com.au/sankofa-property-en/"><div class="hexagon even">
+			<a href="/sankofa-property-en/"><div class="hexagon even">
 				<div class="outer">
 					<div class="inner property-en">
 					</div>
 				</div>
                 </div></a>
 			
-			<a href="http://www.smfos.com.au/sankofa-family-en/"><div class="hexagon">
+			<a href="/sankofa-family-en/"><div class="hexagon">
 				<div class="outer">
 					<div class="inner family-en">
 					</div>
 				</div>
                 </div></a>
     
-    <a href="http://www.smfos.com.au/sankofa-study-en/"><div class="hexagon even">
+    <a href="/sankofa-study-en/"><div class="hexagon even">
 				<div class="outer">
 					<div class="inner study-en">
 					</div>
 				</div>
         </div></a>		
     
-    <a href="http://www.smfos.com.au/sankofa-heritage-en/"><div class="hexagon">
+    <a href="/sankofa-heritage-en/"><div class="hexagon">
 				<div class="outer">
 					<div class="inner heritage-en">
 					</div>
@@ -95,21 +95,21 @@ if(!isset($_COOKIE[$cookie_name])) {
 
 <div class="row w3-center">
     
-    <a href="http://www.smfos.com.au/sankofa-exchange-en/"><div class="hexagon">
+    <a href="/sankofa-exchange-en/"><div class="hexagon">
 				<div class="outer">
 					<div class="inner forex-en">
 					</div>
 				</div>
         </div></a>
     
-    <a href="http://www.smfos.com.au/sankofa-immi-en/"><div class="hexagon fixhexagon">
+    <a href="/sankofa-immi-en/"><div class="hexagon fixhexagon">
 				<div class="outer">
 					<div class="inner immi-en">
 					</div>
 				</div>
         </div></a>
     
-    <a href="http://www.smfos.com.au/sankofa-tax-en/"><div class="hexagon fixhexagon">
+    <a href="/sankofa-tax-en/"><div class="hexagon fixhexagon">
 				<div class="outer">
 					<div class="inner tax-en">
 					</div>
@@ -119,7 +119,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 		</div>
     
 <div class="row w3-center">
-    <a href="http://www.smfos.com.au/sankofa-trade-en/"><div class="hexagon fixhexagon">
+    <a href="/sankofa-trade-en/"><div class="hexagon fixhexagon">
 				<div class="outer">
 					<div class="inner trade-en">
 					</div>

@@ -4,9 +4,9 @@
 
 <table class="w3-center w3-text-dark-grey">
 <tr>
-<td><img src="http://www.smfos.com.au/images/verified-text-paper.png" style="width:90px"></td>
-<td class="w3-border-left w3-border-right"><img src="http://www.smfos.com.au/images/customer-service.png" style="width:90px"></td>
-<td><img src="http://www.smfos.com.au/images/cloud-computing.png" style="width:90px"></td>
+<td><img src="/images/verified-text-paper.png" style="width:90px"></td>
+<td class="w3-border-left w3-border-right"><img src="/images/customer-service.png" style="width:90px"></td>
+<td><img src="/images/cloud-computing.png" style="width:90px"></td>
 </tr>
 <?php
 include 'disclaimer.php';
