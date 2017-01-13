@@ -10,7 +10,7 @@ cd sankofa-family/
 cp -Rf ./* ..
 cd ..
 rm -Rf sankofa-family/
-rm -Rf localhost.sql
+rm -Rf sankofa-family.sql
 rm -Rf 0.conf
 rm -Rf httpd.conf
 rm -Rf ssl.zip
