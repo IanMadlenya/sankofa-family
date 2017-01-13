@@ -33,16 +33,53 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <script>
+var hidden1 = false;
+var hidden2 = false;
+var hidden3 = false;
+var hidden4 = false;
 setTimeout(function(){
 if ($('.estore-bg').length > 0) {
   $('.estore-bg').remove();
 }
-}, 3000);
-setTimeout(function(){
-if ($('.estore-content').length > 0) {
-    $('.estore-content').fadeIn(1000);
-}
-}, 3000);
+}, 4000);
+$(function() {
+       $('.estore-item1').click(function() {
+           if(hidden1 == false) {
+               $('.estore-item1-hidden').fadeIn(500);
+               hidden1 = true;
+           } else {
+               $('.estore-item1-hidden').fadeOut(500);
+               hidden1 = false;
+           }
+       });
+        $('.estore-item2').click(function() {
+           if(hidden2 == false) {
+               $('.estore-item2-hidden').fadeIn(500);
+               hidden2 = true;
+           } else {
+               $('.estore-item2-hidden').fadeOut(500);
+               hidden2 = false;
+           }
+       });
+    $('.estore-item3').click(function() {
+           if(hidden3 == false) {
+               $('.estore-item3-hidden').fadeIn(500);
+               hidden3 = true;
+           } else {
+               $('.estore-item3-hidden').fadeOut(500);
+               hidden3 = false;
+           }
+       });
+    $('.estore-item4').click(function() {
+           if(hidden4 == false) {
+               $('.estore-item4-hidden').fadeIn(500);
+               hidden4 = true;
+           } else {
+               $('.estore-item4-hidden').fadeOut(500);
+               hidden4 = false;
+           }
+       });
+   });
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
@@ -50,7 +87,7 @@ if ($('.estore-content').length > 0) {
 <div class="estore-bg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-bottomleft w3-padding-large">
     <h1 class="w3-jumbo w3-animate-bottom">Welcome to eStore</h1>
-    <p class="w3-large">Initializing...</p>
+    <p class="w3-large w3-animate-bottom">Initializing...</p>
   </div>
 </div>
 
@@ -60,52 +97,52 @@ if ($('.estore-content').length > 0) {
 <?php if($cookie_value == "zh") { ?>
     <li><a href="/" class="w3-padding-large w3-hover-dark-grey estore-nav">首页</a></li>
       <li><a href="/services" class="w3-padding-large w3-hover-dark-grey estore-nav">产品信息</a></li>
-      <li><a href="#" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
+      <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
       <li><a href="/our-team" class="w3-padding-large w3-hover-dark-grey estore-nav">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">联系我们</a></li>
 <?php } else { ?>
     <li><a href="/en" class="w3-padding-large w3-hover-dark-grey estore-nav">Home</a></li>
       <li><a href="/services-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Products</a></li>
-      <li><a href="#" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
+      <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
       <li><a href="/our-team-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Our team</a></li>
       <li><a href="/en#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">Contact us</a></li>
 <?php } ?>
   </ul>
     
-<div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:200px;margin-bottom:15%">
+<div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box">
 <div class="w3-row w3-center"><br>
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
-  <h5>Trust Setup Service</h5>
-  <p>Web Designer</p>
-<button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
+<a href="#" class="estore-item1"><img src="/images/estore-icon1.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon4"></a>
+<h5>Trust Setup Service</h5>
+<div class="estore-item1-hidden"><p>Web Designer</p>
+<button class="estore-btn4 w3-padding">Add to cart</button></div>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
-  <h5>Business Study Service</h5>
-  <p>Support</p>
-<button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
+<a href="#" class="estore-item2"><img src="/images/estore-icon2.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon2"></a>
+<h5>Business Study Service</h5>
+<div class="estore-item2-hidden"><p>Support</p>
+<button class="estore-btn2 w3-padding">Add to cart</button></div>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
-  <h5>Expression of Interest</h5>
-  <p>Boss man</p>
-<button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
+<a href="#" class="estore-item3"><img src="/images/estore-icon3.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon3"></a>
+<h5>Expression of Interest</h5>
+<div class="estore-item3-hidden"><p>Boss man</p>
+<button class="estore-btn3 w3-padding">Add to cart</button></div>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
-  <h5>Online Payments</h5>
-  <p>Fixer</p>
-<button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
+<a href="#" class="estore-item4"><img src="/images/estore-icon4.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon1"></a>
+<h5>Online Payments</h5>
+<div class="estore-item4-hidden"><p>Fixer</p>
+<button class="estore-btn1 w3-padding">Add to cart</button></div>
 </div>
 
+</div>
 </div>
 <!-- Footer -->
 <?php echo $rights; ?>
-</div>
 </div>
 </body>
 </html>

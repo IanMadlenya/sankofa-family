@@ -43,13 +43,13 @@ if(!isset($_COOKIE[$cookie_name])) {
 <?php if($cookie_value == "zh") { ?>
     <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
       <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-light-grey">eStore</a></li>
+      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
       <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
 <?php } else { ?>
     <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
       <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-light-grey">eStore</a></li>
+      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
       <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
       <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
 <?php } ?>
