@@ -2,7 +2,7 @@
 /*
 Template Name: sankofa-estore
 */
-include 'footer-rights.php';
+include 'footer-rights-estore.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -32,6 +32,18 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
+<script>
+setTimeout(function(){
+if ($('.estore-bg').length > 0) {
+  $('.estore-bg').remove();
+}
+}, 3000);
+setTimeout(function(){
+if ($('.estore-content').length > 0) {
+    $('.estore-content').fadeIn(1000);
+}
+}, 3000);
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
@@ -41,9 +53,9 @@ if(!isset($_COOKIE[$cookie_name])) {
     <p class="w3-large">Initializing...</p>
   </div>
 </div>
-<div class="estore-content">
+
 <!-- Navbar (sit on top) -->
-<div class="w3-top">
+<div class="estore-nav w3-top">
   <ul class="w3-navbar" id="myNavbar">
 <?php if($cookie_value == "zh") { ?>
     <li><a href="/" class="w3-padding-large w3-text-dark-grey">首页</a></li>
@@ -60,39 +72,37 @@ if(!isset($_COOKIE[$cookie_name])) {
 <?php } ?>
   </ul>
 </div>
-
-<div class="w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+    
+<div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:200px;margin-bottom:15%">
 <div class="w3-row w3-center"><br>
-
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
   <h5>Trust Setup Service</h5>
   <p>Web Designer</p>
 <button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
   <h5>Business Study Service</h5>
   <p>Support</p>
 <button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
   <h5>Expression of Interest</h5>
   <p>Boss man</p>
 <button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
 </div>
 
 <div class="w3-quarter">
-  <img src="/w3images/avatar.jpg" style="width:45%" class="w3-circle w3-hover-opacity">
+  <img src="/w3images/avatar.jpg" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow">
   <h5>Online Payments</h5>
   <p>Fixer</p>
 <button class="w3-btn w3-hover-light-grey w3-medium">Add to cart</button>
 </div>
 
-</div>
 </div>
 <!-- Footer -->
 <?php echo $rights; ?>
