@@ -1,3 +1,0 @@
-<?php
-$disclaimer = "Disclaimer: The website and the information contained herein is provided 'as is,' and SMFOS PTY LTD makes no express or implied representations or warranties regarding the information. Without limiting the foregoing, SMFOS PTY LTD does not warrant that information will be error-free or will meet any particular criteria of performance or quality. SMFOS PTY LTD may make changes to the material on this website, or to the products described in it, at any time without notice.";
-?>

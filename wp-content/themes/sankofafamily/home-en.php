@@ -3,7 +3,7 @@
 /*
 Template Name: sankofa-home-en
 */
-include 'disclaimer.php';
+include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -164,14 +164,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 </div>
     
 <!-- Footer -->
-<div class="footer-text w3-round-large w3-hover-black">
-  <p><img src="/images/warning.png"> <?php echo $disclaimer; ?></p>
-</div>
-
-<footer class="w3-padding-12">
-    <a href="http://www.sankofafund.com.au"><img src="/images/logo_black.png"></a>
-    <p class="w3-left-align">© <?php echo date("Y"); ?> <strong>SMFOs Pty Ltd</strong> (ABN 41 613 532 835), All rights reserved.</p>
-</footer>
+<?php echo $rights; ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

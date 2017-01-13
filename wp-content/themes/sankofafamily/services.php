@@ -3,7 +3,7 @@
 /*
 Template Name: sankofa-services
 */
-include 'disclaimer.php';
+include 'footer-rights-services.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 
@@ -166,14 +166,7 @@ if(!isset($_COOKIE[$cookie_name])) {
     </div>
     
 <!-- Footer -->
-<div class="footer-text w3-round-large w3-hover-black">
-<p><img src="/images/warning.png"> <?php echo $disclaimer; ?></p>
-</div>
-
-<footer class="w3-padding-12 w3-transparent">
-    <a href="http://www.sankofafund.com.au"><img src="/images/logo.png"></a>
-    <p class="w3-left-align w3-text-white">© <?php echo date("Y"); ?> <strong>SMFOs Pty Ltd</strong> (ABN 41 613 532 835), All rights reserved.</p>
-</footer>
+<?php echo $rights; ?>
 <script src="/js/services.js"></script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
