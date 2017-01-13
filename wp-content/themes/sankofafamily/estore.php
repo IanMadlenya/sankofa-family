@@ -55,23 +55,22 @@ if ($('.estore-content').length > 0) {
 </div>
 
 <!-- Navbar (sit on top) -->
-<div class="estore-nav w3-top">
+<div class="estore-bg2 w3-top">
   <ul class="w3-navbar" id="myNavbar">
 <?php if($cookie_value == "zh") { ?>
-    <li><a href="/" class="w3-padding-large w3-text-dark-grey">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-text-dark-grey">产品信息</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-dark-grey">eStore</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-text-dark-grey">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-dark-grey">联系我们</a></li>
+    <li><a href="/" class="w3-padding-large w3-hover-dark-grey estore-nav">首页</a></li>
+      <li><a href="/services" class="w3-padding-large w3-hover-dark-grey estore-nav">产品信息</a></li>
+      <li><a href="#" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
+      <li><a href="/our-team" class="w3-padding-large w3-hover-dark-grey estore-nav">团队介绍</a></li>
+      <li><a href="/#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">联系我们</a></li>
 <?php } else { ?>
-    <li><a href="/en" class="w3-padding-large w3-text-dark-grey">Home</a></li>
-      <li><a href="/services-en" class="w3-padding-large w3-text-dark-grey">Products</a></li>
-      <li><a href="#" class="w3-padding-large w3-text-dark-grey">eStore</a></li>
-      <li><a href="/our-team-en" class="w3-padding-large w3-text-dark-grey">Our team</a></li>
-      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-dark-grey">Contact us</a></li>
+    <li><a href="/en" class="w3-padding-large w3-hover-dark-grey estore-nav">Home</a></li>
+      <li><a href="/services-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Products</a></li>
+      <li><a href="#" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
+      <li><a href="/our-team-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Our team</a></li>
+      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">Contact us</a></li>
 <?php } ?>
   </ul>
-</div>
     
 <div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box" style="max-width:1100px;margin-top:200px;margin-bottom:15%">
 <div class="w3-row w3-center"><br>
@@ -106,6 +105,7 @@ if ($('.estore-content').length > 0) {
 </div>
 <!-- Footer -->
 <?php echo $rights; ?>
+</div>
 </div>
 </body>
 </html>
