@@ -47,7 +47,7 @@ if(!isset($_COOKIE[$cookie_name])) {
   <ul class="w3-navbar" id="myNavbar">
     <li class="w3-hide-small"><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
       <li class="w3-hide-small"><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
-      <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-text-light-grey">Definition of MFOs</a></li>
+      <li class="w3-hide-small"><a href="#" class="w3-padding-large w3-text-light-grey">eStore</a></li>
       <li class="w3-hide-small"><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
       <li class="w3-hide-small"><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
     <li class="w3-hide-small w3-right">
