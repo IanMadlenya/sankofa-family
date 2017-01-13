@@ -45,36 +45,44 @@ if ($('.estore-bg').length > 0) {
 $(function() {
        $('.estore-item1').click(function() {
            if(hidden1 == false) {
+               $('.eitem1').animate({top: "-60px"});
                $('.estore-item1-hidden').fadeIn(500);
                hidden1 = true;
            } else {
+               $('.eitem1').animate({top: "0"});
                $('.estore-item1-hidden').fadeOut(500);
                hidden1 = false;
            }
        });
         $('.estore-item2').click(function() {
            if(hidden2 == false) {
+               $('.eitem2').animate({top: "-60px"});
                $('.estore-item2-hidden').fadeIn(500);
                hidden2 = true;
            } else {
+               $('.eitem2').animate({top: "0"});
                $('.estore-item2-hidden').fadeOut(500);
                hidden2 = false;
            }
        });
     $('.estore-item3').click(function() {
            if(hidden3 == false) {
+               $('.eitem3').animate({top: "-60px"});
                $('.estore-item3-hidden').fadeIn(500);
                hidden3 = true;
            } else {
+               $('.eitem3').animate({top: "0"});
                $('.estore-item3-hidden').fadeOut(500);
                hidden3 = false;
            }
        });
     $('.estore-item4').click(function() {
            if(hidden4 == false) {
+               $('.eitem4').animate({top: "-60px"});
                $('.estore-item4-hidden').fadeIn(500);
                hidden4 = true;
            } else {
+               $('.eitem4').animate({top: "0"});
                $('.estore-item4-hidden').fadeOut(500);
                hidden4 = false;
            }
@@ -111,31 +119,31 @@ $(function() {
     
 <div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box">
 <div class="w3-row w3-center"><br>
-<div class="w3-quarter">
+<div class="w3-quarter eitem1">
 <a href="#" class="estore-item1"><img src="/images/estore-icon1.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon4"></a>
 <h5>Trust Setup Service</h5>
-<div class="estore-item1-hidden"><p>Web Designer</p>
+<div class="estore-item1-hidden w3-white w3-card-2 w3-text-dark-grey w3-padding" style="border-radius:4px;margin-bottom:20px"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
 <button class="estore-btn4 w3-padding">Add to cart</button></div>
 </div>
 
-<div class="w3-quarter">
+<div class="w3-quarter eitem2">
 <a href="#" class="estore-item2"><img src="/images/estore-icon2.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon2"></a>
 <h5>Business Study Service</h5>
-<div class="estore-item2-hidden"><p>Support</p>
+<div class="estore-item2-hidden w3-white w3-card-2 w3-text-dark-grey w3-padding" style="border-radius:4px;margin-bottom:20px"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
 <button class="estore-btn2 w3-padding">Add to cart</button></div>
 </div>
 
-<div class="w3-quarter">
+<div class="w3-quarter eitem3">
 <a href="#" class="estore-item3"><img src="/images/estore-icon3.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon3"></a>
 <h5>Expression of Interest</h5>
-<div class="estore-item3-hidden"><p>Boss man</p>
+<div class="estore-item3-hidden w3-white w3-card-2 w3-text-dark-grey w3-padding" style="border-radius:4px;margin-bottom:20px"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
 <button class="estore-btn3 w3-padding">Add to cart</button></div>
 </div>
 
-<div class="w3-quarter">
+<div class="w3-quarter eitem4">
 <a href="#" class="estore-item4"><img src="/images/estore-icon4.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon1"></a>
 <h5>Online Payments</h5>
-<div class="estore-item4-hidden"><p>Fixer</p>
+<div class="estore-item4-hidden w3-white w3-card-2 w3-text-dark-grey w3-padding" style="border-radius:4px;margin-bottom:20px"><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
 <button class="estore-btn1 w3-padding">Add to cart</button></div>
 </div>
 
