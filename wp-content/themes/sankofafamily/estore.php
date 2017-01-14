@@ -33,61 +33,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <script>
-var hidden1 = false;
-var hidden2 = false;
-var hidden3 = false;
-var hidden4 = false;
-setTimeout(function(){
-if ($('.estore-bg').length > 0) {
-  $('.estore-bg').remove();
-}
-}, 4000);
-$(function() {
-       $('.estore-item1').click(function() {
-           if(hidden1 == false) {
-               $('.eitem1').animate({top: "-60px"});
-               $('.estore-item1-hidden').fadeIn(500);
-               hidden1 = true;
-           } else {
-               $('.eitem1').animate({top: "0"});
-               $('.estore-item1-hidden').fadeOut(500);
-               hidden1 = false;
-           }
-       });
-        $('.estore-item2').click(function() {
-           if(hidden2 == false) {
-               $('.eitem2').animate({top: "-60px"});
-               $('.estore-item2-hidden').fadeIn(500);
-               hidden2 = true;
-           } else {
-               $('.eitem2').animate({top: "0"});
-               $('.estore-item2-hidden').fadeOut(500);
-               hidden2 = false;
-           }
-       });
-    $('.estore-item3').click(function() {
-           if(hidden3 == false) {
-               $('.eitem3').animate({top: "-60px"});
-               $('.estore-item3-hidden').fadeIn(500);
-               hidden3 = true;
-           } else {
-               $('.eitem3').animate({top: "0"});
-               $('.estore-item3-hidden').fadeOut(500);
-               hidden3 = false;
-           }
-       });
-    $('.estore-item4').click(function() {
-           if(hidden4 == false) {
-               $('.eitem4').animate({top: "-60px"});
-               $('.estore-item4-hidden').fadeIn(500);
-               hidden4 = true;
-           } else {
-               $('.eitem4').animate({top: "0"});
-               $('.estore-item4-hidden').fadeOut(500);
-               hidden4 = false;
-           }
-       });
-   });
+var hidden1=false;var hidden2=false;var hidden3=false;var hidden4=false;setTimeout(function(){if($('.estore-bg').length>0){$('.estore-bg').remove()}},4000);$(function(){$('.estore-item1').click(function(){if(hidden1==false){$('.eitem1').animate({top:"-60px"});$('.estore-item1-hidden').fadeIn(500);hidden1=true}else{$('.eitem1').animate({top:"0"});$('.estore-item1-hidden').fadeOut(500);hidden1=false}});$('.estore-item2').click(function(){if(hidden2==false){$('.eitem2').animate({top:"-60px"});$('.estore-item2-hidden').fadeIn(500);hidden2=true}else{$('.eitem2').animate({top:"0"});$('.estore-item2-hidden').fadeOut(500);hidden2=false}});$('.estore-item3').click(function(){if(hidden3==false){$('.eitem3').animate({top:"-60px"});$('.estore-item3-hidden').fadeIn(500);hidden3=true}else{$('.eitem3').animate({top:"0"});$('.estore-item3-hidden').fadeOut(500);hidden3=false}});$('.estore-item4').click(function(){if(hidden4==false){$('.eitem4').animate({top:"-60px"});$('.estore-item4-hidden').fadeIn(500);hidden4=true}else{$('.eitem4').animate({top:"0"});$('.estore-item4-hidden').fadeOut(500);hidden4=false}})});
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
