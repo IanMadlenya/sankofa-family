@@ -2,6 +2,7 @@
 /*
 Template Name: sankofa-estore
 */
+include 'navbar.php';
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
@@ -47,27 +48,12 @@ var hidden1=false;var hidden2=false;var hidden3=false;var hidden4=false;setTimeo
 
 <!-- Navbar (sit on top) -->
 <div class="estore-bg2 w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-<?php if($cookie_value == "zh") { ?>
-    <li><a href="/" class="w3-padding-large w3-hover-dark-grey estore-nav">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-hover-dark-grey estore-nav">产品信息</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-hover-dark-grey estore-nav">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">联系我们</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-dark-grey">登录</a>
-    </li>
-<?php } else { ?>
-    <li><a href="/en" class="w3-padding-large w3-hover-dark-grey estore-nav">Home</a></li>
-      <li><a href="/services-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Products</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
-      <li><a href="/our-team-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Our team</a></li>
-      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">Contact us</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-dark-grey">Login</a>
-    </li>
-<?php } ?>
-  </ul>
+<ul class="w3-navbar" id="myNavbar">
+<?php
+$new_cookie_value = $cookie_value . "_estore";
+echo navMenu($new_cookie_value);
+?>
+</ul>
     
 <div class="estore-content w3-content w3-container w3-text-dark-grey sankofa-product-box">
 <div class="w3-row w3-center"><br>

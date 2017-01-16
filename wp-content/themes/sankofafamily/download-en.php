@@ -3,6 +3,7 @@
 /*
 Template Name: sankofa-downloads-en
 */
+include 'navbar.php';
 include 'footer-rights.php';
 $r = 0;
 $cookie_name = "sk_lan";
@@ -41,16 +42,9 @@ a {text-decoration: none}
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-    <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
-      <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
-      <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
-      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="/downloads?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
-    </li>
-  </ul>
+<ul class="w3-navbar" id="myNavbar">
+<?php echo navMenu($cookie_value); ?>
+</ul>
 </div>
 
 <!-- Slideshow -->

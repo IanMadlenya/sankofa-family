@@ -2,6 +2,7 @@
 /*
 Template Name: sankofa-class-topic
 */
+include 'navbar.php';
 include 'footer-rights.php';
 $current_user = wp_get_current_user();
 $r = 0;
@@ -24,13 +25,9 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
-  </ul>
+<ul class="w3-navbar" id="myNavbar">
+<?php echo navMenu("zh"); ?>
+</ul>
 </div>
 
 <!-- Slideshow -->

@@ -1,4 +1,5 @@
 <?php
+include 'navbar.php';
 $page_title = $wp_query->post->post_title;
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $escaped_url = htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' );
@@ -49,26 +50,9 @@ if(!isset($_COOKIE[$cookie_name])) {
     
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
-  <ul class="w3-navbar" id="myNavbar">
-<?php if($cookie_value == "zh") { ?>
-    <li><a href="/" class="w3-padding-large w3-text-light-grey">首页</a></li>
-      <li><a href="/services" class="w3-padding-large w3-text-light-grey">产品信息</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
-      <li><a href="/our-team" class="w3-padding-large w3-text-light-grey">团队介绍</a></li>
-      <li><a href="/#sankofa-contact" class="w3-padding-large w3-text-light-grey">联系我们</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="<?php echo rtrim($escaped_url, "/") ?>-en?set=en" class="w3-padding-large w3-hover-green w3-text-light-grey">English</a>
-<?php } else { ?>
-    <li><a href="/en" class="w3-padding-large w3-text-light-grey">Home</a></li>
-      <li><a href="/services-en" class="w3-padding-large w3-text-light-grey">Products</a></li>
-      <li><a href="/estore" class="w3-padding-large w3-text-light-grey">eStore</a></li>
-      <li><a href="/our-team-en" class="w3-padding-large w3-text-light-grey">Our team</a></li>
-      <li><a href="/en#sankofa-contact" class="w3-padding-large w3-text-light-grey">Contact us</a></li>
-    <li class="w3-hide-small w3-right">
-      <a href="<?php echo rtrim($escaped_url, "-en/") ?>?set=zh" class="w3-padding-large w3-hover-green w3-text-light-grey">中文</a>
-<?php } ?>
-    </li>
-  </ul>
+<ul class="w3-navbar" id="myNavbar">
+<?php echo navMenu($cookie_value); ?>
+</ul>
 </div>
     
 <!-- Slideshow -->
