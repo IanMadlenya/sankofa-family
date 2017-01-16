@@ -140,7 +140,7 @@ $conn->close();
 </div>
 
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(3,"",""); ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

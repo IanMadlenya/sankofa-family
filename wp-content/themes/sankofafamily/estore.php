@@ -2,7 +2,7 @@
 /*
 Template Name: sankofa-estore
 */
-include 'footer-rights-estore.php';
+include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -54,12 +54,18 @@ var hidden1=false;var hidden2=false;var hidden3=false;var hidden4=false;setTimeo
       <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
       <li><a href="/our-team" class="w3-padding-large w3-hover-dark-grey estore-nav">团队介绍</a></li>
       <li><a href="/#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">联系我们</a></li>
+    <li class="w3-hide-small w3-right">
+      <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-dark-grey">登录</a>
+    </li>
 <?php } else { ?>
     <li><a href="/en" class="w3-padding-large w3-hover-dark-grey estore-nav">Home</a></li>
       <li><a href="/services-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Products</a></li>
       <li><a href="/estore" class="w3-padding-large w3-hover-dark-grey estore-nav">eStore</a></li>
       <li><a href="/our-team-en" class="w3-padding-large w3-hover-dark-grey estore-nav">Our team</a></li>
       <li><a href="/en#sankofa-contact" class="w3-padding-large w3-hover-dark-grey estore-nav">Contact us</a></li>
+    <li class="w3-hide-small w3-right">
+      <a href="/wp-admin" class="w3-padding-large w3-hover-green w3-text-dark-grey">Login</a>
+    </li>
 <?php } ?>
   </ul>
     
@@ -96,7 +102,7 @@ var hidden1=false;var hidden2=false;var hidden3=false;var hidden4=false;setTimeo
 </div>
 </div>
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(2,"",""); ?>
 </div>
 </body>
 </html>

@@ -124,7 +124,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 </div>
 
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(0,"zh","/class-en?set=en"); ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

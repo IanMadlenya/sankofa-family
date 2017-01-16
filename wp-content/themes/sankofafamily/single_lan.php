@@ -110,7 +110,7 @@ if($cookie_value == "zh") {
 </div>
 
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(4,"",""); ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

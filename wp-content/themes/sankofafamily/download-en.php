@@ -209,7 +209,7 @@ a {text-decoration: none}
 </div>
 
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(0,"en","/downloads?set=zh"); ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

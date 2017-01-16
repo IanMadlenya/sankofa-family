@@ -12,7 +12,9 @@
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = $_COOKIE[$cookie_name];
+$url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 if($cookie_value == "zh") {
+    $cookie_rights = rtrim(htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' ), "/") . "-en?set=en";
 ?>
 <tr>
 <td class="table-heading" style="height:90px">在线申请</td>
@@ -24,7 +26,9 @@ if($cookie_value == "zh") {
 <td class="table-middle w3-border-left w3-border-right" style="height:50px"><h2 class="w3-center">+61 (2) 8065 2830</h2></td>
 <td style="height: 50px;"><a class="w3-btn w3-hover-light-grey w3-medium" href="/downloads">下载 PDF</a></td>
 </tr>
-<?php } else { ?>
+<?php } else {
+    $cookie_rights = rtrim(htmlspecialchars( $url, ENT_QUOTES, 'UTF-8' ), "-en/") . "?set=zh";
+?>
 <tr>
 <td class="table-heading" style="height:90px">Online Application</td>
 <td class="table-heading w3-border-left w3-border-right" style="height:90px">Customer Hotline</td>
@@ -40,7 +44,7 @@ if($cookie_value == "zh") {
 </div>
 
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(0,$cookie_value,$cookie_rights); ?>
 <script>
 // Change style of navbar on scroll
 window.onscroll = function() {myFunction()};

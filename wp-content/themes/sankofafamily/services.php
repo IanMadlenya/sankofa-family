@@ -3,7 +3,7 @@
 /*
 Template Name: sankofa-services
 */
-include 'footer-rights-services.php';
+include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 
@@ -166,7 +166,7 @@ if(!isset($_COOKIE[$cookie_name])) {
     </div>
     
 <!-- Footer -->
-<?php echo $rights; ?>
+<?php returnRights(1,"zh","/services-en?set=en"); ?>
 <script src="/js/services.js"></script>
 <script src="/js/back.to.top.js"></script>
 <a href="#0" class="cd-top">Top</a>
