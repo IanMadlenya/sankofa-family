@@ -3,6 +3,7 @@
 /*
 Template Name: sankofa-home-en
 */
+$current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
@@ -46,115 +47,107 @@ if(!isset($_COOKIE[$cookie_name])) {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
 <ul class="w3-navbar" id="myNavbar">
-<?php echo navMenu($cookie_value); ?>
+<?php 
+echo navMenu($cookie_value);
+if ( is_user_logged_in() ) {
+    navMenuLogin(0,$current_user->user_login);
+} else {
+    navMenuLogin(0,$cookie_value);
+}
+?>
 </ul>
 </div>
 
-<!-- First Parallax Image with Logo Text -->
 <div class="bgimg-1 w3-opacity w3-display-container">
-  <div class="w3-display-middle" style="white-space:nowrap;">
-      <span class="w3-xxlarge w3-text-light-grey w3-animate-opacity"><a href="http://www.sankofafund.com.au"><img class="sankofa-logo" src="/images/logo.png"></a> Multi-Family Offices</span>
-  </div>
+<div class="w3-display-middle" style="white-space:nowrap">
+<span class="w3-xxlarge w3-text-light-grey w3-animate-opacity"><a href="http://www.sankofafund.com.au"><img class="sankofa-logo" src="/images/logo.png"></a> Multi-Family Offices</span>
 </div>
-
-<!-- Sign Up -->
+</div>
 <a class="w3-btn w3-light-grey w3-hover-black w3-medium w3-display-middle sankofa-sign-up" href="/class-en">Sign up WeChat class</a>
-
-<!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
-    <h3 class="w3-center">About Sankofa Multi-Family Offices</h3>
-  <p>Sankofa Multi-Family Offices (SMFOs) is subordinate to Sankofa Fund Management Pty Ltd (ACN: 602 218 495 AFSL: 473 202). It is specialized in providing consultant services to our VIP clients, including but not limited to global asset allocation, family trust management, immigration application, foreign study assistance and property purchases. Since inception, SMFOs has successfully helped a lot of families set up their family trust and, in the meantime, accomplished their goals in migration, children's education and foreign asset allocation.</p>
-  <div class="w3-row">
-    <div class="w3-col m6 w3-center w3-section">
-      <img src="/images/george_gao2.png" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
-        <p class="sankofa-title">George Gao, Sankofa Multi-Family Offices</p>
-        <p class="sankofa-title-below">Managing Director</p>
-    </div>
-
-    <!-- Hide this text on small devices -->
-    <div class="w3-col m6 w3-hide-small w3-section">
-      <p>The first multi-family office was emerged in the sixth century, whose role was nothing but the treasurer of the crown. When the nobles start to utilize the service, multi-family offices evolved into an industry with the concept of management that has been inherited till now. In the nineteenth century, famous families like the Morgan and the Rockefeller established their own family offices, which endowed this industry with modern sense. Many of these family offices are still operating, providing services in financial management and lots of other forms.</p>
-        <a class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle" href="/sankofa-family-en">Read more</a>
-    </div>
-  </div>
+<h3 class="w3-center">About Sankofa Multi-Family Offices</h3>
+<p>Sankofa Multi-Family Offices (SMFOs) is subordinate to Sankofa Fund Management Pty Ltd (ACN: 602 218 495 AFSL: 473 202). It is specialized in providing consultant services to our VIP clients, including but not limited to global asset allocation, family trust management, immigration application, foreign study assistance and property purchases. Since inception, SMFOs has successfully helped a lot of families set up their family trust and, in the meantime, accomplished their goals in migration, children's education and foreign asset allocation.</p>
+<div class="w3-row">
+<div class="w3-col m6 w3-center w3-section">
+<img src="/images/george_gao2.png" class="george-img w3-round-large" alt="George Gao, Sankofa家族信托办公室 董事总经理">
+<p class="sankofa-title">George Gao, Sankofa Multi-Family Offices</p>
+<p class="sankofa-title-below">Managing Director</p>
 </div>
-    
-<!-- Second Parallax Image with Portfolio Text -->
+<div class="w3-col m6 w3-hide-small w3-section">
+<p>The first multi-family office was emerged in the sixth century, whose role was nothing but the treasurer of the crown. When the nobles start to utilize the service, multi-family offices evolved into an industry with the concept of management that has been inherited till now. In the nineteenth century, famous families like the Morgan and the Rockefeller established their own family offices, which endowed this industry with modern sense. Many of these family offices are still operating, providing services in financial management and lots of other forms.</p>
+<a class="w3-btn w3-hover-light-grey w3-medium w3-left sankofa-middle" href="/sankofa-family-en">Read more</a>
+</div>
+</div>
+</div>
 <div class="bgimg-2 w3-display-container" id="our-team">
 <div class="w3-xxlarge w3-text-light-grey w3-wide w3-center sankofa-team-text">Our team</div>
 <div class="w3-row-padding w3-grayscale" style="padding-top:120px">
-    <div class="w3-col l205 w3-margin-bottom">
-    </div>
-    <div class="w3-col l205 m6 w3-margin-bottom">
-      <div class="w3-card-2">
-        <img src="/images/george_gao2.png" style="width:100%;min-width:250px">
-        <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
-          <h4>George Gao</h4>
-          <p class="w3-opacity w3-small">SMFOs Managing Director</p>
-          <p class="w3-small">George has more than 20 years’ experience in the financial industry. He served at China Investment Bank and CITIC Securities as a senior trader. His titles include CPA, CRFA and VP of EFX168 Financial College.</p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col l205 m6 w3-margin-bottom">
-      <div class="w3-card-2">
-        <img src="/images/gracie2.png" style="width:100%;min-width:250px">
-        <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
-          <h4>Gracie He</h4>
-          <p class="w3-opacity w3-small">SMFOs Chief Financial Officer</p>
-          <p class="w3-small">Gracie has more than 10 years' experience in professional practice of accounting and taxation in Australia, specializing in small-business tax planning, business restructuring, cross-boarder tax managing and personal tax management.</p>
-        </div>
-      </div>
-    </div>
-    <div class="w3-col l205 m6 w3-margin-bottom">
-      <div class="w3-card-2">
-        <img src="/images/vivienne2.png" style="width:100%;min-width:250px">
-        <div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
-          <h4>Vivienne Goodwin</h4>
-          <p class="w3-opacity w3-small">SMFOs Chief Legal Adviser</p>
-          <p class="w3-small">Vivienne is the founder and principal solicitor of Goodwin & Co Lawyers. Vivienne has been practising in Migration Law as a Registered Migration Agent since 2005, and in Business Law, Family Law and related Litigation since being admitted as a solicitor.</p>
-        </div>
-      </div>
-    </div>
-    </div>
-
+<div class="w3-col l205 w3-margin-bottom">
+</div>
+<div class="w3-col l205 m6 w3-margin-bottom">
+<div class="w3-card-2">
+<img src="/images/george_gao2.png" style="width:100%;min-width:250px">
+<div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
+<h4>George Gao</h4>
+<p class="w3-opacity w3-small">SMFOs Managing Director</p>
+<p class="w3-small">George has more than 20 years’ experience in the financial industry. He served at China Investment Bank and CITIC Securities as a senior trader. His titles include CPA, CRFA and VP of EFX168 Financial College.</p>
+</div>
+</div>
+</div>
+<div class="w3-col l205 m6 w3-margin-bottom">
+<div class="w3-card-2">
+<img src="/images/gracie2.png" style="width:100%;min-width:250px">
+<div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
+<h4>Gracie He</h4>
+<p class="w3-opacity w3-small">SMFOs Chief Financial Officer</p>
+<p class="w3-small">Gracie has more than 10 years' experience in professional practice of accounting and taxation in Australia, specializing in small-business tax planning, business restructuring, cross-boarder tax managing and personal tax management.</p>
+</div>
+</div>
+</div>
+<div class="w3-col l205 m6 w3-margin-bottom">
+<div class="w3-card-2">
+<img src="/images/vivienne2.png" style="width:100%;min-width:250px">
+<div class="w3-container w3-white" style="height:260px;width:100%;min-width:250px">
+<h4>Vivienne Goodwin</h4>
+<p class="w3-opacity w3-small">SMFOs Chief Legal Adviser</p>
+<p class="w3-small">Vivienne is the founder and principal solicitor of Goodwin & Co Lawyers. Vivienne has been practising in Migration Law as a Registered Migration Agent since 2005, and in Business Law, Family Law and related Litigation since being admitted as a solicitor.</p>
+</div>
+</div>
+</div>
+</div>
 <div class="w3-row" style="padding-bottom:30px">
 <div class="w3-center">
 <p><a class="w3-btn w3-light-grey w3-hover-black w3-medium" href="/our-team-en">More details</a></p>
 </div>
 </div>
 </div>
-
-
-<!-- Container (Contact Section) -->
 <div class="w3-content w3-container w3-padding-64" id="sankofa-contact">
-  <div class="w3-row w3-padding-32 w3-section">
-    <div class="w3-col m4 w3-container">
-        
-      <!-- Add Google Maps -->
-    <img src="/images/map.png" style="height:404px">
-    </div>
-    <div class="w3-col m8 w3-container w3-section">
-      <div class="w3-large w3-margin-bottom">
-          <img class="sankofa-logo-dark" src="/images/logo_orig.png"><br>
-        <i class="fa fa-map-marker w3-hover-text-black" style="width:30px"></i> Level 40, 19 Martin Pl, Sydney, NSW 2000<br>
-        <i class="fa fa-phone w3-hover-text-black" style="width:30px"></i> Phone: +61 (2) 8065 2830<br>
-          <i class="fa fa-envelope w3-hover-text-black" style="width:30px"> </i> Email: info@sankofafund.com.au<br>
-      </div>
-      <p>Swing by for a cup of coffee, or leave me a note:</p>
-        <form class="w3-container" method="post" action="/wp-content/themes/sankofafamily/msg-input.php">
-      <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-        <div class="w3-half">
-          <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="NAME" name="clientname">
-        </div>
-        <div class="w3-half">
-        <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="EMAIL" name="email">
-        </div>
-      </div>
-      <input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="MESSAGE" name="message">
-    <input type="submit" class="w3-btn w3-hover-light-grey w3-section w3-right" value="Submit">
-          </form>
-    </div>
-  </div>
+<div class="w3-row w3-padding-32 w3-section">
+<div class="w3-col m4 w3-container">
+<img src="/images/map.png" style="height:404px">
+</div>
+<div class="w3-col m8 w3-container w3-section">
+<div class="w3-large w3-margin-bottom">
+<img class="sankofa-logo-dark" src="/images/logo_orig.png"><br>
+<i class="fa fa-map-marker w3-hover-text-black" style="width:30px"></i> Level 40, 19 Martin Pl, Sydney, NSW 2000<br>
+<i class="fa fa-phone w3-hover-text-black" style="width:30px"></i> Phone: +61 (2) 8065 2830<br>
+<i class="fa fa-envelope w3-hover-text-black" style="width:30px"> </i> Email: info@sankofafund.com.au<br>
+</div>
+<p>Swing by for a cup of coffee, or leave me a note:</p>
+<form class="w3-container" method="post" action="/wp-content/themes/sankofafamily/msg-input.php">
+<div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+<div class="w3-half">
+<input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="NAME" name="clientname">
+</div>
+<div class="w3-half">
+<input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="EMAIL" name="email">
+</div>
+</div>
+<input class="w3-input w3-border w3-hover-light-grey" type="text" placeholder="MESSAGE" name="message">
+<input type="submit" class="w3-btn w3-hover-light-grey w3-section w3-right" value="Submit">
+</form>
+</div>
+</div>
 </div>
     
 <!-- Footer -->

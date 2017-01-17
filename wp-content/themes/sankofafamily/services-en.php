@@ -3,6 +3,7 @@
 /*
 Template Name: sankofa-services-en
 */
+$current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
@@ -42,87 +43,81 @@ if(!isset($_COOKIE[$cookie_name])) {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
 <ul class="w3-navbar" id="myNavbar">
-<?php echo navMenu($cookie_value); ?>
+<?php 
+echo navMenu($cookie_value);
+if ( is_user_logged_in() ) {
+    navMenuLogin(0,$current_user->user_login);
+} else {
+    navMenuLogin(0,$cookie_value);
+}
+?>
 </ul>
 </div>
 
 <div class="w3-content w3-container">
 <div class="sankofa-center w3-animate-opacity-sankofa-products">
 <div class="row w3-center">
-			
-			<a href="/sankofa-invest-en/"><div class="hexagon">
-				<div class="outer">
-					<div class="inner money-en">
-					</div>
-				</div>
-                </div></a>
-			
-			<a href="/sankofa-property-en/"><div class="hexagon even">
-				<div class="outer">
-					<div class="inner property-en">
-					</div>
-				</div>
-                </div></a>
-			
-			<a href="/sankofa-family-en/"><div class="hexagon">
-				<div class="outer">
-					<div class="inner family-en">
-					</div>
-				</div>
-                </div></a>
-    
-    <a href="/sankofa-study-en/"><div class="hexagon even">
-				<div class="outer">
-					<div class="inner study-en">
-					</div>
-				</div>
-        </div></a>		
-    
-    <a href="/sankofa-heritage-en/"><div class="hexagon">
-				<div class="outer">
-					<div class="inner heritage-en">
-					</div>
-				</div>
-        </div></a>
-			
-		</div>
-
-<div class="row w3-center">
-    
-    <a href="/sankofa-exchange-en/"><div class="hexagon">
-				<div class="outer">
-					<div class="inner forex-en">
-					</div>
-				</div>
-        </div></a>
-    
-    <a href="/sankofa-immi-en/"><div class="hexagon fixhexagon">
-				<div class="outer">
-					<div class="inner immi-en">
-					</div>
-				</div>
-        </div></a>
-    
-    <a href="/sankofa-tax-en/"><div class="hexagon fixhexagon">
-				<div class="outer">
-					<div class="inner tax-en">
-					</div>
-				</div>
-        </div></a>
-    
-		</div>
-    
-<div class="row w3-center">
-    <a href="/sankofa-trade-en/"><div class="hexagon fixhexagon">
-				<div class="outer">
-					<div class="inner trade-en">
-					</div>
-				</div>
-        </div></a>
+<a href="/sankofa-invest-en/"><div class="hexagon">
+<div class="outer">
+<div class="inner money-en">
 </div>
-    
-    </div>
-    </div>
+</div>
+</div></a>
+<a href="/sankofa-property-en/"><div class="hexagon even">
+<div class="outer">
+<div class="inner property-en">
+</div>
+</div>
+</div></a>
+<a href="/sankofa-family-en/"><div class="hexagon">
+<div class="outer">
+<div class="inner family-en">
+</div>
+</div>
+</div></a>
+<a href="/sankofa-study-en/"><div class="hexagon even">
+<div class="outer">
+<div class="inner study-en">
+</div>
+</div>
+</div></a>
+<a href="/sankofa-heritage-en/"><div class="hexagon">
+<div class="outer">
+<div class="inner heritage-en">
+</div>
+</div>
+</div></a>
+</div>
+<div class="row w3-center">
+<a href="/sankofa-exchange-en/"><div class="hexagon">
+<div class="outer">
+<div class="inner forex-en">
+</div>
+</div>
+</div></a>
+<a href="/sankofa-immi-en/"><div class="hexagon fixhexagon">
+<div class="outer">
+<div class="inner immi-en">
+</div>
+</div>
+</div></a>
+<a href="/sankofa-tax-en/"><div class="hexagon fixhexagon">
+<div class="outer">
+<div class="inner tax-en">
+</div>
+</div>
+</div></a>
+</div>
+<div class="row w3-center">
+<a href="/sankofa-trade-en/"><div class="hexagon fixhexagon">
+<div class="outer">
+<div class="inner trade-en">
+</div>
+</div>
+</div></a>
+</div>
+</div>
+</div>
     
 <!-- Footer -->
 <?php returnRights(1,"en","/services?set=zh"); ?>

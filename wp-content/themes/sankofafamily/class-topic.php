@@ -2,9 +2,9 @@
 /*
 Template Name: sankofa-class-topic
 */
+$current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
-$current_user = wp_get_current_user();
 $r = 0;
 
 if ( array_shift( $current_user->roles ) == "administrator" ):
@@ -26,7 +26,14 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
 <ul class="w3-navbar" id="myNavbar">
-<?php echo navMenu("zh"); ?>
+<?php 
+echo navMenu("zh");
+if ( is_user_logged_in() ) {
+    navMenuLogin(0,$current_user->user_login);
+} else {
+    navMenuLogin(0,"zh");
+}
+?>
 </ul>
 </div>
 
