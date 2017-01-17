@@ -54,7 +54,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 <ul class="w3-navbar" id="myNavbar">
 <?php 
 echo navMenu($cookie_value);
-if ( is_user_logged_in() ) {
+if ( $current_user->exists() ) {
     navMenuLogin(0,$current_user->user_login);
 } else {
     navMenuLogin(0,$cookie_value);

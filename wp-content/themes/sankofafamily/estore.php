@@ -53,7 +53,7 @@ var hidden1=false;var hidden2=false;var hidden3=false;setTimeout(function(){if($
 <?php
 $new_cookie_value = $cookie_value . "_estore";
 echo navMenu($new_cookie_value);
-if ( is_user_logged_in() ) {
+if ( $current_user->exists() ) {
     navMenuLogin(1,$current_user->user_login);
 } else {
     navMenuLogin(1,$cookie_value);
