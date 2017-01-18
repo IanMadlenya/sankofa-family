@@ -128,7 +128,7 @@ if ( $current_user->exists() ) {
 </div>
 <div class="w3-col m8 w3-container w3-section">
 <div class="w3-large w3-margin-bottom">
-<img class="sankofa-logo-dark" src="/images/logo_orig.png"><br>
+<img class="sankofa-logo-dark" src="/images/smfos_logo2.png"><br>
 <i class="fa fa-map-marker w3-hover-text-black" style="width:30px"></i> Level 40, 19 Martin Pl, Sydney, NSW 2000<br>
 <i class="fa fa-phone w3-hover-text-black" style="width:30px"></i> Phone: +61 (2) 8065 2830<br>
 <i class="fa fa-envelope w3-hover-text-black" style="width:30px"> </i> Email: info@sankofafund.com.au<br>
