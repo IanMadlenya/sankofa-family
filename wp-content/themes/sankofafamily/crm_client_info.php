@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-crm-client-info
@@ -32,7 +33,6 @@ $result2 = $conn->query($sql2);
 include 'calendar.php';
 $calendar = new Calendar();
 ?>
-<!DOCTYPE html>
 <html>
 <title>Sankofa CRM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -1,4 +1,4 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-downloads

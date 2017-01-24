@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-crm-client
@@ -46,7 +47,6 @@ if ($result2->num_rows > 0) {
 }
 $result2->free();
 ?>
-<!DOCTYPE html>
 <html>
 <title>Sankofa CRM</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">

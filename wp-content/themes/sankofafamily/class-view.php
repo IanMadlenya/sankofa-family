@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 /*
 Template Name: sankofa-class-view
@@ -8,8 +9,7 @@ include 'footer-rights.php';
 $r = 0;
 
 if ( array_shift( $current_user->roles ) == "administrator" ):
-?>
-<!DOCTYPE HTML>  
+?>  
 <html>
 <head>
 <title>Sankofa 家族办公室</title>
