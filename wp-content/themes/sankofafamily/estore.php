@@ -67,21 +67,21 @@ if ( $current_user->exists() ) {
 <div class="w3-third eitem1">
 <a href="#" class="estore-item1"><img src="/images/estore-icon1.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon1"></a>
 <h5>Trust Setup Service</h5>
-<div class="estore-item1-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5000</h4><p>Online Consulting Service for setting up a Discretionary Trust.</p>
+<div class="estore-item1-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5,000</h4><p>Online Consulting Service for setting up a Discretionary Trust.</p>
 <button class="estore-btn1 w3-padding" style="margin-bottom:10px">More details</button></div>
 </div>
 
 <div class="w3-third eitem2">
 <a href="#" class="estore-item2"><img src="/images/estore-icon2.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon2"></a>
 <h5>Business Study Service</h5>
-<div class="estore-item2-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5000</h4><p>Online Consulting Services for people who are interest in visiting Australia for business purposes.</p>
+<div class="estore-item2-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$10,000</h4><p>Online Consulting Services for people who are interest in visiting Australia for business purposes.</p>
 <button class="estore-btn2 w3-padding" style="margin-bottom:10px">More details</button></div>
 </div>
 
 <div class="w3-third eitem3">
 <a href="#" class="estore-item3"><img src="/images/estore-icon3.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon3"></a>
 <h5>Expression of Interest</h5>
-<div class="estore-item3-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5000</h4><p>Taking your EOI as your deposit in advance for securing your privilege of our consulting services.</p>
+<div class="estore-item3-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5,000 - AU$10,000</h4><p>Taking your EOI as your deposit in advance for securing your privilege of our consulting services.</p>
 <button class="estore-btn3 w3-padding" style="margin-bottom:10px">More details</button></div>
 </div>
 
@@ -94,7 +94,17 @@ if ( $current_user->exists() ) {
 <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
 <div class="estore-dialog-text">
 <h4>Trust Setup Service</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<p>We provide consulting service for setting up a Discretionary Trust.</p>
+<p style="margin-top:-15px">Our fees are included:</p>
+<ul>
+<li>Gathering customer information</li>
+<li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
+<li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
+<li>Accountant fees (AU$1,300 + GST)</li>
+<li>Trust stamp duty (AU$500 + GST)</li>
+<li>Consulting fees (AU$200 + GST)</li>
+</ul>
+<p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
 </div>
 <div class="w3-center">
 <button class="estore-btn1c w3-padding">Add to cart</button>
@@ -108,7 +118,14 @@ if ( $current_user->exists() ) {
 <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
 <div class="estore-dialog-text">
 <h4>Business Study Service</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<p>We provide consulting services for people who are interest in visiting Australia for business purposes.</p>
+<p style="margin-top:-15px">Our fees are included:</p>
+<ul>
+<li>Service fees (AU$3,000 approx. + GST)</li>
+<li>Hotel reservation fees (AU$5,000 approx. + GST)</li>
+<li>Flight booking fees (AU$2,000 approx. + GST)</li>
+</ul>
+<p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
 </div>
 <div class="w3-center">
 <button class="estore-btn2c w3-padding">Add to cart</button>
@@ -122,7 +139,11 @@ if ( $current_user->exists() ) {
 <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
 <div class="estore-dialog-text">
 <h4>Expression of Interest</h4>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<p>SMFOS PTY LTD also accepts deposits from customers who is going to secure their seats for our services. The EOI payment option can be customised by the client and this amount is usually between AU$5,000 and AU$10,000.</p>
+<form method="post" action="/wp-content/themes/sankofafamily/insert-crm-group.php">
+<p>Enter your amount: AU$ <input class="w3-input estore-input w3-opacity" type="text" name="city" placeholder="numbers only"></p>
+</form>
+<p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
 </div>
 <div class="w3-center">
 <button class="estore-btn3c w3-padding">Add to cart</button>
