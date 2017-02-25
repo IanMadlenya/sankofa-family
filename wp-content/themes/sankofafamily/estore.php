@@ -9,6 +9,7 @@ include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+session_start();
 
 if(!isset($_COOKIE[$cookie_name])) {
     if($lang == "zh") {
@@ -36,17 +37,11 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <script>
-var hidden1=!1,hidden2=!1,hidden3=!1;setTimeout(function(){$(".estore-bg").length>0&&$(".estore-bg").remove()},4e3),$(function(){$(".estore-item1").click(function(){0==hidden1?($(".eitem1").animate({top:"-60px"}),$(".estore-item1-hidden").fadeIn(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden1=!0):($(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden1=!1)}),$(".estore-item2").click(function(){0==hidden2?($(".eitem2").animate({top:"-60px"}),$(".estore-item2-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden2=!0):($(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden2=!1)}),$(".estore-item3").click(function(){0==hidden3?($(".eitem3").animate({top:"-60px"}),$(".estore-item3-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!0):($(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden3=!1)})}),$(document).ready(function(){$(".estore-btn1").click(function(){$(".estore-dialog1").fadeIn(500)}),$(".estore-btn2").click(function(){$(".estore-dialog2").fadeIn(500)}),$(".estore-btn3").click(function(){$(".estore-dialog3").fadeIn(500)}),$(".estore-dialog-close").click(function(){$(".estore-dialog1").fadeOut(500),$(".estore-dialog2").fadeOut(500),$(".estore-dialog3").fadeOut(500)})});
+var hidden1=!1,hidden2=!1,hidden3=!1;$(function(){$(".estore-item1").click(function(){0==hidden1?($(".eitem1").animate({top:"-60px"}),$(".estore-item1-hidden").fadeIn(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden1=!0):($(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden1=!1)}),$(".estore-item2").click(function(){0==hidden2?($(".eitem2").animate({top:"-60px"}),$(".estore-item2-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden2=!0):($(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden2=!1)}),$(".estore-item3").click(function(){0==hidden3?($(".eitem3").animate({top:"-60px"}),$(".estore-item3-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!0):($(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden3=!1)})}),$(document).ready(function(){$(".estore-btn1").click(function(){$(".estore-dialog1").fadeIn(500)}),$(".estore-btn2").click(function(){$(".estore-dialog2").fadeIn(500)}),$(".estore-btn3").click(function(){$(".estore-dialog3").fadeIn(500)}),$(".estore-dialog-close").click(function(){$(".estore-dialog1").fadeOut(500),$(".estore-dialog2").fadeOut(500),$(".estore-dialog3").fadeOut(500)})});
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
-<div class="estore-bg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-bottomleft w3-padding-large">
-    <h1 class="w3-jumbo w3-animate-bottom">Welcome to eStore</h1>
-    <p class="w3-large w3-animate-bottom">Initializing...</p>
-  </div>
-</div>
 
 <!-- Navbar (sit on top) -->
 <div class="estore-bg2 w3-top">
@@ -81,7 +76,7 @@ if ( $current_user->exists() ) {
 <div class="w3-third eitem3">
 <a href="#" class="estore-item3"><img src="/images/estore-icon3.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon3"></a>
 <h5>Expression of Interest</h5>
-<div class="estore-item3-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$5,000 - AU$10,000</h4><p>Taking your EOI as your deposit in advance for securing your privilege of our consulting services.</p>
+<div class="estore-item3-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px"><h4>AU$1,000 - AU$5,000</h4><p>Taking your EOI as your deposit in advance for securing your privilege of our consulting services.</p>
 <button class="estore-btn3 w3-padding" style="margin-bottom:10px">More details</button></div>
 </div>
 
@@ -137,16 +132,19 @@ if ( $current_user->exists() ) {
 <div class="estore-dialog-content3">
 <img src="/images/estore-icon3c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
 <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+<form method="post" action="/wp-content/themes/sankofafamily/exp_interest.php">
 <div class="estore-dialog-text">
 <h4>Expression of Interest</h4>
-<p>SMFOS PTY LTD also accepts deposits from customers who is going to secure their seats for our services. The EOI payment option can be customised by the client and this amount is usually between AU$5,000 and AU$10,000.</p>
-<form method="post" action="/wp-content/themes/sankofafamily/insert-crm-group.php">
-<p>Enter your amount: AU$ <input class="w3-input estore-input w3-opacity" type="text" name="city" placeholder="numbers only"></p>
-</form>
-<p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
+<p>SMFOS PTY LTD also accepts deposits from customers who is going to secure their seats for our services. The EOI payment option can be customised by the client and this amount is usually between AU$1,000 and AU$5,000.</p>
+<p>Enter your amount: AU$ <input class="w3-input estore-input w3-opacity" type="text" name="interest_price" placeholder="numbers only"></p>
+<?php if ($_SESSION['interest_status'] == 1) {
+    echo "<p style='color:red;'>* Please enter the correct amount.</p>";
+    $_SESSION['interest_status'] = 0;
+} ?>
 </div>
 <div class="w3-center">
-<button class="estore-btn3c w3-padding">Add to cart</button>
+<input type="submit" class="estore-btn3c w3-padding" value="Add to cart">
+</form>
 </div>
 </div>
 </div>
