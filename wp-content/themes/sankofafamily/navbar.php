@@ -11,20 +11,33 @@
         }
     }
 
-    function navMenuLogin($loginStyle, $loginLan) {
+    function navMenuLogin($loginStyle, $loginLan, $loginText) {
+        $dropdownMenu = "";
+        $loginLabel = "";
+        $loginLabelAdmin = "";
+        $loginLabelCart = "";
+        $loginLabelSignout = "";
         if($loginLan == "en") {
             $loginLabel = "Login";
+            $loginLabelAdmin = "Preferences";
+            $loginLabelCart = "Shopping Cart";
+            $loginLabelSignout = "Sign Out";
         } elseif($loginLan == "zh") {
             $loginLabel = "登录";
-        } else {
-            $loginLabel = $loginLan;
+            $loginLabelAdmin = "用户设置";
+            $loginLabelCart = "购物车";
+            $loginLabelSignout = "登出";
+        }
+        if($loginText != "") {
+            $loginLabel = $loginText;
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'>" . $loginLabelAdmin . "</a><a href='#'>" . $loginLabelCart . "</a><a href='" . wp_logout_url( home_url() ) . "'>" . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
-            echo "<li class='w3-hide-small w3-right'><a href='/wp-admin' class='w3-padding-large w3-hover-green w3-text-light-grey'>" . $loginLabel . "</a></li>";   
+            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/wp-admin' class='w3-padding-large w3-hover-green w3-text-light-grey sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";   
         } else {
             //estore
-            echo "<li class='w3-hide-small w3-right'><a href='/wp-admin' class='w3-padding-large w3-hover-green estore-nav'>" . $loginLabel . "</a></li>";
+            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/wp-admin' class='w3-padding-large w3-hover-green estore-nav sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";
         }
     }
 ?>

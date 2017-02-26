@@ -47,9 +47,9 @@ a {text-decoration: none}
 <?php 
 echo navMenu($cookie_value);
 if ( $current_user->exists() ) {
-    navMenuLogin(0,$current_user->user_login);
+    navMenuLogin(0,$cookie_value,$current_user->user_login);
 } else {
-    navMenuLogin(0,$cookie_value);
+    navMenuLogin(0,$cookie_value,"");
 }
 ?>
 </ul>

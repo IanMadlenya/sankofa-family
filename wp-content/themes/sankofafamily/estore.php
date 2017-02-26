@@ -50,9 +50,9 @@ var hidden1=!1,hidden2=!1,hidden3=!1;$(function(){$(".estore-item1").click(funct
 $new_cookie_value = $cookie_value . "_estore";
 echo navMenu($new_cookie_value);
 if ( $current_user->exists() ) {
-    navMenuLogin(1,$current_user->user_login);
+    navMenuLogin(1,$cookie_value,$current_user->user_login);
 } else {
-    navMenuLogin(1,$cookie_value);
+    navMenuLogin(1,$cookie_value,"");
 }
 ?>
 </ul>

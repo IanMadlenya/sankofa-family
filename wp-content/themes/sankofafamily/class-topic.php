@@ -29,9 +29,9 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 <?php 
 echo navMenu("zh");
 if ( $current_user->exists() ) {
-    navMenuLogin(0,$current_user->user_login);
+    navMenuLogin(0,"zh",$current_user->user_login);
 } else {
-    navMenuLogin(0,"zh");
+    navMenuLogin(0,"zh","");
 }
 ?>
 </ul>
