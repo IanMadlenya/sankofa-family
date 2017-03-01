@@ -20,6 +20,15 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<script src="/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function(){
+        $('#wechattable').DataTable({
+            "sDom": 'rtlfip'
+        });
+    });
+</script>
 </head>
 <body>  
 
@@ -61,7 +70,7 @@ $sql = "SELECT * FROM sf_wechat";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<table class='w3-table'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>性别</th><th>电话号码</th><th>微信</th><th>电子邮件</th><th>职业</th><th>添加日期</th></tr></thead><tbody>";
+    echo "<table class='w3-table' id='wechattable'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>性别</th><th>电话号码</th><th>微信</th><th>电子邮件</th><th>职业</th><th>添加日期</th></tr></thead><tbody>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
         $r = $r + 1;

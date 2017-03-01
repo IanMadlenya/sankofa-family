@@ -35,6 +35,15 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<script src="/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function(){
+        $('#downloadstable').DataTable({
+            "sDom": 'rtlfip'
+        });
+    });
+</script>
 <style>
 a {text-decoration: none}
 </style>
@@ -65,7 +74,7 @@ if ( $current_user->exists() ) {
 
 <div class="w3-text-dark-grey" style="margin-bottom:80px">
 <!-- Content -->
-    <table class="sortable w3-table">
+    <table class="sortable w3-table" id="downloadstable">
       <thead>
         <tr class="w3-black w3-text-white">
           <th>文件名</th>
