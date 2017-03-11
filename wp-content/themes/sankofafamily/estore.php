@@ -83,6 +83,54 @@ if ( $current_user->exists() ) {
 </div>
 </div>
 
+    <div class="estore-register">
+        <div class="estore-dialog-register">
+            <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
+            <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+            <div class="estore-dialog-text">
+                <h4>Trust Setup Service</h4>
+                <p>We provide consulting service for setting up a Discretionary Trust.</p>
+                <p style="margin-top:-15px">Our fees are included:</p>
+                <ul>
+                    <li>Gathering customer information</li>
+                    <li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
+                    <li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
+                    <li>Accountant fees (AU$1,300 + GST)</li>
+                    <li>Trust stamp duty (AU$500 + GST)</li>
+                    <li>Consulting fees (AU$200 + GST)</li>
+                </ul>
+                <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
+            </div>
+            <div class="w3-center">
+                <button class="estore-btn1c w3-padding">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="estore-cart">
+        <div class="estore-dialog-cart">
+            <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
+            <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+            <div class="estore-dialog-text">
+                <h4>Trust Setup Service</h4>
+                <p>We provide consulting service for setting up a Discretionary Trust.</p>
+                <p style="margin-top:-15px">Our fees are included:</p>
+                <ul>
+                    <li>Gathering customer information</li>
+                    <li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
+                    <li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
+                    <li>Accountant fees (AU$1,300 + GST)</li>
+                    <li>Trust stamp duty (AU$500 + GST)</li>
+                    <li>Consulting fees (AU$200 + GST)</li>
+                </ul>
+                <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
+            </div>
+            <div class="w3-center">
+                <button class="estore-btn1c w3-padding">Add to cart</button>
+            </div>
+        </div>
+    </div>
+
 <div class="estore-dialog1">
 <div class="estore-dialog-content1">
 <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
