@@ -85,10 +85,9 @@ if ( $current_user->exists() ) {
 
     <div class="estore-register">
         <div class="estore-dialog-register">
-            <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <div class="estore-dialog-text">
-                <h4>Trust Setup Service</h4>
+            <div style="margin-left:15px">
+                <h4>用户注册</h4>
                 <p>We provide consulting service for setting up a Discretionary Trust.</p>
                 <p style="margin-top:-15px">Our fees are included:</p>
                 <ul>
@@ -192,8 +191,8 @@ if ( $current_user->exists() ) {
 </div>
 <div class="w3-center">
 <input type="submit" class="estore-btn3c w3-padding" value="Add to cart">
-</form>
 </div>
+</form>
 </div>
 </div>
 
