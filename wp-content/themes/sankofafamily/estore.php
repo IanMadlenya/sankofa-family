@@ -120,14 +120,20 @@ if ( $current_user->exists() ) {
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
             <form>
                 <h4>Registration</h4>
-                <div class="w3-center">
+                <p>个人信息</p>
+                <div class="w3-center" style="margin-bottom:30px">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="电子邮件"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="确认密码"></p>
+                </div>
+                <p>信用卡资料</p>
+                <div class="w3-center" style="margin-bottom:30px">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="姓名 (同信用卡号)"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="信用卡号码"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="到期年月 (MM/YY)"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="CVV"></p>
+                </div>
+                <div class="w3-center">
                 <p style="font-size:13px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示着您已阅读本服务之条款与使用须知</a></p>
                 <button class="estore-btn-confirm w3-padding">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                 </div>
