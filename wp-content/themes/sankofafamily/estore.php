@@ -87,15 +87,30 @@ if ( $current_user->exists() ) {
         <div class="estore-dialog-login">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
             <form>
-            <div style="margin-left:15px">
                 <h4>Login</h4>
-                <p><input class="w3-input estore-input w3-opacity" type="text" name="" placeholder="numbers only"></p>
-                <p><input class="w3-input estore-input w3-opacity" type="text" name="" placeholder="numbers only"></p>
-                <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
-            </div>
-            <div class="w3-center">
-                <button class="estore-btn1c w3-padding">登录</button>
-            </div>
+                <div class="w3-center">
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
+                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
+                <button class="estore-btn-confirm w3-padding">登录 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="estore-forgotpw">
+        <div class="estore-dialog-forgotpw">
+            <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+            <form>
+                <h4>Login</h4>
+                <div class="w3-center">
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
+                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
+                <button class="estore-btn-confirm w3-padding">登录 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                </div>
             </form>
         </div>
     </div>
@@ -103,23 +118,20 @@ if ( $current_user->exists() ) {
     <div class="estore-register">
         <div class="estore-dialog-register">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <div style="margin-left:15px">
-                <h4>注册新用户</h4>
-                <p>We provide consulting service for setting up a Discretionary Trust.</p>
-                <p style="margin-top:-15px">Our fees are included:</p>
-                <ul>
-                    <li>Gathering customer information</li>
-                    <li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
-                    <li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
-                    <li>Accountant fees (AU$1,300 + GST)</li>
-                    <li>Trust stamp duty (AU$500 + GST)</li>
-                    <li>Consulting fees (AU$200 + GST)</li>
-                </ul>
-                <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
-            </div>
-            <div class="w3-center">
-                <button class="estore-btn1c w3-padding">Add to cart</button>
-            </div>
+            <form>
+                <h4>Registration</h4>
+                <div class="w3-center">
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="电子邮件"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="确认密码"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="姓名 (同信用卡号)"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="信用卡号码"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="到期年月 (MM/YY)"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="CVV"></p>
+                <p style="font-size:13px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示着您已阅读本服务之条款与使用须知</a></p>
+                <button class="estore-btn-confirm w3-padding">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -146,28 +158,16 @@ if ( $current_user->exists() ) {
             </div>
         </div>
     </div>
-
-    <div class="estore-success">
+    
+        <div class="estore-success">
         <div class="estore-dialog-success">
-            <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <div class="estore-dialog-text">
-                <h4>Trust Setup Service</h4>
-                <p>We provide consulting service for setting up a Discretionary Trust.</p>
-                <p style="margin-top:-15px">Our fees are included:</p>
-                <ul>
-                    <li>Gathering customer information</li>
-                    <li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
-                    <li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
-                    <li>Accountant fees (AU$1,300 + GST)</li>
-                    <li>Trust stamp duty (AU$500 + GST)</li>
-                    <li>Consulting fees (AU$200 + GST)</li>
-                </ul>
-                <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
-            </div>
-            <div class="w3-center">
-                <button class="estore-btn1c w3-padding">Add to cart</button>
-            </div>
+                <h4>Success</h4>
+                <div class="w3-center">
+                <img src="/images/checked.png" style="width:70%">
+                <p>注册成功!</p>
+                <button class="estore-btn w3-padding">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                </div>
         </div>
     </div>
 
