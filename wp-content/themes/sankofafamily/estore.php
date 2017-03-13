@@ -37,7 +37,46 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
 <script>
-var hidden1=!1,hidden2=!1,hidden3=!1;$(function(){$(".estore-item1").click(function(){0==hidden1?($(".eitem1").animate({top:"-60px"}),$(".estore-item1-hidden").fadeIn(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden1=!0):($(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden1=!1)}),$(".estore-item2").click(function(){0==hidden2?($(".eitem2").animate({top:"-60px"}),$(".estore-item2-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden2=!0):($(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden2=!1)}),$(".estore-item3").click(function(){0==hidden3?($(".eitem3").animate({top:"-60px"}),$(".estore-item3-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!0):($(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden3=!1)})}),$(document).ready(function(){$(".estore-btn1").click(function(){$(".estore-dialog1").fadeIn(500)}),$(".estore-btn2").click(function(){$(".estore-dialog2").fadeIn(500)}),$(".estore-btn3").click(function(){$(".estore-dialog3").fadeIn(500)}),$(".estore-dialog-close").click(function(){$(".estore-dialog1").fadeOut(500),$(".estore-dialog2").fadeOut(500),$(".estore-dialog3").fadeOut(500)})});
+    var hidden1 = false;
+    var hidden2 = false;
+    var hidden3 = false;
+
+    $(function() {
+        $('.estore-item1').click(function() {
+            if(hidden1 == false) {
+                $('.eitem1').animate({top: "-60px"});
+                $('.estore-item1-hidden').fadeIn(500);
+                hidden1 = true;
+            } else {
+                $('.eitem1').animate({top: "0"});
+                $('.estore-item1-hidden').fadeOut(500);
+                hidden1 = false;
+            }
+        });
+        $('.estore-item2').click(function() {
+            if(hidden2 == false) {
+                $('.eitem2').animate({top: "-60px"});
+                $('.estore-item2-hidden').fadeIn(500);
+                hidden2 = true;
+            } else {
+                $('.eitem2').animate({top: "0"});
+                $('.estore-item2-hidden').fadeOut(500);
+                hidden2 = false;
+            }
+        });
+        $('.estore-item3').click(function() {
+            if(hidden3 == false) {
+                $('.eitem3').animate({top: "-60px"});
+                $('.estore-item3-hidden').fadeIn(500);
+                hidden3 = true;
+            } else {
+                $('.eitem3').animate({top: "0"});
+                $('.estore-item3-hidden').fadeOut(500);
+                hidden3 = false;
+            }
+        });
+    });
+//var hidden1=!1,hidden2=!1,hidden3=!1;$(function(){$(".estore-item1").click(function(){0==hidden1?($(".eitem1").animate({top:"-60px"}),$(".estore-item1-hidden").fadeIn(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden1=!0):($(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden1=!1)}),$(".estore-item2").click(function(){0==hidden2?($(".eitem2").animate({top:"-60px"}),$(".estore-item2-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden2=!0):($(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden2=!1)}),$(".estore-item3").click(function(){0==hidden3?($(".eitem3").animate({top:"-60px"}),$(".estore-item3-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!0):($(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden3=!1)})}),$(document).ready(function(){$(".estore-btn1").click(function(){$(".estore-dialog1").fadeIn(500)}),$(".estore-btn2").click(function(){$(".estore-dialog2").fadeIn(500)}),$(".estore-btn3").click(function(){$(".estore-dialog3").fadeIn(500)}),$(".estore-dialog-close").click(function(){$(".estore-dialog1").fadeOut(500),$(".estore-dialog2").fadeOut(500),$(".estore-dialog3").fadeOut(500)})});
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
