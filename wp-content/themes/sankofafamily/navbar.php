@@ -18,19 +18,19 @@
         $loginLabelCart = "";
         $loginLabelSignout = "";
         if($loginLan == "en") {
-            $loginLabel = "Login";
+            $loginLabel = "<span class='glyphicon glyphicon-log-in'></span> Login";
             $loginLabelAdmin = "Preferences";
             $loginLabelCart = "Shopping Cart";
             $loginLabelSignout = "Sign Out";
         } elseif($loginLan == "zh") {
-            $loginLabel = "登录";
+            $loginLabel = "<span class='glyphicon glyphicon-log-in'></span> 登录";
             $loginLabelAdmin = "用户设置";
             $loginLabelCart = "购物车";
             $loginLabelSignout = "登出";
         }
         if($loginText != "") {
-            $loginLabel = $loginText;
-            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'>" . $loginLabelAdmin . "</a><a href='#'>" . $loginLabelCart . "</a><a href='" . wp_logout_url( home_url() ) . "'>" . $loginLabelSignout . "</a></div>";
+            $loginLabel = "<span class='glyphicon glyphicon-user'></span> " . $loginText;
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog'></span> " . $loginLabelAdmin . "</a><a href='#'><span class='glyphicon glyphicon-shopping-cart'></span> " . $loginLabelCart . "</a><a href='" . wp_logout_url( home_url() ) . "'><span class='glyphicon glyphicon-log-out'></span> " . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
