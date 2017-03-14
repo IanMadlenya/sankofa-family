@@ -18,26 +18,26 @@
         $loginLabelCart = "";
         $loginLabelSignout = "";
         if($loginLan == "en") {
-            $loginLabel = "<span class='glyphicon glyphicon-log-in'></span> Login";
+            $loginLabel = "<span class='glyphicon glyphicon-log-in' style='margin-right:10px'></span>Login";
             $loginLabelAdmin = "Preferences";
             $loginLabelCart = "Shopping Cart";
             $loginLabelSignout = "Sign Out";
         } elseif($loginLan == "zh") {
-            $loginLabel = "<span class='glyphicon glyphicon-log-in'></span> 登录";
+            $loginLabel = "<span class='glyphicon glyphicon-log-in' style='margin-right:10px'></span>登录";
             $loginLabelAdmin = "用户设置";
             $loginLabelCart = "购物车";
             $loginLabelSignout = "登出";
         }
         if($loginText != "") {
-            $loginLabel = "<span class='glyphicon glyphicon-user'></span> " . $loginText;
-            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog'></span> " . $loginLabelAdmin . "</a><a href='#'><span class='glyphicon glyphicon-shopping-cart'></span> " . $loginLabelCart . "</a><a href='" . wp_logout_url( home_url() ) . "'><span class='glyphicon glyphicon-log-out'></span> " . $loginLabelSignout . "</a></div>";
+            $loginLabel = "<span class='glyphicon glyphicon-user' style='margin-right:10px'></span>" . $loginText;
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='#'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='" . wp_logout_url( home_url() ) . "'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
-            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/wp-admin' class='w3-padding-large w3-hover-green w3-text-light-grey sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";   
+            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/estore?login' class='w3-padding-large w3-hover-green w3-text-light-grey sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";   
         } else {
             //estore
-            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/wp-admin' class='w3-padding-large w3-hover-green estore-nav sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";
+            echo "<li class='w3-hide-small w3-right sf-dropdown'><a href='/estore?login' class='w3-padding-large w3-hover-green estore-nav sf-dropbtn'>" . $loginLabel . "</a>" . $dropdownMenu . "</li>";
         }
     }
 ?>

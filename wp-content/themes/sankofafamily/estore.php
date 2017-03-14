@@ -46,6 +46,10 @@ if(!isset($_COOKIE[$cookie_name])) {
             if(hidden1 == false) {
                 $('.eitem1').animate({top: "-60px"});
                 $('.estore-item1-hidden').fadeIn(500);
+                $('.eitem2').animate({top: "0"});
+                $('.estore-item2-hidden').fadeOut(500);
+                $('.eitem3').animate({top: "0"});
+                $('.estore-item3-hidden').fadeOut(500);
                 hidden1 = true;
             } else {
                 $('.eitem1').animate({top: "0"});
@@ -57,6 +61,10 @@ if(!isset($_COOKIE[$cookie_name])) {
             if(hidden2 == false) {
                 $('.eitem2').animate({top: "-60px"});
                 $('.estore-item2-hidden').fadeIn(500);
+                $('.eitem1').animate({top: "0"});
+                $('.estore-item1-hidden').fadeOut(500);
+                $('.eitem3').animate({top: "0"});
+                $('.estore-item3-hidden').fadeOut(500);
                 hidden2 = true;
             } else {
                 $('.eitem2').animate({top: "0"});
@@ -68,6 +76,10 @@ if(!isset($_COOKIE[$cookie_name])) {
             if(hidden3 == false) {
                 $('.eitem3').animate({top: "-60px"});
                 $('.estore-item3-hidden').fadeIn(500);
+                $('.eitem1').animate({top: "0"});
+                $('.estore-item1-hidden').fadeOut(500);
+                $('.eitem2').animate({top: "0"});
+                $('.estore-item2-hidden').fadeOut(500);
                 hidden3 = true;
             } else {
                 $('.eitem3').animate({top: "0"});
@@ -75,8 +87,48 @@ if(!isset($_COOKIE[$cookie_name])) {
                 hidden3 = false;
             }
         });
+        $(".estore-btn1").click(function(){
+            $(".estore-dialog1").fadeIn(500)
+        });
+        $(".estore-btn2").click(function(){
+            $(".estore-dialog2").fadeIn(500)
+        });
+        $(".estore-btn3").click(function(){
+            $(".estore-dialog3").fadeIn(500)
+        });
+        $(".estore-dialog-close").click(function(){
+            $(".estore-dialog1").fadeOut(500),
+            $(".estore-dialog2").fadeOut(500),
+            $(".estore-dialog3").fadeOut(500),
+            $(".estore-login").fadeOut(500),
+            $(".estore-forgotpw").fadeOut(500),
+            $(".estore-register").fadeOut(500),
+            $(".estore-cart").fadeOut(500),
+            $(".estore-success").fadeOut(500)
+        });
+        $("#registerbtn").click(function(){
+            $(".estore-login").fadeOut(500),
+            $(".estore-register").fadeIn(500)
+        });
     });
-//var hidden1=!1,hidden2=!1,hidden3=!1;$(function(){$(".estore-item1").click(function(){0==hidden1?($(".eitem1").animate({top:"-60px"}),$(".estore-item1-hidden").fadeIn(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden1=!0):($(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden1=!1)}),$(".estore-item2").click(function(){0==hidden2?($(".eitem2").animate({top:"-60px"}),$(".estore-item2-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden3=!1,$(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden2=!0):($(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden2=!1)}),$(".estore-item3").click(function(){0==hidden3?($(".eitem3").animate({top:"-60px"}),$(".estore-item3-hidden").fadeIn(500),hidden1=!1,$(".eitem1").animate({top:"0"}),$(".estore-item1-hidden").fadeOut(500),hidden2=!1,$(".eitem2").animate({top:"0"}),$(".estore-item2-hidden").fadeOut(500),hidden3=!0):($(".eitem3").animate({top:"0"}),$(".estore-item3-hidden").fadeOut(500),hidden3=!1)})}),$(document).ready(function(){$(".estore-btn1").click(function(){$(".estore-dialog1").fadeIn(500)}),$(".estore-btn2").click(function(){$(".estore-dialog2").fadeIn(500)}),$(".estore-btn3").click(function(){$(".estore-dialog3").fadeIn(500)}),$(".estore-dialog-close").click(function(){$(".estore-dialog1").fadeOut(500),$(".estore-dialog2").fadeOut(500),$(".estore-dialog3").fadeOut(500)})});
+    
+    $(document).ready(function(){
+        <?php if(isset($_GET['login'])) { ?>
+        $(".estore-login").fadeIn(500);
+        <?php } ?>
+    });
+    
+    function buyTrustSetup(){
+        window.open("/estore?login","_self")
+    }
+    
+    function buyBusinessStudy(){
+        window.open("/estore?login","_self")
+    }
+    
+    function buyExpression(){
+        window.open("/estore?login","_self")
+    }
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
@@ -130,53 +182,43 @@ if ( $current_user->exists() ) {
                 <div class="w3-center">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
-                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
-                <button class="estore-btn-confirm w3-padding">登录 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
                 </div>
             </form>
+                <div class="w3-center">
+                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" id="registerbtn"><span class="glyphicon glyphicon-user"></span> 新用户注册</button>
+                <button class="estore-btn-confirm w3-padding"><span class="glyphicon glyphicon-circle-arrow-right"></span> 登录</button>
+                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                </div>
         </div>
     </div>
     
     <div class="estore-forgotpw">
         <div class="estore-dialog-forgotpw">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <form>
+            <form id="loginform">
                 <h4>Login</h4>
                 <div class="w3-center">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
-                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
-                <button class="estore-btn-confirm w3-padding">登录 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
                 </div>
             </form>
+                <div class="w3-center">
+                <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
+                <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit">登录 <span class="glyphicon glyphicon-log-in"></span></button>
+                <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                </div>
         </div>
     </div>
 
     <div class="estore-register">
         <div class="estore-dialog-register">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <form>
-                <h4>Registration</h4>
-                <p>个人信息</p>
-                <div class="w3-center" style="margin-bottom:30px">
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="电子邮件"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="确认密码"></p>
-                </div>
-                <p>信用卡资料</p>
-                <div class="w3-center" style="margin-bottom:30px">
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="姓名 (同信用卡号)"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="信用卡号码"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="到期年月 (MM/YY)"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="CVV"></p>
-                </div>
-                <div class="w3-center">
-                <p style="font-size:13px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示着您已阅读本服务之条款与使用须知</a></p>
-                <button class="estore-btn-confirm w3-padding">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-                </div>
-            </form>
+            <h4>Registration</h4>
+            <iframe src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:480px"></iframe>
+            <div class="w3-center">
+                <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
+                <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 确定</button>
+            </div>
         </div>
     </div>
 
@@ -235,7 +277,7 @@ if ( $current_user->exists() ) {
 <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
 </div>
 <div class="w3-center">
-<button class="estore-btn1c w3-padding">Add to cart</button>
+<button class="estore-btn1c w3-padding" onclick="buyTrustSetup()">Add to cart</button>
 </div>
 </div>
 </div>
@@ -256,7 +298,7 @@ if ( $current_user->exists() ) {
 <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
 </div>
 <div class="w3-center">
-<button class="estore-btn2c w3-padding">Add to cart</button>
+<button class="estore-btn2c w3-padding" onclick="buyBusinessStudy()">Add to cart</button>
 </div>
 </div>
 </div>
@@ -265,20 +307,21 @@ if ( $current_user->exists() ) {
 <div class="estore-dialog-content3">
 <img src="/images/estore-icon3c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
 <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-<form method="post" action="/wp-content/themes/sankofafamily/exp_interest.php">
+<!-- <form method="post" action="/wp-content/themes/sankofafamily/exp_interest.php"> -->
 <div class="estore-dialog-text">
 <h4>Expression of Interest</h4>
 <p>SMFOS PTY LTD also accepts deposits from customers who is going to secure their seats for our services. The EOI payment option can be customised by the client and this amount is usually between AU$1,000 and AU$5,000.</p>
 <p>Enter your amount: AU$ <input class="w3-input estore-input w3-opacity" type="text" name="interest_price" placeholder="numbers only"></p>
-<?php if ($_SESSION['interest_status'] == 1) {
+<?php /*if ($_SESSION['interest_status'] == 1) {
     echo "<p style='color:red;'>* Please enter the correct amount.</p>";
     $_SESSION['interest_status'] = 0;
-} ?>
+}*/ ?>
 </div>
 <div class="w3-center">
-<input type="submit" class="estore-btn3c w3-padding" value="Add to cart">
+<button class="estore-btn3c w3-padding" onclick="buyExpression()">Add to cart</button>
+<!-- <input type="submit" class="estore-btn3c w3-padding" value="Add to cart"> -->
 </div>
-</form>
+<!-- </form> -->
 </div>
 </div>
 
