@@ -217,7 +217,7 @@ if ( $current_user->exists() ) {
             <iframe src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:480px"></iframe>
             <div class="w3-center">
                 <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
-                <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 确定</button>
+                <button class="estore-btn-confirm w3-padding" type="submit" form="regform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 确定</button>
             </div>
         </div>
     </div>
