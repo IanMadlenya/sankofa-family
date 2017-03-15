@@ -11,6 +11,9 @@ $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 session_start();
 
+$successmsg = "";
+$errormsg = "";
+
 if(!isset($_COOKIE[$cookie_name])) {
     if($lang == "zh") {
         $cookie_value = "zh";
@@ -104,18 +107,33 @@ if(!isset($_COOKIE[$cookie_name])) {
             $(".estore-forgotpw").fadeOut(500),
             $(".estore-register").fadeOut(500),
             $(".estore-cart").fadeOut(500),
-            $(".estore-success").fadeOut(500)
+            $(".estore-success").fadeOut(500),
+            $(".estore-error").fadeOut(500)
         });
         $("#registerbtn").click(function(){
             $(".estore-login").fadeOut(500),
             $(".estore-register").fadeIn(500)
         });
+        $("#successbtn").click(function(){
+            $(".estore-success").fadeOut(500)
+        });
+        $("#errorbtn").click(function(){
+            $(".estore-error").fadeOut(500)
+        });
     });
     
     $(document).ready(function(){
         <?php if(isset($_GET['login'])) { ?>
-        $(".estore-login").fadeIn(500);
-        <?php } ?>
+            $(".estore-login").fadeIn(500);
+        <?php unset($_GET['login']); }
+        if(isset($_GET['successreg'])) {
+            $successmsg = "注册成功！请登录帐号"; ?>
+            $(".estore-success").fadeIn(500);
+        <?php unset($_GET['successreg']); }
+        if(isset($_GET['errorreg'])) {
+            $errormsg = "注册失败，请联系管理员"; ?>
+            $(".estore-error").fadeIn(500);
+        <?php unset($_GET['errorreg']); } ?>
     });
     
     function buyTrustSetup(){
@@ -129,6 +147,38 @@ if(!isset($_COOKIE[$cookie_name])) {
     function buyExpression(){
         window.open("/estore?login","_self")
     }
+    
+    function validateLogin(){
+            var useremail = $('#loginname').val();
+            var userpwd = $('#loginpwd').val();
+
+            if((!isValidEmailAddress(useremail)) || (!useremail)) {
+                alert("请检查用户名是否输入正确，且不能为空");
+                $('#loginname').css('background-color','#e08283');
+                $('#loginname').css('border-color','#FF0000');
+                $('#loginname').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#loginpwd').css('background-color','');
+                $('#loginpwd').css('border-color','');
+                $('#loginpwd').css('box-shadow','');
+                return false;
+            } else if(!userpwd) {
+                alert("密码不能为空");
+                $('#loginname').css('background-color','');
+                $('#loginname').css('border-color','');
+                $('#loginname').css('box-shadow','');
+                $('#loginpwd').css('background-color','#e08283');
+                $('#loginpwd').css('border-color','#FF0000');
+                $('#loginpwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                return false;
+            } else {
+                return true;
+            }
+        }
+    
+    function isValidEmailAddress(emailAddress) {
+            var pattern = /^([a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+(\.[a-z\d!#$%&'*+\-\/=?^_`{|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+)*|"((([ \t]*\r\n)?[ \t]+)?([\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*(([ \t]*\r\n)?[ \t]+)?")@(([a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\d\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.)+([a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF][a-z\d\-._~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]*[a-z\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])\.?$/i;
+            return pattern.test(emailAddress);
+        }
 </script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
@@ -177,16 +227,16 @@ if ( $current_user->exists() ) {
     <div class="estore-login">
         <div class="estore-dialog-login">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <form>
                 <h4>Login</h4>
+                <form id="loginform" action="/wp-content/themes/sankofafamily/es-login.php" onsubmit="return validateLogin()" method="post">
                 <div class="w3-center">
-                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
-                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="text" name="loginname" id="loginname" placeholder="用户名"></p>
+                <p><input class="w3-input estore-input-login w3-opacity" type="password" name="loginpwd" id="loginpwd" placeholder="密码"></p>
                 </div>
-            </form>
+                </form>
                 <div class="w3-center">
                 <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" id="registerbtn"><span class="glyphicon glyphicon-user"></span> 新用户注册</button>
-                <button class="estore-btn-confirm w3-padding"><span class="glyphicon glyphicon-circle-arrow-right"></span> 登录</button>
+                <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 登录</button>
                 <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
                 </div>
         </div>
@@ -195,7 +245,7 @@ if ( $current_user->exists() ) {
     <div class="estore-forgotpw">
         <div class="estore-dialog-forgotpw">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-            <form id="loginform">
+            <form>
                 <h4>Login</h4>
                 <div class="w3-center">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
@@ -214,11 +264,7 @@ if ( $current_user->exists() ) {
         <div class="estore-dialog-register">
             <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
             <h4>Registration</h4>
-            <iframe src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:480px"></iframe>
-            <div class="w3-center">
-                <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
-                <button class="estore-btn-confirm w3-padding" type="submit" form="regform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 确定</button>
-            </div>
+            <iframe src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:540px"></iframe>
         </div>
     </div>
 
@@ -252,8 +298,20 @@ if ( $current_user->exists() ) {
                 <h4>Success</h4>
                 <div class="w3-center">
                 <img src="/images/checked.png" style="width:70%">
-                <p>注册成功!</p>
-                <button class="estore-btn w3-padding">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                <p><?php echo $successmsg; ?></p>
+                <button class="estore-btn w3-padding" id="successbtn">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                </div>
+        </div>
+    </div>
+    
+    <div class="estore-error">
+        <div class="estore-dialog-success">
+            <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+                <h4>Error</h4>
+                <div class="w3-center">
+                <img src="/images/cancel.png" style="width:70%">
+                <p><?php echo $errormsg; ?></p>
+                <button class="estore-btn w3-padding" id="errorbtn">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
                 </div>
         </div>
     </div>

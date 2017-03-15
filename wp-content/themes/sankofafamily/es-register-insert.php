@@ -16,20 +16,20 @@ if ($mysqli->connect_errno) {
     $password = $mysqli->real_escape_string($_REQUEST['espwd']);
     $cardholder = $mysqli->real_escape_string($_REQUEST['cardholder']);
     $cardexpiry = $mysqli->real_escape_string($_REQUEST['cardexpiry']);
-    $cardnumber = $mysqli->real_escape_string($_REQUEST['cardnumber']);
-    $cardcvv = $mysqli->real_escape_string($_REQUEST['cardcvv']);
+    $cardnumber = (int)($mysqli->real_escape_string($_REQUEST['cardnumber']));
+    $cardcvv = (int)($mysqli->real_escape_string($_REQUEST['cardcvv']));
     $birthdate = $_REQUEST['birthdate'];
     $address = $mysqli->real_escape_string($_REQUEST['address']);
     $state = $mysqli->real_escape_string($_REQUEST['state']);
     $country = $mysqli->real_escape_string($_REQUEST['country']);
     
     // attempt insert query execution
-    $query = "INSERT INTO cs_users (Username, Password, CardHolder, CardNo, CardExpiry, CVV, CreatedDate, Dob, Address, Country) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', '" . $cardholder . "', " . $cardnumber . ", '" . $cardexpiry . "', " . $cardcvv . ", NOW(), " . $birthdate . ", '" . $address . "', '" . $country . "');";
+    $query = "INSERT INTO cs_users (Username, Password, CardHolder, CardNo, CardExpiry, CVV, CreatedDate, Dob, Address, Country) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', '" . $cardholder . "', " . $cardnumber . ", '" . $cardexpiry . "', " . $cardcvv . ", NOW(), '" . $birthdate . "', '" . $address . "', '" . $country . "');";
     $result = $mysqli->query($query);
 
     if($result) {
-        header('Location: /estore');
+        header( 'Location: /estore?successreg' );
     } else {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        header( 'Location: /estore?errorreg' );
     }
 ?>
