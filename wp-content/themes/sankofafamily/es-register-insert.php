@@ -4,48 +4,32 @@ server with default setting (user 'root' with no password) */
 session_start();
 
 include 'sf-passwd.php';
-$link = mysqli_connect($servername, $username, $password, $dbname);
+$mysqli = new mysqli($servername, $username, $password, $dbname);
  
 // Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
 }
 
-// Required field names
-$required = array('group_no', 'client_name', 'ref_id_bg', 'ref_id_bdm', 'ref_id_upper', 'city');
-
-// Loop over field names, make sure each one exists and is not empty
-$error = false;
-foreach($required as $field) {
-  if (empty($_POST[$field])) {
-    $error = true;
-  }
-}
-
-if ($error) {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-} else {
     // Escape user inputs for security
-    $group_no = mysqli_real_escape_string($link, $_POST['group_no']);
-    $ref_id = mysqli_real_escape_string($link, $_POST['ref_id']);
-    $ref_id_bg = mysqli_real_escape_string($link, $_POST['ref_id_bg']);
-    $ref_id_bdm = mysqli_real_escape_string($link, $_POST['ref_id_bdm']);
-    $ref_id_upper = mysqli_real_escape_string($link, $_POST['ref_id_upper']);
-    $city = mysqli_real_escape_string($link, $_POST['city']);
-    $client_name = mysqli_real_escape_string($link, $_POST['client_name']);
+    $username = $mysqli->real_escape_string($_REQUEST['username']);
+    $password = $mysqli->real_escape_string($_REQUEST['espwd']);
+    $cardholder = $mysqli->real_escape_string($_REQUEST['cardholder']);
+    $cardexpiry = $mysqli->real_escape_string($_REQUEST['cardexpiry']);
+    $cardnumber = $mysqli->real_escape_string($_REQUEST['cardnumber']);
+    $cardcvv = $mysqli->real_escape_string($_REQUEST['cardcvv']);
+    $birthdate = $_REQUEST['birthdate'];
+    $address = $mysqli->real_escape_string($_REQUEST['address']);
+    $state = $mysqli->real_escape_string($_REQUEST['state']);
+    $country = $mysqli->real_escape_string($_REQUEST['country']);
     
     // attempt insert query execution
-    $sql = "INSERT INTO sf_crm_client_group (group_id, ref_id_referral, ref_id_manage, ref_id_support, ref_id_upper, city) VALUES ('$group_no', '$ref_id_bdm', '$ref_id', '$ref_id_bg', '$ref_id_upper', '$city');";
-    $sql .= "INSERT INTO sf_crm_client_info (client_name, group_id) VALUES ('$client_name', '$group_no')";
-    if(mysqli_multi_query($link, $sql)){
-        $_SESSION['crm_group_status'] = $crm_group_status_success;
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-    } else{
-        $_SESSION['crm_group_status'] = $crm_group_status_failed;
+    $query = "INSERT INTO cs_users (Username, Password, CardHolder, CardNo, CardExpiry, CVV, CreatedDate, Dob, Address, Country) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', '" . $cardholder . "', " . $cardnumber . ", '" . $cardexpiry . "', " . $cardcvv . ", NOW(), " . $birthdate . ", '" . $address . "', '" . $country . "');";
+    $result = $mysqli->query($query);
+
+    if($result) {
+        header('Location: /estore');
+    } else {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
- 
-    // close connection
-    mysqli_close($link);
-}
 ?>

@@ -11,11 +11,40 @@
             var userpwd = $('#espwd').val();
             var cuserpwd = $('#cespwd').val();
 
-            if(!isValidEmailAddress(useremail)) {
+            if((!isValidEmailAddress(useremail)) || (!useremail)) {
+                alert("请检查电子邮件是否输入正确");
+                $('#username').css('border-color','#FF0000');
+                $('#username').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#espwd').css('border-color','');
+                $('#espwd').css('box-shadow','');
+                $('#cespwd').css('border-color','');
+                $('#cespwd').css('box-shadow','');
                 return false;
             } else if(!userpwd) {
+                alert("密码不能为空");
+                $('#username').css('border-color','');
+                $('#username').css('box-shadow','');
+                $('#espwd').css('border-color','#FF0000');
+                $('#espwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#cespwd').css('border-color','');
+                $('#cespwd').css('box-shadow','');
                 return false;
+            } else if(!cuserpwd) {
+                alert("请确认密码");
+                $('#username').css('border-color','');
+                $('#username').css('box-shadow','');
+                $('#espwd').css('border-color','');
+                $('#espwd').css('box-shadow','');
+                $('#cespwd').css('border-color','#FF0000');
+                $('#cespwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
             } else if(userpwd != cuserpwd) {
+                alert("密码不一致，请重新输入");
+                $('#username').css('border-color','');
+                $('#username').css('box-shadow','');
+                $('#espwd').css('border-color','#FF0000');
+                $('#espwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#cespwd').css('border-color','#FF0000');
+                $('#cespwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
             } else {
                 return true;
