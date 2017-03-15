@@ -134,7 +134,15 @@ if(!isset($_COOKIE[$cookie_name])) {
         if(isset($_GET['errorreg'])) {
             $errormsg = "注册失败，请联系管理员"; ?>
             $(".estore-error").fadeIn(500);
-        <?php unset($_GET['errorreg']); } ?>
+        <?php unset($_GET['errorreg']); }
+        if(isset($_GET['successlogin'])) {
+            $successmsg = "登录成功!"; ?>
+            $(".estore-success").fadeIn(500);
+        <?php unset($_GET['successlogin']); }
+        if(isset($_GET['errorlogin'])) {
+            $errormsg = "登录失败，请联系管理员"; ?>
+            $(".estore-error").fadeIn(500);
+        <?php unset($_GET['errorlogin']); } ?>
     });
     
     function buyTrustSetup(){

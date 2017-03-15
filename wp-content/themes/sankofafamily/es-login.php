@@ -22,10 +22,9 @@ $result = $mysqli->query($query);
 if(($result) && ($result->num_rows !== 0)){
     $row = $result->fetch_assoc();
     $_SESSION['esuser'] = $row['Id'];
-    //$_SESSION['esdate'] = 
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    $_SESSION['esdate'] = time();
+    header( 'Location: /estore?successlogin' );
 } else {
-    unset($_SESSION['esuser']);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header( 'Location: /estore?errorlogin' );
 }
 ?>
