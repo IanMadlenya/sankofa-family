@@ -3,7 +3,6 @@
 /*
 Template Name: sankofa-estore
 */
-$current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
@@ -15,7 +14,7 @@ if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
     unset($_SESSION['esusername']);
     unset($_SESSION['esuserid']);
     unset($_SESSION['esdate']);
-    header( 'Location: /estore?login' );
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 $successmsg = "";
@@ -146,6 +145,9 @@ if(!isset($_COOKIE[$cookie_name])) {
             $(".estore-login").fadeIn(500);
             $("#errloginmsg").show();
         <?php unset($_GET['errorlogin']); } ?>
+        if($('.sf-dropdown').width() > 200) {
+            $('.sf-dropdown-content').css('margin-left',$('.sf-dropdown').width()-200);
+        }
     });
     
     function buyTrustSetup(){
@@ -241,7 +243,7 @@ if (isset($_SESSION['esusername'])) {
                 <div class="w3-center">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="loginname" id="loginname" placeholder="用户名"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="loginpwd" id="loginpwd" placeholder="密码"></p>
-                <p style="color:red;display:none" id="errloginmsg">用户名或密码不正确</p>
+                <p style="font-size:12px;color:red;display:none" id="errloginmsg">用户名或密码不正确</p>
                 </div>
                 </form>
                 <div class="w3-center">
