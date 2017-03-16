@@ -3,11 +3,28 @@
 /*
 Template Name: sankofa-class-en
 */
-$current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
 $cookie_name = "sk_lan";
 $cookie_value = "";
+
+include 'sf-passwd.php';
+$mysqli = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+}
+
+if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
+    $query = "UPDATE cs_users SET LoggedIn=0 WHERE Id=" . $_SESSION['esuserid'];
+    $mysqli->query($query);
+    unset($_SESSION['esusername']);
+    unset($_SESSION['esuserid']);
+    unset($_SESSION['esdate']);
+} elseif (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] <= 1800)) {
+    $_SESSION['esdate'] = time();
+}
 
 if(!isset($_COOKIE[$cookie_name])) {
     $cookie_value = "en";
@@ -33,6 +50,13 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        if($('.sf-dropdown').width() > 200) {
+            $('.sf-dropdown-content').css('margin-left',$('.sf-dropdown').width()-200);
+        }
+    });
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
@@ -42,8 +66,8 @@ if(!isset($_COOKIE[$cookie_name])) {
 <ul class="w3-navbar" id="myNavbar">
 <?php 
 echo navMenu($cookie_value);
-if ( $current_user->exists() ) {
-    navMenuLogin(0,$cookie_value,$current_user->user_login);
+if (isset($_SESSION['esusername'])) {
+    navMenuLogin(0,$cookie_value,$_SESSION['esusername']);
 } else {
     navMenuLogin(0,$cookie_value,"");
 }

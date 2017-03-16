@@ -24,6 +24,8 @@ if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
     unset($_SESSION['esusername']);
     unset($_SESSION['esuserid']);
     unset($_SESSION['esdate']);
+} elseif (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] <= 1800)) {
+    $_SESSION['esdate'] = time();
 }
 
 $successmsg = "";

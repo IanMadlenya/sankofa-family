@@ -6,9 +6,26 @@ Template Name: sankofa-class-topic
 $current_user = wp_get_current_user();
 include 'navbar.php';
 include 'footer-rights.php';
+include 'sf-passwd.php';
 $r = 0;
 
-if ( array_shift( $current_user->roles ) == "administrator" ):
+if ( array_shift( $current_user->roles ) == "administrator" ) {
+    $mysqli = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+    }
+
+    if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
+        $query = "UPDATE cs_users SET LoggedIn=0 WHERE Id=" . $_SESSION['esuserid'];
+        $mysqli->query($query);
+        unset($_SESSION['esusername']);
+        unset($_SESSION['esuserid']);
+        unset($_SESSION['esdate']);
+    } elseif (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] <= 1800)) {
+        $_SESSION['esdate'] = time();
+    }
 ?>
 <html>
 <head>
@@ -27,6 +44,9 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
         $('#wechattable').DataTable({
             "sDom": 'rtlfip'
         });
+        if($('.sf-dropdown').width() > 200) {
+            $('.sf-dropdown-content').css('margin-left',$('.sf-dropdown').width()-200);
+        }
     });
 </script>
 </head>
@@ -37,8 +57,8 @@ if ( array_shift( $current_user->roles ) == "administrator" ):
 <ul class="w3-navbar" id="myNavbar">
 <?php 
 echo navMenu("zh");
-if ( $current_user->exists() ) {
-    navMenuLogin(0,"zh",$current_user->user_login);
+if (isset($_SESSION['esusername'])) {
+    navMenuLogin(0,"zh",$_SESSION['esusername']);
 } else {
     navMenuLogin(0,"zh","");
 }
@@ -57,19 +77,11 @@ if ( $current_user->exists() ) {
 <div class="w3-text-dark-grey" style="margin-bottom:80px">
 <!-- Content -->
 <?php
-include 'sf-passwd.php';
 $tick = "✓";
 $cross = "x";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-} 
-
-$sql = "SELECT * FROM sf_wechat";
-$result = $conn->query($sql);
+$query = "SELECT * FROM sf_wechat";
+$result = $mysqli->query($query);
 
 if ($result->num_rows > 0) {
     echo "<table class='w3-table' id='wechattable'><thead><tr class='w3-black w3-text-white'><th>客户姓名</th><th>电话号码</th><th>家族信托</th><th>移民</th><th>留学</th><th>海外置业</th><th>换汇</th><th>基金投资</th><th>合作伙伴</th><th>其他</th></tr></thead><tbody>";
@@ -125,9 +137,7 @@ if ($result->num_rows > 0) {
     echo "</tbody></table>";
 } else { ?>
 <div class="w3-center"><h3>数据库无记录!</h3></div>
-<?php }
-$conn->close();
-?>
+<?php } ?>
 
 <!-- Below Box -->
 </div>
@@ -171,7 +181,7 @@ function myFunction() {
 </body>
 </html>
 <?php
-else: 
+} else {
 header( 'Location: /class' ) ;
-endif;
+}
 ?>
