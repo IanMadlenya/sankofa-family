@@ -14,7 +14,6 @@ if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
     unset($_SESSION['esusername']);
     unset($_SESSION['esuserid']);
     unset($_SESSION['esdate']);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
 $successmsg = "";
