@@ -11,6 +11,13 @@ $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 session_start();
 
+if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
+    unset($_SESSION['esusername']);
+    unset($_SESSION['esuserid']);
+    unset($_SESSION['esdate']);
+    header( 'Location: /estore?login' );
+}
+
 $successmsg = "";
 $errormsg = "";
 

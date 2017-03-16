@@ -21,7 +21,8 @@ $result = $mysqli->query($query);
 
 if(($result) && ($result->num_rows !== 0)){
     $row = $result->fetch_assoc();
-    $_SESSION['esuser'] = $row['Id'];
+    $_SESSION['esusername'] = $row['Username'];
+    $_SESSION['esuserid'] = $row['Id'];
     $_SESSION['esdate'] = time();
     header( 'Location: /estore?successlogin' );
 } else {
