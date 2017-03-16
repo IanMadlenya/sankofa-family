@@ -24,7 +24,7 @@ if(($result) && ($result->num_rows !== 0)){
     $_SESSION['esusername'] = $row['Username'];
     $_SESSION['esuserid'] = $row['Id'];
     $_SESSION['esdate'] = time();
-    header( 'Location: /estore?successlogin' );
+    header( 'Location: /estore' );
 } else {
     header( 'Location: /estore?errorlogin' );
 }

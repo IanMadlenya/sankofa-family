@@ -131,24 +131,20 @@ if(!isset($_COOKIE[$cookie_name])) {
     });
     
     $(document).ready(function(){
-        <?php if(isset($_GET['login'])) { ?>
+        <?php if((isset($_GET['login'])) && !(isset($_SESSION['esusername']))) { ?>
             $(".estore-login").fadeIn(500);
         <?php unset($_GET['login']); }
-        if(isset($_GET['successreg'])) {
+        if((isset($_GET['successreg'])) && !(isset($_SESSION['esusername']))) {
             $successmsg = "注册成功！请登录帐号"; ?>
             $(".estore-success").fadeIn(500);
         <?php unset($_GET['successreg']); }
-        if(isset($_GET['errorreg'])) {
+        if((isset($_GET['errorreg'])) && !(isset($_SESSION['esusername']))) {
             $errormsg = "注册失败，请联系管理员"; ?>
             $(".estore-error").fadeIn(500);
-        <?php unset($_GET['errorreg']); }
-        if(isset($_GET['successlogin'])) {
-            $successmsg = "登录成功!"; ?>
-            $(".estore-success").fadeIn(500);
-        <?php unset($_GET['successlogin']); }
-        if(isset($_GET['errorlogin'])) {
-            $errormsg = "登录失败，请联系管理员"; ?>
-            $(".estore-error").fadeIn(500);
+        <?php unset($_GET['errorreg']); } 
+        if((isset($_GET['errorlogin'])) && !(isset($_SESSION['esusername']))) { ?>
+            $(".estore-login").fadeIn(500);
+            $("#errloginmsg").show();
         <?php unset($_GET['errorlogin']); } ?>
     });
     
@@ -176,6 +172,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $('#loginpwd').css('background-color','');
                 $('#loginpwd').css('border-color','');
                 $('#loginpwd').css('box-shadow','');
+                $('#errloginmsg').hide();
                 return false;
             } else if(!userpwd) {
                 alert("密码不能为空");
@@ -185,6 +182,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $('#loginpwd').css('background-color','#e08283');
                 $('#loginpwd').css('border-color','#FF0000');
                 $('#loginpwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#errloginmsg').hide();
                 return false;
             } else {
                 return true;
@@ -201,8 +199,8 @@ if(!isset($_COOKIE[$cookie_name])) {
 <?php
 $new_cookie_value = $cookie_value . "_estore";
 echo navMenu($new_cookie_value);
-if ( $current_user->exists() ) {
-    navMenuLogin(1,$cookie_value,$current_user->user_login);
+if (isset($_SESSION['esusername'])) {
+    navMenuLogin(1,$cookie_value,$_SESSION['esusername']);
 } else {
     navMenuLogin(1,$cookie_value,"");
 }
@@ -243,6 +241,7 @@ if ( $current_user->exists() ) {
                 <div class="w3-center">
                 <p><input class="w3-input estore-input-login w3-opacity" type="text" name="loginname" id="loginname" placeholder="用户名"></p>
                 <p><input class="w3-input estore-input-login w3-opacity" type="password" name="loginpwd" id="loginpwd" placeholder="密码"></p>
+                <p style="color:red;display:none" id="errloginmsg">用户名或密码不正确</p>
                 </div>
                 </form>
                 <div class="w3-center">

@@ -64,6 +64,10 @@
                 return true;
             }
         }
+        
+        function backToLogin() {
+            window.parent.location = "/estore?login";
+        }
     </script>
 </head>
 <body>
@@ -91,7 +95,8 @@
 </form>
 <div class="w3-center">
 <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
-<button class="estore-btn-confirm w3-padding" type="submit" form="regform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 确定</button>
+<button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="backToLogin()"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
+<button class="estore-btn-confirm w3-padding" type="submit" form="regform" value="Submit"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
 </div>
 </body>
 </html>
