@@ -16,11 +16,13 @@ $username = $_REQUEST['loginname'];
 $password = hash('sha256',$_REQUEST['loginpwd']);
 
 // attempt insert query execution
-$query = "select * from cs_users where Username='" . $username . "' and Password='" . $password . "';";
+$query = "select * from cs_users where Username='" . $username . "' and Password='" . $password . "' and LoggedIn=0;";
 $result = $mysqli->query($query);
 
 if(($result) && ($result->num_rows !== 0)){
     $row = $result->fetch_assoc();
+    $query = "UPDATE cs_users SET LoggedIn=1 WHERE Id=" . $row['Id'];
+    $mysqli->query($query);
     $_SESSION['esusername'] = $row['Username'];
     $_SESSION['esuserid'] = $row['Id'];
     $_SESSION['esdate'] = time();
