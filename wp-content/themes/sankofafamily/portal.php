@@ -7,7 +7,7 @@ $current_user = wp_get_current_user();
 
 if ( is_user_logged_in() ):
 
-include 'sf-passwd.php';
+require_once('sf-passwd.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -22,7 +22,7 @@ $result = $conn->query($sql);
 $sql2 = "SELECT * FROM sf_crm_bonus WHERE ref_id = ( SELECT ref_id FROM sf_crm_info WHERE user_login = '$current_user->user_login')";
 $result2 = $conn->query($sql2);
 
-include 'calendar.php';
+require_once('calendar.php');
 $calendar = new Calendar();
 ?>
 <html>

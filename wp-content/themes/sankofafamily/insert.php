@@ -1,7 +1,7 @@
 <?php
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
-include 'sf-passwd.php';
+require_once('sf-passwd.php');
 $link = mysqli_connect($servername, $username, $password, $dbname);
  
 // Check connection

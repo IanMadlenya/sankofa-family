@@ -6,7 +6,7 @@ $crm_group_status_success = 1;
 $crm_group_status_blank = 2;
 $crm_group_status_failed = 3;
 
-include 'sf-passwd.php';
+require_once('sf-passwd.php');
 $link = mysqli_connect($servername, $username, $password, $dbname);
  
 // Check connection

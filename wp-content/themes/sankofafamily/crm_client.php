@@ -7,7 +7,7 @@ $current_user = wp_get_current_user();
 
 if ( is_user_logged_in() ):
 
-include 'sf-passwd.php';
+require_once('sf-passwd.php');
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

@@ -3,9 +3,10 @@
 /*
 Template Name: sankofa-downloads-en
 */
-$current_user = wp_get_current_user();
-include 'navbar.php';
-include 'footer-rights.php';
+session_start();
+require_once('DBConnect.php');
+require_once('navbar.php');
+require_once('footer-rights.php');
 $r = 0;
 $cookie_name = "sk_lan";
 $cookie_value = "";
@@ -42,6 +43,9 @@ if(!isset($_COOKIE[$cookie_name])) {
         $('#downloadstable').DataTable({
             "sDom": 'rtlfip'
         });
+        if($('.sf-dropdown').width() > 200) {
+            $('.sf-dropdown-content').css('margin-left',$('.sf-dropdown').width()-200);
+        }
     });
 </script>
 <style>
@@ -55,8 +59,8 @@ a {text-decoration: none}
 <ul class="w3-navbar" id="myNavbar">
 <?php 
 echo navMenu($cookie_value);
-if ( $current_user->exists() ) {
-    navMenuLogin(0,$cookie_value,$current_user->user_login);
+if (isset($_SESSION['esusername'])) {
+    navMenuLogin(0,$cookie_value,$_SESSION['esusername']);
 } else {
     navMenuLogin(0,$cookie_value,"");
 }

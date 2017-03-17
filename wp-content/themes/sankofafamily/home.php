@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <?php
-include 'navbar.php';
-include 'footer-rights.php';
+session_start();
+require_once('DBConnect.php');
+require_once('navbar.php');
+require_once('footer-rights.php');
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-
-include 'sf-passwd.php';
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-}
-
-if (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] > 1800)) {
-    $query = "UPDATE cs_users SET LoggedIn=0 WHERE Id=" . $_SESSION['esuserid'];
-    $mysqli->query($query);
-    unset($_SESSION['esusername']);
-    unset($_SESSION['esuserid']);
-    unset($_SESSION['esdate']);
-} elseif (isset($_SESSION['esdate']) && (time() - $_SESSION['esdate'] <= 1800)) {
-    $_SESSION['esdate'] = time();
-}
 
 if(!isset($_COOKIE[$cookie_name])) {
     if($lang == "zh") {

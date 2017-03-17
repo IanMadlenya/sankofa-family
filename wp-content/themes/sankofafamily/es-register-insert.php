@@ -3,7 +3,7 @@
 server with default setting (user 'root' with no password) */
 session_start();
 
-include 'sf-passwd.php';
+require_once('sf-passwd.php');
 $mysqli = new mysqli($servername, $username, $password, $dbname);
  
 // Check connection

@@ -3,9 +3,10 @@
 /*
 Template Name: sankofa-single-language
 */
-$current_user = wp_get_current_user();
-include 'navbar.php';
-include 'footer-rights.php';
+session_start();
+require_once('DBConnect.php');
+require_once('navbar.php');
+require_once('footer-rights.php');
 $page_title = $wp_query->post->post_title;
 $cookie_name = "sk_lan";
 $cookie_value = "";
@@ -36,6 +37,13 @@ if(!isset($_COOKIE[$cookie_name])) {
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/style.css">
 <script src="/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        if($('.sf-dropdown').width() > 200) {
+            $('.sf-dropdown-content').css('margin-left',$('.sf-dropdown').width()-200);
+        }
+    });
+</script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 </head>
 <body>
@@ -45,8 +53,8 @@ if(!isset($_COOKIE[$cookie_name])) {
 <ul class="w3-navbar" id="myNavbar">
 <?php 
 echo navMenu($cookie_value);
-if ( $current_user->exists() ) {
-    navMenuLogin(0,$cookie_value,$current_user->user_login);
+if (isset($_SESSION['esusername'])) {
+    navMenuLogin(0,$cookie_value,$_SESSION['esusername']);
 } else {
     navMenuLogin(0,$cookie_value,"");
 }
