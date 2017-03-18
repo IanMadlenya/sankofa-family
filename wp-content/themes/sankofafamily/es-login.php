@@ -11,7 +11,6 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
 }
 
-// Escape user inputs for security
 $username = $_REQUEST['loginname'];
 $password = hash('sha256',$_REQUEST['loginpwd']);
 

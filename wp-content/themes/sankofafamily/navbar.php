@@ -30,7 +30,7 @@
         }
         if($loginText != "") {
             $loginLabel = "<span class='glyphicon glyphicon-user' style='margin-right:10px'></span>" . $loginText;
-            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='#'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='/estore?cart'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
