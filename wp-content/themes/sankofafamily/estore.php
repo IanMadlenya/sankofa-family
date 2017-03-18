@@ -148,6 +148,9 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $("#errorbtn").click(function() {
                     $(".estore-error").fadeOut(500)
                 });
+                $("#regbtn").click(function() {
+                    $("#regframe").contents().find('form').submit();
+                });
             });
 
             $(document).ready(function() {
@@ -192,7 +195,7 @@ if(!isset($_COOKIE[$cookie_name])) {
 
             function buyExpression() {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
-                if($('#interest_price').val() != "") {
+                if ($('#interest_price').val() != "") {
                     document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=3&quantity=1&price=" + $('#interest_price').val();
                 } else {
                     alert("请输入金额");
@@ -204,6 +207,10 @@ if(!isset($_COOKIE[$cookie_name])) {
 
             function closeCart() {
                 $('.estore-cart').fadeOut(500);
+            }
+
+            function backToLogin() {
+                document.location = "/estore?login";
             }
 
             function validateLogin() {
@@ -328,7 +335,12 @@ if (isset($_SESSION['esusername'])) {
                 <div class="estore-dialog-register">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <h4>Registration</h4>
-                    <iframe src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:540px"></iframe>
+                    <iframe id="regframe" src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:480px"></iframe>
+                    <div class="w3-center">
+                        <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
+                        <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="backToLogin()"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
+                        <button class="estore-btn-confirm w3-padding" id="regbtn"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
+                    </div>
                 </div>
             </div>
 
