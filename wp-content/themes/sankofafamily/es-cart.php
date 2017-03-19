@@ -46,6 +46,14 @@
                 parent.document.location = "/wp-content/themes/sankofafamily/es-trash.php?itemid=" + itemId;
             }
         }
+        
+        function changeQuantity1(itemId) {
+            parent.document.location = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel1').val();
+        }
+        
+        function changeQuantity2(itemId) {
+            parent.document.location = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel2').val();
+        }
     </script>
 </head>
 
@@ -75,7 +83,7 @@
                     } elseif($row['CartQuantity'] > 2) {
                         $CartQuantityAdd = "<option value='" . ($row['CartQuantity']-2) . "'>" . ($row['CartQuantity']-2) . "</option><option value='" . ($row['CartQuantity']-1) . "'>" . ($row['CartQuantity']-1) . "</option>";
                     }
-                    $CartQuantity = "<select>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
+                    $CartQuantity = "<select id='quantitySel1' onchange='changeQuantity1(" . $row['Id'] . ")'>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
                 } elseif($row['CartItemId'] == 2) {
                     $CartItemName = "Business Study Service";
                     $CartItemTotal = "<td id='item2total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
@@ -85,7 +93,7 @@
                     } elseif($row['CartQuantity'] > 2) {
                         $CartQuantityAdd = "<option value='" . ($row['CartQuantity']-2) . "'>" . ($row['CartQuantity']-2) . "</option><option value='" . ($row['CartQuantity']-1) . "'>" . ($row['CartQuantity']-1) . "</option>";
                     }
-                    $CartQuantity = "<select>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
+                    $CartQuantity = "<select id='quantitySel2' onchange='changeQuantity2(" . $row['Id'] . ")'>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
                 } else {
                     $CartItemName = "Expression of Interest";
                     $CartItemTotal = "<td id='item3total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
