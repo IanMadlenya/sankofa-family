@@ -82,7 +82,8 @@
             $totalrow = $totalresult->fetch_assoc();
             echo "</tbody><tfoot><tr><td>Total</td><td></td><td></td><td id='totalprice'>" . $totalrow['Total'] . "</td><td></td></tr></tfoot></table>";
         } else {
-            echo "<p>请添加产品到购物车</p>";
+            echo "<a href='/estore?errorcart' target='_top' id='errcart'>购物车为空</a>";
+            echo "<script>document.getElementById('errcart').click();</script>";
         } ?>
     </div>
 </body>

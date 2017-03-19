@@ -171,7 +171,11 @@ if(!isset($_COOKIE[$cookie_name])) {
                 <?php unset($_GET['errorlogin']); } 
         if((isset($_GET['cart'])) && (isset($_SESSION['esusername']))) { ?>
                 $(".estore-cart").fadeIn(500);
-                <?php unset($_GET['cart']); } ?>
+                <?php unset($_GET['cart']); }
+                if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) {
+                $errormsg = "购物车为空"; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['errorcart']); } ?>
                 if ($('.sf-dropdown').width() > 200) {
                     $('.sf-dropdown-content').css('margin-left', $('.sf-dropdown').width() - 200);
                 }
