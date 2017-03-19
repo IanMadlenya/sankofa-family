@@ -2,14 +2,7 @@
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 session_start();
-
-require_once('sf-passwd.php');
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($mysqli->connect_errno) {
-    echo "Failed to connect to MySQL: " . $mysqli->connect_error;
-}
+require_once('DBConnect.php');
 
 $itemid = $_GET['itemid'];
 $quantity = $_GET['quantity'];

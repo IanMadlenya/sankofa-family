@@ -39,7 +39,14 @@
                 $('#totalprice').html(parseInt($('#item1total').html()) + parseInt($('#item2total').html()));
             }
         }
-
+        
+        function deleteItem(itemId) {
+            var delPrompt = confirm("确认删除此项？");
+            if (delPrompt == true) {
+                $.post( "es-trash.php", { itemid: itemId } );
+                window.open("/estore?cart", "_top");
+            }
+        }
     </script>
 </head>
 
@@ -75,12 +82,12 @@
                     $CartPrice = "<input type='text' name='item3price' id='item3price' value='" . $row['Price'] . "' style='width:50px' onkeyup='setItem3Total()'>";
                     $CartQuantity = "1";
                 }
-                echo "<tr><td>" . $CartItemName . "</td><td>" . $CartPrice . "</td><td>" . $CartQuantity . "</td>" . $CartItemTotal ."<td>操作</td></tr>";
+                echo "<tr><td>" . $CartItemName . "</td><td>" . $CartPrice . "</td><td>" . $CartQuantity . "</td>" . $CartItemTotal ."<td><button onclick='deleteItem(" . $row['Id'] . ")' id='deleteItemBtn'><span class='glyphicon glyphicon-remove-sign'></span></button></td></tr>";
             }
             $totalquery = "SELECT SUM(Price * CartQuantity) AS Total FROM cs_cart WHERE CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0 AND Trash=0";
             $totalresult = $mysqli->query($totalquery);
             $totalrow = $totalresult->fetch_assoc();
-            echo "</tbody><tfoot><tr><td>Total</td><td></td><td></td><td id='totalprice'>" . $totalrow['Total'] . "</td><td></td></tr></tfoot></table>";
+            echo "</tbody><tfoot><tr><td><b>Total</b></td><td></td><td></td><td id='totalprice'><b>" . $totalrow['Total'] . "</b></td><td></td></tr></tfoot></table>";
         } else {
             echo "<a href='/estore?errorcart' target='_top' id='errcart'>购物车为空</a>";
             echo "<script>document.getElementById('errcart').click();</script>";
