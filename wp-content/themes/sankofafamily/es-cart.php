@@ -43,8 +43,7 @@
         function deleteItem(itemId) {
             var delPrompt = confirm("确认删除此项？");
             if (delPrompt == true) {
-                $.post( "es-trash.php", { itemid: itemId } );
-                window.open("/estore?cart", "_top");
+                parent.document.location = "/wp-content/themes/sankofafamily/es-trash.php?itemid=" + itemId;
             }
         }
     </script>
