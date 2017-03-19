@@ -16,17 +16,17 @@ $quantity = $_GET['quantity'];
 $price = $_GET['price'];
 
 // attempt insert query execution
-$query = "select * from cs_cart where CartItemId=" . $itemid . " and CustomerId=" . $_SESSION['esuserid'] . " and Sold=0";
+$query = "select * from cs_cart where CartItemId=" . $itemid . " and CustomerId=" . $_SESSION['esuserid'] . " and Sold=0 and Trash=0";
 $result = $mysqli->query($query);
 
 if(($result) && ($result->num_rows !== 0)){
     $row = $result->fetch_assoc();
     if($itemid == 3) {
         $price = $price + $row['Price'];
-        $query = "UPDATE cs_cart SET Price=" . $price . " WHERE CartItemId=" . $itemid . " AND CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0";
+        $query = "UPDATE cs_cart SET Price=" . $price . " WHERE CartItemId=" . $itemid . " AND CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0 AND Trash=0";
     } else {
         $quantity = $quantity + $row['CartQuantity'];
-        $query = "UPDATE cs_cart SET CartQuantity=" . $quantity . " WHERE CartItemId=" . $itemid . " AND CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0";
+        $query = "UPDATE cs_cart SET CartQuantity=" . $quantity . " WHERE CartItemId=" . $itemid . " AND CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0 AND Trash=0";
     }
     $mysqli->query($query);
 } else {

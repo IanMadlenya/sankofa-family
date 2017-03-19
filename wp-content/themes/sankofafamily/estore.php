@@ -348,8 +348,9 @@ if (isset($_SESSION['esusername'])) {
                 <div class="estore-dialog-cart">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <h4>Shopping Cart</h4>
-                    <iframe src="/wp-content/themes/sankofafamily/es-cart.php" style="border:none;width:100%;height:540px"></iframe>
+                    <iframe src="/wp-content/themes/sankofafamily/es-cart.php" style="border:none;width:100%;height:300px"></iframe>
                     <div class="w3-center">
+                        <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击支付表示您已阅读本服务之条款与使用须知</a></p>
                         <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="closeCart()"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
                         <button class="estore-btn-confirm w3-padding" onclick=""><span class="glyphicon glyphicon-credit-card"></span> 支付</button>
                     </div>
