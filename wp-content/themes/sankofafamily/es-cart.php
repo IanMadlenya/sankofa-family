@@ -62,6 +62,7 @@
         $CartItemTotal = 0;
         $CartQuantity = "";
         $CartPrice = "";
+        $CartQuantityAdd = "";
         
         if(($result) && ($result->num_rows !== 0)){ 
             echo "<p><input class='w3-input estore-input-login estore-input-cart w3-opacity' type='text' name='searchfilter' id='searchfilter' onkeyup='searchtable()' placeholder='search'></p><table id='carttable'><thead><tr><th>商品信息</th><th>单价</th><th>数量</th><th>金额</th><th>操作</th></tr></thead><tbody>";
@@ -70,12 +71,22 @@
                     $CartItemName = "Trust Setup Service";
                     $CartItemTotal = "<td id='item1total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
                     $CartPrice = $row['Price'];
-                    $CartQuantity = "<select><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select>";
+                    if($row['CartQuantity'] == 2) {
+                        $CartQuantityAdd = "<option value='1'>1</option>";
+                    } elseif($row['CartQuantity'] > 2) {
+                        $CartQuantityAdd = "<option value='" . ($row['CartQuantity']-2) . "'>" . ($row['CartQuantity']-2) . "</option><option value='" . ($row['CartQuantity']-1) . "'>" . ($row['CartQuantity']-1) . "</option>";
+                    }
+                    $CartQuantity = "<select>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
                 } elseif($row['CartItemId'] == 2) {
                     $CartItemName = "Business Study Service";
                     $CartItemTotal = "<td id='item2total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
                     $CartPrice = $row['Price'];
-                    $CartQuantity = "<select><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option></select>";
+                    if($row['CartQuantity'] == 2) {
+                        $CartQuantityAdd = "<option value='2'>2</option>";
+                    } elseif($row['CartQuantity'] > 2) {
+                        $CartQuantityAdd = "<option value='" . ($row['CartQuantity']-2) . "'>" . ($row['CartQuantity']-2) . "</option><option value='" . ($row['CartQuantity']-1) . "'>" . ($row['CartQuantity']-1) . "</option>";
+                    }
+                    $CartQuantity = "<select>" . $CartQuantityAdd . "<option value='" . $row['CartQuantity'] . "' selected>" . $row['CartQuantity'] . "</option><option value='" . ($row['CartQuantity']+1) . "'>" . ($row['CartQuantity']+1) . "</option><option value='" . ($row['CartQuantity']+2) . "'>" . ($row['CartQuantity']+2) . "</option></select>";
                 } else {
                     $CartItemName = "Expression of Interest";
                     $CartItemTotal = "<td id='item3total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
