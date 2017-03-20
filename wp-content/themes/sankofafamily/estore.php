@@ -134,7 +134,6 @@ if(!isset($_COOKIE[$cookie_name])) {
                         $(".estore-login").fadeOut(500),
                         $(".estore-forgotpw").fadeOut(500),
                         $(".estore-register").fadeOut(500),
-                        $(".estore-cart").fadeOut(500),
                         $(".estore-success").fadeOut(500),
                         $(".estore-error").fadeOut(500)
                 });
@@ -210,7 +209,12 @@ if(!isset($_COOKIE[$cookie_name])) {
             }
 
             function closeCart() {
-                $('.estore-cart').fadeOut(500);
+                if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
+                    $(".estore-cart").fadeOut(500);
+                    document.location = "/wp-content/themes/sankofafamily/es-update3.php?price=" + $("#cartframe").contents().find("#item3price").val();
+                } else {
+                    $(".estore-cart").fadeOut(500);
+                }
             }
 
             function backToLogin() {
@@ -350,9 +354,9 @@ if (isset($_SESSION['esusername'])) {
 
             <div class="estore-cart">
                 <div class="estore-dialog-cart">
-                    <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+                    <a href="#" class="estore-close-cart w3-hover-opacity" onclick="closeCart()"><img src="/images/close.png" style="width:25px"></a>
                     <h4>Shopping Cart</h4>
-                    <iframe src="/wp-content/themes/sankofafamily/es-cart.php" style="border:none;width:100%;height:300px"></iframe>
+                    <iframe id="cartframe" src="/wp-content/themes/sankofafamily/es-cart.php" style="border:none;width:100%;height:300px"></iframe>
                     <div class="w3-center">
                         <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击支付表示您已阅读本服务之条款与使用须知</a></p>
                         <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="closeCart()"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>

@@ -48,11 +48,19 @@
         }
         
         function changeQuantity1(itemId) {
-            parent.document.location = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel1').val();
+            var changeLocation = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel1').val();
+            if(($('#item3price').val() != null) && ($('#item3price').val() != "")) {
+                changeLocation = changeLocation + "&price=" + $('#item3price').val();
+            }
+            parent.document.location = changeLocation;
         }
         
         function changeQuantity2(itemId) {
-            parent.document.location = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel2').val();
+            var changeLocation = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel2').val();
+            if(($('#item3price').val() != null) && ($('#item3price').val() != "")) {
+                changeLocation = changeLocation + "&price=" + $('#item3price').val();
+            }
+            parent.document.location = changeLocation;
         }
     </script>
 </head>
