@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/checkEmail.js"></script>
+    <link rel="stylesheet" href="/css/notify.css">
+    <link rel="stylesheet" href="/css/prettify.css">
+    <script src="/js/notify.js"></script>
+    <script src="/js/prettify.js"></script>
     <script>
         function validateForm(){
             var useremail = $('#username').val();
@@ -13,7 +17,7 @@
             var cuserpwd = $('#cespwd').val();
 
             if((!isValidEmailAddress(useremail)) || (!useremail)) {
-                alert("请检查电子邮件是否输入正确");
+                $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查电子邮件是否输入正确", {type:"warning"});
                 $('#username').css('background-color','#e08283');
                 $('#username').css('border-color','#FF0000');
                 $('#username').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
@@ -25,7 +29,7 @@
                 $('#cespwd').css('box-shadow','');
                 return false;
             } else if(!userpwd) {
-                alert("密码不能为空");
+                $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不能为空", {type:"warning"});
                 $('#username').css('background-color','');
                 $('#username').css('border-color','');
                 $('#username').css('box-shadow','');
@@ -37,7 +41,7 @@
                 $('#cespwd').css('box-shadow','');
                 return false;
             } else if(!cuserpwd) {
-                alert("请确认密码");
+                $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请确认密码", {type:"warning"});
                 $('#username').css('background-color','');
                 $('#username').css('border-color','');
                 $('#username').css('box-shadow','');
@@ -49,7 +53,7 @@
                 $('#cespwd').css('box-shadow','inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
             } else if(userpwd != cuserpwd) {
-                alert("密码不一致，请重新输入");
+                $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不一致，请重新输入", {type:"warning"});
                 $('#username').css('background-color','');
                 $('#username').css('border-color','');
                 $('#username').css('box-shadow','');

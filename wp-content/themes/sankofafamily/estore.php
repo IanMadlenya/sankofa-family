@@ -209,7 +209,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                 if ($('#interest_price').val() != "") {
                     document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=3&quantity=1&price=" + $('#interest_price').val();
                 } else {
-                    alert("请输入金额");
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请输入金额", {type:"warning"});
                 }
                 <?php } else { ?>
                 $(".estore-dialog3").fadeOut(500);
@@ -236,7 +236,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                 var userpwd = $('#loginpwd').val();
 
                 if ((!isValidEmailAddress(useremail)) || (!useremail)) {
-                    alert("请检查用户名是否输入正确，且不能为空");
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查用户名是否输入正确，且不能为空", {type:"warning"});
                     $('#loginname').css('background-color', '#e08283');
                     $('#loginname').css('border-color', '#FF0000');
                     $('#loginname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
@@ -246,7 +246,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $('#errloginmsg').hide();
                     return false;
                 } else if (!userpwd) {
-                    alert("密码不能为空");
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不能为空", {type:"warning"});
                     $('#loginname').css('background-color', '');
                     $('#loginname').css('border-color', '');
                     $('#loginname').css('box-shadow', '');
