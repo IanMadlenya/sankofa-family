@@ -43,6 +43,10 @@ if(!isset($_COOKIE[$cookie_name])) {
         <link rel="stylesheet" href="/css/style.css">
         <script src="/js/jquery.min.js"></script>
         <script src="/js/checkEmail.js"></script>
+        <link rel="stylesheet" href="/css/notify.css">
+        <link rel="stylesheet" href="/css/prettify.css">
+        <script src="/js/notify.js"></script>
+        <script src="/js/prettify.js"></script>
         <script>
             var hidden1 = false;
             var hidden2 = false;
@@ -171,10 +175,12 @@ if(!isset($_COOKIE[$cookie_name])) {
         if((isset($_GET['cart'])) && (isset($_SESSION['esusername']))) { ?>
                 $(".estore-cart").fadeIn(500);
                 <?php unset($_GET['cart']); }
-                if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) {
-                $errormsg = "购物车为空"; ?>
-                $(".estore-error").fadeIn(500);
-                <?php unset($_GET['errorcart']); } ?>
+                if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {type:"danger"});
+                <?php unset($_GET['errorcart']); }
+                if((isset($_GET['added'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {type:"success"});
+                <?php unset($_GET['added']); } ?>
                 if ($('.sf-dropdown').width() > 200) {
                     $('.sf-dropdown-content').css('margin-left', $('.sf-dropdown').width() - 200);
                 }

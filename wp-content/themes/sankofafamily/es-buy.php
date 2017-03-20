@@ -27,5 +27,5 @@ if(($result) && ($result->num_rows !== 0)){
     $mysqli->query($query);
 }
 
-header( 'Location: /estore' );
+header( 'Location: /estore?added' );
 ?>
