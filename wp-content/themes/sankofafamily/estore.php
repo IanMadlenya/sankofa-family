@@ -184,7 +184,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=1&quantity=1&price=5000";
                 <?php } else { ?>
-                document.location = "/estore?login";
+                $(".estore-dialog1").fadeOut(500);
+                $(".estore-login").fadeIn(500);
                 <?php } ?>
             }
 
@@ -192,7 +193,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=2&quantity=1&price=10000";
                 <?php } else { ?>
-                document.location = "/estore?login";
+                $(".estore-dialog2").fadeOut(500);
+                $(".estore-login").fadeIn(500);
                 <?php } ?>
             }
 
@@ -204,7 +206,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                     alert("请输入金额");
                 }
                 <?php } else { ?>
-                document.location = "/estore?login";
+                $(".estore-dialog3").fadeOut(500);
+                $(".estore-login").fadeIn(500);
                 <?php } ?>
             }
 
@@ -218,7 +221,8 @@ if(!isset($_COOKIE[$cookie_name])) {
             }
 
             function backToLogin() {
-                document.location = "/estore?login";
+                $(".estore-register").fadeOut(500);
+                $(".estore-login").fadeIn(500);
             }
 
             function validateLogin() {
