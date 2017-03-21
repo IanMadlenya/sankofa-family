@@ -173,11 +173,12 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $("#errloginmsg").show();
                 <?php unset($_GET['errorlogin']); } 
         if((isset($_GET['cart'])) && (isset($_SESSION['esusername']))) { ?>
-                $(".estore-cart").fadeIn(500);
+                if ((($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) && (($("#cartframe").contents().find("#quantitySel1").val() != null) && ($("#cartframe").contents().find("#quantitySel1").val() != "")) && (($("#cartframe").contents().find("#quantitySel2").val() != null) && ($("#cartframe").contents().find("#quantitySel2").val() != ""))) {
+                    $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {type:"danger"});
+                } else {
+                    $(".estore-cart").fadeIn(500);
+                }
                 <?php unset($_GET['cart']); }
-                if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) { ?>
-                $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {type:"danger"});
-                <?php unset($_GET['errorcart']); }
                 if((isset($_GET['added'])) && (isset($_SESSION['esusername']))) { ?>
                 $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {type:"success"});
                 <?php unset($_GET['added']); } ?>
