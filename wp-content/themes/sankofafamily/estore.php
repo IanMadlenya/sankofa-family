@@ -9,6 +9,7 @@ session_start();
 require_once('DBConnect.php');
 require_once('navbar.php');
 require_once('footer-rights.php');
+require_once('eway/include_eway.php');
 $cookie_name = "sk_lan";
 $cookie_value = "";
 $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
