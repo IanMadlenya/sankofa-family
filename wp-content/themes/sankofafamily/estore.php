@@ -159,8 +159,12 @@ if(!isset($_COOKIE[$cookie_name])) {
             $(document).ready(function() {
                 <?php if((isset($_GET['login'])) && !(isset($_SESSION['esusername']))) { ?>
                 $(".estore-login").fadeIn(500);
-                <?php unset($_GET['login']); }
-        if((isset($_GET['successreg'])) && !(isset($_SESSION['esusername']))) {
+                <?php unset($_GET['login']);
+                } elseif((isset($_GET['login'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 登录成功", {
+                    type: "success"
+                });
+                <?php } if((isset($_GET['successreg'])) && !(isset($_SESSION['esusername']))) {
             $successmsg = "注册成功！请登录帐号"; ?>
                 $(".estore-success").fadeIn(500);
                 <?php unset($_GET['successreg']); }
@@ -173,14 +177,18 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $("#errloginmsg").show();
                 <?php unset($_GET['errorlogin']); } 
         if((isset($_GET['cart'])) && (isset($_SESSION['esusername']))) { ?>
-                if ((($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) && (($("#cartframe").contents().find("#quantitySel1").val() != null) && ($("#cartframe").contents().find("#quantitySel1").val() != "")) && (($("#cartframe").contents().find("#quantitySel2").val() != null) && ($("#cartframe").contents().find("#quantitySel2").val() != ""))) {
-                    $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {type:"danger"});
+                if ((($("#cartframe").contents().find("#item3price").val() == null) && ($("#cartframe").contents().find("#item3price").val() == "")) && (($("#cartframe").contents().find("#quantitySel1").val() == null) && ($("#cartframe").contents().find("#quantitySel1").val() == "")) && (($("#cartframe").contents().find("#quantitySel2").val() == null) && ($("#cartframe").contents().find("#quantitySel2").val() == ""))) {
+                    $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {
+                        type: "danger"
+                    });
                 } else {
                     $(".estore-cart").fadeIn(500);
                 }
                 <?php unset($_GET['cart']); }
                 if((isset($_GET['added'])) && (isset($_SESSION['esusername']))) { ?>
-                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {type:"success"});
+                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {
+                    type: "success"
+                });
                 <?php unset($_GET['added']); } ?>
                 if ($('.sf-dropdown').width() > 200) {
                     $('.sf-dropdown-content').css('margin-left', $('.sf-dropdown').width() - 200);
@@ -210,7 +218,9 @@ if(!isset($_COOKIE[$cookie_name])) {
                 if ($('#interest_price').val() != "") {
                     document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=3&quantity=1&price=" + $('#interest_price').val();
                 } else {
-                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请输入金额", {type:"warning"});
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请输入金额", {
+                        type: "warning"
+                    });
                 }
                 <?php } else { ?>
                 $(".estore-dialog3").fadeOut(500);
@@ -237,7 +247,9 @@ if(!isset($_COOKIE[$cookie_name])) {
                 var userpwd = $('#loginpwd').val();
 
                 if ((!isValidEmailAddress(useremail)) || (!useremail)) {
-                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查用户名是否输入正确，且不能为空", {type:"warning"});
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查用户名是否输入正确，且不能为空", {
+                        type: "warning"
+                    });
                     $('#loginname').css('background-color', '#e08283');
                     $('#loginname').css('border-color', '#FF0000');
                     $('#loginname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
@@ -247,7 +259,9 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $('#errloginmsg').hide();
                     return false;
                 } else if (!userpwd) {
-                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不能为空", {type:"warning"});
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不能为空", {
+                        type: "warning"
+                    });
                     $('#loginname').css('background-color', '');
                     $('#loginname').css('border-color', '');
                     $('#loginname').css('box-shadow', '');
