@@ -233,6 +233,16 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $(".estore-cart").fadeOut(500);
                 }
             }
+            
+            function ewaySubmit() {
+                if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
+                    $(".estore-cart").fadeOut(500);
+                    document.location = "/wp-content/themes/sankofafamily/es-eway.php?price=" + $("#cartframe").contents().find("#item3price").val();
+                } else {
+                    $(".estore-cart").fadeOut(500);
+                    document.location = "/wp-content/themes/sankofafamily/es-eway.php";
+                }
+            }
 
             function backToLogin() {
                 $(".estore-register").fadeOut(500);
@@ -382,7 +392,7 @@ if (isset($_SESSION['esusername'])) {
                     <div class="w3-center">
                         <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击支付表示您已阅读本服务之条款与使用须知</a></p>
                         <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="closeCart()"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
-                        <button class="estore-btn-confirm w3-padding" onclick=""><span class="glyphicon glyphicon-credit-card"></span> 支付</button>
+                        <button class="estore-btn-confirm w3-padding" onclick="ewaySubmit()"><span class="glyphicon glyphicon-credit-card"></span> 支付</button>
                     </div>
                 </div>
             </div>
