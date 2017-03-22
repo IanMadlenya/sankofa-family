@@ -31,25 +31,37 @@ $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
 $totalamount = $row['Amount'];
 
+$query = "select * from cs_users where Id=" . $_SESSION['esuserid'];
+$result = $mysqli->query($query);
+$row = $result->fetch_assoc();
+$email = $row['Username'];
+$country = $row['Country'];
+$address = $row['Address'];
+$postcode = $row['PostCode'];
+$state = $row['State'];
+$city = $row['City'];
+$firstname = $row['FirstName'];
+$surname = $row['SurName'];
+
     // Transaction details - these would usually come from the application
     $transaction = [
         'Customer' => [
-            'FirstName' => 'John',
-            'LastName' => 'Smith',
+            'FirstName' => $firstname,
+            'LastName' => $surname,
             'Street1' => 'Level 5',
             'Street2' => '369 Queen Street',
-            'City' => 'Sydney',
-            'State' => 'NSW',
-            'PostalCode' => '2000',
-            'Country' => 'au',
-            'Email' => 'demo@example.org',
+            'City' => $city,
+            'State' => $state,
+            'PostalCode' => $postcode,
+            'Country' => $country,
+            'Email' => $email,
         ],
         // These should be set to your actual website (on HTTPS of course)
         'RedirectUrl' => "https://$_SERVER[HTTP_HOST]/wp-content/themes/sankofafamily/es-response.php",
         'CancelUrl' => "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",
         'TransactionType' => \Eway\Rapid\Enum\TransactionType::PURCHASE,
         'Payment' => [
-            'TotalAmount' => $row['Amount'],
+            'TotalAmount' => $totalamount,
         ]
     ];
 

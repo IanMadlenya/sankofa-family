@@ -14,17 +14,16 @@ if ($mysqli->connect_errno) {
     // Escape user inputs for security
     $username = $mysqli->real_escape_string($_REQUEST['username']);
     $password = $mysqli->real_escape_string($_REQUEST['espwd']);
-    $cardholder = $mysqli->real_escape_string($_REQUEST['cardholder']);
-    $cardexpiry = $mysqli->real_escape_string($_REQUEST['cardexpiry']);
-    $cardnumber = (int)($mysqli->real_escape_string($_REQUEST['cardnumber']));
-    $cardcvv = (int)($mysqli->real_escape_string($_REQUEST['cardcvv']));
-    $birthdate = $_REQUEST['birthdate'];
+    $postcode = (int)($mysqli->real_escape_string($_REQUEST['postcode']));
     $address = $mysqli->real_escape_string($_REQUEST['address']);
+    $city = $mysqli->real_escape_string($_REQUEST['city']);
     $state = $mysqli->real_escape_string($_REQUEST['state']);
     $country = $mysqli->real_escape_string($_REQUEST['country']);
+    $surname = $mysqli->real_escape_string($_REQUEST['surname']);
+    $firstname = $mysqli->real_escape_string($_REQUEST['firstname']);
     
     // attempt insert query execution
-    $query = "INSERT INTO cs_users (Username, Password, CardHolder, CardNo, CardExpiry, CVV, CreatedDate, Dob, Address, Country) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', '" . $cardholder . "', " . $cardnumber . ", '" . $cardexpiry . "', " . $cardcvv . ", NOW(), '" . $birthdate . "', '" . $address . "', '" . $country . "');";
+    $query = "INSERT INTO cs_users (Username, Password, PostCode, CreatedDate, State, Address, Country, City, SurName, FirstName) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', " . $postcode . ", NOW(), '" . $state . "', '" . $address . "', '" . $country . "', '" . $city . "', '" . $surname . "', '" . $firstname . "');";
     $result = $mysqli->query($query);
 
     if($result) {
