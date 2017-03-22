@@ -31,12 +31,20 @@
         }
         
         function setItem3Total() {
+            var item1total = 0;
+            var item2total = 0;
+            if($('#item1total').length) {
+                item1total = parseInt($('#item1total').html());
+            }
+            if($('#item2total').length) {
+                item1total = parseInt($('#item2total').html());
+            }
             if($('#item3price').val() != "") {
                 $('#item3total').html($('#item3price').val());
-                $('#totalprice').html(parseInt($('#item1total').html()) + parseInt($('#item2total').html()) + parseInt($('#item3total').html()));
+                $('#totalprice').html(item1total + item2total + parseInt($('#item3total').html()));
             } else {
                 $('#item3total').html(0);
-                $('#totalprice').html(parseInt($('#item1total').html()) + parseInt($('#item2total').html()));
+                $('#totalprice').html(item1total + item2total);
             }
         }
         
