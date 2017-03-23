@@ -123,9 +123,6 @@
                 $totalresult = $mysqli->query($totalquery);
                 $totalrow = $totalresult->fetch_assoc();
                 echo "</tbody><tfoot><tr><td><b>Total</b></td><td></td><td></td><td id='totalprice'><b>" . $totalrow['Total'] . "</b></td><td></td></tr></tfoot></table>";
-            } else {
-                echo "<a href='/estore?errorcart' target='_top' id='errcart'>购物车为空</a>";
-                echo "<script>document.getElementById('errcart').click();</script>";
             }
         } ?>
     </div>

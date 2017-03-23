@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     function navMenu($smfos_nav_lan) {
         if($smfos_nav_lan == "en") {
             echo "<li><a href='/en' class='w3-padding-large w3-text-light-grey'>Home</a></li><li><a href='/services-en' class='w3-padding-large w3-text-light-grey'>Products</a></li><li><a href='/estore' class='w3-padding-large w3-text-light-grey'>eStore</a></li><li><a href='/our-team-en' class='w3-padding-large w3-text-light-grey'>Our team</a></li><li><a href='/en#sankofa-contact' class='w3-padding-large w3-text-light-grey'>Contact us</a></li>";
@@ -12,6 +14,21 @@
     }
 
     function navMenuLogin($loginStyle, $loginLan, $loginText) {
+        if(isset($_SESSION['esuserid'])) {
+            require('sf-passwd.php');
+            $mysqli = new mysqli($servername, $username, $password, $dbname);
+            if ($mysqli->connect_errno) {
+                echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+            }
+            
+            $carthref = "/estore?errorcart";
+            $query = "select * from cs_cart where CustomerId=" . $_SESSION['esuserid'] . " and Sold=0 and Trash=0";
+            $result = $mysqli->query($query);
+            if(($result) && ($result->num_rows !== 0)){
+                $carthref = "/estore?cart";
+            }
+        }
+        
         $dropdownMenu = "";
         $loginLabel = "";
         $loginLabelAdmin = "";
@@ -30,7 +47,7 @@
         }
         if($loginText != "") {
             $loginLabel = "<span class='glyphicon glyphicon-user' style='margin-right:10px'></span>" . $loginText;
-            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='/estore?cart'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='" . $carthref . "'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
