@@ -13,7 +13,6 @@
         $mysqli->query($query);
         unset($_SESSION['esusername']);
         unset($_SESSION['esuserid']);
-        unset($_SESSION['esdate']);
         header('Location: ' . $_SERVER['HTTP_REFERER']);   
     } else {
         header( 'Location: /estore' );
