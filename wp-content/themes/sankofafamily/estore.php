@@ -47,6 +47,27 @@ if(!isset($_COOKIE[$cookie_name])) {
         <link rel="stylesheet" href="/css/prettify.css">
         <script src="/js/notify.js"></script>
         <script src="/js/prettify.js"></script>
+        <style>
+             ::-webkit-input-placeholder {
+                /* WebKit, Blink, Edge */
+                color: #d9dfe0;
+            }
+            
+            :-moz-placeholder {
+                /* Mozilla Firefox 4 to 18 */
+                color: #d9dfe0;
+            }
+            
+            ::-moz-placeholder {
+                /* Mozilla Firefox 19+ */
+                color: #d9dfe0;
+            }
+            
+            :-ms-input-placeholder {
+                /* Internet Explorer 10-11 */
+                color: #d9dfe0;
+            }
+        </style>
         <script>
             var hidden1 = false;
             var hidden2 = false;
@@ -180,7 +201,9 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $(".estore-cart").fadeIn(500);
                 <?php unset($_GET['cart']); }
                 if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) { ?>
-                $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {type:"danger"});
+                $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {
+                    type: "danger"
+                });
                 <?php unset($_GET['errorcart']); }
                 if((isset($_GET['added'])) && (isset($_SESSION['esusername']))) { ?>
                 $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {
@@ -238,7 +261,7 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $(".estore-cart").fadeOut(500);
                 }
             }
-            
+
             function ewaySubmit() {
                 if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
                     $(".estore-cart").fadeOut(500);

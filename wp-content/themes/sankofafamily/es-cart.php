@@ -8,6 +8,27 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="/css/carttable.css">
+    <style>
+         ::-webkit-input-placeholder {
+            /* WebKit, Blink, Edge */
+            color: #d9dfe0;
+        }
+        
+         :-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #d9dfe0;
+        }
+        
+         ::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #d9dfe0;
+        }
+        
+         :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #d9dfe0;
+        }
+    </style>
     <script>
         $(document).ready(function() {
             $('#carttable').dataTable({
@@ -29,17 +50,17 @@
         function searchtable() {
             $('#carttable').dataTable().fnFilter($('#searchfilter').val());
         }
-        
+
         function setItem3Total() {
             var item1total = 0;
             var item2total = 0;
-            if($('#item1total').length) {
+            if ($('#item1total').length) {
                 item1total = parseInt($('#item1total').html());
             }
-            if($('#item2total').length) {
+            if ($('#item2total').length) {
                 item1total = parseInt($('#item2total').html());
             }
-            if($('#item3price').val() != "") {
+            if ($('#item3price').val() != "") {
                 $('#item3total').html($('#item3price').val());
                 $('#totalprice').html(item1total + item2total + parseInt($('#item3total').html()));
             } else {
@@ -47,29 +68,30 @@
                 $('#totalprice').html(item1total + item2total);
             }
         }
-        
+
         function deleteItem(itemId) {
             var delPrompt = confirm("确认删除此项？");
             if (delPrompt == true) {
                 parent.document.location = "/wp-content/themes/sankofafamily/es-trash.php?itemid=" + itemId;
             }
         }
-        
+
         function changeQuantity1(itemId) {
             var changeLocation = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel1').val();
-            if(($('#item3price').val() != null) && ($('#item3price').val() != "")) {
+            if (($('#item3price').val() != null) && ($('#item3price').val() != "")) {
                 changeLocation = changeLocation + "&price=" + $('#item3price').val();
             }
             parent.document.location = changeLocation;
         }
-        
+
         function changeQuantity2(itemId) {
             var changeLocation = "/wp-content/themes/sankofafamily/es-qchange.php?itemid=" + itemId + "&quantity=" + $('#quantitySel2').val();
-            if(($('#item3price').val() != null) && ($('#item3price').val() != "")) {
+            if (($('#item3price').val() != null) && ($('#item3price').val() != "")) {
                 changeLocation = changeLocation + "&price=" + $('#item3price').val();
             }
             parent.document.location = changeLocation;
         }
+
     </script>
 </head>
 
@@ -127,4 +149,5 @@
         } ?>
     </div>
 </body>
+
 </html>
