@@ -186,7 +186,12 @@ if(!isset($_COOKIE[$cookie_name])) {
                 $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已添加", {
                     type: "success"
                 });
-                <?php unset($_GET['added']); } ?>
+                <?php unset($_GET['added']); }
+                if((isset($_GET['trashed'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已删除", {
+                    type: "success"
+                });
+                <?php unset($_GET['trashed']); } ?>
                 if ($('.sf-dropdown').width() > 200) {
                     $('.sf-dropdown-content').css('margin-left', $('.sf-dropdown').width() - 200);
                 }
