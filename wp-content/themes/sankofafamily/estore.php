@@ -244,13 +244,19 @@ if(!isset($_COOKIE[$cookie_name])) {
             function buyExpression() {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 if (($('#interest_price').val() != null) && ($('#interest_price').val() != "")) {
-                    if (($('#interest_price').val() < 1000) || ($('#interest_price').val() > 5000)) {
-                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                    if ($.isNumeric($('#interest_price').val())) {
+                        if (($('#interest_price').val() < 1000) || ($('#interest_price').val() > 5000)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                                type: "warning"
+                            });
+                        } else {
+                            $(".estore-dialog3").fadeOut(500);
+                            document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=3&quantity=1&price=" + $('#interest_price').val();
+                        }
+                    } else {
+                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 金额应为数字", {
                             type: "warning"
                         });
-                    } else {
-                        $(".estore-dialog3").fadeOut(500);
-                        document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=3&quantity=1&price=" + $('#interest_price').val();
                     }
                 } else {
                     $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请输入金额", {
@@ -265,13 +271,19 @@ if(!isset($_COOKIE[$cookie_name])) {
 
             function closeCart() {
                 if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
-                    if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
-                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                    if ($.isNumeric($("#cartframe").contents().find("#item3price").val())) {
+                        if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                                type: "warning"
+                            });
+                        } else {
+                            $(".estore-cart").fadeOut(500);
+                            document.location = "/wp-content/themes/sankofafamily/es-update3.php?price=" + $("#cartframe").contents().find("#item3price").val();
+                        }
+                    } else {
+                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 金额应为数字", {
                             type: "warning"
                         });
-                    } else {
-                        $(".estore-cart").fadeOut(500);
-                        document.location = "/wp-content/themes/sankofafamily/es-update3.php?price=" + $("#cartframe").contents().find("#item3price").val();
                     }
                 } else {
                     $(".estore-cart").fadeOut(500);
@@ -280,13 +292,19 @@ if(!isset($_COOKIE[$cookie_name])) {
 
             function ewaySubmit() {
                 if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
-                    if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
-                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                    if ($.isNumeric($("#cartframe").contents().find("#item3price").val())) {
+                        if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                                type: "warning"
+                            });
+                        } else {
+                            $(".estore-cart").fadeOut(500);
+                            document.location = "/wp-content/themes/sankofafamily/es-eway.php?price=" + $("#cartframe").contents().find("#item3price").val();
+                        }
+                    } else {
+                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 金额应为数字", {
                             type: "warning"
                         });
-                    } else {
-                        $(".estore-cart").fadeOut(500);
-                        document.location = "/wp-content/themes/sankofafamily/es-eway.php?price=" + $("#cartframe").contents().find("#item3price").val();
                     }
                 } else {
                     $(".estore-cart").fadeOut(500);
