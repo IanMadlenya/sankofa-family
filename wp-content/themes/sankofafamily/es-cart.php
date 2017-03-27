@@ -70,9 +70,13 @@
         }
 
         function deleteItem(itemId) {
+            var changeLocation = "/wp-content/themes/sankofafamily/es-trash.php?itemid=" + itemId;
             var delPrompt = confirm("确认删除此项？");
             if (delPrompt == true) {
-                parent.document.location = "/wp-content/themes/sankofafamily/es-trash.php?itemid=" + itemId;
+                if (($('#item3price').val() != null) && ($('#item3price').val() != "")) {
+                    changeLocation = changeLocation + "&price=" + $('#item3price').val();
+                }
+                parent.document.location = changeLocation;
             }
         }
 

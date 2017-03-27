@@ -4,9 +4,9 @@ require_once('DBConnect.php');
 require_once('eway/include_eway.php');
 
 //eWay Configurations
-$apiKey = '';
-$apiPassword = '';
-$apiEndpoint = '';
+$apiKey = '44DD7AYzqxkpYFVyBIFpq+lZXr23yFw4+GsJ21057HQfHAj/EVeqNvt3lnPxpAP2u/fg3O';
+$apiPassword = '5T8jGgM8';
+$apiEndpoint = 'Production';
 
 // Create the eWAY Client
 $client = \Eway\Rapid::createClient($apiKey, $apiPassword, $apiEndpoint);
@@ -29,13 +29,13 @@ if(isset($_REQUEST['price'])) {
 $query = "select sum(Price) as Amount from cs_cart where CustomerId=" . $_SESSION['esuserid'] . " and Sold=0 and Trash=0";
 $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
-$totalamount = $row['Amount'];
+$totalamount = $row['Amount'] * 100;
 
 $query = "select * from cs_users where Id=" . $_SESSION['esuserid'];
 $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
 $email = $row['Username'];
-$country = $row['Country'];
+$country = "au";
 $address = $row['Address'];
 $postcode = $row['PostCode'];
 $state = $row['State'];
@@ -48,8 +48,7 @@ $surname = $row['SurName'];
         'Customer' => [
             'FirstName' => $firstname,
             'LastName' => $surname,
-            'Street1' => 'Level 5',
-            'Street2' => '369 Queen Street',
+            'Street1' => $address,
             'City' => $city,
             'State' => $state,
             'PostalCode' => $postcode,
@@ -78,5 +77,5 @@ $surname = $row['SurName'];
         die();
     }
 
-    echo '<a href="'.$sharedURL.'">Pay with our secure payment page</a>';
+    header( 'Location: ' . $sharedURL );
 ?>
