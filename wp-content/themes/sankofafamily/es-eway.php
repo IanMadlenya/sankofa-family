@@ -43,6 +43,7 @@ $state = $row['State'];
 $city = $row['City'];
 $firstname = $row['FirstName'];
 $surname = $row['SurName'];
+$phone = '6969869';
 
     // Transaction details - these would usually come from the application
     $transaction = [
@@ -55,6 +56,7 @@ $surname = $row['SurName'];
             'PostalCode' => $postcode,
             'Country' => $country,
             'Email' => $email,
+            'Phone' => $phone,
         ],
         // These should be set to your actual website (on HTTPS of course)
         'RedirectUrl' => "https://$_SERVER[HTTP_HOST]/wp-content/themes/sankofafamily/es-response.php",
