@@ -58,7 +58,7 @@ $surname = $row['SurName'];
         ],
         // These should be set to your actual website (on HTTPS of course)
         'RedirectUrl' => "https://$_SERVER[HTTP_HOST]/wp-content/themes/sankofafamily/es-response.php",
-        'CancelUrl' => "https://$_SERVER[HTTP_HOST]/estore/",
+        'CancelUrl' => "https://$_SERVER[HTTP_HOST]/estore",
         'TransactionType' => \Eway\Rapid\Enum\TransactionType::PURCHASE,
         'Payment' => [
             'TotalAmount' => $totalamount,
