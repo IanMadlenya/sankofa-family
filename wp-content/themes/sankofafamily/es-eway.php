@@ -26,6 +26,7 @@ if(isset($_REQUEST['price'])) {
     $mysqli->query($query);
 }
 
+//Eway
 $query = "select sum(Price) as Amount from cs_cart where CustomerId=" . $_SESSION['esuserid'] . " and Sold=0 and Trash=0";
 $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
@@ -57,7 +58,7 @@ $surname = $row['SurName'];
         ],
         // These should be set to your actual website (on HTTPS of course)
         'RedirectUrl' => "https://$_SERVER[HTTP_HOST]/wp-content/themes/sankofafamily/es-response.php",
-        'CancelUrl' => "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",
+        'CancelUrl' => "https://$_SERVER[HTTP_HOST]/estore/",
         'TransactionType' => \Eway\Rapid\Enum\TransactionType::PURCHASE,
         'Payment' => [
             'TotalAmount' => $totalamount,
@@ -75,6 +76,14 @@ $surname = $row['SurName'];
             echo "Error: ".\Eway\Rapid::getMessage($error)."<br>";
         }
         die();
+    }
+
+    //Sold
+    $query = "SELECT Id FROM cs_cart WHERE CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0 AND Trash=0";
+    $result = $mysqli->query($query);
+    while($row = $result->fetch_assoc()) {
+        $soldquery = "UPDATE cs_cart SET Sold=1 WHERE Id=" . $row['Id'];
+        $mysqli->query($soldquery);
     }
 
     header( 'Location: ' . $sharedURL );
