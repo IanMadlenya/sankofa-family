@@ -4,9 +4,9 @@ require_once('DBConnect.php');
 require_once('eway/include_eway.php');
 
 //eWay Configurations
-$apiKey = '';
-$apiPassword = '';
-$apiEndpoint = '';
+$apiKey = '44DD7AYzqxkpYFVyBIFpq+lZXr23yFw4+GsJ21057HQfHAj/EVeqNvt3lnPxpAP2u/fg3O';
+$apiPassword = '5T8jGgM8';
+$apiEndpoint = 'Production';
 
 // Create the eWAY Client
 $client = \Eway\Rapid::createClient($apiKey, $apiPassword, $apiEndpoint);
