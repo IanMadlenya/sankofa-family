@@ -60,7 +60,7 @@ $phone = '6969869';
         ],
         // These should be set to your actual website (on HTTPS of course)
         'RedirectUrl' => "https://$_SERVER[HTTP_HOST]/wp-content/themes/sankofafamily/es-response.php",
-        'CancelUrl' => "https://$_SERVER[HTTP_HOST]/estore",
+        'CancelUrl' => "https://$_SERVER[HTTP_HOST]/estore?cancelpay",
         'TransactionType' => \Eway\Rapid\Enum\TransactionType::PURCHASE,
         'Payment' => [
             'TotalAmount' => $totalamount,

@@ -193,7 +193,11 @@ if(!isset($_COOKIE[$cookie_name])) {
         if((isset($_GET['errorreg'])) && !(isset($_SESSION['esusername']))) {
             $errormsg = "注册失败，请联系管理员"; ?>
                 $(".estore-error").fadeIn(500);
-                <?php unset($_GET['errorreg']); } 
+                <?php unset($_GET['errorreg']); }
+        if((isset($_GET['cancelpay'])) && (isset($_SESSION['esusername']))) {
+            $errormsg = "支付已取消"; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['cancelpay']); }
         if((isset($_GET['errorlogin'])) && !(isset($_SESSION['esusername']))) { ?>
                 $(".estore-login").fadeIn(500);
                 $("#errloginmsg").show();
