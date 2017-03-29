@@ -302,7 +302,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                                 type: "warning"
                             });
                         } else {
-                            $(".estore-cart").fadeOut(500);
+                            $('.estore-cart').fadeOut(500);
+                            $('.estore-paywait').fadeIn(500);
                             document.location = "/wp-content/themes/sankofafamily/es-eway.php?price=" + $("#cartframe").contents().find("#item3price").val();
                         }
                     } else {
@@ -311,7 +312,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                         });
                     }
                 } else {
-                    $(".estore-cart").fadeOut(500);
+                    $('.estore-cart').fadeOut(500);
+                    $('.estore-paywait').fadeIn(500);
                     document.location = "/wp-content/themes/sankofafamily/es-eway.php";
                 }
             }
@@ -493,6 +495,17 @@ if (isset($_SESSION['esusername'])) {
                             <?php echo $errormsg; ?>
                         </p>
                         <button class="estore-btn w3-padding" id="errorbtn">确定 <span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="estore-paywait">
+                <div class="estore-dialog-paywait">
+                    <div class="w3-center">
+                        <img src="/images/loading.png" style="width:30%;margin-top:30px">
+                        <p>
+                            正在加载支付页面，请稍候...
+                        </p>
                     </div>
                 </div>
             </div>
