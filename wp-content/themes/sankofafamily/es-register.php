@@ -40,7 +40,8 @@
                 closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
                 color: "rgb(247,249,249)",
                 top: 0,
-                right: 20
+                right: 20,
+                hideOnBlur: true
             });
         });
 

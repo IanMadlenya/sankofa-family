@@ -42,6 +42,7 @@
                 color: "rgb(247,249,249)",
                 top: 0,
                 right: 12,
+                hideOnBlur: true,
                 onClear: function() {
                     $('#carttable').dataTable().fnFilter("");
                 }

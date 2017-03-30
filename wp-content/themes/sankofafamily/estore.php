@@ -84,7 +84,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                     closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
                     color: "rgb(247,249,249)",
                     top: 3,
-                    right: 20
+                    right: 20,
+                    hideOnBlur: true
                 });
                 $('.estore-item1').click(function() {
                     if (hidden1 == false) {
