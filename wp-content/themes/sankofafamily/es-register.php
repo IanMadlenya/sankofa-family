@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.min.js"></script>
     <script src="/js/checkEmail.js"></script>
+    <script src="/js/addclear.min.js"></script>
     <style>
          ::-webkit-input-placeholder {
             /* WebKit, Blink, Edge */
@@ -27,8 +28,18 @@
             /* Internet Explorer 10-11 */
             color: #d9dfe0;
         }
+
     </style>
     <script>
+        $(function() {
+            $("input").addClear({
+                closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
+                color: "rgb(247,249,249)",
+                top: 0,
+                right: 20
+            });
+        });
+
         function validateForm() {
             var useremail = $('#username').val();
             var userpwd = $('#espwd').val();

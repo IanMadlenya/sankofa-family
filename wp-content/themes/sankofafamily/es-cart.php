@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.min.js"></script>
+    <script src="/js/addclear.min.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="/css/carttable.css">
     <style>
@@ -28,8 +29,21 @@
             /* Internet Explorer 10-11 */
             color: #d9dfe0;
         }
+
     </style>
     <script>
+        $(function() {
+            $('#searchfilter').addClear({
+                closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
+                color: "rgb(247,249,249)",
+                top: 0,
+                right: 12,
+                onClear: function() {
+                    $('#carttable').dataTable().fnFilter("");
+                }
+            });
+        });
+
         $(document).ready(function() {
             $('#carttable').dataTable({
                 "paging": false,

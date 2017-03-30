@@ -43,6 +43,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <link rel="stylesheet" href="/css/style.css">
         <script src="/js/jquery.min.js"></script>
         <script src="/js/checkEmail.js"></script>
+        <script src="/js/addclear.min.js"></script>
         <link rel="stylesheet" href="/css/notify.css">
         <link rel="stylesheet" href="/css/prettify.css">
         <script src="/js/notify.js"></script>
@@ -75,6 +76,12 @@ if(!isset($_COOKIE[$cookie_name])) {
             var hidden3 = false;
 
             $(function() {
+                $("input").addClear({
+                    closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
+                    color: "rgb(247,249,249)",
+                    top: 3,
+                    right: 20
+                });
                 $('.estore-item1').click(function() {
                     if (hidden1 == false) {
                         $('.eitem1').animate({
