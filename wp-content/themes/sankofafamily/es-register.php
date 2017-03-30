@@ -28,6 +28,10 @@
             /* Internet Explorer 10-11 */
             color: #d9dfe0;
         }
+        
+        input[type=text]::-ms-clear {
+            display: none;
+        }
 
     </style>
     <script>
@@ -40,10 +44,16 @@
             });
         });
 
+        function isAlphaOrParen(str) {
+            return /^[a-zA-Z()]+$/.test(str);
+        }
+
         function validateForm() {
             var useremail = $('#username').val();
             var userpwd = $('#espwd').val();
             var cuserpwd = $('#cespwd').val();
+            var surname = $('#surname').val();
+            var firstname = $('#firstname').val();
 
             if ((!isValidEmailAddress(useremail)) || (!useremail)) {
                 alert("请检查电子邮件是否输入正确");
@@ -56,6 +66,12 @@
                 $('#cespwd').css('background-color', '');
                 $('#cespwd').css('border-color', '');
                 $('#cespwd').css('box-shadow', '');
+                $('#surname').css('background-color', '');
+                $('#surname').css('border-color', '');
+                $('#surname').css('box-shadow', '');
+                $('#firstname').css('background-color', '');
+                $('#firstname').css('border-color', '');
+                $('#firstname').css('box-shadow', '');
                 return false;
             } else if (!userpwd) {
                 alert("密码不能为空");
@@ -68,6 +84,12 @@
                 $('#cespwd').css('background-color', '');
                 $('#cespwd').css('border-color', '');
                 $('#cespwd').css('box-shadow', '');
+                $('#surname').css('background-color', '');
+                $('#surname').css('border-color', '');
+                $('#surname').css('box-shadow', '');
+                $('#firstname').css('background-color', '');
+                $('#firstname').css('border-color', '');
+                $('#firstname').css('box-shadow', '');
                 return false;
             } else if (!cuserpwd) {
                 alert("请确认密码");
@@ -80,6 +102,12 @@
                 $('#cespwd').css('background-color', '#e08283');
                 $('#cespwd').css('border-color', '#FF0000');
                 $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#surname').css('background-color', '');
+                $('#surname').css('border-color', '');
+                $('#surname').css('box-shadow', '');
+                $('#firstname').css('background-color', '');
+                $('#firstname').css('border-color', '');
+                $('#firstname').css('box-shadow', '');
                 return false;
             } else if (userpwd != cuserpwd) {
                 alert("密码不一致，请重新输入");
@@ -92,6 +120,48 @@
                 $('#cespwd').css('background-color', '#e08283');
                 $('#cespwd').css('border-color', '#FF0000');
                 $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#surname').css('background-color', '');
+                $('#surname').css('border-color', '');
+                $('#surname').css('box-shadow', '');
+                $('#firstname').css('background-color', '');
+                $('#firstname').css('border-color', '');
+                $('#firstname').css('box-shadow', '');
+                return false;
+            } else if ((surname) && (!(isAlphaOrParen(surname)))) {
+                alert("姓氏必须为英文字母");
+                $('#username').css('background-color', '');
+                $('#username').css('border-color', '');
+                $('#username').css('box-shadow', '');
+                $('#espwd').css('background-color', '');
+                $('#espwd').css('border-color', '');
+                $('#espwd').css('box-shadow', '');
+                $('#cespwd').css('background-color', '');
+                $('#cespwd').css('border-color', '');
+                $('#cespwd').css('box-shadow', '');
+                $('#surname').css('background-color', '#e08283');
+                $('#surname').css('border-color', '#FF0000');
+                $('#surname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#firstname').css('background-color', '');
+                $('#firstname').css('border-color', '');
+                $('#firstname').css('box-shadow', '');
+                return false;
+            } else if ((firstname) && (!(isAlphaOrParen(firstname)))) {
+                alert("名字必须为英文字母");
+                $('#username').css('background-color', '');
+                $('#username').css('border-color', '');
+                $('#username').css('box-shadow', '');
+                $('#espwd').css('background-color', '');
+                $('#espwd').css('border-color', '');
+                $('#espwd').css('box-shadow', '');
+                $('#cespwd').css('background-color', '');
+                $('#cespwd').css('border-color', '');
+                $('#cespwd').css('box-shadow', '');
+                $('#surname').css('background-color', '');
+                $('#surname').css('border-color', '');
+                $('#surname').css('box-shadow', '');
+                $('#firstname').css('background-color', '#e08283');
+                $('#firstname').css('border-color', '#FF0000');
+                $('#firstname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
             } else {
                 return true;
@@ -111,8 +181,8 @@
         </div>
         <p>其他信息 (可选填)</p>
         <div class="w3-center" style="margin-bottom:30px">
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" placeholder="姓 (汉语拼音)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" placeholder="名 (汉语拼音)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (汉语拼音)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (汉语拼音)"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="country" placeholder="国家"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="state" placeholder="省份/州"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市"></p>

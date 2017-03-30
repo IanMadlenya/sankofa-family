@@ -68,6 +68,10 @@ if(!isset($_COOKIE[$cookie_name])) {
                 /* Internet Explorer 10-11 */
                 color: #d9dfe0;
             }
+            
+            input[type=text]::-ms-clear {
+                display: none;
+            }
 
         </style>
         <script>
