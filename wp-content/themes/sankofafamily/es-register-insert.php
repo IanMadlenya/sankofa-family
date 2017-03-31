@@ -14,6 +14,7 @@ if ($mysqli->connect_errno) {
     // Escape user inputs for security
     $username = $mysqli->real_escape_string($_REQUEST['username']);
     $password = $mysqli->real_escape_string($_REQUEST['espwd']);
+    $phone = $mysqli->real_escape_string($_REQUEST['phone']);
     $postcode = (int)($mysqli->real_escape_string($_REQUEST['postcode']));
     $address = $mysqli->real_escape_string($_REQUEST['address']);
     $city = $mysqli->real_escape_string($_REQUEST['city']);
@@ -23,7 +24,7 @@ if ($mysqli->connect_errno) {
     $firstname = $mysqli->real_escape_string($_REQUEST['firstname']);
     
     // attempt insert query execution
-    $query = "INSERT INTO cs_users (Username, Password, PostCode, CreatedDate, State, Address, Country, City, SurName, FirstName) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', " . $postcode . ", NOW(), '" . $state . "', '" . $address . "', '" . $country . "', '" . $city . "', '" . $surname . "', '" . $firstname . "');";
+    $query = "INSERT INTO cs_users (Username, Password, PostCode, CreatedDate, State, Address, Country, City, SurName, FirstName, Phone) VALUES ('" . $username . "', '" . hash('sha256',$password) . "', " . $postcode . ", NOW(), '" . $state . "', '" . $address . "', '" . $country . "', '" . $city . "', '" . $surname . "', '" . $firstname . "', '" . $phone . "');";
     $result = $mysqli->query($query);
 
     if($result) {

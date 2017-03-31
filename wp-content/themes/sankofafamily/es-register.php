@@ -49,117 +49,91 @@
             return /^[a-zA-Z()]+$/.test(str);
         }
 
+        function isArabicNumber(str) {
+            return /^[0-9]+$/.test(str);
+        }
+
+        function clearInputStyle() {
+            $('#username').css('background-color', '');
+            $('#username').css('border-color', '');
+            $('#username').css('box-shadow', '');
+            $('#phone').css('background-color', '');
+            $('#phone').css('border-color', '');
+            $('#phone').css('box-shadow', '');
+            $('#espwd').css('background-color', '');
+            $('#espwd').css('border-color', '');
+            $('#espwd').css('box-shadow', '');
+            $('#cespwd').css('background-color', '');
+            $('#cespwd').css('border-color', '');
+            $('#cespwd').css('box-shadow', '');
+            $('#surname').css('background-color', '');
+            $('#surname').css('border-color', '');
+            $('#surname').css('box-shadow', '');
+            $('#firstname').css('background-color', '');
+            $('#firstname').css('border-color', '');
+            $('#firstname').css('box-shadow', '');
+        }
+
         function validateForm() {
             var useremail = $('#username').val();
             var userpwd = $('#espwd').val();
             var cuserpwd = $('#cespwd').val();
+            var phone = $('#phone').val();
             var surname = $('#surname').val();
             var firstname = $('#firstname').val();
 
             if ((!isValidEmailAddress(useremail)) || (!useremail)) {
                 alert("请检查电子邮件是否输入正确");
+                clearInputStyle();
                 $('#username').css('background-color', '#e08283');
                 $('#username').css('border-color', '#FF0000');
                 $('#username').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#espwd').css('background-color', '');
-                $('#espwd').css('border-color', '');
-                $('#espwd').css('box-shadow', '');
-                $('#cespwd').css('background-color', '');
-                $('#cespwd').css('border-color', '');
-                $('#cespwd').css('box-shadow', '');
-                $('#surname').css('background-color', '');
-                $('#surname').css('border-color', '');
-                $('#surname').css('box-shadow', '');
-                $('#firstname').css('background-color', '');
-                $('#firstname').css('border-color', '');
-                $('#firstname').css('box-shadow', '');
+                return false;
+            } else if ((!phone) || ((phone) && (!(isArabicNumber(phone))))) {
+                if (!phone) {
+                    alert("联系电话不能为空");
+                } else {
+                    alert("联系电话必须为数字");
+                }
+                clearInputStyle();
+                $('#phone').css('background-color', '#e08283');
+                $('#phone').css('border-color', '#FF0000');
+                $('#phone').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
             } else if (!userpwd) {
                 alert("密码不能为空");
-                $('#username').css('background-color', '');
-                $('#username').css('border-color', '');
-                $('#username').css('box-shadow', '');
+                clearInputStyle();
                 $('#espwd').css('background-color', '#e08283');
                 $('#espwd').css('border-color', '#FF0000');
                 $('#espwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#cespwd').css('background-color', '');
-                $('#cespwd').css('border-color', '');
-                $('#cespwd').css('box-shadow', '');
-                $('#surname').css('background-color', '');
-                $('#surname').css('border-color', '');
-                $('#surname').css('box-shadow', '');
-                $('#firstname').css('background-color', '');
-                $('#firstname').css('border-color', '');
-                $('#firstname').css('box-shadow', '');
                 return false;
             } else if (!cuserpwd) {
                 alert("请确认密码");
-                $('#username').css('background-color', '');
-                $('#username').css('border-color', '');
-                $('#username').css('box-shadow', '');
-                $('#espwd').css('background-color', '');
-                $('#espwd').css('border-color', '');
-                $('#espwd').css('box-shadow', '');
+                clearInputStyle();
                 $('#cespwd').css('background-color', '#e08283');
                 $('#cespwd').css('border-color', '#FF0000');
                 $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#surname').css('background-color', '');
-                $('#surname').css('border-color', '');
-                $('#surname').css('box-shadow', '');
-                $('#firstname').css('background-color', '');
-                $('#firstname').css('border-color', '');
-                $('#firstname').css('box-shadow', '');
                 return false;
             } else if (userpwd != cuserpwd) {
                 alert("密码不一致，请重新输入");
-                $('#username').css('background-color', '');
-                $('#username').css('border-color', '');
-                $('#username').css('box-shadow', '');
+                clearInputStyle();
                 $('#espwd').css('background-color', '#e08283');
                 $('#espwd').css('border-color', '#FF0000');
                 $('#espwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 $('#cespwd').css('background-color', '#e08283');
                 $('#cespwd').css('border-color', '#FF0000');
                 $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#surname').css('background-color', '');
-                $('#surname').css('border-color', '');
-                $('#surname').css('box-shadow', '');
-                $('#firstname').css('background-color', '');
-                $('#firstname').css('border-color', '');
-                $('#firstname').css('box-shadow', '');
                 return false;
             } else if ((surname) && (!(isAlphaOrParen(surname)))) {
                 alert("姓氏必须为英文字母");
-                $('#username').css('background-color', '');
-                $('#username').css('border-color', '');
-                $('#username').css('box-shadow', '');
-                $('#espwd').css('background-color', '');
-                $('#espwd').css('border-color', '');
-                $('#espwd').css('box-shadow', '');
-                $('#cespwd').css('background-color', '');
-                $('#cespwd').css('border-color', '');
-                $('#cespwd').css('box-shadow', '');
+                clearInputStyle();
                 $('#surname').css('background-color', '#e08283');
                 $('#surname').css('border-color', '#FF0000');
                 $('#surname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#firstname').css('background-color', '');
-                $('#firstname').css('border-color', '');
-                $('#firstname').css('box-shadow', '');
                 return false;
             } else if ((firstname) && (!(isAlphaOrParen(firstname)))) {
                 alert("名字必须为英文字母");
-                $('#username').css('background-color', '');
-                $('#username').css('border-color', '');
-                $('#username').css('box-shadow', '');
-                $('#espwd').css('background-color', '');
-                $('#espwd').css('border-color', '');
-                $('#espwd').css('box-shadow', '');
-                $('#cespwd').css('background-color', '');
-                $('#cespwd').css('border-color', '');
-                $('#cespwd').css('box-shadow', '');
-                $('#surname').css('background-color', '');
-                $('#surname').css('border-color', '');
-                $('#surname').css('box-shadow', '');
+                clearInputStyle();
                 $('#firstname').css('background-color', '#e08283');
                 $('#firstname').css('border-color', '#FF0000');
                 $('#firstname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
@@ -177,6 +151,7 @@
         <p>个人信息</p>
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件（作为用户名）"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码"></p>
         </div>
