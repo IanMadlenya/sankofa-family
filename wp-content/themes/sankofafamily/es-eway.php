@@ -43,7 +43,7 @@ $state = $row['State'];
 $city = $row['City'];
 $firstname = $row['FirstName'];
 $surname = $row['SurName'];
-$phone = '6969869';
+$phone = $row['Phone'];
 
     // Transaction details - these would usually come from the application
     $transaction = [
