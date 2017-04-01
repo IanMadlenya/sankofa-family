@@ -36,18 +36,18 @@
         $loginLabelSignout = "";
         if($loginLan == "en") {
             $loginLabel = "<span class='glyphicon glyphicon-log-in' style='margin-right:10px'></span>Login";
-            $loginLabelAdmin = "Preferences";
+            $loginLabelAdmin = "Profile";
             $loginLabelCart = "Shopping Cart";
             $loginLabelSignout = "Sign Out";
         } elseif($loginLan == "zh") {
             $loginLabel = "<span class='glyphicon glyphicon-log-in' style='margin-right:10px'></span>登录";
-            $loginLabelAdmin = "用户设置";
+            $loginLabelAdmin = "个人资料";
             $loginLabelCart = "购物车";
             $loginLabelSignout = "登出";
         }
         if($loginText != "") {
             $loginLabel = "<span class='glyphicon glyphicon-user' style='margin-right:10px'></span>" . $loginText;
-            $dropdownMenu = "<div class='sf-dropdown-content'><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='" . $carthref . "'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
+            $dropdownMenu = "<div class='sf-dropdown-content'><a href='" . $carthref . "'><span class='glyphicon glyphicon-shopping-cart' style='margin-right:10px'></span>" . $loginLabelCart . "</a><a href='/wp-admin'><span class='glyphicon glyphicon-cog' style='margin-right:10px'></span>" . $loginLabelAdmin . "</a><a href='/wp-content/themes/sankofafamily/es-logout.php'><span class='glyphicon glyphicon-log-out' style='margin-right:10px'></span>" . $loginLabelSignout . "</a></div>";
         }
         if($loginStyle == 0) {
             //original
