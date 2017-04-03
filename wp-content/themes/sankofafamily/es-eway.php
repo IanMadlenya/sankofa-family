@@ -84,7 +84,7 @@ $phone = $row['Phone'];
     $query = "SELECT Id FROM cs_cart WHERE CustomerId=" . $_SESSION['esuserid'] . " AND Sold=0 AND Trash=0";
     $result = $mysqli->query($query);
     while($row = $result->fetch_assoc()) {
-        $soldquery = "UPDATE cs_cart SET Sold=1 WHERE Id=" . $row['Id'];
+        $soldquery = "UPDATE cs_cart SET SoldDate=NOW(), Sold=1 WHERE Id=" . $row['Id'];
         $mysqli->query($soldquery);
     }
 
