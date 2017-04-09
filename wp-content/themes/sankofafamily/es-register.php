@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <link rel="stylesheet" href="/css/w3.css">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -159,7 +158,24 @@
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (汉语拼音)"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (汉语拼音)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="country" placeholder="国家或地区"></p>
+            <p>
+<select name="country" class="w3-input estore-input-login w3-opacity" style="height:39px">
+<?php
+    require_once('sf-passwd.php');
+    $mysqli = new mysqli($servername, $username, $password, $dbname);    
+    
+    $query = "SELECT * FROM cs_countries";
+    $result = $mysqli->query($query);
+    while($row = $result->fetch_assoc()) {
+        if($row['CountryCode'] != "AU") {
+            echo '<option value="' . $row['CountryCode'] . '">' . $row['Country'] . '</option>';
+        } else {
+            echo '<option value="' . $row['CountryCode'] . '" selected>' . $row['Country'] . '</option>';
+        }
+    }
+?>
+</select>
+            </p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="state" placeholder="省份/州"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" placeholder="地址"></p>
