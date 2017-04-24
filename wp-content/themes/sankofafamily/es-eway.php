@@ -36,7 +36,7 @@ $query = "select * from cs_users where Id=" . $_SESSION['esuserid'];
 $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
 $email = $row['Username'];
-$country = "au";
+$country = $row['Country'];
 $address = $row['Address'];
 $postcode = $row['PostCode'];
 $state = $row['State'];

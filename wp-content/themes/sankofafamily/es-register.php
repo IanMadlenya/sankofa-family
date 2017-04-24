@@ -34,6 +34,12 @@
 
     </style>
     <script>
+        $(document).ready(function() {
+            $.post("es-country.php", { country: "AU" }, function(data) {
+                $("#states").html(data);
+            });
+        });
+        
         $(function() {
             $("input").addClear({
                 closeSymbol: "<span class='glyphicon glyphicon-remove-sign'></span>",
@@ -141,7 +147,14 @@
                 return true;
             }
         }
-
+        
+        function changeCountry() {
+            $("#state").remove();
+            var country = $("#country").val();
+            $.post("es-country.php", { country: country }, function(data) {
+                $("#states").html(data);
+            });
+        }
     </script>
 </head>
 
@@ -159,7 +172,7 @@
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (汉语拼音)"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (汉语拼音)"></p>
             <p>
-<select name="country" class="w3-input estore-input-login w3-opacity" style="height:39px">
+<select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php
     require_once('sf-passwd.php');
     $mysqli = new mysqli($servername, $username, $password, $dbname);    
@@ -176,7 +189,8 @@
 ?>
 </select>
             </p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="state" placeholder="省份/州"></p>
+            <div id="states">
+            </div>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" placeholder="地址"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" placeholder="邮编"></p>
