@@ -11,7 +11,7 @@
     $output = "";
     if(isset($_REQUEST['country'])) {
         $country = $_REQUEST['country'];
-        $query = "SELECT * FROM cs_states WHERE CountryCode='" . $country . "';";
+        $query = "SELECT States FROM cs_states WHERE CountryCode='" . $country . "' ORDER BY States;";
         $result = $mysqli->query($query);
         if(($result) && ($result->num_rows !== 0)) {
             $output = '<select name="state" id="state" class="w3-input estore-input-login w3-opacity" style="height:39px">';

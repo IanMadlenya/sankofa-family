@@ -177,7 +177,7 @@
     require_once('sf-passwd.php');
     $mysqli = new mysqli($servername, $username, $password, $dbname);    
     
-    $query = "SELECT * FROM cs_countries";
+    $query = "SELECT * FROM cs_countries ORDER BY Country";
     $result = $mysqli->query($query);
     while($row = $result->fetch_assoc()) {
         if($row['CountryCode'] != "AU") {
