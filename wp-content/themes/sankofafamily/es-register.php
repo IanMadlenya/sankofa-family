@@ -34,6 +34,8 @@
 
     </style>
     <script>
+        var checkuser = 0;
+        
         $(document).ready(function() {
             $.post("es-country.php", { country: "AU" }, function(data) {
                 $("#states").html(data);
@@ -46,7 +48,10 @@
                 color: "rgb(247,249,249)",
                 top: 0,
                 right: 20,
-                hideOnBlur: true
+                hideOnBlur: true,
+                onClear: function() {
+                    clearInputStyle();
+                }
             });
         });
 
@@ -59,6 +64,7 @@
         }
 
         function clearInputStyle() {
+            $("#checkUserFail").hide();
             $('#username').css('background-color', '');
             $('#username').css('border-color', '');
             $('#username').css('box-shadow', '');
@@ -87,8 +93,12 @@
             var surname = $('#surname').val();
             var firstname = $('#firstname').val();
 
-            if ((!isValidEmailAddress(useremail)) || (!useremail)) {
-                alert("请检查电子邮件是否输入正确");
+            if ((!isValidEmailAddress(useremail)) || (!useremail) || (checkuser == 1)) {
+                if(checkuser == 1) {
+                    alert("用户名已被使用");
+                } else {
+                    alert("请检查电子邮件是否输入正确");
+                }
                 clearInputStyle();
                 $('#username').css('background-color', '#e08283');
                 $('#username').css('border-color', '#FF0000');
@@ -155,14 +165,32 @@
                 $("#states").html(data);
             });
         }
+        
+        function checkUsername() {
+            var username = $("#username").val();
+            $.post("es-checkuser.php", { username: username }, function(data) {
+                if(data == "failed") {
+                    checkuser = 1;
+                    clearInputStyle();
+                    $("#checkUserFail").show();
+                    $('#username').css('background-color', '#e08283');
+                    $('#username').css('border-color', '#FF0000');
+                    $('#username').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                } else {
+                    checkuser = 0;
+                    clearInputStyle();
+                }
+            });
+        }
     </script>
 </head>
 
 <body>
     <form id="regform" action="/wp-content/themes/sankofafamily/es-register-insert.php" onsubmit="return validateForm()" method="post" target="_top">
         <p>个人信息</p>
+        <p id="checkUserFail" style="color:red;font-size:12px;margin-bottom:-10px;margin-left:10px;display:none">* 用户名已被使用.</p>
         <div class="w3-center" style="margin-bottom:30px">
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件（作为用户名）"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件（作为用户名）" onkeyup="checkUsername()"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码"></p>
