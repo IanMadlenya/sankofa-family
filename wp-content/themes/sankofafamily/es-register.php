@@ -83,6 +83,9 @@
             $('#firstname').css('background-color', '');
             $('#firstname').css('border-color', '');
             $('#firstname').css('box-shadow', '');
+            $('#postcode').css('background-color', '');
+            $('#postcode').css('border-color', '');
+            $('#postcode').css('box-shadow', '');
         }
 
         function validateForm() {
@@ -92,6 +95,7 @@
             var phone = $('#phone').val();
             var surname = $('#surname').val();
             var firstname = $('#firstname').val();
+            var postcode = $('#postcode').val();
 
             if ((!isValidEmailAddress(useremail)) || (!useremail) || (checkuser == 1)) {
                 if(checkuser == 1) {
@@ -153,6 +157,13 @@
                 $('#firstname').css('border-color', '#FF0000');
                 $('#firstname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
+            } else if ((postcode) && (!(isArabicNumber(postcode)))) {
+                alert("邮编必须为数字");
+                clearInputStyle();
+                $('#postcode').css('background-color', '#e08283');
+                $('#postcode').css('border-color', '#FF0000');
+                $('#postcode').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                return false;
             } else {
                 return true;
             }
@@ -197,8 +208,8 @@
         </div>
         <p>其他信息 (可选填)</p>
         <div class="w3-center" style="margin-bottom:30px">
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (汉语拼音)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (汉语拼音)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (英文字母)"></p>
             <p>
 <select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php
@@ -219,9 +230,9 @@
             </p>
             <div id="states">
             </div>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" placeholder="地址"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" placeholder="邮编"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" placeholder="地址 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" id="postcode" placeholder="邮编"></p>
         </div>
     </form>
 </body>
