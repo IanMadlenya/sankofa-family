@@ -7,6 +7,7 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/checkEmail.js"></script>
     <script src="/js/addclear.min.js"></script>
+    <script src="/js/regexCheck.js"></script>
     <style>
          ::-webkit-input-placeholder {
             /* WebKit, Blink, Edge */
@@ -55,14 +56,6 @@
             });
         });
 
-        function isAlphaOrParen(str) {
-            return /^[a-zA-Z()]+$/.test(str);
-        }
-
-        function isArabicNumber(str) {
-            return /^[0-9]+$/.test(str);
-        }
-
         function clearInputStyle() {
             $("#checkUserFail").hide();
             $('#username').css('background-color', '');
@@ -86,6 +79,12 @@
             $('#postcode').css('background-color', '');
             $('#postcode').css('border-color', '');
             $('#postcode').css('box-shadow', '');
+            $('#city').css('background-color', '');
+            $('#city').css('border-color', '');
+            $('#city').css('box-shadow', '');
+            $('#address').css('background-color', '');
+            $('#address').css('border-color', '');
+            $('#address').css('box-shadow', '');
         }
 
         function validateForm() {
@@ -96,6 +95,8 @@
             var surname = $('#surname').val();
             var firstname = $('#firstname').val();
             var postcode = $('#postcode').val();
+            var city = $('#city').val();
+            var address = $('#address').val();
 
             if ((!isValidEmailAddress(useremail)) || (!useremail) || (checkuser == 1)) {
                 if(checkuser == 1) {
@@ -164,6 +165,20 @@
                 $('#postcode').css('border-color', '#FF0000');
                 $('#postcode').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
+            } else if ((city) && (!(isAlphaOrParen(city)))) {
+                alert("城市名称必须为英文字母");
+                clearInputStyle();
+                $('#city').css('background-color', '#e08283');
+                $('#city').css('border-color', '#FF0000');
+                $('#city').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                return false;
+            } else if ((address) && (isAsianCharater(address))) {
+                alert("地址不能包含汉字");
+                clearInputStyle();
+                $('#address').css('background-color', '#e08283');
+                $('#address').css('border-color', '#FF0000');
+                $('#address').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                return false;
             } else {
                 return true;
             }
@@ -230,8 +245,8 @@
             </p>
             <div id="states">
             </div>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" placeholder="城市 (英文字母)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" placeholder="地址 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" id="city" placeholder="城市 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" id="address" placeholder="地址 (英文字母)"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" id="postcode" placeholder="邮编"></p>
         </div>
     </form>
