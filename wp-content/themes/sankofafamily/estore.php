@@ -44,6 +44,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <script src="/js/jquery.min.js"></script>
         <script src="/js/checkEmail.js"></script>
         <script src="/js/addclear.min.js"></script>
+        <script src="/js/regexCheck.js"></script>
         <link rel="stylesheet" href="/css/notify.css">
         <link rel="stylesheet" href="/css/prettify.css">
         <script src="/js/notify.js"></script>
@@ -393,6 +394,23 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $('#forgotphone').css('border-color', '');
                     $('#forgotphone').css('box-shadow', '');
                     return false;
+                } else if ((!forgotphone) || ((forgotphone) && (!(isArabicNumber(forgotphone))))) {
+                    if (!forgotphone) {
+                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> 电话号码不能为空", {
+                            type: "warning"
+                        });
+                    } else {
+                        $.notify("<span class='glyphicon glyphicon-info-sign'></span> 电话号码必须为数字", {
+                            type: "warning"
+                        });
+                    }
+                    $('#forgotemail').css('background-color', '');
+                    $('#forgotemail').css('border-color', '');
+                    $('#forgotemail').css('box-shadow', '');
+                    $('#forgotphone').css('background-color', '#e08283');
+                    $('#forgotphone').css('border-color', '#FF0000');
+                    $('#forgotphone').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                    return false;
                 } else {
                     return true;
                 }
@@ -476,7 +494,7 @@ if (isset($_SESSION['esusername'])) {
                         <h4>Forgot Password</h4>
                         <div class="w3-center">
                             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="注册邮件地址"></p>
-                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="电话号码"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="注册电话号码"></p>
                         </div>
                     </form>
                     <div class="w3-center">
