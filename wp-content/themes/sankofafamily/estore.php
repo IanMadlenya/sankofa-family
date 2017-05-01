@@ -212,6 +212,10 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $successmsg = "发送成功！请检查邮箱"; ?>
                 $(".estore-success").fadeIn(500);
             <?php unset($_GET['successfg']); }
+                if((isset($_GET['failfg'])) && !(isset($_SESSION['esusername']))) {
+                $errormsg = "密码找回失败，请联系管理员"; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['failfg']); }
         if((isset($_GET['errorreg'])) && !(isset($_SESSION['esusername']))) {
             $errormsg = "注册失败，请联系管理员"; ?>
                 $(".estore-error").fadeIn(500);
@@ -495,7 +499,7 @@ if (isset($_SESSION['esusername'])) {
             <div class="estore-forgotpw">
                 <div class="estore-dialog-forgotpw">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-                    <form id="forgotform" onsubmit="return validateForgot()" method="post">
+                    <form id="forgotform" action="/wp-content/themes/sankofafamily/es-forgotemail.php" onsubmit="return validateForgot()" method="post">
                         <h4>Forgotten Password</h4>
                         <div class="w3-center">
                             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="注册邮件地址"></p>
