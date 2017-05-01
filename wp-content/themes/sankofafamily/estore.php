@@ -201,7 +201,11 @@ if(!isset($_COOKIE[$cookie_name])) {
                 <?php } if((isset($_GET['successreg'])) && !(isset($_SESSION['esusername']))) {
             $successmsg = "注册成功！请登录帐号"; ?>
                 $(".estore-success").fadeIn(500);
-                <?php unset($_GET['successreg']); }
+                <?php unset($_GET['successreg']);
+                } if((isset($_GET['successfg'])) && !(isset($_SESSION['esusername']))) {
+                    $successmsg = "发送成功！请检查邮箱"; ?>
+                $(".estore-success").fadeIn(500);
+            <?php unset($_GET['successfg']); }
         if((isset($_GET['errorreg'])) && !(isset($_SESSION['esusername']))) {
             $errormsg = "注册失败，请联系管理员"; ?>
                 $(".estore-error").fadeIn(500);
@@ -332,7 +336,13 @@ if(!isset($_COOKIE[$cookie_name])) {
 
             function backToLogin() {
                 $(".estore-register").fadeOut(500);
+                $(".estore-forgotpw").fadeOut(500);
                 $(".estore-login").fadeIn(500);
+            }
+
+            function forgotPassword() {
+                $(".estore-login").fadeOut(500);
+                $(".estore-forgotpw").fadeIn(500);
             }
 
             function validateLogin() {
@@ -362,6 +372,26 @@ if(!isset($_COOKIE[$cookie_name])) {
                     $('#loginpwd').css('border-color', '#FF0000');
                     $('#loginpwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                     $('#errloginmsg').hide();
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function validateForgot() {
+                var forgotemail = $('#forgotemail').val();
+                var forgotphone = $('#forgotphone').val();
+
+                if ((!isValidEmailAddress(forgotemail)) || (!forgotemail)) {
+                    $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查邮件地址是否输入正确，且不能为空", {
+                        type: "warning"
+                    });
+                    $('#forgotemail').css('background-color', '#e08283');
+                    $('#forgotemail').css('border-color', '#FF0000');
+                    $('#forgotemail').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                    $('#forgotphone').css('background-color', '');
+                    $('#forgotphone').css('border-color', '');
+                    $('#forgotphone').css('box-shadow', '');
                     return false;
                 } else {
                     return true;
@@ -434,7 +464,7 @@ if (isset($_SESSION['esusername'])) {
                     <div class="w3-center">
                         <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" id="registerbtn"><span class="glyphicon glyphicon-user"></span> 新用户注册</button>
                         <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit"><span class="glyphicon glyphicon-circle-arrow-right"></span> 登录</button>
-                        <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                        <p style="font-size:13px;margin-bottom:-5px"><a href="#" onclick="forgotPassword();" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
                     </div>
                 </div>
             </div>
@@ -442,17 +472,17 @@ if (isset($_SESSION['esusername'])) {
             <div class="estore-forgotpw">
                 <div class="estore-dialog-forgotpw">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
-                    <form>
-                        <h4>Login</h4>
+                    <form id="forgotform" onsubmit="return validateForgot()" method="post">
+                        <h4>Forgot Password</h4>
                         <div class="w3-center">
-                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="" placeholder="用户名"></p>
-                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="" placeholder="密码"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="注册邮件地址"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="电话号码"></p>
                         </div>
                     </form>
                     <div class="w3-center">
-                        <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px">新用户注册 <span class="glyphicon glyphicon-user"></span></button>
-                        <button class="estore-btn-confirm w3-padding" type="submit" form="loginform" value="Submit">登录 <span class="glyphicon glyphicon-log-in"></span></button>
-                        <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 忘记密码?</a></p>
+                        <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="backToLogin()"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
+                        <button class="estore-btn-confirm w3-padding" type="submit" form="forgotform" value="Submit"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
+                        <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 联系客服协助</a></p>
                     </div>
                 </div>
             </div>
