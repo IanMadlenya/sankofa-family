@@ -194,7 +194,12 @@ if(!isset($_COOKIE[$cookie_name])) {
             $(document).ready(function() {
                 <?php if((isset($_GET['login'])) && !(isset($_SESSION['esusername']))) { ?>
                 $(".estore-login").fadeIn(500);
-                <?php unset($_GET['login']);
+                <?php if((isset($_GET['loginname'])) && (isset($_GET['loginpwd']))) { ?>
+                    $("#loginname").val("<?php echo $_GET['loginname']; ?>");
+                    $("#loginpwd").val("<?php echo $_GET['loginpwd']; ?>");
+                <?php unset($_GET['loginname']);
+                    unset($_GET['loginpwd']); }
+                unset($_GET['login']);
                 } elseif((isset($_GET['login'])) && (isset($_SESSION['esusername']))) { ?>
                 $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 登录成功", {
                     type: "success"
@@ -491,7 +496,7 @@ if (isset($_SESSION['esusername'])) {
                 <div class="estore-dialog-forgotpw">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <form id="forgotform" onsubmit="return validateForgot()" method="post">
-                        <h4>Forgot Password</h4>
+                        <h4>Forgotten Password</h4>
                         <div class="w3-center">
                             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="注册邮件地址"></p>
                             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="注册电话号码"></p>
