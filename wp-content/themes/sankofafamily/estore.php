@@ -27,7 +27,20 @@ if(!isset($_COOKIE[$cookie_name])) {
     }
 } else {
     $cookie_value = $_COOKIE[$cookie_name];
-} ?>
+}
+
+$query = "SELECT item.ProductName,item.Description,item.ShortDescription,item.Price,item.MaxPrice,FORMAT(item.Price, '#,#') as Priced,FORMAT(item.MaxPrice, '#,#') as MaxPriced FROM cs_products item WHERE item.Id=1";
+$result = $mysqli->query($query);
+$row1 = $result->fetch_assoc();
+                
+$query = "SELECT item.ProductName,item.Description,item.ShortDescription,item.Price,item.MaxPrice,FORMAT(item.Price, '#,#') as Priced,FORMAT(item.MaxPrice, '#,#') as MaxPriced FROM cs_products item WHERE item.Id=2";
+$result = $mysqli->query($query);
+$row2 = $result->fetch_assoc();
+                
+$query = "SELECT item.ProductName,item.Description,item.ShortDescription,item.Price,item.MaxPrice,FORMAT(item.Price, '#,#') as Priced,FORMAT(item.MaxPrice, '#,#') as MaxPriced FROM cs_products item WHERE item.Id=3";
+$result = $mysqli->query($query);
+$row3 = $result->fetch_assoc();
+?>
     <html>
 
     <head>
@@ -254,7 +267,7 @@ if(!isset($_COOKIE[$cookie_name])) {
             function buyTrustSetup() {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 $(".estore-dialog1").fadeOut(500);
-                document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=1&quantity=1&price=5000";
+                document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=1&quantity=1&price=<?php echo $row1['Price']; ?>";
                 <?php } else { ?>
                 $(".estore-dialog1").fadeOut(500);
                 $(".estore-login").fadeIn(500);
@@ -264,7 +277,7 @@ if(!isset($_COOKIE[$cookie_name])) {
             function buyBusinessStudy() {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 $(".estore-dialog2").fadeOut(500);
-                document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=2&quantity=1&price=10000";
+                document.location = "/wp-content/themes/sankofafamily/es-buy.php?itemid=2&quantity=1&price=<?php echo $row2['Price']; ?>";
                 <?php } else { ?>
                 $(".estore-dialog2").fadeOut(500);
                 $(".estore-login").fadeIn(500);
@@ -275,8 +288,8 @@ if(!isset($_COOKIE[$cookie_name])) {
                 <?php if((isset($_SESSION['esuserid']))) { ?>
                 if (($('#interest_price').val() != null) && ($('#interest_price').val() != "")) {
                     if ($.isNumeric($('#interest_price').val())) {
-                        if (($('#interest_price').val() < 1000) || ($('#interest_price').val() > 5000)) {
-                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                        if (($('#interest_price').val() < <?php echo $row3['Price']; ?>) || ($('#interest_price').val() > <?php echo $row3['MaxPrice']; ?>)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $<?php echo $row3['Priced']; ?> 与 $<?php echo $row3['MaxPriced']; ?> 之间", {
                                 type: "warning"
                             });
                         } else {
@@ -302,8 +315,8 @@ if(!isset($_COOKIE[$cookie_name])) {
             function closeCart() {
                 if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
                     if ($.isNumeric($("#cartframe").contents().find("#item3price").val())) {
-                        if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
-                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                        if (($("#cartframe").contents().find("#item3price").val() < <?php echo $row3['Price']; ?>) || ($("#cartframe").contents().find("#item3price").val() > <?php echo $row3['MaxPrice']; ?>)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $<?php echo $row3['Priced']; ?> 与 $<?php echo $row3['MaxPriced']; ?> 之间", {
                                 type: "warning"
                             });
                         } else {
@@ -323,8 +336,8 @@ if(!isset($_COOKIE[$cookie_name])) {
             function ewaySubmit() {
                 if (($("#cartframe").contents().find("#item3price").val() != null) && ($("#cartframe").contents().find("#item3price").val() != "")) {
                     if ($.isNumeric($("#cartframe").contents().find("#item3price").val())) {
-                        if (($("#cartframe").contents().find("#item3price").val() < 1000) || ($("#cartframe").contents().find("#item3price").val() > 5000)) {
-                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $1000 与 $5000 之间", {
+                        if (($("#cartframe").contents().find("#item3price").val() < <?php echo $row3['Price']; ?>) || ($("#cartframe").contents().find("#item3price").val() > <?php echo $row3['MaxPrice']; ?>)) {
+                            $.notify("<span class='glyphicon glyphicon-info-sign'></span> EOI 应介于澳币 $<?php echo $row3['Priced']; ?> 与 $<?php echo $row3['MaxPriced']; ?> 之间", {
                                 type: "warning"
                             });
                         } else {
@@ -434,7 +447,7 @@ if(!isset($_COOKIE[$cookie_name])) {
         <!-- Navbar (sit on top) -->
         <div class="estore-bg2 w3-top">
             <ul class="w3-navbar" id="myNavbar">
-                <?php
+<?php
 $new_cookie_value = $cookie_value . "_estore";
 echo navMenu($new_cookie_value);
 if (isset($_SESSION['esusername'])) {
@@ -449,28 +462,28 @@ if (isset($_SESSION['esusername'])) {
                 <div class="w3-row w3-center"><br>
                     <div class="w3-third eitem1">
                         <a href="#" class="estore-item1"><img src="/images/estore-icon1.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon1"></a>
-                        <h5>Trust Setup Service</h5>
+                        <h5><?php echo $row1['ProductName']; ?></h5>
                         <div class="estore-item1-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px">
-                            <h4>AU$5,000</h4>
-                            <p>Online Consulting Service for setting up a Discretionary Trust.</p>
+                            <h4><?php echo "AU$" . $row1['Priced']; ?></h4>
+                            <p><?php echo $row1['ShortDescription']; ?></p>
                             <button class="estore-btn1 w3-padding" style="margin-bottom:10px">More details</button></div>
                     </div>
 
                     <div class="w3-third eitem2">
                         <a href="#" class="estore-item2"><img src="/images/estore-icon2.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon2"></a>
-                        <h5>Business Study Service</h5>
+                        <h5><?php echo $row2['ProductName']; ?></h5>
                         <div class="estore-item2-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px">
-                            <h4>AU$10,000</h4>
-                            <p>Online Consulting Services for people who are interest in visiting Australia for business purposes.</p>
+                            <h4><?php echo "AU$" . $row2['Priced']; ?></h4>
+                            <p><?php echo $row2['ShortDescription']; ?></p>
                             <button class="estore-btn2 w3-padding" style="margin-bottom:10px">More details</button></div>
                     </div>
 
                     <div class="w3-third eitem3">
                         <a href="#" class="estore-item3"><img src="/images/estore-icon3.png" style="width:45%;margin-bottom:10px" class="w3-circle w3-hover-opacity w3-hover-shadow estore-icon3"></a>
-                        <h5>Expression of Interest</h5>
+                        <h5><?php echo $row3['ProductName']; ?></h5>
                         <div class="estore-item3-hidden w3-white w3-card-2 w3-padding" style="border-radius:4px">
-                            <h4>AU$1,000 - AU$5,000</h4>
-                            <p>Taking your EOI as your deposit in advance for securing your privilege of our consulting services.</p>
+                            <h4><?php echo "AU$" . $row3['Priced'] . " - " . $row3['MaxPriced']; ?></h4>
+                            <p><?php echo $row3['ShortDescription']; ?></p>
                             <button class="estore-btn3 w3-padding" style="margin-bottom:10px">More details</button></div>
                     </div>
 
@@ -584,18 +597,8 @@ if (isset($_SESSION['esusername'])) {
                     <img src="/images/estore-icon1c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <div class="estore-dialog-text">
-                        <h4>Trust Setup Service</h4>
-                        <p>We provide consulting service for setting up a Discretionary Trust.</p>
-                        <p style="margin-top:-15px">Our fees are included:</p>
-                        <ul>
-                            <li>Gathering customer information</li>
-                            <li>Company set up fees (including Trustee company, AU$1,000 + GST)</li>
-                            <li>Trust Deed set up fees (Legal fees + Service fees, AU$1,000 + GST)</li>
-                            <li>Accountant fees (AU$1,300 + GST)</li>
-                            <li>Trust stamp duty (AU$500 + GST)</li>
-                            <li>Consulting fees (AU$200 + GST)</li>
-                        </ul>
-                        <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
+                        <h4><?php echo $row1['ProductName']; ?></h4>
+                        <?php echo $row1['Description']; ?>
                     </div>
                     <div class="w3-center">
                         <button class="estore-btn1c w3-padding" onclick="buyTrustSetup()">Add to cart</button>
@@ -608,15 +611,8 @@ if (isset($_SESSION['esusername'])) {
                     <img src="/images/estore-icon2c.png" style="width:20%;margin-top:3%" class="w3-circle estore-icon">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <div class="estore-dialog-text">
-                        <h4>Business Study Service</h4>
-                        <p>We provide consulting services for people who are interest in visiting Australia for business purposes.</p>
-                        <p style="margin-top:-15px">Our fees are included:</p>
-                        <ul>
-                            <li>Service fees (AU$3,000 approx. + GST)</li>
-                            <li>Hotel reservation fees (AU$5,000 approx. + GST)</li>
-                            <li>Flight booking fees (AU$2,000 approx. + GST)</li>
-                        </ul>
-                        <p>* Please <a href="/#sankofa-contact">contact us</a> if you have any questions.</p>
+                        <h4><?php echo $row2['ProductName']; ?></h4>
+                        <?php echo $row2['Description']; ?>
                     </div>
                     <div class="w3-center">
                         <button class="estore-btn2c w3-padding" onclick="buyBusinessStudy()">Add to cart</button>
@@ -630,13 +626,12 @@ if (isset($_SESSION['esusername'])) {
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
                     <!-- <form method="post" action="/wp-content/themes/sankofafamily/exp_interest.php"> -->
                     <div class="estore-dialog-text">
-                        <h4>Expression of Interest</h4>
-                        <p>SMFOS PTY LTD also accepts deposits from customers who is going to secure their seats for our services. The EOI payment option can be customised by the client and this amount is usually between AU$1,000 and AU$5,000.</p>
-                        <p>Enter your amount: AU$ <input class="w3-input estore-input w3-opacity" type="text" name="interest_price" id="interest_price" placeholder="numbers only"></p>
-                        <?php /*if ($_SESSION['interest_status'] == 1) {
-    echo "<p style='color:red;'>* Please enter the correct amount.</p>";
-    $_SESSION['interest_status'] = 0;
-}*/ ?>
+                        <h4><?php echo $row3['ProductName']; ?></h4>
+                        <?php echo $row3['Description'];
+                        /*if ($_SESSION['interest_status'] == 1) {
+                        echo "<p style='color:red;'>* Please enter the correct amount.</p>";
+                        $_SESSION['interest_status'] = 0;
+                        }*/ ?>
                     </div>
                     <div class="w3-center">
                         <button class="estore-btn3c w3-padding" onclick="buyExpression()">Add to cart</button>
