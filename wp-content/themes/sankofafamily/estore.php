@@ -252,6 +252,10 @@ $row3 = $result->fetch_assoc();
         if((isset($_GET['cart'])) && (isset($_SESSION['esusername']))) { ?>
                 $(".estore-cart").fadeIn(500);
                 <?php unset($_GET['cart']); }
+        if((isset($_GET['errorinfo'])) && (isset($_SESSION['esusername']))) {
+            $errormsg = "支付前请完整填写所有个人资料"; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['errorinfo']); }
                 if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) { ?>
                 $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {
                     type: "danger"

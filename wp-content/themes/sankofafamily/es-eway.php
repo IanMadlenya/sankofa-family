@@ -35,15 +35,17 @@ $totalamount = $row['Amount'] * 100;
 $query = "select * from cs_users where Id=" . $_SESSION['esuserid'];
 $result = $mysqli->query($query);
 $row = $result->fetch_assoc();
-$email = $row['Username'];
-$country = $row['Country'];
-$address = $row['Address'];
-$postcode = $row['PostCode'];
-$state = $row['State'];
-$city = $row['City'];
-$firstname = $row['FirstName'];
-$surname = $row['SurName'];
-$phone = $row['Phone'];
+
+if((!(is_null($row['FirstName']))) && ($row['FirstName'] != "") && (!(is_null($row['SurName']))) && ($row['SurName'] != "") && (!(is_null($row['Address']))) && ($row['Address'] != "") && (!(is_null($row['City']))) && ($row['City'] != "") && (!(is_null($row['State']))) && ($row['State'] != "") && ($row['PostCode'] != "") && (!(is_null($row['PostCode']))) && ($row['Country'] != "") && (!(is_null($row['Country']))) && (!(is_null($row['Username']))) && ($row['Username'] != "") && ($row['Phone'] != "") && (!(is_null($row['Phone'])))) {
+    $email = $row['Username'];
+    $country = $row['Country'];
+    $address = $row['Address'];
+    $postcode = $row['PostCode'];
+    $state = $row['State'];
+    $city = $row['City'];
+    $firstname = $row['FirstName'];
+    $surname = $row['SurName'];
+    $phone = $row['Phone'];
 
     // Transaction details - these would usually come from the application
     $transaction = [
@@ -89,4 +91,7 @@ $phone = $row['Phone'];
     }
 
     header( 'Location: ' . $sharedURL );
+} else {
+    header( 'Location: /estore?errorinfo' );
+}
 ?>
