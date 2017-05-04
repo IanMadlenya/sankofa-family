@@ -237,6 +237,14 @@ $row3 = $result->fetch_assoc();
             $errormsg = "支付已取消"; ?>
                 $(".estore-error").fadeIn(500);
                 <?php unset($_GET['cancelpay']); }
+        if((isset($_GET['successpay'])) && (isset($_SESSION['esusername']))) {
+            $successmsg = "支付成功！交易号: " . $_GET['successpay']; ?>
+                $(".estore-success").fadeIn(500);
+                <?php unset($_GET['successpay']); }
+        if((isset($_GET['failedpay'])) && (isset($_SESSION['esusername']))) {
+            $errormsg = "支付失败，错误: " . $_GET['failedpay']; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['failedpay']); }
         if((isset($_GET['errorlogin'])) && !(isset($_SESSION['esusername']))) { ?>
                 $(".estore-login").fadeIn(500);
                 $("#errloginmsg").show();

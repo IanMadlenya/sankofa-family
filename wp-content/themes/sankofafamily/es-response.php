@@ -17,14 +17,16 @@ $response = $client->queryTransaction($_GET['AccessCode']);
     $transactionResponse = $response->Transactions[0];
 
     // Display the transaction result
+    echo "<p>Redirecting...</p>";
+    $redirectURL = "https://www.smfos.com.au/estore";
     if ($transactionResponse->TransactionStatus) {
-        echo 'Payment successful! ID: ' . 
-            $transactionResponse->TransactionID;
+        $redirectURL .= "?successpay=" . $transactionResponse->TransactionID;
     } else {
         $errors = split(', ', $transactionResponse->ResponseMessage);
+        $redirectURL .= "?failedpay=";
         foreach ($errors as $error) {
-            echo "Payment failed: " .
-                \Eway\Rapid::getMessage($error)."<br>";
+            $redirectURL .= \Eway\Rapid::getMessage($error) . "<br>";
         }
     }
+    header( 'Location: ' . $redirectURL );
 ?>
