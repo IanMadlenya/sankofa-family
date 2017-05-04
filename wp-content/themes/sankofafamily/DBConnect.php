@@ -17,6 +17,7 @@ if(isset($_SESSION['esuserid'])) {
         $mysqli->query($query);
         unset($_SESSION['esusername']);
         unset($_SESSION['esuserid']);
+        unset($_SESSION['esadmin']);
     } else {
         $query = "UPDATE cs_users SET LastLogin=" . time() . " WHERE Id=" . $_SESSION['esuserid'];
         $mysqli->query($query);

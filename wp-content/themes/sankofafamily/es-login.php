@@ -33,6 +33,7 @@ if(($result) && ($result->num_rows !== 0)){
     $mysqli->query($query);
     $_SESSION['esusername'] = $row['Username'];
     $_SESSION['esuserid'] = $row['Id'];
+    $_SESSION['esadmin'] = $row['Admin'];
     header( 'Location: /estore?login' );
 } else {
     header( 'Location: /estore?errorlogin' );
