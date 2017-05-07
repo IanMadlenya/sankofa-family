@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/checkEmail.js"></script>
     <script src="/js/addclear.min.js"></script>
     <script src="/js/regexCheck.js"></script>
     <style>
@@ -85,6 +84,9 @@
             $('#address').css('background-color', '');
             $('#address').css('border-color', '');
             $('#address').css('box-shadow', '');
+            $('#state').css('background-color', '');
+            $('#state').css('border-color', '');
+            $('#state').css('box-shadow', '');
         }
 
         function validateForm() {
@@ -97,6 +99,7 @@
             var postcode = $('#postcode').val();
             var city = $('#city').val();
             var address = $('#address').val();
+            var state = $('#state').val();
 
             if ((!isValidEmailAddress(useremail)) || (!useremail) || (checkuser == 1)) {
                 if(checkuser == 1) {
@@ -144,40 +147,71 @@
                 $('#cespwd').css('border-color', '#FF0000');
                 $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
-            } else if ((surname) && (!(isAlphaOrParen(surname)))) {
-                alert("姓氏必须为英文字母");
+            } else if ((!surname) || ((surname) && (!(isAlphaOrParen(surname))))) {
+                if(!surname) {
+                    alert("姓氏不能为空")
+                } else {
+                    alert("姓氏必须为英文字母");   
+                }
                 clearInputStyle();
                 $('#surname').css('background-color', '#e08283');
                 $('#surname').css('border-color', '#FF0000');
                 $('#surname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
-            } else if ((firstname) && (!(isAlphaOrParen(firstname)))) {
-                alert("名字必须为英文字母");
+            } else if ((!firstname) || ((firstname) && (!(isAlphaOrParen(firstname))))) {
+                if(!firstname) {
+                    alert("名字不能为空");
+                } else {
+                    alert("名字必须为英文字母");
+                }
                 clearInputStyle();
                 $('#firstname').css('background-color', '#e08283');
                 $('#firstname').css('border-color', '#FF0000');
                 $('#firstname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
-            } else if ((postcode) && (!(isArabicNumber(postcode)))) {
-                alert("邮编必须为数字");
+            } else if ((!state) || ((state && (isAsianCharater(state))))) {
+                if(!state) {
+                    alert("省份不能为空");
+                } else {
+                    alert("省份不能包含汉字");
+                }
                 clearInputStyle();
-                $('#postcode').css('background-color', '#e08283');
-                $('#postcode').css('border-color', '#FF0000');
-                $('#postcode').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#state').css('background-color', '#e08283');
+                $('#state').css('border-color', '#FF0000');
+                $('#state').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
-            } else if ((city) && (!(isAlphaOrParen(city)))) {
-                alert("城市名称必须为英文字母");
+            } else if ((!city) || ((city) && (!(isAlphaOrParen(city))))) {
+                if(!city) {
+                    alert("城市不能为空");
+                } else {
+                    alert("城市名称必须为英文字母");   
+                }
                 clearInputStyle();
                 $('#city').css('background-color', '#e08283');
                 $('#city').css('border-color', '#FF0000');
                 $('#city').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
-            } else if ((address) && (isAsianCharater(address))) {
-                alert("地址不能包含汉字");
+            } else if ((!address) || ((address) && (isAsianCharater(address)))) {
+                if(!address) {
+                    alert("地址不能为空");
+                } else {
+                    alert("地址不能包含汉字");
+                }
                 clearInputStyle();
                 $('#address').css('background-color', '#e08283');
                 $('#address').css('border-color', '#FF0000');
                 $('#address').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                return false;
+            } else if ((!postcode) || ((postcode) && (!(isArabicNumber(postcode))))) {
+                if(!postcode) {
+                    alert("邮编不能为空");
+                } else {
+                    alert("邮编必须为数字");
+                }
+                clearInputStyle();
+                $('#postcode').css('background-color', '#e08283');
+                $('#postcode').css('border-color', '#FF0000');
+                $('#postcode').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
                 return false;
             } else {
                 return true;
@@ -213,18 +247,17 @@
 
 <body>
     <form id="regform" action="/wp-content/themes/sankofafamily/es-register-insert.php" onsubmit="return validateForm()" method="post" target="_top">
-        <p>个人信息</p>
         <p id="checkUserFail" style="color:red;font-size:12px;margin-bottom:-10px;margin-left:10px;display:none">* 用户名已被使用.</p>
         <div class="w3-center" style="margin-bottom:30px">
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件（作为用户名）" onkeyup="checkUsername()"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件 Email" onkeyup="checkUsername()"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话 Phone"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码 Password"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码 Confirm Password"></p>
         </div>
-        <p>其他信息 (可选填)</p>
+        <p>其他信息</p>
         <div class="w3-center" style="margin-bottom:30px">
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 (英文字母)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 (英文字母)"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 Last Name"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 First Name"></p>
             <p>
 <select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php
@@ -245,9 +278,9 @@
             </p>
             <div id="states">
             </div>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" id="city" placeholder="城市 (英文字母)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" id="address" placeholder="地址 (英文字母)"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" id="postcode" placeholder="邮编"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="city" id="city" placeholder="城市 City"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="address" id="address" placeholder="地址 Address"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="postcode" id="postcode" placeholder="邮编 Post Code"></p>
         </div>
     </form>
 </body>

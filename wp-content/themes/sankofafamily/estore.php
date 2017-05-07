@@ -55,7 +55,6 @@ $row3 = $result->fetch_assoc();
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/style.css">
         <script src="/js/jquery.min.js"></script>
-        <script src="/js/checkEmail.js"></script>
         <script src="/js/addclear.min.js"></script>
         <script src="/js/regexCheck.js"></script>
         <link rel="stylesheet" href="/css/notify.css">
@@ -508,8 +507,8 @@ if (isset($_SESSION['esusername'])) {
                     <h4>Login</h4>
                     <form id="loginform" action="/wp-content/themes/sankofafamily/es-login.php" onsubmit="return validateLogin()" method="post">
                         <div class="w3-center">
-                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="loginname" id="loginname" placeholder="用户名"></p>
-                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="loginpwd" id="loginpwd" placeholder="密码"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="loginname" id="loginname" placeholder="用户名 Username"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="loginpwd" id="loginpwd" placeholder="密码 Password"></p>
                             <p style="font-size:12px;color:red;display:none" id="errloginmsg">用户名或密码不正确</p>
                         </div>
                     </form>
@@ -527,8 +526,8 @@ if (isset($_SESSION['esusername'])) {
                     <form id="forgotform" action="/wp-content/themes/sankofafamily/es-forgotemail.php" onsubmit="return validateForgot()" method="post">
                         <h4>Forgotten Password</h4>
                         <div class="w3-center">
-                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="注册邮件地址"></p>
-                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="注册电话号码"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotemail" id="forgotemail" placeholder="电子邮件 Email"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="forgotphone" id="forgotphone" placeholder="电话 Phone"></p>
                         </div>
                     </form>
                     <div class="w3-center">

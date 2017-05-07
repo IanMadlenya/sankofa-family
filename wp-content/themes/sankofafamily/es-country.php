@@ -20,7 +20,7 @@
             }
             $output .= '</select>';
         } else {
-            $output = '<input class="w3-input estore-input-login w3-opacity" type="text" name="state" id="state" placeholder="省份/州">';
+            $output = '<input class="w3-input estore-input-login w3-opacity" type="text" name="state" id="state" placeholder="省份/州 State">';
         }
     }
     echo $output;
