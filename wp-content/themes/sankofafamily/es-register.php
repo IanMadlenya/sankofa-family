@@ -254,7 +254,7 @@
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码 Password"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码 Confirm Password"></p>
         </div>
-        <p>其他信息</p>
+        <p>个人信息</p>
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 Last Name"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 First Name"></p>
@@ -262,7 +262,12 @@
 <select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php
     require_once('sf-passwd.php');
-    $mysqli = new mysqli($servername, $username, $password, $dbname);    
+    $mysqli = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($mysqli->connect_errno) {
+        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
+    }  
     
     $query = "SELECT * FROM cs_countries ORDER BY Country";
     $result = $mysqli->query($query);

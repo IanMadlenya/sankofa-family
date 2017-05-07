@@ -201,6 +201,9 @@ $row3 = $result->fetch_assoc();
                 $("#regbtn").click(function() {
                     $("#regframe").contents().find('form').submit();
                 });
+                $("#editbtn").click(function() {
+                    $("#editframe").contents().find('form').submit();
+                });
             });
 
             $(document).ready(function() {
@@ -269,7 +272,10 @@ $row3 = $result->fetch_assoc();
                 $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 服务已删除", {
                     type: "success"
                 });
-                <?php unset($_GET['trashed']); } ?>
+                <?php unset($_GET['trashed']); }
+                if((isset($_GET['editprofile'])) && (isset($_SESSION['esusername'])))  { ?>
+                $('.estore-register').fadeIn(500);
+                <?php } ?>
                 if ($('.sf-dropdown').width() > 200) {
                     $('.sf-dropdown-content').css('margin-left', $('.sf-dropdown').width() - 200);
                 }
@@ -541,12 +547,23 @@ if (isset($_SESSION['esusername'])) {
             <div class="estore-register">
                 <div class="estore-dialog-register">
                     <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+                    <?php if(isset($_GET['editprofile'])) { ?>
+                    <h4>Edit Profile</h4>
+                    <iframe id="editframe" src="/wp-content/themes/sankofafamily/es-profile.php" style="border:none;width:100%;height:420px"></iframe>
+                    <?php } else { ?>
                     <h4>Registration</h4>
-                    <iframe id="regframe" src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:480px"></iframe>
+                    <iframe id="regframe" src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:440px"></iframe>
+                    <?php } ?>
                     <div class="w3-center">
-                        <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
-                        <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="backToLogin()"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
-                        <button class="estore-btn-confirm w3-padding" id="regbtn"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
+                        <?php if(isset($_GET['editprofile'])) { ?>
+                            <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-question-sign"></span> 需要修改密码？</a></p>
+                            <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="$('.estore-register').fadeOut(500);"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
+                            <button class="estore-btn-confirm w3-padding" id="editbtn"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
+                        <?php } else { ?>
+                            <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-exclamation-sign"></span> 点击确认表示您已阅读本服务之条款与使用须知</a></p>
+                            <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="backToLogin()"><span class="glyphicon glyphicon-circle-arrow-left"></span> 返回</button>
+                            <button class="estore-btn-confirm w3-padding" id="regbtn"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
