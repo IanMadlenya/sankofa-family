@@ -172,7 +172,7 @@
 </head>
 
 <body>
-    <form id="editform" action="/wp-content/themes/sankofafamily/es-register-insert.php" onsubmit="return validateForm()" method="post" target="_top">
+    <form id="editform" action="/wp-content/themes/sankofafamily/es-profile-update.php" onsubmit="return validateForm()" method="post" target="_top">
         <p>个人信息</p>
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" value="<?php echo $rowdb['SurName']; ?>" type="text" name="surname" id="surname" placeholder="姓 Last Name"></p>
