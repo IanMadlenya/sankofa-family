@@ -258,6 +258,16 @@ $row3 = $result->fetch_assoc();
             $errormsg = "支付前请完整填写所有个人资料"; ?>
                 $(".estore-error").fadeIn(500);
                 <?php unset($_GET['errorinfo']); }
+                if((isset($_GET['successedit'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-ok-sign'></span> 资料修改成功", {
+                    type: "success"
+                });
+                <?php unset($_GET['successedit']); }
+                if((isset($_GET['erroredit'])) && (isset($_SESSION['esusername']))) { ?>
+                $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 资料修改失败", {
+                    type: "danger"
+                });
+                <?php unset($_GET['erroredit']); }
                 if((isset($_GET['errorcart'])) && (isset($_SESSION['esusername']))) { ?>
                 $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 购物车为空", {
                     type: "danger"
@@ -556,7 +566,7 @@ if (isset($_SESSION['esusername'])) {
                     <?php } ?>
                     <div class="w3-center">
                         <?php if(isset($_GET['editprofile'])) { ?>
-                            <p style="font-size:13px"><a href="/legal" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-question-sign"></span> 需要修改密码？</a></p>
+                            <p style="font-size:13px"><a href="#" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-question-sign"></span> 需要修改密码？</a></p>
                             <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="$('.estore-register').fadeOut(500);"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
                             <button class="estore-btn-confirm w3-padding" id="editbtn"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
                         <?php } else { ?>
