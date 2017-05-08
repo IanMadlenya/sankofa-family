@@ -1,7 +1,7 @@
         function isAlphaOrParen(str) {
             var isAlpha = false;
             if(str != "") {
-                isAlpha = /^[a-zA-Z()]+$/.test(str);
+                isAlpha = /^[a-zA-Z()\s]+$/.test(str);
             }
             return isAlpha;
         }
