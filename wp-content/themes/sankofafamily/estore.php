@@ -552,7 +552,7 @@ if (isset($_SESSION['esusername'])) {
                     <iframe id="editframe" src="/wp-content/themes/sankofafamily/es-profile.php" style="border:none;width:100%;height:420px"></iframe>
                     <?php } else { ?>
                     <h4>Registration</h4>
-                    <iframe id="regframe" src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:440px"></iframe>
+                    <iframe id="regframe" src="/wp-content/themes/sankofafamily/es-register.php" style="border:none;width:100%;height:430px"></iframe>
                     <?php } ?>
                     <div class="w3-center">
                         <?php if(isset($_GET['editprofile'])) { ?>

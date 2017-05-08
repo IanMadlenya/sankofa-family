@@ -247,10 +247,10 @@
 
 <body>
     <form id="regform" action="/wp-content/themes/sankofafamily/es-register-insert.php" onsubmit="return validateForm()" method="post" target="_top">
+        <p>基本信息</p>
         <p id="checkUserFail" style="color:red;font-size:12px;margin-bottom:-10px;margin-left:10px;display:none">* 用户名已被使用.</p>
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="username" id="username" placeholder="电子邮件 Email" onkeyup="checkUsername()"></p>
-            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话 Phone"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="espwd" id="espwd" placeholder="密码 Password"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="password" name="cespwd" id="cespwd" placeholder="确认密码 Confirm Password"></p>
         </div>
@@ -258,6 +258,7 @@
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="surname" id="surname" placeholder="姓 Last Name"></p>
             <p><input class="w3-input estore-input-login w3-opacity" type="text" name="firstname" id="firstname" placeholder="名 First Name"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" type="text" name="phone" id="phone" placeholder="联系电话 Phone"></p>
             <p>
 <select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php

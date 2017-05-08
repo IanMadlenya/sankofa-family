@@ -177,6 +177,7 @@
         <div class="w3-center" style="margin-bottom:30px">
             <p><input class="w3-input estore-input-login w3-opacity" value="<?php echo $rowdb['SurName']; ?>" type="text" name="surname" id="surname" placeholder="姓 Last Name"></p>
             <p><input class="w3-input estore-input-login w3-opacity" value="<?php echo $rowdb['FirstName']; ?>" type="text" name="firstname" id="firstname" placeholder="名 First Name"></p>
+            <p><input class="w3-input estore-input-login w3-opacity" value="<?php echo $rowdb['Phone']; ?>" type="text" name="phone" id="phone" placeholder="联系电话 Phone"></p>
             <p>
 <select name="country" id="country" class="w3-input estore-input-login w3-opacity" style="height:39px" onchange="changeCountry()">
 <?php
