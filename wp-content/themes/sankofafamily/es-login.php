@@ -11,7 +11,7 @@ if ($mysqli->connect_errno) {
     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
 }
 
-$username = $_REQUEST['loginname'];
+$username = strtolower($_REQUEST['loginname']);
 $password = hash('sha256',$_REQUEST['loginpwd']);
 
 $query = "select Id, LastLogin from cs_users where Username='" . $username . "' and Password='" . $password . "' and LoggedIn=1;";

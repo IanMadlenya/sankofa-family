@@ -10,7 +10,7 @@ if ($mysqli->connect_errno) {
 }
 
     // Escape user inputs for security
-    $username = $mysqli->real_escape_string($_REQUEST['username']);
+    $username = $mysqli->real_escape_string(strtolower($_REQUEST['username']));
     $password = $mysqli->real_escape_string($_REQUEST['espwd']);
     $phone = $mysqli->real_escape_string($_REQUEST['phone']);
     $postcode = (int)($mysqli->real_escape_string($_REQUEST['postcode']));
