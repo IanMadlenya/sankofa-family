@@ -394,6 +394,29 @@ $row3 = $result->fetch_assoc();
                 $(".estore-login").fadeOut(500);
                 $(".estore-forgotpw").fadeIn(500);
             }
+            
+            function clearAllInputStyles() {
+                $('#loginpwd').css({
+                    'background-color':'',
+                    'border-color':'',
+                    'box-shadow':''
+                });
+                $('#loginname').css({
+                    'background-color':'',
+                    'border-color':'',
+                    'box-shadow':''
+                });
+                $('#forgotphone').css({
+                    'background-color':'',
+                    'border-color':'',
+                    'box-shadow':''
+                });
+                $('#forgotemail').css({
+                    'background-color':'',
+                    'border-color':'',
+                    'box-shadow':''
+                });
+            }
 
             function validateLogin() {
                 var useremail = $('#loginname').val();
@@ -403,24 +426,24 @@ $row3 = $result->fetch_assoc();
                     $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查用户名是否输入正确，且不能为空", {
                         type: "warning"
                     });
-                    $('#loginname').css('background-color', '#e08283');
-                    $('#loginname').css('border-color', '#FF0000');
-                    $('#loginname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                    $('#loginpwd').css('background-color', '');
-                    $('#loginpwd').css('border-color', '');
-                    $('#loginpwd').css('box-shadow', '');
+                    clearAllInputStyles();
+                    $('#loginname').css({
+                        'background-color':'#e08283',
+                        'border-color':'#FF0000',
+                        'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                    });
                     $('#errloginmsg').hide();
                     return false;
                 } else if (!userpwd) {
                     $.notify("<span class='glyphicon glyphicon-info-sign'></span> 密码不能为空", {
                         type: "warning"
                     });
-                    $('#loginname').css('background-color', '');
-                    $('#loginname').css('border-color', '');
-                    $('#loginname').css('box-shadow', '');
-                    $('#loginpwd').css('background-color', '#e08283');
-                    $('#loginpwd').css('border-color', '#FF0000');
-                    $('#loginpwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                    clearAllInputStyles();
+                    $('#loginpwd').css({
+                        'background-color':'#e08283',
+                        'border-color':'#FF0000',
+                        'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                    });
                     $('#errloginmsg').hide();
                     return false;
                 } else {
@@ -436,12 +459,12 @@ $row3 = $result->fetch_assoc();
                     $.notify("<span class='glyphicon glyphicon-info-sign'></span> 请检查邮件地址是否输入正确，且不能为空", {
                         type: "warning"
                     });
-                    $('#forgotemail').css('background-color', '#e08283');
-                    $('#forgotemail').css('border-color', '#FF0000');
-                    $('#forgotemail').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                    $('#forgotphone').css('background-color', '');
-                    $('#forgotphone').css('border-color', '');
-                    $('#forgotphone').css('box-shadow', '');
+                    clearAllInputStyles();
+                    $('#forgotemail').css({
+                        'background-color':'#e08283',
+                        'border-color':'#FF0000',
+                        'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                    });
                     return false;
                 } else if ((!forgotphone) || ((forgotphone) && (!(isArabicNumber(forgotphone))))) {
                     if (!forgotphone) {
@@ -453,12 +476,12 @@ $row3 = $result->fetch_assoc();
                             type: "warning"
                         });
                     }
-                    $('#forgotemail').css('background-color', '');
-                    $('#forgotemail').css('border-color', '');
-                    $('#forgotemail').css('box-shadow', '');
-                    $('#forgotphone').css('background-color', '#e08283');
-                    $('#forgotphone').css('border-color', '#FF0000');
-                    $('#forgotphone').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                    clearAllInputStyles();
+                    $('#forgotphone').css({
+                        'background-color':'#e08283',
+                        'border-color':'#FF0000',
+                        'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                    });
                     return false;
                 } else {
                     return true;

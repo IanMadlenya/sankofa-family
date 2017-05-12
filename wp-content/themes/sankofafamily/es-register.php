@@ -57,36 +57,56 @@
 
         function clearInputStyle() {
             $("#checkUserFail").hide();
-            $('#username').css('background-color', '');
-            $('#username').css('border-color', '');
-            $('#username').css('box-shadow', '');
-            $('#phone').css('background-color', '');
-            $('#phone').css('border-color', '');
-            $('#phone').css('box-shadow', '');
-            $('#espwd').css('background-color', '');
-            $('#espwd').css('border-color', '');
-            $('#espwd').css('box-shadow', '');
-            $('#cespwd').css('background-color', '');
-            $('#cespwd').css('border-color', '');
-            $('#cespwd').css('box-shadow', '');
-            $('#surname').css('background-color', '');
-            $('#surname').css('border-color', '');
-            $('#surname').css('box-shadow', '');
-            $('#firstname').css('background-color', '');
-            $('#firstname').css('border-color', '');
-            $('#firstname').css('box-shadow', '');
-            $('#postcode').css('background-color', '');
-            $('#postcode').css('border-color', '');
-            $('#postcode').css('box-shadow', '');
-            $('#city').css('background-color', '');
-            $('#city').css('border-color', '');
-            $('#city').css('box-shadow', '');
-            $('#address').css('background-color', '');
-            $('#address').css('border-color', '');
-            $('#address').css('box-shadow', '');
-            $('#state').css('background-color', '');
-            $('#state').css('border-color', '');
-            $('#state').css('box-shadow', '');
+            $('#username').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#phone').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#espwd').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#cespwd').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#surname').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#firstname').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#postcode').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#city').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#address').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
+            $('#state').css({
+                'background-color':'',
+                'border-color':'',
+                'box-shadow':''
+            });
         }
 
         function validateForm() {
@@ -108,9 +128,11 @@
                     alert("请检查电子邮件是否输入正确");
                 }
                 clearInputStyle();
-                $('#username').css('background-color', '#e08283');
-                $('#username').css('border-color', '#FF0000');
-                $('#username').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#username').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!phone) || ((phone) && (!(isArabicNumber(phone))))) {
                 if (!phone) {
@@ -119,33 +141,43 @@
                     alert("联系电话必须为数字");
                 }
                 clearInputStyle();
-                $('#phone').css('background-color', '#e08283');
-                $('#phone').css('border-color', '#FF0000');
-                $('#phone').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#phone').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if (!userpwd) {
                 alert("密码不能为空");
                 clearInputStyle();
-                $('#espwd').css('background-color', '#e08283');
-                $('#espwd').css('border-color', '#FF0000');
-                $('#espwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#espwd').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if (!cuserpwd) {
                 alert("请确认密码");
                 clearInputStyle();
-                $('#cespwd').css('background-color', '#e08283');
-                $('#cespwd').css('border-color', '#FF0000');
-                $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#cespwd').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if (userpwd != cuserpwd) {
                 alert("密码不一致，请重新输入");
                 clearInputStyle();
-                $('#espwd').css('background-color', '#e08283');
-                $('#espwd').css('border-color', '#FF0000');
-                $('#espwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
-                $('#cespwd').css('background-color', '#e08283');
-                $('#cespwd').css('border-color', '#FF0000');
-                $('#cespwd').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#espwd').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
+                $('#cespwd').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!surname) || ((surname) && (!(isAlphaOrParen(surname))))) {
                 if(!surname) {
@@ -154,9 +186,11 @@
                     alert("姓氏必须为英文字母");   
                 }
                 clearInputStyle();
-                $('#surname').css('background-color', '#e08283');
-                $('#surname').css('border-color', '#FF0000');
-                $('#surname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#surname').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!firstname) || ((firstname) && (!(isAlphaOrParen(firstname))))) {
                 if(!firstname) {
@@ -165,9 +199,11 @@
                     alert("名字必须为英文字母");
                 }
                 clearInputStyle();
-                $('#firstname').css('background-color', '#e08283');
-                $('#firstname').css('border-color', '#FF0000');
-                $('#firstname').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#firstname').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!state) || ((state && (isAsianCharater(state))))) {
                 if(!state) {
@@ -176,9 +212,11 @@
                     alert("省份不能包含汉字");
                 }
                 clearInputStyle();
-                $('#state').css('background-color', '#e08283');
-                $('#state').css('border-color', '#FF0000');
-                $('#state').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#state').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!city) || ((city) && (!(isAlphaOrParen(city))))) {
                 if(!city) {
@@ -187,9 +225,11 @@
                     alert("城市名称必须为英文字母");   
                 }
                 clearInputStyle();
-                $('#city').css('background-color', '#e08283');
-                $('#city').css('border-color', '#FF0000');
-                $('#city').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#city').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!address) || ((address) && (isAsianCharater(address)))) {
                 if(!address) {
@@ -198,9 +238,11 @@
                     alert("地址不能包含汉字");
                 }
                 clearInputStyle();
-                $('#address').css('background-color', '#e08283');
-                $('#address').css('border-color', '#FF0000');
-                $('#address').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#address').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else if ((!postcode) || ((postcode) && (!(isArabicNumber(postcode))))) {
                 if(!postcode) {
@@ -209,9 +251,11 @@
                     alert("邮编必须为数字");
                 }
                 clearInputStyle();
-                $('#postcode').css('background-color', '#e08283');
-                $('#postcode').css('border-color', '#FF0000');
-                $('#postcode').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                $('#postcode').css({
+                    'background-color':'#e08283',
+                    'border-color':'#FF0000',
+                    'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                });
                 return false;
             } else {
                 return true;
@@ -233,9 +277,11 @@
                     checkuser = 1;
                     clearInputStyle();
                     $("#checkUserFail").show();
-                    $('#username').css('background-color', '#e08283');
-                    $('#username').css('border-color', '#FF0000');
-                    $('#username').css('box-shadow', 'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)');
+                    $('#username').css({
+                        'background-color':'#e08283',
+                        'border-color':'#FF0000',
+                        'box-shadow':'inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6)'
+                    });
                 } else {
                     checkuser = 0;
                     clearInputStyle();
