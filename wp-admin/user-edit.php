@@ -25,21 +25,13 @@ elseif ( ! get_userdata( $user_id ) )
 
 wp_enqueue_script('user-profile');
 
-// Create connection
-include '../wp-content/themes/sankofafamily/sf-passwd.php';
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
+if ( IS_PROFILE_PAGE ) {
+	$title = __( 'Profile' );
+} else {
+	/* translators: %s: user's display name */
+	$title = __( 'Edit User %s' );
 }
 
-/* For Sankofa CRM insert message popup */
-session_start();
-$crm_status = $_SESSION['crm_insert_status'];
-
-/* Original WordPress function */
-$title = IS_PROFILE_PAGE ? __('Profile') : __('Edit User');
 if ( current_user_can('edit_users') && !IS_PROFILE_PAGE )
 	$submenu_file = 'users.php';
 else
@@ -180,20 +172,14 @@ $profileuser = get_user_to_edit($user_id);
 if ( !current_user_can('edit_user', $user_id) )
 	wp_die(__('Sorry, you are not allowed to edit this user.'));
 
+$title = sprintf( $title, $profileuser->display_name );
 $sessions = WP_Session_Tokens::get_instance( $profileuser->ID );
-        
-/* SQL Query */
-$sql = "SELECT * FROM sf_crm_info WHERE user_login = '$profileuser->nickname'";
-$result = $conn->query($sql);
 
-$sql2 = "SELECT * FROM sf_crm_info WHERE user_login = '$current_user->user_login'";
-$result2 = $conn->query($sql2);
-        
 include(ABSPATH . 'wp-admin/admin-header.php');
 ?>
 
 <?php if ( !IS_PROFILE_PAGE && is_super_admin( $profileuser->ID ) && current_user_can( 'manage_network_options' ) ) { ?>
-	<div class="updated"><p><strong><?php _e('Important:'); ?></strong> <?php _e('This user has super admin privileges.'); ?></p></div>
+	<div class="notice notice-info"><p><strong><?php _e('Important:'); ?></strong> <?php _e('This user has super admin privileges.'); ?></p></div>
 <?php } ?>
 <?php if ( isset($_GET['updated']) ) : ?>
 <div id="message" class="updated notice is-dismissible">
@@ -206,21 +192,8 @@ include(ABSPATH . 'wp-admin/admin-header.php');
 	<p><a href="<?php echo esc_url( $wp_http_referer ); ?>"><?php _e('&larr; Back to Users'); ?></a></p>
 	<?php endif; ?>
 </div>
-<?php endif;
-if($crm_status > 0) { 
-if($crm_status != 2) { ?>
-<div class="error">
-	<?php if($crm_status == 1) { ?>
-    <p><strong>错误: </strong>CRM资料录入失败, 请联系管理员</p>
-    <?php } elseif($crm_status == 3) { ?>
-    <p><strong>错误: </strong>请检查CRM资料填写是否正确</p>
-    <?php } ?>
-</div>
-<?php } else { ?>
-<div id="message" class="updated notice is-dismissible">
-<p><strong>CRM资料录入成功!</strong></p>
-</div>
-<?php } $_SESSION['crm_insert_status'] = 0; } if ( isset( $_GET['error'] ) ) : ?>
+<?php endif; ?>
+<?php if ( isset( $_GET['error'] ) ) : ?>
 <div class="notice notice-error">
 	<?php if ( 'new-email' == $_GET['error'] ) : ?>
 	<p><?php _e( 'Error while saving the new email address. Please try again.' ); ?></p>
@@ -232,17 +205,22 @@ if($crm_status != 2) { ?>
 <?php endif; ?>
 
 <div class="wrap" id="profile-page">
-<h1>
-<?php
+<h1 class="wp-heading-inline"><?php
 echo esc_html( $title );
+?></h1>
+
+<?php
 if ( ! IS_PROFILE_PAGE ) {
 	if ( current_user_can( 'create_users' ) ) { ?>
 		<a href="user-new.php" class="page-title-action"><?php echo esc_html_x( 'Add New', 'user' ); ?></a>
 	<?php } elseif ( is_multisite() && current_user_can( 'promote_users' ) ) { ?>
 		<a href="user-new.php" class="page-title-action"><?php echo esc_html_x( 'Add Existing', 'user' ); ?></a>
 	<?php }
-} ?>
-</h1>
+}
+?>
+
+<hr class="wp-header-end">
+
 <form id="your-profile" action="<?php echo esc_url( self_admin_url( IS_PROFILE_PAGE ? 'profile.php' : 'user-edit.php' ) ); ?>" method="post" novalidate="novalidate"<?php
 	/**
 	 * Fires inside the your-profile form tag on the user editing screen.
@@ -404,7 +382,56 @@ if ( is_multisite() && is_network_admin() && ! IS_PROFILE_PAGE && current_user_c
 </td></tr>
 <?php } ?>
 
-<input type="hidden" name="nickname" id="nickname" value="<?php echo esc_attr($profileuser->nickname) ?>">
+<tr class="user-first-name-wrap">
+	<th><label for="first_name"><?php _e('First Name') ?></label></th>
+	<td><input type="text" name="first_name" id="first_name" value="<?php echo esc_attr($profileuser->first_name) ?>" class="regular-text" /></td>
+</tr>
+
+<tr class="user-last-name-wrap">
+	<th><label for="last_name"><?php _e('Last Name') ?></label></th>
+	<td><input type="text" name="last_name" id="last_name" value="<?php echo esc_attr($profileuser->last_name) ?>" class="regular-text" /></td>
+</tr>
+
+<tr class="user-nickname-wrap">
+	<th><label for="nickname"><?php _e('Nickname'); ?> <span class="description"><?php _e('(required)'); ?></span></label></th>
+	<td><input type="text" name="nickname" id="nickname" value="<?php echo esc_attr($profileuser->nickname) ?>" class="regular-text" /></td>
+</tr>
+
+<tr class="user-display-name-wrap">
+	<th><label for="display_name"><?php _e('Display name publicly as') ?></label></th>
+	<td>
+		<select name="display_name" id="display_name">
+		<?php
+			$public_display = array();
+			$public_display['display_nickname']  = $profileuser->nickname;
+			$public_display['display_username']  = $profileuser->user_login;
+
+			if ( !empty($profileuser->first_name) )
+				$public_display['display_firstname'] = $profileuser->first_name;
+
+			if ( !empty($profileuser->last_name) )
+				$public_display['display_lastname'] = $profileuser->last_name;
+
+			if ( !empty($profileuser->first_name) && !empty($profileuser->last_name) ) {
+				$public_display['display_firstlast'] = $profileuser->first_name . ' ' . $profileuser->last_name;
+				$public_display['display_lastfirst'] = $profileuser->last_name . ' ' . $profileuser->first_name;
+			}
+
+			if ( !in_array( $profileuser->display_name, $public_display ) ) // Only add this if it isn't duplicated elsewhere
+				$public_display = array( 'display_displayname' => $profileuser->display_name ) + $public_display;
+
+			$public_display = array_map( 'trim', $public_display );
+			$public_display = array_unique( $public_display );
+
+			foreach ( $public_display as $id => $item ) {
+		?>
+			<option <?php selected( $profileuser->display_name, $item ); ?>><?php echo $item; ?></option>
+		<?php
+			}
+		?>
+		</select>
+	</td>
+</tr>
 </table>
 
 <h2><?php _e( 'Contact Info' ); ?></h2>
@@ -663,101 +690,6 @@ if ( count( $profileuser->caps ) > count( $profileuser->roles )
 
 <?php submit_button( IS_PROFILE_PAGE ? __('Update Profile') : __('Update User') ); ?>
 
-</form>
-<form method="post" action="/wp-content/themes/sankofafamily/insert-crm.php">
-<h2>Sankofa CRM</h2>
-<table class="form-table">
-<?php
-$row2 = $result2->fetch_assoc();
-if ($result->num_rows > 0) {
-while($row = $result->fetch_assoc()) {
- ?>
-<input type="hidden" name="crm_notblank" value="1">
-<tr>
-    <th><label>姓名</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_username" id="crm_username" value="<?php echo $row["user_name"] ?>" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>电话号码</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_mobileno" id="crm_mobileno" value="<?php echo $row["mobile_no"] ?>" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>微信号</label></th>
-	<td><input type="text" name="crm_wechatid" id="crm_wechatid" value="<?php echo $row["wechat_id"] ?>" class="regular-text" /></td>
-</tr>
-<?php if ($row2["roles"] == 1) { ?>
-<tr>
-    <th><label>Ref ID</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_refid" id="crm_refid" value="<?php echo $row["ref_id"] ?>" class="regular-text" /></td>
-</tr> 
-<tr>
-    <th><label>用户权限 <span class="description">(数值1, 2, 或3, 必填)</span></label></th>
-	<td><input type="text" name="crm_roles" id="crm_roles" value="<?php echo $row["roles"] ?>" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>职位</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_jobdesc" id="crm_jobdesc" value="<?php echo $row["job_desc"] ?>" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>上级 Ref ID</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_refid_upper" id="crm_refid_upper" value="<?php echo $row["ref_id_upper"] ?>" class="regular-text" /></td>
-</tr>
-<?php } else { ?>
-<input type="hidden" name="crm_refid" value="<?php echo $row["ref_id"] ?>">
-<input type="hidden" name="crm_roles" value="<?php echo $row["roles"] ?>">
-<input type="hidden" name="crm_jobdesc" value="<?php echo $row["job_desc"] ?>">
-<input type="hidden" name="crm_refid_upper" value="<?php echo $row["ref_id_upper"] ?>">
-<?php } } } else { ?>
-<input type="hidden" name="crm_notblank" value="1">
-<?php if ($row2["roles"] == 1) { ?>
-<tr>
-    <th><label>姓名</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_username" id="crm_username" value="" placeholder="Example: John Doe" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>电话号码</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_mobileno" id="crm_mobileno" value="" placeholder="Example: 02 8XXX XXXX" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>微信号</label></th>
-	<td><input type="text" name="crm_wechatid" id="crm_wechatid" value="" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>Ref ID</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_refid" id="crm_refid" value="" placeholder="Example: 101" class="regular-text" /></td>
-</tr> 
-<tr>
-    <th><label>用户权限 <span class="description">(数值1, 2, 或3, 必填)</span></label></th>
-	<td><input type="text" name="crm_roles" id="crm_roles" value="" placeholder="Example: 3" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>职位</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_jobdesc" id="crm_jobdesc" value="" placeholder="Example: Sales Representative" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>上级 Ref ID</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_refid_upper" id="crm_refid_upper" value="" placeholder="Example: 101" class="regular-text" /></td>
-</tr>
-<input type="hidden" name="crm_notblank" value="0">
-<?php } else { ?>
-<tr>
-    <th><label>姓名</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_username" id="crm_username" value="" placeholder="请联系系统管理员" disabled="disabled" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>电话号码</label> <span class="description"><?php _e('(required)'); ?></span></th>
-	<td><input type="text" name="crm_mobileno" id="crm_mobileno" value="" placeholder="请联系系统管理员" disabled="disabled" class="regular-text" /></td>
-</tr>
-<tr>
-    <th><label>微信号</label></th>
-	<td><input type="text" name="crm_wechatid" id="crm_wechatid" value="请联系系统管理员" disabled="disabled" class="regular-text" /></td>
-</tr>
-<?php } }
-$conn->close();
-?>
-</table>
-<input type="hidden" name="crm_profileuser" value="<?php echo $profileuser->nickname ?>">
-<input type="submit" class="button button-secondary" value="更新CRM系统资料">
 </form>
 </div>
 <?php
