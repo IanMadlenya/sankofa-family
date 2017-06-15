@@ -186,7 +186,8 @@ $row3 = $result->fetch_assoc();
                         $(".estore-forgotpw").fadeOut(500),
                         $(".estore-register").fadeOut(500),
                         $(".estore-success").fadeOut(500),
-                        $(".estore-error").fadeOut(500)
+                        $(".estore-error").fadeOut(500),
+                        $('.estore-changepw').fadeOut(500);
                 });
                 $("#registerbtn").click(function() {
                     $(".estore-login").fadeOut(500),
@@ -243,6 +244,14 @@ $row3 = $result->fetch_assoc();
             $successmsg = "支付成功！交易号: " . $_GET['successpay']; ?>
                 $(".estore-success").fadeIn(500);
                 <?php unset($_GET['successpay']); }
+        if((isset($_GET['successchangepw'])) && (isset($_SESSION['esusername']))) {
+            $successmsg = "密码修改成功!"; ?>
+                $(".estore-success").fadeIn(500);
+                <?php unset($_GET['successchangepw']); }
+        if((isset($_GET['failchangepw'])) && (isset($_SESSION['esusername']))) {
+            $errormsg = "旧密码输入错误"; ?>
+                $(".estore-error").fadeIn(500);
+                <?php unset($_GET['failchangepw']); }
         if((isset($_GET['failedpay'])) && (isset($_SESSION['esusername']))) {
             $errormsg = "支付失败，错误: " . $_GET['failedpay']; ?>
                 $(".estore-error").fadeIn(500);
@@ -487,6 +496,40 @@ $row3 = $result->fetch_assoc();
                     return true;
                 }
             }
+            
+            function validateChangepw() {
+                var changeoldpw = $('#changeoldpw').val();
+                var changenewpw = $('#changenewpw').val();
+                var changecnewpw = $('#changecnewpw').val();
+                
+                if((changeoldpw) && (changenewpw) && (changecnewpw) && (changenewpw == changecnewpw)) {
+                    return true;
+                } else {
+                    if(!changeoldpw) {
+                        $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 请输入旧密码", {
+                            type: "danger"
+                        });
+                    } else if(!changenewpw) {
+                        $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 请输入新密码", {
+                            type: "danger"
+                        });
+                    } else if(!changecnewpw) {
+                        $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 请确认新密码", {
+                            type: "danger"
+                        });
+                    } else {
+                        $.notify("<span class='glyphicon glyphicon-remove-sign'></span> 密码不一致，请重新输入", {
+                            type: "danger"
+                        });
+                    }
+                    return false;
+                }
+            }
+            
+            function openChangePw() {
+                $('.estore-register').fadeOut(500);
+                $('.estore-changepw').fadeIn(500);
+            }
 
         </script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
@@ -576,6 +619,25 @@ if (isset($_SESSION['esusername'])) {
                     </div>
                 </div>
             </div>
+            
+            <div class="estore-changepw">
+                <div class="estore-dialog-changepw">
+                    <a href="#" class="estore-dialog-close w3-hover-opacity"><img src="/images/close.png" style="width:25px"></a>
+                    <form id="changepwform" action="/wp-content/themes/sankofafamily/es-changepw.php" onsubmit="return validateChangepw()" method="post">
+                        <h4>Change Password</h4>
+                        <div class="w3-center">
+                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="changeoldpw" id="changeoldpw" placeholder="旧密码 Old Password"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="changenewpw" id="changenewpw" placeholder="新密码 New Password"></p>
+                            <p><input class="w3-input estore-input-login w3-opacity" type="password" name="changecnewpw" id="changecnewpw" placeholder="确认新密码 Confirm Password"></p>
+                        </div>
+                    </form>
+                    <div class="w3-center">
+                        <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="$('.estore-changepw').fadeOut(500);"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
+                        <button class="estore-btn-confirm w3-padding" type="submit" form="changepwform" value="Submit"><span class="glyphicon glyphicon-ok-sign"></span> 确定</button>
+                        <p style="font-size:13px;margin-bottom:-5px"><a href="/#sankofa-contact" style="text-decoration:none;color:#666"><span class="glyphicon glyphicon-exclamation-sign"></span> 联系客服协助</a></p>
+                    </div>
+                </div>
+            </div>
 
             <div class="estore-register">
                 <div class="estore-dialog-register">
@@ -589,7 +651,7 @@ if (isset($_SESSION['esusername'])) {
                     <?php } ?>
                     <div class="w3-center">
                         <?php if(isset($_GET['editprofile'])) { ?>
-                            <p style="font-size:13px"><a href="#" style="text-decoration:none;color:#666" target="_top"><span class="glyphicon glyphicon-question-sign"></span> 需要修改密码？</a></p>
+                            <p style="font-size:13px"><a href="#" style="text-decoration:none;color:#666" target="_top" onclick="openChangePw()"><span class="glyphicon glyphicon-question-sign"></span> 需要修改密码？</a></p>
                             <button class="estore-btn w3-padding" style="margin-left:-5px;margin-right:10px" onclick="$('.estore-register').fadeOut(500);"><span class="glyphicon glyphicon-remove-sign"></span> 关闭</button>
                             <button class="estore-btn-confirm w3-padding" id="editbtn"><span class="glyphicon glyphicon-floppy-disk"></span> 保存</button>
                         <?php } else { ?>
