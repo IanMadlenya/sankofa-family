@@ -151,7 +151,7 @@
                         $CartItemTotal = "<td id='item2total'>" . ($row['Price'] * $row['CartQuantity']) . "</td>";
                         $CartPrice = $row['Price'];
                         if($row['CartQuantity'] == 2) {
-                            $CartQuantityAdd = "<option value='2'>2</option>";
+                            $CartQuantityAdd = "<option value='1'>1</option>";
                         } elseif($row['CartQuantity'] > 2) {
                             $CartQuantityAdd = "<option value='" . ($row['CartQuantity']-2) . "'>" . ($row['CartQuantity']-2) . "</option><option value='" . ($row['CartQuantity']-1) . "'>" . ($row['CartQuantity']-1) . "</option>";
                         }
