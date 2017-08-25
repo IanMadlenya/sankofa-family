@@ -1,5 +1,20 @@
 # Change Log
 
+## [4.1.10] - 2017-08-21
+
+* Use custom LoaderException for context loading errors.
+
+## [4.1.9] - 2017-07-12
+
+* Various code cleanups.
+* Improved error handling of several invalid statements.
+
+## [4.1.8] - 2017-07-09
+
+* Fixed parsing SQL comment at the end of query.
+* Improved handing of non utf-8 strings.
+* Added query flag for SET queries.
+
 ## [4.1.7] - 2017-06-06
 
 * Fixed setting combination SQL Modes.

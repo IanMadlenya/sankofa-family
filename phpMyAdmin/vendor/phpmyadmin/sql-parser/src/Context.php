@@ -9,6 +9,8 @@
 
 namespace PhpMyAdmin\SqlParser;
 
+use PhpMyAdmin\SqlParser\Exceptions\LoaderException;
+
 /**
  * Holds the configuration of the context that is currently used.
  *
@@ -307,9 +309,12 @@ abstract class Context
      *
      * @return int the appropriate flag for the comment type
      */
-    public static function isComment($str)
+    public static function isComment($str, $end=false)
     {
         $len = strlen($str);
+        if ($len == 0) {
+            return null;
+        }
         if ($str[0] === '#') {
             return Token::FLAG_COMMENT_BASH;
         } elseif (($len > 1) && ($str[0] === '/') && ($str[1] === '*')) {
@@ -320,6 +325,8 @@ abstract class Context
         } elseif (($len > 2) && ($str[0] === '-')
             && ($str[1] === '-') && (static::isWhitespace($str[2]))
         ) {
+            return Token::FLAG_COMMENT_SQL;
+        } elseif (($len == 2) && $end && ($str[0] === '-') && ($str[1] === '-')) {
             return Token::FLAG_COMMENT_SQL;
         }
 
@@ -374,6 +381,9 @@ abstract class Context
      */
     public static function isSymbol($str)
     {
+        if (strlen($str) == 0) {
+            return null;
+        }
         if ($str[0] === '@') {
             return Token::FLAG_SYMBOL_VARIABLE;
         } elseif ($str[0] === '`') {
@@ -395,6 +405,9 @@ abstract class Context
      */
     public static function isString($str)
     {
+        if (strlen($str) == 0) {
+            return null;
+        }
         if ($str[0] === '\'') {
             return Token::FLAG_STRING_SINGLE_QUOTES;
         } elseif ($str[0] === '"') {
@@ -432,7 +445,7 @@ abstract class Context
      * @param string $context name of the context or full class name that
      *                        defines the context
      *
-     * @throws \Exception if the specified context doesn't exist
+     * @throws LoaderException if the specified context doesn't exist
      */
     public static function load($context = '')
     {
@@ -444,8 +457,9 @@ abstract class Context
             $context = self::$contextPrefix . $context;
         }
         if (!class_exists($context)) {
-            throw new \Exception(
-                'Specified context ("' . $context . '") does not exist.'
+            throw @new LoaderException(
+                'Specified context ("' . $context . '") does not exist.',
+                $context
             );
         }
         self::$loadedContext = $context;
@@ -480,7 +494,7 @@ abstract class Context
             try {
                 // Trying to load the new context.
                 static::load($context);
-            } catch (\Exception $e) {
+            } catch (LoaderException $e) {
                 // If it didn't work, we are looking for a new one and skipping
                 // over to the next generation that will try the new context.
                 $context = preg_replace(
